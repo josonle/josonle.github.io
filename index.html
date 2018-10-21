@@ -145,14 +145,14 @@
 <li>无拥塞控制，上层应用可更好地控制发送时间和速率</li>
 </ul>
 <p>应用：常用于流媒体应用（容忍丢失，速率敏感），DNS，SNMP</p>
-<h3 id="UDP校验和使用，计算"><a href="#UDP校验和使用，计算" class="headerlink" title="UDP校验和使用，计算"></a>UDP校验和使用，计算</h3><p><img src="/MarkDown_images/UDP校验和使用.jpg" alt=""></p>
+<h3 id="UDP校验和使用，计算"><a href="#UDP校验和使用，计算" class="headerlink" title="UDP校验和使用，计算"></a>UDP校验和使用，计算</h3><p><img src="/MarkDown_images/network/UDP校验和使用.jpg" alt=""></p>
 <ul>
 <li>计算校验和</li>
 </ul>
-<p><strong>如果最高位有进位，要重新加在末尾（末尾再加1）</strong><br><img src="/MarkDown_images/校验和实例.jpg" alt=""></p>
+<p><strong>如果最高位有进位，要重新加在末尾（末尾再加1）</strong><br><img src="/MarkDown_images/network/校验和实例.jpg" alt=""></p>
 <h2 id="可靠数据传输（rdt）原理"><a href="#可靠数据传输（rdt）原理" class="headerlink" title="可靠数据传输（rdt）原理"></a>可靠数据传输（rdt）原理</h2><p>可靠：不错、不丢、不乱</p>
 <p>可靠数据传输对于应用层、传输层、链路层都很重要，它是计网中Top-10的问题。信道的不可靠特性决定了可靠数据传输协议的复杂性</p>
-<h3 id="Rdt协议基本结构图"><a href="#Rdt协议基本结构图" class="headerlink" title="Rdt协议基本结构图"></a>Rdt协议基本结构图</h3><p><img src="/MarkDown_images/RDT基本结构图.jpg" alt=""><br>注意我箭头所指出的，<br><strong>数据传输单向，控制信息流动双向</strong></p>
+<h3 id="Rdt协议基本结构图"><a href="#Rdt协议基本结构图" class="headerlink" title="Rdt协议基本结构图"></a>Rdt协议基本结构图</h3><p><img src="/MarkDown_images/network/RDT基本结构图.jpg" alt=""><br>注意我箭头所指出的，<br><strong>数据传输单向，控制信息流动双向</strong></p>
 <h3 id="Rdt-1-0：可靠信道上可靠数据传输协议（假设，现实不存在）"><a href="#Rdt-1-0：可靠信道上可靠数据传输协议（假设，现实不存在）" class="headerlink" title="Rdt 1.0：可靠信道上可靠数据传输协议（假设，现实不存在）"></a>Rdt 1.0：可靠信道上可靠数据传输协议（假设，现实不存在）</h3><p>它认为底层信道完全可靠（不发生错误，不丢分组）</p>
 <p><strong>状态机（FSM）</strong>，书上用来刻画传输协议的模型，去翻</p>
 <h3 id="Rdt-2-0：底层信道会产生位错误（bit翻转）"><a href="#Rdt-2-0：底层信道会产生位错误（bit翻转）" class="headerlink" title="Rdt 2.0：底层信道会产生位错误（bit翻转）"></a>Rdt 2.0：底层信道会产生位错误（bit翻转）</h3><ul>
@@ -190,18 +190,18 @@
 <p>在2.2基础上改动，无NAK信息</p>
 </blockquote>
 <p>发送方发送数据并启动定时器，若超时时间内收到了正确ACK信息跳转状态；若接收到错误ACK重传，定时器重启；若分组丢失，或者ACK丢失导致超时，发送方重传该分组并重启定时器；若ACK只是延迟，一样超时重传重启定时器</p>
-<p><strong>Rdt 3.0性能很低</strong><br><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/Rdt3.0性能.jpg)</p>
+<p><strong>Rdt 3.0性能很低</strong><br><img src="/MarkDown_images/network/Rdt3.0性能.jpg" alt=""></p>
 <hr>
-<p><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/Rdt3.0性能图示.jpg)</p>
+<p><img src="/MarkDown_images/network/Rdt3.0性能图示.jpg" alt=""></p>
 <h3 id="解决效率低下问题————打破停等协议"><a href="#解决效率低下问题————打破停等协议" class="headerlink" title="解决效率低下问题————打破停等协议"></a>解决效率低下问题————打破停等协议</h3><ul>
 <li>流水线机制</li>
 <li>滑动窗口协议（Sliding-window protocol）：GBN、SR协议</li>
 </ul>
 <p>序列号扩大，仅仅0和1不够用</p>
 <h4 id="流水线机制"><a href="#流水线机制" class="headerlink" title="流水线机制"></a>流水线机制</h4><p><strong>允许发送方在接受到ACK回馈前可连续发送多个分组</strong>，要求扩大序列号范围，发送方接收方都要有缓存机制以缓存分组</p>
-<p><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/流水线机制.jpg)</p>
+<p><img src="/MarkDown_images/network/流水线机制.jpg" alt=""></p>
 <p>理论上一次性发送分组越多效率越高</p>
-<h4 id="滑动窗口协议"><a href="#滑动窗口协议" class="headerlink" title="滑动窗口协议"></a>滑动窗口协议</h4><p><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/滑动窗口协议.jpg)</p>
+<h4 id="滑动窗口协议"><a href="#滑动窗口协议" class="headerlink" title="滑动窗口协议"></a>滑动窗口协议</h4><p><img src="/MarkDown_images/network/滑动窗口协议.jpg" alt=""></p>
 <p>如图，窗口大小为 N，绿色的是已确认分组，黄色是已发送等待确认分组数，蓝色是还可以发送分组数</p>
 <ul>
 <li>最多有N个等待确认分组</li>
@@ -244,7 +244,7 @@
 <ul>
 <li>为<strong>每个分组设置单独的定时器</strong>，只重传没接收到ACK的分组</li>
 </ul>
-<p><strong>图解</strong><br><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="图解">/MarkDown_images/SR协议.jpg)</p>
+<p><strong>图解</strong><br><img src="/MarkDown_images/network/SR协议.jpg" alt="图解"></p>
 <p><strong>接收方窗口大小 + 发送方窗口大小 &lt;= 序列号空间大小</strong></p>
 <p><strong>发送方，接收方对于哪些分组正确接收，哪些没有并不总是能看到相同结果</strong></p>
 <h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>全双工（full-duplex）服务，面向连接，点对点，同时发送接收</p>
@@ -465,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/" data-id="cjnicxkrm000004nflr1xmgl6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/" data-id="cjnidhy4a00086onfyu45r9kj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计网-笔记/">计网,笔记</a></li></ul>
@@ -579,7 +579,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2018-10-21-SQL上机记录.html/" data-id="cjnicxks3000504nfdn3huzhw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/2018-10-21-SQL上机记录.html/" data-id="cjnidhy3n00006onfs895613g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL、MySQL/">SQL、MySQL</a></li></ul>
@@ -694,7 +694,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/" data-id="cjnicxks1000404nfc3tejhzy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/" data-id="cjnidhy4a00056onfygw64vub" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计网-笔记/">计网,笔记</a></li></ul>
@@ -809,11 +809,14 @@
 <p>方法: 在 &lt;博客根目录&gt;/themes/yilia/layout/_partial/article.ejs 的尾部评论位置, 添加:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (!index)&#123; %&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">(function()&#123;</span><br><span class="line">    var bp = document.createElement(&apos;script&apos;);</span><br><span class="line">    bp.src = &apos;//push.zhanzhang.baidu.com/push.js&apos;;</span><br><span class="line">    var s = document.getElementsByTagName(&quot;script&quot;)[0];</span><br><span class="line">    s.parentNode.insertBefore(bp, s);</span><br><span class="line">&#125;)();</span><br><span class="line">&lt;/script&gt;     </span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></p>
 <h3 id="Hexo给博客添加图片"><a href="#Hexo给博客添加图片" class="headerlink" title="Hexo给博客添加图片"></a>Hexo给博客添加图片</h3><p>在项目的 <code>source/</code> 文件夹下新建一个文件夹，如<code>Markdown_images</code>，把你要写在博客中的图都存在该文件夹下，博客中按照类似 <code>![](/Markdown_images/image_name.jpg)</code> 的写法就OK</p>
 <p>向服务器提交后，再次打开博客就能看到你想要的图片了</p>
+<ul>
+<li>可以进一步参考：<a href="https://blog.csdn.net/u013384788/article/details/74079890" target="_blank" rel="noopener">Hexo博客中插入音乐</a></li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2018-08-31-Hexo使用及配置.html/" data-id="cjnicxkrs000104nf4pb2k1wq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/2018-08-31-Hexo使用及配置.html/" data-id="cjnidhy4500036onfh9x3sbec" class="article-share-link">Share</a>
       
       
     </footer>
@@ -850,7 +853,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2018-08-31-my-first-post.html/" data-id="cjnicxkrz000304nfrkvlhdv3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/2018-08-31-my-first-post.html/" data-id="cjnidhy4500046onf42s321ri" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/first-post/">first_post</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/testDemo/">testDemo</a></li></ul>
@@ -898,7 +901,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2018-08-31-hello-world.html/" data-id="cjnicxkse000e04nf87f3sq6g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/2018-08-31-hello-world.html/" data-id="cjnidhy3y00016onftfgvcrpa" class="article-share-link">Share</a>
       
       
     </footer>
