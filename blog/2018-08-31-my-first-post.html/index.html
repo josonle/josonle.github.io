@@ -430,8 +430,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2018-08-31-Hexo使用及配置.html/" rel="prev" title="Hexo使用及配置">
-                Hexo使用及配置 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/" rel="prev" title="《计算机网络自顶向下方法》之网络层总结">
+                《计算机网络自顶向下方法》之网络层总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -461,6 +461,8 @@
 
           
 
+  
+    <div id="gitalk-container"></div>
   
 
 
@@ -540,6 +542,12 @@
                     <a href="http://blog.csdn.net/lzw2016" target="_blank" title="CSDN">
                       
                         <i class="fa fa-fw fa-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:3092312003@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                   </span>
                 
             </div>
@@ -746,6 +754,22 @@
 
 
 
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'a94818509a8f36c0a222',
+          clientSecret: '4d6bcd339e8df5f3e1f9e653afa2a5b9a1023f0f',
+          repo: 'josonle.github.io',
+          owner: 'josonle',
+          admin: ['josonle'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
 
 
 

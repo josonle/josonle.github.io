@@ -124,7 +124,7 @@
 
 
 
-  <title>Josonlee's Blog</title>
+  <title>Hexo, NexT - Josonlee's Blog - Python数据分析、机器学习、Django、java学习</title>
   
 
 
@@ -272,6 +272,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-10-21-Hexo使用及配置.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018-10-21-Hexo使用及配置.html/" itemprop="url">Hexo使用及配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T15:57:55+08:00">
+                2018-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="初始化博客文件夹"><a href="#初始化博客文件夹" class="headerlink" title="初始化博客文件夹"></a>初始化博客文件夹</h3><p>选择一个文件夹作为博客文件夹，如 D:\HexoBlogGithub<br><code>D:\HexoBlogGithub&gt;hexo init</code></p>
+<h3 id="Hexo基本配置"><a href="#Hexo基本配置" class="headerlink" title="Hexo基本配置"></a>Hexo基本配置</h3><blockquote>
+<p>在 _config.yml 中修改大部份的配置</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018-10-21-Hexo使用及配置.html/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -361,8 +507,7 @@
 
       
         
-          
-            <h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><h3 id="传输层基本理论和机制"><a href="#传输层基本理论和机制" class="headerlink" title="传输层基本理论和机制"></a>传输层基本理论和机制</h3><ul>
+          <h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><h3 id="传输层基本理论和机制"><a href="#传输层基本理论和机制" class="headerlink" title="传输层基本理论和机制"></a>传输层基本理论和机制</h3><ul>
 <li>多路复用/分用</li>
 <li>可靠数据传输机制</li>
 <li>流量控制机制</li>
@@ -371,367 +516,14 @@
 <h3 id="传输层协议"><a href="#传输层协议" class="headerlink" title="传输层协议"></a>传输层协议</h3><ul>
 <li>UDP：无连接传输服务</li>
 <li>TCP：面向连接的传输服务</li>
-<li>TCP拥塞控制机制<br>&lt; !– more –&gt;<h2 id="传输层概述"><a href="#传输层概述" class="headerlink" title="传输层概述"></a>传输层概述</h2>传输层协议为不同主机上运行的<strong>进程</strong>提供逻辑通信机制（端到端的）<blockquote>
-<p>网络层和传输层区别和联系：</p>
-<p>网络层是在<strong>主机</strong>之间提供逻辑通信机制</p>
-<p>传输层位于网络层之上，依赖网络层服务，对网络层服务进行（可能的）增强</p>
-</blockquote>
-</li>
-</ul>
-<p>发送方将消息分成一或多个报文段向下传给网络层，接收方将接收到的报文段组装成消息向上交付给应用层</p>
-<ul>
-<li>TCP:可靠按序的交付服务<ul>
-<li>拥塞控制</li>
-<li>流量控制</li>
-<li>连接建立</li>
-</ul>
-</li>
-<li>UDP：不可靠，基于“尽力而为”的网络层协议IP，没有做可靠性方面的扩展</li>
-<li>二者都不保证<strong>延迟、带宽</strong></li>
-</ul>
-<h2 id="多路复用、分用"><a href="#多路复用、分用" class="headerlink" title="多路复用、分用"></a>多路复用、分用</h2><p>参考书上的收寄信件的案例，接收端多路分用（将数据报组合成信息），发送端多路复用（将信息拆分成多个数据报）</p>
-<p>分用工作原理：</p>
-<ul>
-<li>主机接收到的IP数据报都携带源/目的IP地址，每个数据报都携带一个传输层的报文段（Segment），而报文段中携带源/目的端口号</li>
-<li>主机接收报文段后，传输层协议提取IP地址和端口号信息，报报文段导入正确的Socket中。（TCP有更多的处理过程）</li>
-</ul>
-<p>分用对于UDP、TCP的区别：</p>
-<ul>
-<li>UDP只依赖（二元组）源/目的端口号区别</li>
-<li>TCP依赖 <strong>（四元组）</strong> 源/目的IP，源/目的端口号来区别</li>
-</ul>
-<blockquote>
-<p>服务器可同时支持多个TCP Socket，服务器一个进程可以创建多个线程和不同TCP链接相连接，Web服务器为每个客户端都开不同的Socket</p>
-</blockquote>
-<h2 id="UDP协议（用户数据报协议）"><a href="#UDP协议（用户数据报协议）" class="headerlink" title="UDP协议（用户数据报协议）"></a>UDP协议（用户数据报协议）</h2><p>基于IP协议实现了复用/分用，以及简单的错误检验（校验和）</p>
-<p>因为IP是“尽力而为”的，所以UDP段可能丢失、可能不按序到达</p>
-<p>每个UDP段的处理独立于其它段</p>
-<p><strong>UDP协议虽然是不可靠的，但依然可以在UDP上实现可靠数据传输。只要在应用层上增加可靠性机制、错误恢复机制</strong>。</p>
-<h3 id="UDP协议的优势："><a href="#UDP协议的优势：" class="headerlink" title="UDP协议的优势："></a>UDP协议的优势：</h3><ul>
-<li>无需建立连接（减少延迟）</li>
-<li>实现简单，不需要维护连接的状态</li>
-<li>头部开销小（8字节，TCP20字节）</li>
-<li>无拥塞控制，上层应用可更好地控制发送时间和速率</li>
-</ul>
-<p>应用：常用于流媒体应用（容忍丢失，速率敏感），DNS，SNMP</p>
-<h3 id="UDP校验和使用，计算"><a href="#UDP校验和使用，计算" class="headerlink" title="UDP校验和使用，计算"></a>UDP校验和使用，计算</h3><p><img src="/MarkDown_images/network/UDP校验和使用.jpg" alt=""></p>
-<ul>
-<li>计算校验和</li>
-</ul>
-<p><strong>如果最高位有进位，要重新加在末尾（末尾再加1）</strong><br><img src="/MarkDown_images/network/校验和实例.jpg" alt=""></p>
-<h2 id="可靠数据传输（rdt）原理"><a href="#可靠数据传输（rdt）原理" class="headerlink" title="可靠数据传输（rdt）原理"></a>可靠数据传输（rdt）原理</h2><p>可靠：不错、不丢、不乱</p>
-<p>可靠数据传输对于应用层、传输层、链路层都很重要，它是计网中Top-10的问题。信道的不可靠特性决定了可靠数据传输协议的复杂性</p>
-<h3 id="Rdt协议基本结构图"><a href="#Rdt协议基本结构图" class="headerlink" title="Rdt协议基本结构图"></a>Rdt协议基本结构图</h3><p><img src="/MarkDown_images/network/RDT基本结构图.jpg" alt=""><br>注意我箭头所指出的，<br><strong>数据传输单向，控制信息流动双向</strong></p>
-<h3 id="Rdt-1-0：可靠信道上可靠数据传输协议（假设，现实不存在）"><a href="#Rdt-1-0：可靠信道上可靠数据传输协议（假设，现实不存在）" class="headerlink" title="Rdt 1.0：可靠信道上可靠数据传输协议（假设，现实不存在）"></a>Rdt 1.0：可靠信道上可靠数据传输协议（假设，现实不存在）</h3><p>它认为底层信道完全可靠（不发生错误，不丢分组）</p>
-<p><strong>状态机（FSM）</strong>，书上用来刻画传输协议的模型，去翻</p>
-<h3 id="Rdt-2-0：底层信道会产生位错误（bit翻转）"><a href="#Rdt-2-0：底层信道会产生位错误（bit翻转）" class="headerlink" title="Rdt 2.0：底层信道会产生位错误（bit翻转）"></a>Rdt 2.0：底层信道会产生位错误（bit翻转）</h3><ul>
-<li>错误如何检测？<strong>接收方利用校验和检测位错误</strong> 【检测机制】</li>
-<li>错误如何恢复？<ul>
-<li><strong>接收方向发送方反馈控制信息</strong> 【确认机制】</li>
-<li>确认机制（ACK），显式地告诉发送方分组已正确接收</li>
-<li>NAK，告诉发送方分组有错误</li>
-<li><strong>发送方接受NAK，重传分组</strong> 【重传机制】</li>
-</ul>
-</li>
-</ul>
-<p>基于这种重传机制的rdt称为ARQ（Automatic Repeat ReQuest）协议</p>
-<p><strong>停等协议</strong>，发送方有两种状态（等待接受上层应用数据【状态1】，等待反馈信息的接收【状态2】）</p>
-<p>发送方在发送数据后，等待接收反馈信息，如果接收到ACK跳转到状态1等待上层调用；如果接收到NAK再次发送该分组（表明发送方有缓存机制），继续等待，直到接收到ACK</p>
-<h3 id="Rdt-2-1和2-2：解决2-0的缺陷"><a href="#Rdt-2-1和2-2：解决2-0的缺陷" class="headerlink" title="Rdt 2.1和2.2：解决2.0的缺陷"></a>Rdt 2.1和2.2：解决2.0的缺陷</h3><p><strong>Rdt2.0协议的缺陷：反馈信息ACK/NAK有可能错误</strong></p>
-<p>Rdt2.1：</p>
-<p>如何解决？</p>
-<ol>
-<li>为ACK/NAK加上校验和，检错并纠错（难度大）</li>
-<li>为ACK/NAK添加额外的控制信息（控制信息还可能错误）</li>
-<li>如果ACK/NAK错误了，发送方就重传（但不能简单重传，会产生<strong>重复分组</strong>）【采用】</li>
-</ol>
-<p>如何解决重复分组？</p>
-<ul>
-<li>发送方为每个分组增加<strong>序列号</strong>（Sequence number）0和1</li>
-<li>接收方<strong>丢弃重复分组</strong></li>
-</ul>
-<p>发送方、接收方使用停等协议，所以序列号只使用0和1就够用了</p>
-<p>Rdt2.2：无NAK消息协议<br>功能同2.1，但是用<strong>ACK+序列号</strong>替代NAK（ACK消息中加入被确认分组的序列号）。比如说发送方等待序列号为0的分组ACK，但是接收到了序列号信息为1的ACK，表明有错误发生，重传该分组</p>
-<h3 id="Rdt-3-0：底层信道可能错误可能丢失分组"><a href="#Rdt-3-0：底层信道可能错误可能丢失分组" class="headerlink" title="Rdt 3.0：底层信道可能错误可能丢失分组"></a>Rdt 3.0：底层信道可能错误可能丢失分组</h3><p>因为可能丢失分组，所以无论是发送方发送的分组丢失，还是接收方反馈的ACK/NAK丢失，都会造成双方无限等待的情况</p>
-<p>如何解决？<br>设置<strong>定时器</strong>，发送方等待合理时间，如果超时还未接收到确认信息就重传。</p>
-<p>合理时间要设置恰当，因为ACK反馈可能没丢，只是延迟了，但超时时间设置过小，你给他重传了</p>
-<blockquote>
-<p>在2.2基础上改动，无NAK信息</p>
-</blockquote>
-<p>发送方发送数据并启动定时器，若超时时间内收到了正确ACK信息跳转状态；若接收到错误ACK重传，定时器重启；若分组丢失，或者ACK丢失导致超时，发送方重传该分组并重启定时器；若ACK只是延迟，一样超时重传重启定时器</p>
-<p><strong>Rdt 3.0性能很低</strong><br><img src="/MarkDown_images/network/Rdt3.0性能.jpg" alt=""></p>
-<hr>
-<p><img src="/MarkDown_images/network/Rdt3.0性能图示.jpg" alt=""></p>
-<h3 id="解决效率低下问题————打破停等协议"><a href="#解决效率低下问题————打破停等协议" class="headerlink" title="解决效率低下问题————打破停等协议"></a>解决效率低下问题————打破停等协议</h3><ul>
-<li>流水线机制</li>
-<li>滑动窗口协议（Sliding-window protocol）：GBN、SR协议</li>
-</ul>
-<p>序列号扩大，仅仅0和1不够用</p>
-<h4 id="流水线机制"><a href="#流水线机制" class="headerlink" title="流水线机制"></a>流水线机制</h4><p><strong>允许发送方在接受到ACK回馈前可连续发送多个分组</strong>，要求扩大序列号范围，发送方接收方都要有缓存机制以缓存分组</p>
-<p><img src="/MarkDown_images/network/流水线机制.jpg" alt=""></p>
-<p>理论上一次性发送分组越多效率越高</p>
-<h4 id="滑动窗口协议"><a href="#滑动窗口协议" class="headerlink" title="滑动窗口协议"></a>滑动窗口协议</h4><p><img src="/MarkDown_images/network/滑动窗口协议.jpg" alt=""></p>
-<p>如图，窗口大小为 N，绿色的是已确认分组，黄色是已发送等待确认分组数，蓝色是还可以发送分组数</p>
-<ul>
-<li>最多有N个等待确认分组</li>
-<li>随着协议运行，窗口在序列号空间内向前滑动</li>
-<li>如果此时发送方确认了最左端的一个黄色分组，窗口右滑一格</li>
-</ul>
-<h4 id="GBN回退N步协议"><a href="#GBN回退N步协议" class="headerlink" title="GBN回退N步协议"></a>GBN回退N步协议</h4><p>分组头部包含K位(K-bit)分组序号字段，序列号范围2^k</p>
-<p><strong>发送方</strong></p>
-<ul>
-<li>窗口未满时可接受上层应用调用发送分组，如果已满，发送方将数据返回上层，隐示通知窗口已满</li>
-<li><strong>累积确认机制</strong>：接收到ACK(n)，表明到序列号n（含n）之前的分组均被正确接受</li>
-<li>分组的发送需要<strong>设置计时器</strong> （<strong>一个</strong>计时器）</li>
-<li>如果发生<strong>序列号为n的分组超时</strong>旳事件，重传序列号大于等于n的<strong>所有还未接收到ACK确认</strong>的分组</li>
-<li>当接收到ACK(n)且n前面的所有分组都已确认，窗口滑动，base_sequence滑至尚未确认的分组处</li>
-</ul>
-<p>重传存在资源浪费</p>
-<p><strong>接收方</strong></p>
-<ul>
-<li>接收方<strong>按序交付</strong>数据给上层调用</li>
-<li>对于失序分组，接收方直接丢弃处理（<strong>因此不需要缓存机制</strong>）。因为序列号n+1的分组到达，但序列号n的分组丢失，发送方会把依重传机制把它们都重新发送即可</li>
-<li><strong>接收方唯一需要维护的是下一个按序接收的分组序号</strong><ul>
-<li>接收方返回的反馈信息是 ACK(下一个要按序接收的分组序号-1) 【拥有最高序列号、已被正确接受的分组的ACK】</li>
-</ul>
-</li>
-</ul>
-<p><strong>接收方无缓存机制，发送方有</strong></p>
-<blockquote>
-<p>例题：数据链路层依据GBN协议，发送方发送标号0~7的帧，计时器超时后，发送方只收到了0,2,3号帧的确认，需要重传哪几个帧？</p>
-<p>不要想着1号帧，因为依据GBN原理，收到ACK(n)表明包含n在内的之前所有帧都已接收到了。所有是4,5,6，7</p>
-</blockquote>
-<h4 id="SR-选择重传协议-（Selective-Repeat，-SR）"><a href="#SR-选择重传协议-（Selective-Repeat，-SR）" class="headerlink" title="SR 选择重传协议 （Selective Repeat， SR）"></a>SR 选择重传协议 （Selective Repeat， SR）</h4><p>解决GBN的不必要重传缺陷，不采用累积确认机制</p>
-<p><strong>接收方</strong></p>
-<ul>
-<li>对每个分组单独确认，设置缓存机制（缓存乱序到达的分组）</li>
-<li>接收方也设置窗口</li>
-<li>失序分组被缓存，直到所有丢失分组（序列号更小）都被收到，才一次性交付给上层，接收窗口滑动交付分组数量长度</li>
-<li>接收到已确认的分组，任然要发送对应ACK</li>
-</ul>
-<p><strong>发送方</strong></p>
-<ul>
-<li>为<strong>每个分组设置单独的定时器</strong>，只重传没接收到ACK的分组</li>
-</ul>
-<p><strong>图解</strong><br><img src="/MarkDown_images/network/SR协议.jpg" alt="图解"></p>
-<p><strong>接收方窗口大小 + 发送方窗口大小 &lt;= 序列号空间大小</strong></p>
-<p><strong>发送方，接收方对于哪些分组正确接收，哪些没有并不总是能看到相同结果</strong></p>
-<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>全双工（full-duplex）服务，面向连接，点对点，同时发送接收</p>
-<p>累积确认，双方都有缓存机制，使用超时/重传机制处理报文段丢失问题</p>
-<h4 id="三次握手-四次挥手"><a href="#三次握手-四次挥手" class="headerlink" title="三次握手 四次挥手"></a>三次握手 四次挥手</h4><h4 id="TCP报文段结构"><a href="#TCP报文段结构" class="headerlink" title="TCP报文段结构"></a>TCP报文段结构</h4><p>TCP报文首部最小20B，最大60B（首部长度字段4bit，但是单位是B，4B*15=60B）</p>
-<p>四元祖：</p>
-<ul>
-<li>源端口号：16bit</li>
-<li>目的端口号：16bit</li>
-<li>序列号Seq：32bit</li>
-<li>确认号Ack：32bit</li>
-<li><p>Seq、Ack最重要</p>
-</li>
-<li><p>接收窗口：用于流量控制，表示接收方愿接收的字节数</p>
-</li>
-<li>6bit标志字段</li>
-</ul>
-<h4 id="超市间隔设置"><a href="#超市间隔设置" class="headerlink" title="超市间隔设置"></a>超市间隔设置</h4><ul>
-<li>样本RTT（SampleRTT）</li>
-<li>样本RTT均值（EstimatedRTT）</li>
-<li>RTT偏差（DevRTT）:Samplertt和EstimatedRTT差值</li>
-</ul>
-<p>样本RTT波动小，DevRTT值就小</p>
-<h3 id="TCP实现的服务"><a href="#TCP实现的服务" class="headerlink" title="TCP实现的服务"></a>TCP实现的服务</h3><h4 id="可靠数据传输"><a href="#可靠数据传输" class="headerlink" title="可靠数据传输"></a>可靠数据传输</h4><h4 id="加倍超时间隔"><a href="#加倍超时间隔" class="headerlink" title="加倍超时间隔"></a>加倍超时间隔</h4><p>拥塞时持续重传反而会加重拥塞，所以每次TCP重传都会将下一次超时间隔设置为先前值的两倍（这是一种有限形式的拥塞控制）</p>
-<h4 id="快速重传"><a href="#快速重传" class="headerlink" title="快速重传"></a>快速重传</h4><p>因为加倍超时间隔有可能使得发送方等待很长时间才重传分组，增加了端到端的时延</p>
-<p>快速重传讲究，未超时前提下，接收冗杂Ack（3次），快速重传该分组</p>
-<p><strong>冗杂Ack是什么？怎么产生？见课本P165</strong></p>
-<h4 id="TCP是GBN还是SR协议"><a href="#TCP是GBN还是SR协议" class="headerlink" title="TCP是GBN还是SR协议"></a>TCP是GBN还是SR协议</h4><p>混合体，见书本p165</p>
-<h3 id="流量控制（流控制-flow-control）"><a href="#流量控制（流控制-flow-control）" class="headerlink" title="流量控制（流控制 flow-control）"></a>流量控制（流控制 flow-control）</h3><p>速度匹配服务，发送方发送速率和接收方应用程序读速率相匹配，解决发送方使接收方缓存溢出的可能</p>
-<blockquote>
-<p>流控制和拥塞控制都是对发送方的遏制</p>
-</blockquote>
-<p>链接两端都维护一个<strong>接收窗口（receive window ，上文提过的首部字段）</strong>，用来表明接收方当下还能接收的字节数</p>
-<h3 id="TCP概述"><a href="#TCP概述" class="headerlink" title="TCP概述"></a>TCP概述</h3><ul>
-<li>点对点，端到端</li>
-<li>可靠按序的字节流，全双工的</li>
-<li>双方都有缓存机制</li>
-<li>流水线机制<ul>
-<li>拥塞控制、流量控制机制</li>
-</ul>
-</li>
-<li>面向连接的<ul>
-<li>数据传输前必须建立连接</li>
-<li>连接状态只在两端维护，不涉及沿途节点</li>
-<li>TCP连接包括：两台主机上的缓存、连接状态变量、socket等</li>
-</ul>
-</li>
-</ul>
-<h4 id="TCP报文段结构（20-60字节）"><a href="#TCP报文段结构（20-60字节）" class="headerlink" title="TCP报文段结构（20~60字节）"></a>TCP报文段结构（20~60字节）</h4><ul>
-<li>源/目的端口号</li>
-<li>Seq：序列号</li>
-<li>Ack：应答号</li>
-</ul>
-<blockquote>
-<p>Seq是双方建立连接时随机取的，他指的是segment中第一个字节的编号，而非segment报文的编号</p>
-</blockquote>
-<blockquote>
-<p>Ack是期望接收到的下一个字节的序列号，<strong>累计确认</strong>（表明该序列号前所有字节都已正确接收）</p>
-</blockquote>
-<ul>
-<li>U、A、P、R、S、F<ul>
-<li>U:URG</li>
-<li>A：ACK是否有效，1就是ACK有效</li>
-<li>P:PSH，立刻向上交付数据（不怎么用）</li>
-<li>RST、SYN、FIN涉及连接建立拆除</li>
-</ul>
-</li>
-<li>Receive Window：可接受的字节数</li>
-</ul>
-<h4 id="可靠数据传输概述"><a href="#可靠数据传输概述" class="headerlink" title="可靠数据传输概述"></a>可靠数据传输概述</h4><ul>
-<li>基于IP层的不可靠服务基础上实现可靠数据传输服务</li>
-<li>流水线机制（提供传输效率）</li>
-<li>累计确认</li>
-<li>TCP使用单一重传定时器</li>
-<li>触发重传事件：超时；收到重复ACK</li>
-</ul>
-<ol>
-<li>如何设置超时时间<ul>
-<li>大于RTT</li>
-<li>过短会造成不必要重传</li>
-<li>过长对段丢失时间反应慢</li>
-</ul>
-</li>
-<li>RTT如何估计？超时设置多大？<ul>
-<li>测量从报文段发出到接收到对应ACK的时间(样本RTT，SampleRTT) 【不考虑重传的报文段】</li>
-<li>测量多个SampleRTT，求平均得到RTT估计值EstimatedRTT</li>
-<li>测量RTT的变化值DevRTT：SampleRTT与EstimatedRTT的差值</li>
-<li>定时器超时时间设置为：<code>$ TimeoutInterval = EstimatedRTT + 4*DevRTT$</code></li>
-</ul>
-</li>
-<li>发送方事件<ul>
-<li>从上层应用收到数据<ol>
-<li>创建Segment，指定序列号（Segment第一个字节的编号）</li>
-<li>开启计时器，设置超时时间</li>
-</ol>
-</li>
-<li>超时<ol>
-<li>重传引起超时的Segment</li>
-<li>重启定时器</li>
-</ol>
-</li>
-<li>收到ACK<ol>
-<li>如果是以前未确认的Segment的ACk会更新SendBase，若窗口中还有未被确认的分组，则重启定时器</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>接收方行为<ul>
-<li>接收到期望的Segment会延迟ACk发送(500ms，避免刚发就有其他Segment到达)</li>
-<li>接收到重复Segment，立刻发送ACK</li>
-<li>接收乱序Segment，立刻发送重复ACK（期望接收的字节序列号）</li>
-<li><blockquote>
-<p>至于乱序到达的Segment如何处理，有程序员决定</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="快速重传机制"><a href="#快速重传机制" class="headerlink" title="快速重传机制"></a>快速重传机制</h4><ol>
-<li>如果<strong>发生超时，发送方超时间隔将会倍增</strong><blockquote>
-<p>这会使得超时间隔很大，重传之前要等待很久</p>
-</blockquote>
-</li>
-<li>通过重复ACk检测分组的丢失<ul>
-<li>某个分组丢失可能引起多个重复ACk</li>
-<li>如果<strong>发送方收到对同一数据的3个ACk，就假定该数据之后的段已经丢失</strong></li>
-</ul>
-</li>
-<li>快速重传：在<strong>定时器超时前</strong>进行重传</li>
-</ol>
-<h4 id="TCP流量控制"><a href="#TCP流量控制" class="headerlink" title="TCP流量控制"></a>TCP流量控制</h4><p><strong>速度匹配</strong>，利用头部的RcvWindow字段</p>
-<p><strong>接收方告诉发送方RcvWindow=0，发送方仍然会发送一个非常小的段，以便接收方处理交付完数据后告知发送方需要的数据</strong></p>
-<h4 id="TCP连接管理"><a href="#TCP连接管理" class="headerlink" title="TCP连接管理"></a>TCP连接管理</h4><ul>
-<li>建立连接，三次握手<ol>
-<li>客户端向服务器发送SYN报文段（不携带数据，syn置1，携带初始序列号）</li>
-<li>服务器同意，则发送SYNACK报文段，同时建立缓存和初始序列号</li>
-<li>客户端接受到SYNACK后会答复一个ACK报文段（同时可携带数据）</li>
-</ol>
-</li>
-<li>关闭连接，四次挥手<ol>
-<li>client向Server发送FIN控制报文段</li>
-<li>Server收到FIN，回复ACK，<strong>进入等待</strong>，关闭连接，发送FIN</li>
-<li>client收到FIN，回复ACK</li>
-<li>Server收到ACK，连接关闭</li>
-</ol>
-</li>
-</ul>
-<h3 id="拥塞控制原理"><a href="#拥塞控制原理" class="headerlink" title="拥塞控制原理"></a>拥塞控制原理</h3><p><strong>网络十大问题之一</strong>，表现在<strong>分组丢失</strong>（路由器缓存溢出）、<strong>分组延迟过大</strong>（在路由器缓存中<strong>排队</strong>）</p>
-<ol>
-<li><p>拥塞的代价</p>
-<ul>
-<li>分组延迟加大</li>
-<li>分组重传造成资源的浪费，降低吞吐率</li>
-<li>涉及多跳传输时，某个路由器将分组丢弃会导致‘上游’（前面经过的路由）传输能力全部浪费掉</li>
-</ul>
-</li>
-<li><p>控制的思想：控制发送速率</p>
-</li>
-<li>拥塞控制的方法<ul>
-<li>端到端的拥塞控制<ol>
-<li>网络层不提供显示支持</li>
-<li>由端系统通过观察数据loss，发送延迟delay等行为来判断是否拥塞</li>
-<li>TCP采取该方法</li>
-</ol>
-</li>
-<li>网络辅助的拥塞控制<ol>
-<li>路由器向发送方显式地反馈拥塞信息</li>
-<li>依赖简单的拥塞指示：SNA,DECbit,TCP/IP ECN,ATM使用<h4 id="ATM的拥塞控制-ABR（available-bit-rate）"><a href="#ATM的拥塞控制-ABR（available-bit-rate）" class="headerlink" title="ATM的拥塞控制 ABR（available bit rate）"></a>ATM的拥塞控制 ABR（available bit rate）</h4></li>
-</ol>
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>弹性服务</li>
-<li>发送方路径上负载低的话，发送方就会使用可用带宽；拥塞的话，就会将速率降低到最低保障速率</li>
-</ul>
-<p>具体一点，ATM在网路上传输的是一个叫cell的（同之前所说的报文段），包含data cells、RM cells。通过RM cells控制拥塞，它由发送方发送，接收方再返回发送方，RM cell中有<strong>NI</strong>位（rate速率不许增长）、<strong>CI</strong>位（显式拥塞指示），和ER字段(2bit，显式的速率)</p>
-<blockquote>
-<p>NI、CI是接收方反馈的，ER是直接交换机反馈的<br>交换机拥塞时，就可以将ER置为更小，发送方接收到后就能获知路径所能支持最小速率</p>
-</blockquote>
-<p>定性机制（NI/CI），定量机制（速率字段ER）</p>
-<p>数据cell中也有EFCI位：如果拥塞，交换机就把他置为1，那么发送方再返回的RM cell中置CI位（表明拥塞）</p>
-<h3 id="TCP如何控制拥塞"><a href="#TCP如何控制拥塞" class="headerlink" title="TCP如何控制拥塞"></a>TCP如何控制拥塞</h3><p>基本思想也是控制发送速率，设置变量<strong>CongWin</strong>（拥塞窗口）&gt;= 发送的最后有一个byte的序列号 - 发送确认的最后一个应答后，<code>rate ≈ CongWin/RTT</code></p>
-<p>所以可以动态调整CongWin改变发送速率</p>
-<p>采取机制：</p>
-<ul>
-<li>慢启动：SS</li>
-<li>拥塞避免（加性增，乘性减）：AIMD<h4 id="如何判断网络拥塞"><a href="#如何判断网络拥塞" class="headerlink" title="如何判断网络拥塞"></a>如何判断网络拥塞</h4>发生超时，或者收到3个重复ACK，就可以判断拥塞</li>
-</ul>
-<h4 id="AIMD"><a href="#AIMD" class="headerlink" title="AIMD"></a>AIMD</h4><p>线性增加发送速率，直到遇到拥塞发生，然后以减半的方式把速率降下来</p>
-<ul>
-<li><p>加性增：每个RTT将CongWin增大一个MSS—-&gt;拥塞避免</p>
-</li>
-<li><p>乘性减：发生拥塞将CongWin减半</p>
-</li>
-</ul>
-<h4 id="SS"><a href="#SS" class="headerlink" title="SS"></a>SS</h4><p>TCP初始建立连接时一般把CongWin设为1个MSS，初始速率非常低（远小于带宽），考虑速率呈指数性质增长(慢启动)，每一个经过RTT把CongWin翻倍</p>
-<h4 id="指数增长和加性增-线性增长-的转换条件"><a href="#指数增长和加性增-线性增长-的转换条件" class="headerlink" title="指数增长和加性增(线性增长)的转换条件"></a>指数增长和加性增(线性增长)的转换条件</h4><p>当CongWin达到（前一次发生拥塞事件时CongWin的一半，称为Threshold）时，由指数转为线性</p>
-<h4 id="发生拥塞后发送速率怎么变"><a href="#发生拥塞后发送速率怎么变" class="headerlink" title="发生拥塞后发送速率怎么变"></a>发生拥塞后发送速率怎么变</h4><ul>
-<li>如果发生<strong>timeout</strong>，Threshold = CongWin/2，然后<strong>CongWin会直接减为1个MSS，然后慢启动</strong></li>
-<li>如果是接收到<strong>3次重复ACk</strong>，Threshold = CongWin/2，然后<strong>CongWin = CongWin/2，然后线性增</strong></li>
-</ul>
-<p><strong>timeout表明拥塞严重，而重复ACk表示还能发送一些数据</strong></p>
-<h3 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h3><ul>
-<li>假设主机A向主机B发送5个连续的报文段，主机B对每个报文段进行确认，其中第二个报文段丢失，其余报文段以及重传的第二个报文段均被主机B正确接收，主机A正确接收所有ACK报文段；报文段从1开始依次连续编号（即1、2、3……），主机A的超时时间足够长。请回答下列问题：</li>
-</ul>
-<p>1).如果分别采用GBN、SR和TCP协议，则对应这三个协议，主机A分别总共发了多少个报文段？主机B分别总共发送了多少个ACK？它们的序号是什么？(针对3个协议分别给出解答）</p>
-<p>2).如果对上述三个协议，超时时间比5RTT长得多，那么哪个协议将在最短的时间间隔内成功交付5个报文段？</p>
-<hr>
-<ul>
-<li>假设A、B两个端系统通过唯一的一条8Mbps链路连接（M=10^6），该链路的双向传播时延是150ms；A通过一个TCP连接向B发送一个大文件，B的接收缓存足够大，每个TCP段最大段长度（MSS）为1500字节，TCP采用Reno版本，且总是处于拥塞避免阶段（即忽略慢启动）。请回答下列问题：</li>
-</ul>
-<p>1).该TCP连接能够获得的最大窗口尺寸（以TCP段数计）是多少？</p>
-<p>2).该TCP连接的平均窗口尺寸（以TCP段数计）和平均吞吐量（以bps计）是多少？</p>
-<p>3).该TCP连接的拥塞窗口从发生丢包到恢复到最大窗口尺寸要经历多长时间？</p>
-
-          
+<li>TCP拥塞控制机制
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1080,308 +872,19 @@
 
       
         
-          
-            <p>网络层三大组件</p>
+          <p>网络层三大组件</p>
 <ul>
 <li>IP协议</li>
 <li>ICMP互联网控制报文协议</li>
 <li>RIP、OSFP、BGP选路协议</li>
 </ul>
-<p>&lt; !– more –&gt;</p>
-<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><h2 id="IP编址"><a href="#IP编址" class="headerlink" title="IP编址"></a>IP编址</h2><p>首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用<strong>点分十进制</strong></p>
-<p>每个接口都必须要分配一个唯一的IP（除了NAT后面的接口），<strong>接口的IP也不能随意选取，都是由其所连接的子网决定的</strong></p>
-<blockquote>
-<p>接口：主机和物理链路的边界，路由器和链路的边界</p>
-</blockquote>
-<blockquote>
-<p>为何接口要有IP？因为主机和路由器都能收发IP数据表自然要有源/目的IP</p>
-</blockquote>
-<ul>
-<li>子网（subnet）<blockquote>
-<p>连接多台主机到一台路由器接口的独立以太网络，或者是路由器之间相连的独立网络</p>
-</blockquote>
-</li>
-<li>子网如何确定<blockquote>
-<p>分开主机和路由器的每个接口，产生了几个分离的网络岛。而接口端连接了这些独立的网络岛的端点，这些独立的网络都是一个子网</p>
-</blockquote>
-</li>
-<li>IP编址会为每一个子网分配一个地址（形如223.1.1.0/24，/24称为子网掩码 subnet mask），则子网中主机和接口的IP都是223.1.1.xxx的形式<blockquote>
-<p>子网掩码定义了子网地址，如/24，表明IP前24位bit全1，后8位全0就是子网地址<br><strong>前x为bit也通常称为前缀（prefix，网络前缀）</strong></p>
-</blockquote>
-</li>
-</ul>
-<p>因特网的地址分配策略被称为<strong>无类别域间选路（CIDR）</strong></p>
-<p>路由器在转发数据报时，仅考虑前x bit（最长匹配），寻找所其属组织(可能包含多个子网)；只有组织内部路由器转发分组时，才考虑后面的bit。<strong>可以减少路由器转发表的长度</strong></p>
-<p>好比江西省南昌市XXX这个地址，先找到江西省南昌市这个组织，之后又若干个县镇，就在组织内部比较后xxx位。如果不是南昌市，匹配到江西省后就组织外部转发寻找其他市</p>
-<h3 id="分类编址-classful-addressing"><a href="#分类编址-classful-addressing" class="headerlink" title="分类编址 classful addressing"></a>分类编址 classful addressing</h3><ul>
-<li>A类：(/8)，可容纳2^24-2台主机，以下类似</li>
-<li>B类：(/16)</li>
-<li>C类：(/24)</li>
-</ul>
-<p><strong>减去两个特殊的地址，全0的子网地址，全1的广播地址</strong></p>
-<ul>
-<li>这样分会产生问题，地址空间利用率低</li>
-</ul>
-<h3 id="系统管理员向ISP申请手动配置路由器和主机的IP"><a href="#系统管理员向ISP申请手动配置路由器和主机的IP" class="headerlink" title="系统管理员向ISP申请手动配置路由器和主机的IP"></a>系统管理员向ISP申请手动配置路由器和主机的IP</h3><p>ISP：网络服务提供商</p>
-<h3 id="动态主机配置协议-DHCP"><a href="#动态主机配置协议-DHCP" class="headerlink" title="动态主机配置协议 DHCP"></a>动态主机配置协议 DHCP</h3><blockquote>
-<p>DHCP是应用层协议，服务器端口号67，客户机端口号68。（基于UDP）</p>
-</blockquote>
-<p>主机每次连接网络时都能得到一个相同的IP，或者分配到一个临时IP。DHCP也被称为<strong>即插即用协议（plug-and-play protocol）</strong></p>
-<p>每当主机加入或离开网络时，DHCP会更新其可用IP地址表。加入时，任意分配一个可以IP；离开时，回收地址</p>
-<ol>
-<li><p>DHCP服务器发现<br>新到的主机要先寻找DHCP服务器，借助<strong>DHCP发现报文</strong>，在UDP分组中向端口67号发送数据报，源IP地址指定0.0.0.0，目的IP使用广播地址255.255.255.255</p>
-</li>
-<li><p>DHCP服务器提供<br>因为接收到发现报文的DHCP服务器可能有多台，所以DHCP服务器在接收到发现报文后，仍旧使用广播地址向客户机发送<strong>DHCP提供报文</strong>。提供报文中包含收到的发现报文的事务ID、向客户机推荐的IP地址、网络掩码、IP地址租用期(有效的时间量)，客户机可以选择其中一个服务器</p>
-</li>
-<li><p>DHCP请求<br>新到的主机选择了某个服务器后，发送一个<strong>DHCP请求报文</strong>对选中的服务器响应，回显配置参数</p>
-</li>
-<li>DHCP ACk<br>服务器用<strong>DHCP ACk</strong>响应，证实所要求的参数</li>
-</ol>
-<h3 id="网络地址转换-NAT"><a href="#网络地址转换-NAT" class="headerlink" title="网络地址转换 NAT"></a>网络地址转换 NAT</h3><p>它能解决网络地址不够用问题，分配地址的方法更简单</p>
-<p>先说明一种特殊地址————用于专用网络或具有专用地址的地域（其地址仅对该网络中的设配有意义的网络，如1.0.0.0/24），所有网络都可以用这块地址，但也仅仅是在给定的网络中有意义</p>
-<p>NAT就是用来给这些网络中的设配分配一个对外IP和端口的方法，简而言之NAT路由器对于外界而言就好比拥有单一IP地址的设备</p>
-<p>NAT路由器上有一张NAT转换表，记录了网络内部的端口号和IP，以便将来接收数据时知道该把数据交付给那台设配</p>
-<h2 id="IPv6-及IPv4向IPv6转换"><a href="#IPv6-及IPv4向IPv6转换" class="headerlink" title="IPv6 及IPv4向IPv6转换"></a>IPv6 及IPv4向IPv6转换</h2><h3 id="IPv6数据报格式"><a href="#IPv6数据报格式" class="headerlink" title="IPv6数据报格式"></a>IPv6数据报格式</h3><h3 id="IPv4向IPv6迁移（双栈、隧道）"><a href="#IPv4向IPv6迁移（双栈、隧道）" class="headerlink" title="IPv4向IPv6迁移（双栈、隧道）"></a>IPv4向IPv6迁移（双栈、隧道）</h3><blockquote>
-<p>IPv6传播速度更快，因为相比于IPv4用的人少，路上不堵当然快</p>
-</blockquote>
-<ul>
-<li>双栈（dual-stack）</li>
-</ul>
-<p>既是IPv6节点也可以具有完整IPv4实现，所以IPv6/IPv4节点必须具有IPv6和IPv4地址，而且它们可以请求DNS了解一个节点是支持IPv6(IPv6使能)的还是仅仅支持IPv4的</p>
-<p>两个IPv6使能节点之间不能相互发送IPv4数据报，向IPv4使能点发送也仅是IPv4数据报。ipv6数据报中有一些特定的字段ipv4中没有的，所以经过双栈传输的IPv6数据报最后到达目的时，如果经过了IPv4节点，最后的数据报和原数据报有差别</p>
-<ul>
-<li>隧道（tunnel）</li>
-</ul>
-<p>两台IPv6路由器间经过的IPv4路由器的集合就成为<strong>隧道</strong>，应用中就是给IPv6数据报打上一层IPv4的包裹(IPv4数据报本身含有一个完整的IPv6数据报)</p>
-<h2 id="ICMP-互联网控制报文协议"><a href="#ICMP-互联网控制报文协议" class="headerlink" title="ICMP 互联网控制报文协议"></a>ICMP 互联网控制报文协议</h2><blockquote>
-<p>用于主机和路由器彼此交互网络层信息，典型应用在差错报告；ICMP报文是源抑制报文，最初目的用于执行拥塞控制，允许拥塞的路由器向主机发送该报文，强制减小主机传输速率</p>
-</blockquote>
-<ul>
-<li>ICMP报文是承载在IP报文中的，在体系结构上讲它是位于IP之上，但通常被认为属于IP协议一部分</li>
-</ul>
-<h2 id="路由协议-（RIP、OSFP、BGP）"><a href="#路由协议-（RIP、OSFP、BGP）" class="headerlink" title="路由协议 （RIP、OSFP、BGP）"></a>路由协议 （RIP、OSFP、BGP）</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-08-31-Hexo使用及配置.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joson lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Josonlee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018-08-31-Hexo使用及配置.html/" itemprop="url">Hexo使用及配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-31T10:14:09+08:00">
-                2018-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="初始化博客文件夹"><a href="#初始化博客文件夹" class="headerlink" title="初始化博客文件夹"></a>初始化博客文件夹</h3><p>选择一个文件夹作为博客文件夹，如 D:\HexoBlogGithub<br><code>D:\HexoBlogGithub&gt;hexo init</code></p>
-<h3 id="Hexo基本配置"><a href="#Hexo基本配置" class="headerlink" title="Hexo基本配置"></a>Hexo基本配置</h3><blockquote>
-<p>在 _config.yml 中修改大部份的配置</p>
-</blockquote>
-<h4 id="网站"><a href="#网站" class="headerlink" title="网站"></a>网站</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: 网站标题</span><br><span class="line">subtitle: 网站副标题</span><br><span class="line">description: 网站描述（用于seo）</span><br><span class="line">keywords:</span><br><span class="line">author: 作者</span><br><span class="line">language: zh-Hans，网站使用语言</span><br><span class="line">timezone: 时区，默认电脑时区设置</span><br></pre></td></tr></table></figure>
-<h4 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</span><br><span class="line">url: http://yoursite.com</span><br><span class="line">root: /</span><br><span class="line">permalink: blog/:year-:month-:day-:title.html/</span><br><span class="line">permalink_defaults:</span><br></pre></td></tr></table></figure>
-<p><code>url</code> 是网址，<code>root</code> 是网站根目录，如果想把文章放在子目录blog中，那么url 设置为 <code>http://yoursite.com/blog</code> ，root 设置为 <code>/blog/</code></p>
-<p><code>permalink</code> 是文章永久链接，按照默认是以: <a href="http://xxx.com/2018/08/31/your-title/" target="_blank" rel="noopener">http://xxx.com/2018/08/31/your-title/</a> 的格式。你可以设置成 <code>blog/:year-:month-:day-:title.html/</code>，则是：<a href="http://xxx.com/blog/2018-08-31-your-title.html/" target="_blank" rel="noopener">http://xxx.com/blog/2018-08-31-your-title.html/</a> 的格式</p>
-<h4 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># Writing</span><br><span class="line">new_post_name: :year-:month-:day_:title.md # 文件名</span><br><span class="line">default_layout: post # 默认文章布局，有post、draft、page</span><br><span class="line">auto_spacing: true # 中英文间加入空格</span><br><span class="line">titlecase: false # Transform title into titlecase</span><br><span class="line">external_link: true # 新标签页打开连接</span><br><span class="line">filename_case: 0</span><br><span class="line">render_drafts: true # 设置显示草稿true</span><br><span class="line">post_asset_folder: false</span><br><span class="line">relative_link: false # 把链接改为与根目录的相对位址</span><br><span class="line">future: true</span><br><span class="line">highlight: # 代码块设置</span><br><span class="line">  enable: true</span><br><span class="line">  line_number: true</span><br><span class="line">  auto_detect: false</span><br><span class="line">  tab_replace:</span><br></pre></td></tr></table></figure>
-<h4 id="分类-标签"><a href="#分类-标签" class="headerlink" title="分类 标签"></a>分类 标签</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Category &amp; Tag</span><br><span class="line">default_category: uncategorized # 默认分类、无 </span><br><span class="line">category_map: # 分类别名</span><br><span class="line">tag_map: # 标签别名</span><br></pre></td></tr></table></figure>
-<p>hexo默认是以tag来分类，可以自设置 category_map(为了让url中尽量少出现中文，做的映射)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">default_category: uncategorized</span><br><span class="line">category_map:</span><br><span class="line">    编程: programming</span><br><span class="line">    Python: python</span><br><span class="line">    数据分析: data_process</span><br><span class="line">    其他: other</span><br></pre></td></tr></table></figure>
-<p>在md文件开头标注目录为 (Hexo不支持指定多个同级分类)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">categories: 数据分析</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
-<p>在url中会显示成 <code>.../blog/data_process/xxx.html</code></p>
-<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: landscape #主题</span><br><span class="line"></span><br><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy: # 部署部分的设置</span><br><span class="line">  type:</span><br></pre></td></tr></table></figure>
-<h3 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h3><h4 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] title</span><br></pre></td></tr></table></figure>
-<p>可以指定文章的布局（layout），默认是post（参考上文可设置default_layout 参数）</p>
-<ul>
-<li>布局<br>三种默认布局 post、draft、page，分别对应不同的路径，而自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">布局</th>
-<th style="text-align:center">路径</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">post</td>
-<td style="text-align:center">source/_posts</td>
-</tr>
-<tr>
-<td style="text-align:center">page</td>
-<td style="text-align:center">source</td>
-</tr>
-<tr>
-<td style="text-align:center">draft</td>
-<td style="text-align:center">source/_drafts</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>draft(草稿)布局及发布</li>
-</ul>
-<p>草稿默认不会显示在页面中，可以设置(参见上文) render_drafts 参数设为 true 来预览草稿</p>
-<p>可通过执行<strong>publish指令，将草稿移动到 source/_posts 文件夹中发布</strong></p>
-<p><code>hexo publish [layout] &lt;title&gt;</code></p>
-<h4 id="文章目录"><a href="#文章目录" class="headerlink" title="文章目录"></a>文章目录</h4><p>默认不会开启目录，如果想开启，在md文件头加上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">...</span><br><span class="line">toc: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
-<p>会自动根据标题权重进行目录生成。显示在右边。</p>
-<p>参考文章<a href="http://kuangqi.me/tricks/enable-table-of-contents-on-hexo/" target="_blank" rel="noopener">为Hexo博客添加目录</a><br><strong>注意：默认的主题Landscape并不支持目录的显示</strong>，只有通过如下修改才能显示</p>
-<ul>
-<li>修改<code>landscape/layout/_partial/article.ejs</code>文件中，显示文章正文部分的代码：</li>
-</ul>
-<p>在 <code>&lt;%- post.content %&gt;</code> 的前面，插入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;toc&quot; class=&quot;toc-article&quot;&gt;</span><br><span class="line">  &lt;strong class=&quot;toc-title&quot;&gt;文章目录&lt;/strong&gt;</span><br><span class="line">  &lt;%- toc(post.content) %&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>配置目录的css样式，修改 <code>themes/landscape/source/css/_partial/article.styl</code><br>添加如下样式<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*toc*/</span></span><br><span class="line"><span class="selector-class">.toc-article</span></span><br><span class="line">  <span class="selector-tag">background</span> <span class="selector-id">#eee</span></span><br><span class="line">  <span class="selector-tag">border</span> 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#bbb</span></span><br><span class="line">  <span class="selector-tag">border-radius</span> 10<span class="selector-tag">px</span></span><br><span class="line">  <span class="selector-tag">margin</span> 1<span class="selector-class">.5em</span> 0 0<span class="selector-class">.3em</span> 1<span class="selector-class">.5em</span></span><br><span class="line">  <span class="selector-tag">padding</span> 1<span class="selector-class">.2em</span> 1<span class="selector-tag">em</span> 0 1<span class="selector-tag">em</span></span><br><span class="line">  <span class="selector-tag">max-width</span> 28%</span><br><span class="line"><span class="selector-class">.toc-title</span></span><br><span class="line">  <span class="selector-tag">font-size</span> 120%</span><br><span class="line"><span class="selector-id">#toc</span></span><br><span class="line">  <span class="selector-tag">line-height</span> 1<span class="selector-tag">em</span></span><br><span class="line">  <span class="selector-tag">font-size</span> 0<span class="selector-class">.9em</span></span><br><span class="line">  <span class="selector-tag">float</span> <span class="selector-tag">right</span></span><br><span class="line">  <span class="selector-class">.toc</span></span><br><span class="line">    <span class="selector-tag">padding</span> 0</span><br><span class="line">    <span class="selector-tag">margin</span> 1<span class="selector-tag">em</span></span><br><span class="line">    <span class="selector-tag">line-height</span> 1<span class="selector-class">.8em</span></span><br><span class="line">    <span class="selector-tag">li</span></span><br><span class="line">      <span class="selector-tag">list-style-type</span> <span class="selector-tag">none</span></span><br><span class="line">  <span class="selector-class">.toc-child</span> </span><br><span class="line">    <span class="selector-tag">margin-left</span> 1<span class="selector-tag">em</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="安装-hexo-server启动服务"><a href="#安装-hexo-server启动服务" class="headerlink" title="安装 hexo-server启动服务"></a>安装 hexo-server启动服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-server --save</span><br></pre></td></tr></table></figure>
-<p>你可以使用指令 <code>hexo server</code>（server可简写s）启动服务器，网站会在 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 下显示。</p>
-<blockquote>
-<p>在静态模式下，服务器只处理 public 文件夹内的文件，而不会处理文件变动，在执行时，您应该先自行执行 hexo generate，此模式通常用于生产环境（production mode）下。</p>
-</blockquote>
-<ul>
-<li><p>指定端口 -p<br>默认4000，可改为5000，如 <code>hexo server -p 5000</code></p>
-</li>
-<li><p>指定IP -i<br>服务器默认运行在 0.0.0.0，可更改，如 <code>hexo server -i 192.168.0.1</code></p>
-</li>
-</ul>
-<h4 id="生成静态文件并部署"><a href="#生成静态文件并部署" class="headerlink" title="生成静态文件并部署"></a>生成静态文件并部署</h4><ul>
-<li><code>hexo generate</code>，generate可简写g。静态文件在public目录下</li>
-<li><code>hexo generate --deploy</code>, 可简写成 <code>hexo g -d</code>，Hexo 在生成完毕后自动部署网站</li>
-</ul>
-<h4 id="部署及设置"><a href="#部署及设置" class="headerlink" title="部署及设置"></a>部署及设置</h4><p>同上文，<code>hexo deploy</code> 是在生成静态文件后部署，也可以使用 <code>hexo deploy --generate</code>(简写为 <code>hexo d -g</code>)</p>
-<h4 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h4><p><code>hexo clean</code>，清除缓存文件 (db.json) 和已生成的静态文件 (public)。</p>
-<h3 id="优化配置"><a href="#优化配置" class="headerlink" title="优化配置"></a>优化配置</h3><h4 id="搜索引擎优化-SEO"><a href="#搜索引擎优化-SEO" class="headerlink" title="搜索引擎优化(SEO)"></a>搜索引擎优化(SEO)</h4><p>添加百度主动推送代码，让搜索引擎最快发现文章 .</p>
-<p>方法: 在 &lt;博客根目录&gt;/themes/yilia/layout/_partial/article.ejs 的尾部评论位置, 添加:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (!index)&#123; %&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">(function()&#123;</span><br><span class="line">    var bp = document.createElement(&apos;script&apos;);</span><br><span class="line">    bp.src = &apos;//push.zhanzhang.baidu.com/push.js&apos;;</span><br><span class="line">    var s = document.getElementsByTagName(&quot;script&quot;)[0];</span><br><span class="line">    s.parentNode.insertBefore(bp, s);</span><br><span class="line">&#125;)();</span><br><span class="line">&lt;/script&gt;     </span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></p>
-<h3 id="Hexo给博客添加图片"><a href="#Hexo给博客添加图片" class="headerlink" title="Hexo给博客添加图片"></a>Hexo给博客添加图片</h3><p>在项目的 <code>source/</code> 文件夹下新建一个文件夹，如<code>Markdown_images</code>，把你要写在博客中的图都存在该文件夹下，博客中按照类似 <code>![](/Markdown_images/image_name.jpg)</code> 的写法就OK</p>
-<p>向服务器提交后，再次打开博客就能看到你想要的图片了</p>
-<ul>
-<li>可以进一步参考：<a href="https://blog.csdn.net/u013384788/article/details/74079890" target="_blank" rel="noopener">Hexo博客中插入音乐</a></li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1788,6 +1291,12 @@
                         <i class="fa fa-fw fa-csdn"></i>CSDN</a>
                   </span>
                 
+                  <span class="links-of-author-item">
+                    <a href="mailto:3092312003@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
             </div>
           
 
@@ -1980,6 +1489,7 @@
 
 
   
+
 
 
 

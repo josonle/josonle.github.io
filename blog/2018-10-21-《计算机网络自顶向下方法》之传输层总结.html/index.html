@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="导读传输层基本理论和机制 多路复用/分用 可靠数据传输机制 流量控制机制 拥塞控制机制  传输层协议 UDP：无连接传输服务 TCP：面向连接的传输服务 TCP拥塞控制机制&amp;lt; !– more –&amp;gt;传输层概述传输层协议为不同主机上运行的进程提供逻辑通信机制（端到端的） 网络层和传输层区别和联系： 网络层是在主机之间提供逻辑通信机制 传输层位于网络层之上，依赖网络层服务，对网络层服务进行（">
+<meta name="description" content="导读传输层基本理论和机制 多路复用/分用 可靠数据传输机制 流量控制机制 拥塞控制机制  传输层协议 UDP：无连接传输服务 TCP：面向连接的传输服务 TCP拥塞控制机制">
 <meta name="keywords" content="计网">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《计算机网络自顶向下方法》之传输层总结">
 <meta property="og:url" content="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/index.html">
 <meta property="og:site_name" content="Josonlee&#39;s Blog">
-<meta property="og:description" content="导读传输层基本理论和机制 多路复用/分用 可靠数据传输机制 流量控制机制 拥塞控制机制  传输层协议 UDP：无连接传输服务 TCP：面向连接的传输服务 TCP拥塞控制机制&amp;lt; !– more –&amp;gt;传输层概述传输层协议为不同主机上运行的进程提供逻辑通信机制（端到端的） 网络层和传输层区别和联系： 网络层是在主机之间提供逻辑通信机制 传输层位于网络层之上，依赖网络层服务，对网络层服务进行（">
+<meta property="og:description" content="导读传输层基本理论和机制 多路复用/分用 可靠数据传输机制 流量控制机制 拥塞控制机制  传输层协议 UDP：无连接传输服务 TCP：面向连接的传输服务 TCP拥塞控制机制">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/MarkDown_images/network/UDP校验和使用.jpg">
 <meta property="og:image" content="http://yoursite.com/MarkDown_images/network/校验和实例.jpg">
@@ -95,10 +95,10 @@
 <meta property="og:image" content="http://yoursite.com/MarkDown_images/network/流水线机制.jpg">
 <meta property="og:image" content="http://yoursite.com/MarkDown_images/network/滑动窗口协议.jpg">
 <meta property="og:image" content="http://yoursite.com/MarkDown_images/network/SR协议.jpg">
-<meta property="og:updated_time" content="2018-10-21T07:46:41.653Z">
+<meta property="og:updated_time" content="2018-10-21T08:01:25.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《计算机网络自顶向下方法》之传输层总结">
-<meta name="twitter:description" content="导读传输层基本理论和机制 多路复用/分用 可靠数据传输机制 流量控制机制 拥塞控制机制  传输层协议 UDP：无连接传输服务 TCP：面向连接的传输服务 TCP拥塞控制机制&amp;lt; !– more –&amp;gt;传输层概述传输层协议为不同主机上运行的进程提供逻辑通信机制（端到端的） 网络层和传输层区别和联系： 网络层是在主机之间提供逻辑通信机制 传输层位于网络层之上，依赖网络层服务，对网络层服务进行（">
+<meta name="twitter:description" content="导读传输层基本理论和机制 多路复用/分用 可靠数据传输机制 流量控制机制 拥塞控制机制  传输层协议 UDP：无连接传输服务 TCP：面向连接的传输服务 TCP拥塞控制机制">
 <meta name="twitter:image" content="http://yoursite.com/MarkDown_images/network/UDP校验和使用.jpg">
 
 
@@ -377,7 +377,8 @@
 <h3 id="传输层协议"><a href="#传输层协议" class="headerlink" title="传输层协议"></a>传输层协议</h3><ul>
 <li>UDP：无连接传输服务</li>
 <li>TCP：面向连接的传输服务</li>
-<li>TCP拥塞控制机制<br>&lt; !– more –&gt;<h2 id="传输层概述"><a href="#传输层概述" class="headerlink" title="传输层概述"></a>传输层概述</h2>传输层协议为不同主机上运行的<strong>进程</strong>提供逻辑通信机制（端到端的）<blockquote>
+<li>TCP拥塞控制机制<a id="more"></a>
+<h2 id="传输层概述"><a href="#传输层概述" class="headerlink" title="传输层概述"></a>传输层概述</h2>传输层协议为不同主机上运行的<strong>进程</strong>提供逻辑通信机制（端到端的）<blockquote>
 <p>网络层和传输层区别和联系：</p>
 <p>网络层是在<strong>主机</strong>之间提供逻辑通信机制</p>
 <p>传输层位于网络层之上，依赖网络层服务，对网络层服务进行（可能的）增强</p>
@@ -805,6 +806,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/blog/2018-10-21-Hexo使用及配置.html/" rel="prev" title="Hexo使用及配置">
+                Hexo使用及配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -832,6 +837,8 @@
 
           
 
+  
+    <div id="gitalk-container"></div>
   
 
 
@@ -920,6 +927,12 @@
                     <a href="http://blog.csdn.net/lzw2016" target="_blank" title="CSDN">
                       
                         <i class="fa fa-fw fa-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:3092312003@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                   </span>
                 
             </div>
@@ -1142,6 +1155,22 @@
 
 
 
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'a94818509a8f36c0a222',
+          clientSecret: '4d6bcd339e8df5f3e1f9e653afa2a5b9a1023f0f',
+          repo: 'josonle.github.io',
+          owner: 'josonle',
+          admin: ['josonle'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
 
 
 
