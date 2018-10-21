@@ -1,13 +1,85 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+
+
 
   
-  <title>《计算机网络自顶向下方法》之传输层总结 | Josonlee&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="导读传输层基本理论和机制 多路复用/分用 可靠数据传输机制 流量控制机制 拥塞控制机制  传输层协议 UDP：无连接传输服务 TCP：面向连接的传输服务 TCP拥塞控制机制  传输层概述传输层协议为不同主机上运行的进程提供逻辑通信机制（端到端的）  网络层和传输层区别和联系： 网络层是在主机之间提供逻辑通信机制 传输层位于网络层之上，依赖网络层服务，对网络层服务进行（可能的）增强  发送方将消息分">
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计网,笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="导读传输层基本理论和机制 多路复用/分用 可靠数据传输机制 流量控制机制 拥塞控制机制  传输层协议 UDP：无连接传输服务 TCP：面向连接的传输服务 TCP拥塞控制机制  传输层概述传输层协议为不同主机上运行的进程提供逻辑通信机制（端到端的）  网络层和传输层区别和联系： 网络层是在主机之间提供逻辑通信机制 传输层位于网络层之上，依赖网络层服务，对网络层服务进行（可能的）增强  发送方将消息分">
 <meta name="keywords" content="计网,笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《计算机网络自顶向下方法》之传输层总结">
@@ -28,84 +100,264 @@
 <meta name="twitter:title" content="《计算机网络自顶向下方法》之传输层总结">
 <meta name="twitter:description" content="导读传输层基本理论和机制 多路复用/分用 可靠数据传输机制 流量控制机制 拥塞控制机制  传输层协议 UDP：无连接传输服务 TCP：面向连接的传输服务 TCP拥塞控制机制  传输层概述传输层协议为不同主机上运行的进程提供逻辑通信机制（端到端的）  网络层和传输层区别和联系： 网络层是在主机之间提供逻辑通信机制 传输层位于网络层之上，依赖网络层服务，对网络层服务进行（可能的）增强  发送方将消息分">
 <meta name="twitter:image" content="http://yoursite.com/MarkDown_images/network/UDP校验和使用.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/"/>
+
+
+
+
+
+  <title>《计算机网络自顶向下方法》之传输层总结 | Josonlee's Blog</title>
   
-    <link rel="alternate" href="/atom.xml" title="Josonlee&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+
+
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Josonlee&#39;s Blog</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">一点一滴 始于足下</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-《计算机网络自顶向下方法》之传输层总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/" class="article-date">
-  <time datetime="2018-10-21T03:58:29.000Z" itemprop="datePublished">2018-10-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
-    <h1 class="article-title" itemprop="name">
-      《计算机网络自顶向下方法》之传输层总结
-    </h1>
+  
+    
   
 
-      </header>
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
     
-    <div class="article-entry" itemprop="articleBody">
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Josonlee's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一点一滴 始于足下</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
       
         
-        <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#传输层基本理论和机制"><span class="toc-number">1.1.</span> <span class="toc-text">传输层基本理论和机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传输层协议"><span class="toc-number">1.2.</span> <span class="toc-text">传输层协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传输层概述"><span class="toc-number">2.</span> <span class="toc-text">传输层概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多路复用、分用"><span class="toc-number">3.</span> <span class="toc-text">多路复用、分用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP协议（用户数据报协议）"><span class="toc-number">4.</span> <span class="toc-text">UDP协议（用户数据报协议）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP协议的优势："><span class="toc-number">4.1.</span> <span class="toc-text">UDP协议的优势：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP校验和使用，计算"><span class="toc-number">4.2.</span> <span class="toc-text">UDP校验和使用，计算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可靠数据传输（rdt）原理"><span class="toc-number">5.</span> <span class="toc-text">可靠数据传输（rdt）原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Rdt协议基本结构图"><span class="toc-number">5.1.</span> <span class="toc-text">Rdt协议基本结构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rdt-1-0：可靠信道上可靠数据传输协议（假设，现实不存在）"><span class="toc-number">5.2.</span> <span class="toc-text">Rdt 1.0：可靠信道上可靠数据传输协议（假设，现实不存在）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rdt-2-0：底层信道会产生位错误（bit翻转）"><span class="toc-number">5.3.</span> <span class="toc-text">Rdt 2.0：底层信道会产生位错误（bit翻转）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rdt-2-1和2-2：解决2-0的缺陷"><span class="toc-number">5.4.</span> <span class="toc-text">Rdt 2.1和2.2：解决2.0的缺陷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rdt-3-0：底层信道可能错误可能丢失分组"><span class="toc-number">5.5.</span> <span class="toc-text">Rdt 3.0：底层信道可能错误可能丢失分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决效率低下问题————打破停等协议"><span class="toc-number">5.6.</span> <span class="toc-text">解决效率低下问题————打破停等协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#流水线机制"><span class="toc-number">5.6.1.</span> <span class="toc-text">流水线机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#滑动窗口协议"><span class="toc-number">5.6.2.</span> <span class="toc-text">滑动窗口协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GBN回退N步协议"><span class="toc-number">5.6.3.</span> <span class="toc-text">GBN回退N步协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SR-选择重传协议-（Selective-Repeat，-SR）"><span class="toc-number">5.6.4.</span> <span class="toc-text">SR 选择重传协议 （Selective Repeat， SR）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP"><span class="toc-number">5.7.</span> <span class="toc-text">TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#三次握手-四次挥手"><span class="toc-number">5.7.1.</span> <span class="toc-text">三次握手 四次挥手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP报文段结构"><span class="toc-number">5.7.2.</span> <span class="toc-text">TCP报文段结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#超市间隔设置"><span class="toc-number">5.7.3.</span> <span class="toc-text">超市间隔设置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP实现的服务"><span class="toc-number">5.8.</span> <span class="toc-text">TCP实现的服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#可靠数据传输"><span class="toc-number">5.8.1.</span> <span class="toc-text">可靠数据传输</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#加倍超时间隔"><span class="toc-number">5.8.2.</span> <span class="toc-text">加倍超时间隔</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#快速重传"><span class="toc-number">5.8.3.</span> <span class="toc-text">快速重传</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP是GBN还是SR协议"><span class="toc-number">5.8.4.</span> <span class="toc-text">TCP是GBN还是SR协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流量控制（流控制-flow-control）"><span class="toc-number">5.9.</span> <span class="toc-text">流量控制（流控制 flow-control）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP概述"><span class="toc-number">5.10.</span> <span class="toc-text">TCP概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP报文段结构（20-60字节）"><span class="toc-number">5.10.1.</span> <span class="toc-text">TCP报文段结构（20~60字节）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可靠数据传输概述"><span class="toc-number">5.10.2.</span> <span class="toc-text">可靠数据传输概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#快速重传机制"><span class="toc-number">5.10.3.</span> <span class="toc-text">快速重传机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP流量控制"><span class="toc-number">5.10.4.</span> <span class="toc-text">TCP流量控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP连接管理"><span class="toc-number">5.10.5.</span> <span class="toc-text">TCP连接管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拥塞控制原理"><span class="toc-number">5.11.</span> <span class="toc-text">拥塞控制原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ATM的拥塞控制-ABR（available-bit-rate）"><span class="toc-number">5.11.1.</span> <span class="toc-text">ATM的拥塞控制 ABR（available bit rate）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP如何控制拥塞"><span class="toc-number">5.12.</span> <span class="toc-text">TCP如何控制拥塞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如何判断网络拥塞"><span class="toc-number">5.12.1.</span> <span class="toc-text">如何判断网络拥塞</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AIMD"><span class="toc-number">5.12.2.</span> <span class="toc-text">AIMD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SS"><span class="toc-number">5.12.3.</span> <span class="toc-text">SS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指数增长和加性增-线性增长-的转换条件"><span class="toc-number">5.12.4.</span> <span class="toc-text">指数增长和加性增(线性增长)的转换条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#发生拥塞后发送速率怎么变"><span class="toc-number">5.12.5.</span> <span class="toc-text">发生拥塞后发送速率怎么变</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作业"><span class="toc-number">5.13.</span> <span class="toc-text">作业</span></a></li></ol></li></ol>
-        </div>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《计算机网络自顶向下方法》之传输层总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T11:58:29+08:00">
+                2018-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         <h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><h3 id="传输层基本理论和机制"><a href="#传输层基本理论和机制" class="headerlink" title="传输层基本理论和机制"></a>传输层基本理论和机制</h3><ul>
 <li>多路复用/分用</li>
 <li>可靠数据传输机制</li>
@@ -478,129 +730,433 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/" data-id="cjnidhy4a00086onfyu45r9kj" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计网-笔记/">计网,笔记</a></li></ul>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话，不妨加个鸡腿，O(∩_∩)O哈哈~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weChatPay.jpg" alt="Joson lee 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliPay.jpg" alt="Joson lee 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计网-笔记/" rel="tag"># 计网,笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018-10-21-SQL上机记录.html/" rel="next" title="SQL上机记录">
+                <i class="fa fa-chevron-left"></i> SQL上机记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
   </div>
   
-    
-<nav id="article-nav">
   
   
-    <a href="/blog/2018-10-21-SQL上机记录.html/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">SQL上机记录</div>
-    </a>
-  
-</nav>
+  </article>
 
-  
-</article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL、MySQL/">SQL、MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/first-post/">first_post</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/testDemo/">testDemo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计网-笔记/">计网,笔记</a></li></ul>
+    <div class="post-spread">
+      
     </div>
   </div>
 
 
+          </div>
+          
+
+
+          
+
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/SQL、MySQL/" style="font-size: 10px;">SQL、MySQL</a> <a href="/tags/first-post/" style="font-size: 10px;">first_post</a> <a href="/tags/testDemo/" style="font-size: 10px;">testDemo</a> <a href="/tags/计网-笔记/" style="font-size: 20px;">计网,笔记</a>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-  
+  <aside id="sidebar" class="sidebar">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="Joson lee" />
+            
+              <p class="site-author-name" itemprop="name">Joson lee</p>
+              <p class="site-description motion-element" itemprop="description">Python数据分析、机器学习、Django、java学习</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/josonle" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://blog.csdn.net/lzw2016" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-csdn"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导读"><span class="nav-number">1.</span> <span class="nav-text">导读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#传输层基本理论和机制"><span class="nav-number">1.1.</span> <span class="nav-text">传输层基本理论和机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传输层协议"><span class="nav-number">1.2.</span> <span class="nav-text">传输层协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输层概述"><span class="nav-number">2.</span> <span class="nav-text">传输层概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多路复用、分用"><span class="nav-number">3.</span> <span class="nav-text">多路复用、分用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UDP协议（用户数据报协议）"><span class="nav-number">4.</span> <span class="nav-text">UDP协议（用户数据报协议）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP协议的优势："><span class="nav-number">4.1.</span> <span class="nav-text">UDP协议的优势：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP校验和使用，计算"><span class="nav-number">4.2.</span> <span class="nav-text">UDP校验和使用，计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可靠数据传输（rdt）原理"><span class="nav-number">5.</span> <span class="nav-text">可靠数据传输（rdt）原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rdt协议基本结构图"><span class="nav-number">5.1.</span> <span class="nav-text">Rdt协议基本结构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rdt-1-0：可靠信道上可靠数据传输协议（假设，现实不存在）"><span class="nav-number">5.2.</span> <span class="nav-text">Rdt 1.0：可靠信道上可靠数据传输协议（假设，现实不存在）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rdt-2-0：底层信道会产生位错误（bit翻转）"><span class="nav-number">5.3.</span> <span class="nav-text">Rdt 2.0：底层信道会产生位错误（bit翻转）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rdt-2-1和2-2：解决2-0的缺陷"><span class="nav-number">5.4.</span> <span class="nav-text">Rdt 2.1和2.2：解决2.0的缺陷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rdt-3-0：底层信道可能错误可能丢失分组"><span class="nav-number">5.5.</span> <span class="nav-text">Rdt 3.0：底层信道可能错误可能丢失分组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决效率低下问题————打破停等协议"><span class="nav-number">5.6.</span> <span class="nav-text">解决效率低下问题————打破停等协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#流水线机制"><span class="nav-number">5.6.1.</span> <span class="nav-text">流水线机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#滑动窗口协议"><span class="nav-number">5.6.2.</span> <span class="nav-text">滑动窗口协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GBN回退N步协议"><span class="nav-number">5.6.3.</span> <span class="nav-text">GBN回退N步协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SR-选择重传协议-（Selective-Repeat，-SR）"><span class="nav-number">5.6.4.</span> <span class="nav-text">SR 选择重传协议 （Selective Repeat， SR）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP"><span class="nav-number">5.7.</span> <span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三次握手-四次挥手"><span class="nav-number">5.7.1.</span> <span class="nav-text">三次握手 四次挥手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP报文段结构"><span class="nav-number">5.7.2.</span> <span class="nav-text">TCP报文段结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#超市间隔设置"><span class="nav-number">5.7.3.</span> <span class="nav-text">超市间隔设置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP实现的服务"><span class="nav-number">5.8.</span> <span class="nav-text">TCP实现的服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可靠数据传输"><span class="nav-number">5.8.1.</span> <span class="nav-text">可靠数据传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加倍超时间隔"><span class="nav-number">5.8.2.</span> <span class="nav-text">加倍超时间隔</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速重传"><span class="nav-number">5.8.3.</span> <span class="nav-text">快速重传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP是GBN还是SR协议"><span class="nav-number">5.8.4.</span> <span class="nav-text">TCP是GBN还是SR协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量控制（流控制-flow-control）"><span class="nav-number">5.9.</span> <span class="nav-text">流量控制（流控制 flow-control）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP概述"><span class="nav-number">5.10.</span> <span class="nav-text">TCP概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP报文段结构（20-60字节）"><span class="nav-number">5.10.1.</span> <span class="nav-text">TCP报文段结构（20~60字节）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可靠数据传输概述"><span class="nav-number">5.10.2.</span> <span class="nav-text">可靠数据传输概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速重传机制"><span class="nav-number">5.10.3.</span> <span class="nav-text">快速重传机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP流量控制"><span class="nav-number">5.10.4.</span> <span class="nav-text">TCP流量控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP连接管理"><span class="nav-number">5.10.5.</span> <span class="nav-text">TCP连接管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拥塞控制原理"><span class="nav-number">5.11.</span> <span class="nav-text">拥塞控制原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ATM的拥塞控制-ABR（available-bit-rate）"><span class="nav-number">5.11.1.</span> <span class="nav-text">ATM的拥塞控制 ABR（available bit rate）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP如何控制拥塞"><span class="nav-number">5.12.</span> <span class="nav-text">TCP如何控制拥塞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何判断网络拥塞"><span class="nav-number">5.12.1.</span> <span class="nav-text">如何判断网络拥塞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AIMD"><span class="nav-number">5.12.2.</span> <span class="nav-text">AIMD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SS"><span class="nav-number">5.12.3.</span> <span class="nav-text">SS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指数增长和加性增-线性增长-的转换条件"><span class="nav-number">5.12.4.</span> <span class="nav-text">指数增长和加性增(线性增长)的转换条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发生拥塞后发送速率怎么变"><span class="nav-number">5.12.5.</span> <span class="nav-text">发生拥塞后发送速率怎么变</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作业"><span class="nav-number">5.13.</span> <span class="nav-text">作业</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
     </div>
-  </div>
+  </aside>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/">《计算机网络自顶向下方法》之传输层总结</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2018-10-21-SQL上机记录.html/">SQL上机记录</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/">《计算机网络自顶向下方法》之网络层总结</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2018-08-31-Hexo使用及配置.html/">Hexo使用及配置</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2018-08-31-my-first-post.html/">my first post</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joson lee</span>
+
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 Joson lee<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
   
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
