@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>《计算机网络自顶向下方法》之传输层总结 | Josonlee&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="导读传输层基本理论和机制 多路复用/分用 可靠数据传输机制 流量控制机制 拥塞控制机制  传输层协议 UDP：无连接传输服务 TCP：面向连接的传输服务 TCP拥塞控制机制  传输层概述传输层协议为不同主机上运行的进程提供逻辑通信机制（端到端的）  网络层和传输层区别和联系： 网络层是在主机之间提供逻辑通信机制 传输层位于网络层之上，依赖网络层服务，对网络层服务进行（可能的）增强  发送方将消息分">
+<meta name="keywords" content="计网,笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《计算机网络自顶向下方法》之传输层总结">
+<meta property="og:url" content="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/index.html">
+<meta property="og:site_name" content="Josonlee&#39;s Blog">
+<meta property="og:description" content="导读传输层基本理论和机制 多路复用/分用 可靠数据传输机制 流量控制机制 拥塞控制机制  传输层协议 UDP：无连接传输服务 TCP：面向连接的传输服务 TCP拥塞控制机制  传输层概述传输层协议为不同主机上运行的进程提供逻辑通信机制（端到端的）  网络层和传输层区别和联系： 网络层是在主机之间提供逻辑通信机制 传输层位于网络层之上，依赖网络层服务，对网络层服务进行（可能的）增强  发送方将消息分">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="d:/YoudaoNote/云笔记/3092312003@qq.com(1">
+<meta property="og:image" content="d:/YoudaoNote/云笔记/3092312003@qq.com(1">
+<meta property="og:image" content="d:/YoudaoNote/云笔记/3092312003@qq.com(1">
+<meta property="og:image" content="d:/YoudaoNote/云笔记/3092312003@qq.com(1">
+<meta property="og:image" content="d:/YoudaoNote/云笔记/3092312003@qq.com(1">
+<meta property="og:image" content="d:/YoudaoNote/云笔记/3092312003@qq.com(1">
+<meta property="og:image" content="d:/YoudaoNote/云笔记/3092312003@qq.com(1">
+<meta property="og:image" content="d:/YoudaoNote/云笔记/3092312003@qq.com(1">
+<meta property="og:updated_time" content="2018-10-21T04:02:55.647Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《计算机网络自顶向下方法》之传输层总结">
+<meta name="twitter:description" content="导读传输层基本理论和机制 多路复用/分用 可靠数据传输机制 流量控制机制 拥塞控制机制  传输层协议 UDP：无连接传输服务 TCP：面向连接的传输服务 TCP拥塞控制机制  传输层概述传输层协议为不同主机上运行的进程提供逻辑通信机制（端到端的）  网络层和传输层区别和联系： 网络层是在主机之间提供逻辑通信机制 传输层位于网络层之上，依赖网络层服务，对网络层服务进行（可能的）增强  发送方将消息分">
+<meta name="twitter:image" content="d:/YoudaoNote/云笔记/3092312003@qq.com(1">
+  
+    <link rel="alternate" href="/atom.xml" title="Josonlee&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Josonlee&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">一点一滴 始于足下</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-《计算机网络自顶向下方法》之传输层总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/" class="article-date">
+  <time datetime="2018-10-21T03:58:29.000Z" itemprop="datePublished">2018-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《计算机网络自顶向下方法》之传输层总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#传输层基本理论和机制"><span class="toc-number">1.1.</span> <span class="toc-text">传输层基本理论和机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传输层协议"><span class="toc-number">1.2.</span> <span class="toc-text">传输层协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传输层概述"><span class="toc-number">2.</span> <span class="toc-text">传输层概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多路复用、分用"><span class="toc-number">3.</span> <span class="toc-text">多路复用、分用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP协议（用户数据报协议）"><span class="toc-number">4.</span> <span class="toc-text">UDP协议（用户数据报协议）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP协议的优势："><span class="toc-number">4.1.</span> <span class="toc-text">UDP协议的优势：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP校验和使用，计算"><span class="toc-number">4.2.</span> <span class="toc-text">UDP校验和使用，计算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可靠数据传输（rdt）原理"><span class="toc-number">5.</span> <span class="toc-text">可靠数据传输（rdt）原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Rdt协议基本结构图"><span class="toc-number">5.1.</span> <span class="toc-text">Rdt协议基本结构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rdt-1-0：可靠信道上可靠数据传输协议（假设，现实不存在）"><span class="toc-number">5.2.</span> <span class="toc-text">Rdt 1.0：可靠信道上可靠数据传输协议（假设，现实不存在）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rdt-2-0：底层信道会产生位错误（bit翻转）"><span class="toc-number">5.3.</span> <span class="toc-text">Rdt 2.0：底层信道会产生位错误（bit翻转）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rdt-2-1和2-2：解决2-0的缺陷"><span class="toc-number">5.4.</span> <span class="toc-text">Rdt 2.1和2.2：解决2.0的缺陷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rdt-3-0：底层信道可能错误可能丢失分组"><span class="toc-number">5.5.</span> <span class="toc-text">Rdt 3.0：底层信道可能错误可能丢失分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决效率低下问题————打破停等协议"><span class="toc-number">5.6.</span> <span class="toc-text">解决效率低下问题————打破停等协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#流水线机制"><span class="toc-number">5.6.1.</span> <span class="toc-text">流水线机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#滑动窗口协议"><span class="toc-number">5.6.2.</span> <span class="toc-text">滑动窗口协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GBN回退N步协议"><span class="toc-number">5.6.3.</span> <span class="toc-text">GBN回退N步协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SR-选择重传协议-（Selective-Repeat，-SR）"><span class="toc-number">5.6.4.</span> <span class="toc-text">SR 选择重传协议 （Selective Repeat， SR）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP"><span class="toc-number">5.7.</span> <span class="toc-text">TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#三次握手-四次挥手"><span class="toc-number">5.7.1.</span> <span class="toc-text">三次握手 四次挥手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP报文段结构"><span class="toc-number">5.7.2.</span> <span class="toc-text">TCP报文段结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#超市间隔设置"><span class="toc-number">5.7.3.</span> <span class="toc-text">超市间隔设置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP实现的服务"><span class="toc-number">5.8.</span> <span class="toc-text">TCP实现的服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#可靠数据传输"><span class="toc-number">5.8.1.</span> <span class="toc-text">可靠数据传输</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#加倍超时间隔"><span class="toc-number">5.8.2.</span> <span class="toc-text">加倍超时间隔</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#快速重传"><span class="toc-number">5.8.3.</span> <span class="toc-text">快速重传</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP是GBN还是SR协议"><span class="toc-number">5.8.4.</span> <span class="toc-text">TCP是GBN还是SR协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流量控制（流控制-flow-control）"><span class="toc-number">5.9.</span> <span class="toc-text">流量控制（流控制 flow-control）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP概述"><span class="toc-number">5.10.</span> <span class="toc-text">TCP概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP报文段结构（20-60字节）"><span class="toc-number">5.10.1.</span> <span class="toc-text">TCP报文段结构（20~60字节）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可靠数据传输概述"><span class="toc-number">5.10.2.</span> <span class="toc-text">可靠数据传输概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#快速重传机制"><span class="toc-number">5.10.3.</span> <span class="toc-text">快速重传机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP流量控制"><span class="toc-number">5.10.4.</span> <span class="toc-text">TCP流量控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP连接管理"><span class="toc-number">5.10.5.</span> <span class="toc-text">TCP连接管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拥塞控制原理"><span class="toc-number">5.11.</span> <span class="toc-text">拥塞控制原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ATM的拥塞控制-ABR（available-bit-rate）"><span class="toc-number">5.11.1.</span> <span class="toc-text">ATM的拥塞控制 ABR（available bit rate）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP如何控制拥塞"><span class="toc-number">5.12.</span> <span class="toc-text">TCP如何控制拥塞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如何判断网络拥塞"><span class="toc-number">5.12.1.</span> <span class="toc-text">如何判断网络拥塞</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AIMD"><span class="toc-number">5.12.2.</span> <span class="toc-text">AIMD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SS"><span class="toc-number">5.12.3.</span> <span class="toc-text">SS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指数增长和加性增-线性增长-的转换条件"><span class="toc-number">5.12.4.</span> <span class="toc-text">指数增长和加性增(线性增长)的转换条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#发生拥塞后发送速率怎么变"><span class="toc-number">5.12.5.</span> <span class="toc-text">发生拥塞后发送速率怎么变</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作业"><span class="toc-number">5.13.</span> <span class="toc-text">作业</span></a></li></ol></li></ol>
+        </div>
+        
+        <h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><h3 id="传输层基本理论和机制"><a href="#传输层基本理论和机制" class="headerlink" title="传输层基本理论和机制"></a>传输层基本理论和机制</h3><ul>
+<li>多路复用/分用</li>
+<li>可靠数据传输机制</li>
+<li>流量控制机制</li>
+<li>拥塞控制机制</li>
+</ul>
+<h3 id="传输层协议"><a href="#传输层协议" class="headerlink" title="传输层协议"></a>传输层协议</h3><ul>
+<li>UDP：无连接传输服务</li>
+<li>TCP：面向连接的传输服务</li>
+<li>TCP拥塞控制机制</li>
+</ul>
+<h2 id="传输层概述"><a href="#传输层概述" class="headerlink" title="传输层概述"></a>传输层概述</h2><p>传输层协议为不同主机上运行的<strong>进程</strong>提供逻辑通信机制（端到端的）</p>
+<blockquote>
+<p>网络层和传输层区别和联系：</p>
+<p>网络层是在<strong>主机</strong>之间提供逻辑通信机制</p>
+<p>传输层位于网络层之上，依赖网络层服务，对网络层服务进行（可能的）增强</p>
+</blockquote>
+<p>发送方将消息分成一或多个报文段向下传给网络层，接收方将接收到的报文段组装成消息向上交付给应用层</p>
+<ul>
+<li>TCP:可靠按序的交付服务<ul>
+<li>拥塞控制</li>
+<li>流量控制</li>
+<li>连接建立</li>
+</ul>
+</li>
+<li>UDP：不可靠，基于“尽力而为”的网络层协议IP，没有做可靠性方面的扩展</li>
+<li>二者都不保证<strong>延迟、带宽</strong></li>
+</ul>
+<h2 id="多路复用、分用"><a href="#多路复用、分用" class="headerlink" title="多路复用、分用"></a>多路复用、分用</h2><p>参考书上的收寄信件的案例，接收端多路分用（将数据报组合成信息），发送端多路复用（将信息拆分成多个数据报）</p>
+<p>分用工作原理：</p>
+<ul>
+<li>主机接收到的IP数据报都携带源/目的IP地址，每个数据报都携带一个传输层的报文段（Segment），而报文段中携带源/目的端口号</li>
+<li>主机接收报文段后，传输层协议提取IP地址和端口号信息，报报文段导入正确的Socket中。（TCP有更多的处理过程）</li>
+</ul>
+<p>分用对于UDP、TCP的区别：</p>
+<ul>
+<li>UDP只依赖（二元组）源/目的端口号区别</li>
+<li>TCP依赖 <strong>（四元组）</strong> 源/目的IP，源/目的端口号来区别</li>
+</ul>
+<blockquote>
+<p>服务器可同时支持多个TCP Socket，服务器一个进程可以创建多个线程和不同TCP链接相连接，Web服务器为每个客户端都开不同的Socket</p>
+</blockquote>
+<h2 id="UDP协议（用户数据报协议）"><a href="#UDP协议（用户数据报协议）" class="headerlink" title="UDP协议（用户数据报协议）"></a>UDP协议（用户数据报协议）</h2><p>基于IP协议实现了复用/分用，以及简单的错误检验（校验和）</p>
+<p>因为IP是“尽力而为”的，所以UDP段可能丢失、可能不按序到达</p>
+<p>每个UDP段的处理独立于其它段</p>
+<p><strong>UDP协议虽然是不可靠的，但依然可以在UDP上实现可靠数据传输。只要在应用层上增加可靠性机制、错误恢复机制</strong>。</p>
+<h3 id="UDP协议的优势："><a href="#UDP协议的优势：" class="headerlink" title="UDP协议的优势："></a>UDP协议的优势：</h3><ul>
+<li>无需建立连接（减少延迟）</li>
+<li>实现简单，不需要维护连接的状态</li>
+<li>头部开销小（8字节，TCP20字节）</li>
+<li>无拥塞控制，上层应用可更好地控制发送时间和速率</li>
+</ul>
+<p>应用：常用于流媒体应用（容忍丢失，速率敏感），DNS，SNMP</p>
+<h3 id="UDP校验和使用，计算"><a href="#UDP校验和使用，计算" class="headerlink" title="UDP校验和使用，计算"></a>UDP校验和使用，计算</h3><p><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/UDP校验和使用.jpg)</p>
+<ul>
+<li>计算校验和</li>
+</ul>
+<p><strong>如果最高位有进位，要重新加在末尾（末尾再加1）</strong><br><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/校验和实例.jpg)</p>
+<h2 id="可靠数据传输（rdt）原理"><a href="#可靠数据传输（rdt）原理" class="headerlink" title="可靠数据传输（rdt）原理"></a>可靠数据传输（rdt）原理</h2><p>可靠：不错、不丢、不乱</p>
+<p>可靠数据传输对于应用层、传输层、链路层都很重要，它是计网中Top-10的问题。信道的不可靠特性决定了可靠数据传输协议的复杂性</p>
+<h3 id="Rdt协议基本结构图"><a href="#Rdt协议基本结构图" class="headerlink" title="Rdt协议基本结构图"></a>Rdt协议基本结构图</h3><p><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/RDT基本结构图.jpg)<br>注意我箭头所指出的，<br><strong>数据传输单向，控制信息流动双向</strong></p>
+<h3 id="Rdt-1-0：可靠信道上可靠数据传输协议（假设，现实不存在）"><a href="#Rdt-1-0：可靠信道上可靠数据传输协议（假设，现实不存在）" class="headerlink" title="Rdt 1.0：可靠信道上可靠数据传输协议（假设，现实不存在）"></a>Rdt 1.0：可靠信道上可靠数据传输协议（假设，现实不存在）</h3><p>它认为底层信道完全可靠（不发生错误，不丢分组）</p>
+<p><strong>状态机（FSM）</strong>，书上用来刻画传输协议的模型，去翻</p>
+<h3 id="Rdt-2-0：底层信道会产生位错误（bit翻转）"><a href="#Rdt-2-0：底层信道会产生位错误（bit翻转）" class="headerlink" title="Rdt 2.0：底层信道会产生位错误（bit翻转）"></a>Rdt 2.0：底层信道会产生位错误（bit翻转）</h3><ul>
+<li>错误如何检测？<strong>接收方利用校验和检测位错误</strong> 【检测机制】</li>
+<li>错误如何恢复？<ul>
+<li><strong>接收方向发送方反馈控制信息</strong> 【确认机制】</li>
+<li>确认机制（ACK），显式地告诉发送方分组已正确接收</li>
+<li>NAK，告诉发送方分组有错误</li>
+<li><strong>发送方接受NAK，重传分组</strong> 【重传机制】</li>
+</ul>
+</li>
+</ul>
+<p>基于这种重传机制的rdt称为ARQ（Automatic Repeat ReQuest）协议</p>
+<p><strong>停等协议</strong>，发送方有两种状态（等待接受上层应用数据【状态1】，等待反馈信息的接收【状态2】）</p>
+<p>发送方在发送数据后，等待接收反馈信息，如果接收到ACK跳转到状态1等待上层调用；如果接收到NAK再次发送该分组（表明发送方有缓存机制），继续等待，直到接收到ACK</p>
+<h3 id="Rdt-2-1和2-2：解决2-0的缺陷"><a href="#Rdt-2-1和2-2：解决2-0的缺陷" class="headerlink" title="Rdt 2.1和2.2：解决2.0的缺陷"></a>Rdt 2.1和2.2：解决2.0的缺陷</h3><p><strong>Rdt2.0协议的缺陷：反馈信息ACK/NAK有可能错误</strong></p>
+<p>Rdt2.1：</p>
+<p>如何解决？</p>
+<ol>
+<li>为ACK/NAK加上校验和，检错并纠错（难度大）</li>
+<li>为ACK/NAK添加额外的控制信息（控制信息还可能错误）</li>
+<li>如果ACK/NAK错误了，发送方就重传（但不能简单重传，会产生<strong>重复分组</strong>）【采用】</li>
+</ol>
+<p>如何解决重复分组？</p>
+<ul>
+<li>发送方为每个分组增加<strong>序列号</strong>（Sequence number）0和1</li>
+<li>接收方<strong>丢弃重复分组</strong></li>
+</ul>
+<p>发送方、接收方使用停等协议，所以序列号只使用0和1就够用了</p>
+<p>Rdt2.2：无NAK消息协议<br>功能同2.1，但是用<strong>ACK+序列号</strong>替代NAK（ACK消息中加入被确认分组的序列号）。比如说发送方等待序列号为0的分组ACK，但是接收到了序列号信息为1的ACK，表明有错误发生，重传该分组</p>
+<h3 id="Rdt-3-0：底层信道可能错误可能丢失分组"><a href="#Rdt-3-0：底层信道可能错误可能丢失分组" class="headerlink" title="Rdt 3.0：底层信道可能错误可能丢失分组"></a>Rdt 3.0：底层信道可能错误可能丢失分组</h3><p>因为可能丢失分组，所以无论是发送方发送的分组丢失，还是接收方反馈的ACK/NAK丢失，都会造成双方无限等待的情况</p>
+<p>如何解决？<br>设置<strong>定时器</strong>，发送方等待合理时间，如果超时还未接收到确认信息就重传。</p>
+<p>合理时间要设置恰当，因为ACK反馈可能没丢，只是延迟了，但超时时间设置过小，你给他重传了</p>
+<blockquote>
+<p>在2.2基础上改动，无NAK信息</p>
+</blockquote>
+<p>发送方发送数据并启动定时器，若超时时间内收到了正确ACK信息跳转状态；若接收到错误ACK重传，定时器重启；若分组丢失，或者ACK丢失导致超时，发送方重传该分组并重启定时器；若ACK只是延迟，一样超时重传重启定时器</p>
+<p><strong>Rdt 3.0性能很低</strong><br><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/Rdt3.0性能.jpg)</p>
+<hr>
+<p><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/Rdt3.0性能图示.jpg)</p>
+<h3 id="解决效率低下问题————打破停等协议"><a href="#解决效率低下问题————打破停等协议" class="headerlink" title="解决效率低下问题————打破停等协议"></a>解决效率低下问题————打破停等协议</h3><ul>
+<li>流水线机制</li>
+<li>滑动窗口协议（Sliding-window protocol）：GBN、SR协议</li>
+</ul>
+<p>序列号扩大，仅仅0和1不够用</p>
+<h4 id="流水线机制"><a href="#流水线机制" class="headerlink" title="流水线机制"></a>流水线机制</h4><p><strong>允许发送方在接受到ACK回馈前可连续发送多个分组</strong>，要求扩大序列号范围，发送方接收方都要有缓存机制以缓存分组</p>
+<p><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/流水线机制.jpg)</p>
+<p>理论上一次性发送分组越多效率越高</p>
+<h4 id="滑动窗口协议"><a href="#滑动窗口协议" class="headerlink" title="滑动窗口协议"></a>滑动窗口协议</h4><p><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/滑动窗口协议.jpg)</p>
+<p>如图，窗口大小为 N，绿色的是已确认分组，黄色是已发送等待确认分组数，蓝色是还可以发送分组数</p>
+<ul>
+<li>最多有N个等待确认分组</li>
+<li>随着协议运行，窗口在序列号空间内向前滑动</li>
+<li>如果此时发送方确认了最左端的一个黄色分组，窗口右滑一格</li>
+</ul>
+<h4 id="GBN回退N步协议"><a href="#GBN回退N步协议" class="headerlink" title="GBN回退N步协议"></a>GBN回退N步协议</h4><p>分组头部包含K位(K-bit)分组序号字段，序列号范围2^k</p>
+<p><strong>发送方</strong></p>
+<ul>
+<li>窗口未满时可接受上层应用调用发送分组，如果已满，发送方将数据返回上层，隐示通知窗口已满</li>
+<li><strong>累积确认机制</strong>：接收到ACK(n)，表明到序列号n（含n）之前的分组均被正确接受</li>
+<li>分组的发送需要<strong>设置计时器</strong> （<strong>一个</strong>计时器）</li>
+<li>如果发生<strong>序列号为n的分组超时</strong>旳事件，重传序列号大于等于n的<strong>所有还未接收到ACK确认</strong>的分组</li>
+<li>当接收到ACK(n)且n前面的所有分组都已确认，窗口滑动，base_sequence滑至尚未确认的分组处</li>
+</ul>
+<p>重传存在资源浪费</p>
+<p><strong>接收方</strong></p>
+<ul>
+<li>接收方<strong>按序交付</strong>数据给上层调用</li>
+<li>对于失序分组，接收方直接丢弃处理（<strong>因此不需要缓存机制</strong>）。因为序列号n+1的分组到达，但序列号n的分组丢失，发送方会把依重传机制把它们都重新发送即可</li>
+<li><strong>接收方唯一需要维护的是下一个按序接收的分组序号</strong><ul>
+<li>接收方返回的反馈信息是 ACK(下一个要按序接收的分组序号-1) 【拥有最高序列号、已被正确接受的分组的ACK】</li>
+</ul>
+</li>
+</ul>
+<p><strong>接收方无缓存机制，发送方有</strong></p>
+<blockquote>
+<p>例题：数据链路层依据GBN协议，发送方发送标号0~7的帧，计时器超时后，发送方只收到了0,2,3号帧的确认，需要重传哪几个帧？</p>
+<p>不要想着1号帧，因为依据GBN原理，收到ACK(n)表明包含n在内的之前所有帧都已接收到了。所有是4,5,6，7</p>
+</blockquote>
+<h4 id="SR-选择重传协议-（Selective-Repeat，-SR）"><a href="#SR-选择重传协议-（Selective-Repeat，-SR）" class="headerlink" title="SR 选择重传协议 （Selective Repeat， SR）"></a>SR 选择重传协议 （Selective Repeat， SR）</h4><p>解决GBN的不必要重传缺陷，不采用累积确认机制</p>
+<p><strong>接收方</strong></p>
+<ul>
+<li>对每个分组单独确认，设置缓存机制（缓存乱序到达的分组）</li>
+<li>接收方也设置窗口</li>
+<li>失序分组被缓存，直到所有丢失分组（序列号更小）都被收到，才一次性交付给上层，接收窗口滑动交付分组数量长度</li>
+<li>接收到已确认的分组，任然要发送对应ACK</li>
+</ul>
+<p><strong>发送方</strong></p>
+<ul>
+<li>为<strong>每个分组设置单独的定时器</strong>，只重传没接收到ACK的分组</li>
+</ul>
+<p><strong>图解</strong><br><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="图解">/MarkDown_images/SR协议.jpg)</p>
+<p><strong>接收方窗口大小 + 发送方窗口大小 &lt;= 序列号空间大小</strong></p>
+<p><strong>发送方，接收方对于哪些分组正确接收，哪些没有并不总是能看到相同结果</strong></p>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>全双工（full-duplex）服务，面向连接，点对点，同时发送接收</p>
+<p>累积确认，双方都有缓存机制，使用超时/重传机制处理报文段丢失问题</p>
+<h4 id="三次握手-四次挥手"><a href="#三次握手-四次挥手" class="headerlink" title="三次握手 四次挥手"></a>三次握手 四次挥手</h4><h4 id="TCP报文段结构"><a href="#TCP报文段结构" class="headerlink" title="TCP报文段结构"></a>TCP报文段结构</h4><p>TCP报文首部最小20B，最大60B（首部长度字段4bit，但是单位是B，4B*15=60B）</p>
+<p>四元祖：</p>
+<ul>
+<li>源端口号：16bit</li>
+<li>目的端口号：16bit</li>
+<li>序列号Seq：32bit</li>
+<li>确认号Ack：32bit</li>
+<li><p>Seq、Ack最重要</p>
+</li>
+<li><p>接收窗口：用于流量控制，表示接收方愿接收的字节数</p>
+</li>
+<li>6bit标志字段</li>
+</ul>
+<h4 id="超市间隔设置"><a href="#超市间隔设置" class="headerlink" title="超市间隔设置"></a>超市间隔设置</h4><ul>
+<li>样本RTT（SampleRTT）</li>
+<li>样本RTT均值（EstimatedRTT）</li>
+<li>RTT偏差（DevRTT）:Samplertt和EstimatedRTT差值</li>
+</ul>
+<p>样本RTT波动小，DevRTT值就小</p>
+<h3 id="TCP实现的服务"><a href="#TCP实现的服务" class="headerlink" title="TCP实现的服务"></a>TCP实现的服务</h3><h4 id="可靠数据传输"><a href="#可靠数据传输" class="headerlink" title="可靠数据传输"></a>可靠数据传输</h4><h4 id="加倍超时间隔"><a href="#加倍超时间隔" class="headerlink" title="加倍超时间隔"></a>加倍超时间隔</h4><p>拥塞时持续重传反而会加重拥塞，所以每次TCP重传都会将下一次超时间隔设置为先前值的两倍（这是一种有限形式的拥塞控制）</p>
+<h4 id="快速重传"><a href="#快速重传" class="headerlink" title="快速重传"></a>快速重传</h4><p>因为加倍超时间隔有可能使得发送方等待很长时间才重传分组，增加了端到端的时延</p>
+<p>快速重传讲究，未超时前提下，接收冗杂Ack（3次），快速重传该分组</p>
+<p><strong>冗杂Ack是什么？怎么产生？见课本P165</strong></p>
+<h4 id="TCP是GBN还是SR协议"><a href="#TCP是GBN还是SR协议" class="headerlink" title="TCP是GBN还是SR协议"></a>TCP是GBN还是SR协议</h4><p>混合体，见书本p165</p>
+<h3 id="流量控制（流控制-flow-control）"><a href="#流量控制（流控制-flow-control）" class="headerlink" title="流量控制（流控制 flow-control）"></a>流量控制（流控制 flow-control）</h3><p>速度匹配服务，发送方发送速率和接收方应用程序读速率相匹配，解决发送方使接收方缓存溢出的可能</p>
+<blockquote>
+<p>流控制和拥塞控制都是对发送方的遏制</p>
+</blockquote>
+<p>链接两端都维护一个<strong>接收窗口（receive window ，上文提过的首部字段）</strong>，用来表明接收方当下还能接收的字节数</p>
+<h3 id="TCP概述"><a href="#TCP概述" class="headerlink" title="TCP概述"></a>TCP概述</h3><ul>
+<li>点对点，端到端</li>
+<li>可靠按序的字节流，全双工的</li>
+<li>双方都有缓存机制</li>
+<li>流水线机制<ul>
+<li>拥塞控制、流量控制机制</li>
+</ul>
+</li>
+<li>面向连接的<ul>
+<li>数据传输前必须建立连接</li>
+<li>连接状态只在两端维护，不涉及沿途节点</li>
+<li>TCP连接包括：两台主机上的缓存、连接状态变量、socket等</li>
+</ul>
+</li>
+</ul>
+<h4 id="TCP报文段结构（20-60字节）"><a href="#TCP报文段结构（20-60字节）" class="headerlink" title="TCP报文段结构（20~60字节）"></a>TCP报文段结构（20~60字节）</h4><ul>
+<li>源/目的端口号</li>
+<li>Seq：序列号</li>
+<li>Ack：应答号</li>
+</ul>
+<blockquote>
+<p>Seq是双方建立连接时随机取的，他指的是segment中第一个字节的编号，而非segment报文的编号</p>
+</blockquote>
+<blockquote>
+<p>Ack是期望接收到的下一个字节的序列号，<strong>累计确认</strong>（表明该序列号前所有字节都已正确接收）</p>
+</blockquote>
+<ul>
+<li>U、A、P、R、S、F<ul>
+<li>U:URG</li>
+<li>A：ACK是否有效，1就是ACK有效</li>
+<li>P:PSH，立刻向上交付数据（不怎么用）</li>
+<li>RST、SYN、FIN涉及连接建立拆除</li>
+</ul>
+</li>
+<li>Receive Window：可接受的字节数</li>
+</ul>
+<h4 id="可靠数据传输概述"><a href="#可靠数据传输概述" class="headerlink" title="可靠数据传输概述"></a>可靠数据传输概述</h4><ul>
+<li>基于IP层的不可靠服务基础上实现可靠数据传输服务</li>
+<li>流水线机制（提供传输效率）</li>
+<li>累计确认</li>
+<li>TCP使用单一重传定时器</li>
+<li>触发重传事件：超时；收到重复ACK</li>
+</ul>
+<ol>
+<li>如何设置超时时间<ul>
+<li>大于RTT</li>
+<li>过短会造成不必要重传</li>
+<li>过长对段丢失时间反应慢</li>
+</ul>
+</li>
+<li>RTT如何估计？超时设置多大？<ul>
+<li>测量从报文段发出到接收到对应ACK的时间(样本RTT，SampleRTT) 【不考虑重传的报文段】</li>
+<li>测量多个SampleRTT，求平均得到RTT估计值EstimatedRTT</li>
+<li>测量RTT的变化值DevRTT：SampleRTT与EstimatedRTT的差值</li>
+<li>定时器超时时间设置为：<code>$ TimeoutInterval = EstimatedRTT + 4*DevRTT$</code></li>
+</ul>
+</li>
+<li>发送方事件<ul>
+<li>从上层应用收到数据<ol>
+<li>创建Segment，指定序列号（Segment第一个字节的编号）</li>
+<li>开启计时器，设置超时时间</li>
+</ol>
+</li>
+<li>超时<ol>
+<li>重传引起超时的Segment</li>
+<li>重启定时器</li>
+</ol>
+</li>
+<li>收到ACK<ol>
+<li>如果是以前未确认的Segment的ACk会更新SendBase，若窗口中还有未被确认的分组，则重启定时器</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>接收方行为<ul>
+<li>接收到期望的Segment会延迟ACk发送(500ms，避免刚发就有其他Segment到达)</li>
+<li>接收到重复Segment，立刻发送ACK</li>
+<li>接收乱序Segment，立刻发送重复ACK（期望接收的字节序列号）</li>
+<li><blockquote>
+<p>至于乱序到达的Segment如何处理，有程序员决定</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="快速重传机制"><a href="#快速重传机制" class="headerlink" title="快速重传机制"></a>快速重传机制</h4><ol>
+<li>如果<strong>发生超时，发送方超时间隔将会倍增</strong><blockquote>
+<p>这会使得超时间隔很大，重传之前要等待很久</p>
+</blockquote>
+</li>
+<li>通过重复ACk检测分组的丢失<ul>
+<li>某个分组丢失可能引起多个重复ACk</li>
+<li>如果<strong>发送方收到对同一数据的3个ACk，就假定该数据之后的段已经丢失</strong></li>
+</ul>
+</li>
+<li>快速重传：在<strong>定时器超时前</strong>进行重传</li>
+</ol>
+<h4 id="TCP流量控制"><a href="#TCP流量控制" class="headerlink" title="TCP流量控制"></a>TCP流量控制</h4><p><strong>速度匹配</strong>，利用头部的RcvWindow字段</p>
+<p><strong>接收方告诉发送方RcvWindow=0，发送方仍然会发送一个非常小的段，以便接收方处理交付完数据后告知发送方需要的数据</strong></p>
+<h4 id="TCP连接管理"><a href="#TCP连接管理" class="headerlink" title="TCP连接管理"></a>TCP连接管理</h4><ul>
+<li>建立连接，三次握手<ol>
+<li>客户端向服务器发送SYN报文段（不携带数据，syn置1，携带初始序列号）</li>
+<li>服务器同意，则发送SYNACK报文段，同时建立缓存和初始序列号</li>
+<li>客户端接受到SYNACK后会答复一个ACK报文段（同时可携带数据）</li>
+</ol>
+</li>
+<li>关闭连接，四次挥手<ol>
+<li>client向Server发送FIN控制报文段</li>
+<li>Server收到FIN，回复ACK，<strong>进入等待</strong>，关闭连接，发送FIN</li>
+<li>client收到FIN，回复ACK</li>
+<li>Server收到ACK，连接关闭</li>
+</ol>
+</li>
+</ul>
+<h3 id="拥塞控制原理"><a href="#拥塞控制原理" class="headerlink" title="拥塞控制原理"></a>拥塞控制原理</h3><p><strong>网络十大问题之一</strong>，表现在<strong>分组丢失</strong>（路由器缓存溢出）、<strong>分组延迟过大</strong>（在路由器缓存中<strong>排队</strong>）</p>
+<ol>
+<li><p>拥塞的代价</p>
+<ul>
+<li>分组延迟加大</li>
+<li>分组重传造成资源的浪费，降低吞吐率</li>
+<li>涉及多跳传输时，某个路由器将分组丢弃会导致‘上游’（前面经过的路由）传输能力全部浪费掉</li>
+</ul>
+</li>
+<li><p>控制的思想：控制发送速率</p>
+</li>
+<li>拥塞控制的方法<ul>
+<li>端到端的拥塞控制<ol>
+<li>网络层不提供显示支持</li>
+<li>由端系统通过观察数据loss，发送延迟delay等行为来判断是否拥塞</li>
+<li>TCP采取该方法</li>
+</ol>
+</li>
+<li>网络辅助的拥塞控制<ol>
+<li>路由器向发送方显式地反馈拥塞信息</li>
+<li>依赖简单的拥塞指示：SNA,DECbit,TCP/IP ECN,ATM使用<h4 id="ATM的拥塞控制-ABR（available-bit-rate）"><a href="#ATM的拥塞控制-ABR（available-bit-rate）" class="headerlink" title="ATM的拥塞控制 ABR（available bit rate）"></a>ATM的拥塞控制 ABR（available bit rate）</h4></li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>弹性服务</li>
+<li>发送方路径上负载低的话，发送方就会使用可用带宽；拥塞的话，就会将速率降低到最低保障速率</li>
+</ul>
+<p>具体一点，ATM在网路上传输的是一个叫cell的（同之前所说的报文段），包含data cells、RM cells。通过RM cells控制拥塞，它由发送方发送，接收方再返回发送方，RM cell中有<strong>NI</strong>位（rate速率不许增长）、<strong>CI</strong>位（显式拥塞指示），和ER字段(2bit，显式的速率)</p>
+<blockquote>
+<p>NI、CI是接收方反馈的，ER是直接交换机反馈的<br>交换机拥塞时，就可以将ER置为更小，发送方接收到后就能获知路径所能支持最小速率</p>
+</blockquote>
+<p>定性机制（NI/CI），定量机制（速率字段ER）</p>
+<p>数据cell中也有EFCI位：如果拥塞，交换机就把他置为1，那么发送方再返回的RM cell中置CI位（表明拥塞）</p>
+<h3 id="TCP如何控制拥塞"><a href="#TCP如何控制拥塞" class="headerlink" title="TCP如何控制拥塞"></a>TCP如何控制拥塞</h3><p>基本思想也是控制发送速率，设置变量<strong>CongWin</strong>（拥塞窗口）&gt;= 发送的最后有一个byte的序列号 - 发送确认的最后一个应答后，<code>rate ≈ CongWin/RTT</code></p>
+<p>所以可以动态调整CongWin改变发送速率</p>
+<p>采取机制：</p>
+<ul>
+<li>慢启动：SS</li>
+<li>拥塞避免（加性增，乘性减）：AIMD<h4 id="如何判断网络拥塞"><a href="#如何判断网络拥塞" class="headerlink" title="如何判断网络拥塞"></a>如何判断网络拥塞</h4>发生超时，或者收到3个重复ACK，就可以判断拥塞</li>
+</ul>
+<h4 id="AIMD"><a href="#AIMD" class="headerlink" title="AIMD"></a>AIMD</h4><p>线性增加发送速率，直到遇到拥塞发生，然后以减半的方式把速率降下来</p>
+<ul>
+<li><p>加性增：每个RTT将CongWin增大一个MSS—-&gt;拥塞避免</p>
+</li>
+<li><p>乘性减：发生拥塞将CongWin减半</p>
+</li>
+</ul>
+<h4 id="SS"><a href="#SS" class="headerlink" title="SS"></a>SS</h4><p>TCP初始建立连接时一般把CongWin设为1个MSS，初始速率非常低（远小于带宽），考虑速率呈指数性质增长(慢启动)，每一个经过RTT把CongWin翻倍</p>
+<h4 id="指数增长和加性增-线性增长-的转换条件"><a href="#指数增长和加性增-线性增长-的转换条件" class="headerlink" title="指数增长和加性增(线性增长)的转换条件"></a>指数增长和加性增(线性增长)的转换条件</h4><p>当CongWin达到（前一次发生拥塞事件时CongWin的一半，称为Threshold）时，由指数转为线性</p>
+<h4 id="发生拥塞后发送速率怎么变"><a href="#发生拥塞后发送速率怎么变" class="headerlink" title="发生拥塞后发送速率怎么变"></a>发生拥塞后发送速率怎么变</h4><ul>
+<li>如果发生<strong>timeout</strong>，Threshold = CongWin/2，然后<strong>CongWin会直接减为1个MSS，然后慢启动</strong></li>
+<li>如果是接收到<strong>3次重复ACk</strong>，Threshold = CongWin/2，然后<strong>CongWin = CongWin/2，然后线性增</strong></li>
+</ul>
+<p><strong>timeout表明拥塞严重，而重复ACk表示还能发送一些数据</strong></p>
+<h3 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h3><ul>
+<li>假设主机A向主机B发送5个连续的报文段，主机B对每个报文段进行确认，其中第二个报文段丢失，其余报文段以及重传的第二个报文段均被主机B正确接收，主机A正确接收所有ACK报文段；报文段从1开始依次连续编号（即1、2、3……），主机A的超时时间足够长。请回答下列问题：</li>
+</ul>
+<p>1).如果分别采用GBN、SR和TCP协议，则对应这三个协议，主机A分别总共发了多少个报文段？主机B分别总共发送了多少个ACK？它们的序号是什么？(针对3个协议分别给出解答）</p>
+<p>2).如果对上述三个协议，超时时间比5RTT长得多，那么哪个协议将在最短的时间间隔内成功交付5个报文段？</p>
+<hr>
+<ul>
+<li>假设A、B两个端系统通过唯一的一条8Mbps链路连接（M=10^6），该链路的双向传播时延是150ms；A通过一个TCP连接向B发送一个大文件，B的接收缓存足够大，每个TCP段最大段长度（MSS）为1500字节，TCP采用Reno版本，且总是处于拥塞避免阶段（即忽略慢启动）。请回答下列问题：</li>
+</ul>
+<p>1).该TCP连接能够获得的最大窗口尺寸（以TCP段数计）是多少？</p>
+<p>2).该TCP连接的平均窗口尺寸（以TCP段数计）和平均吞吐量（以bps计）是多少？</p>
+<p>3).该TCP连接的拥塞窗口从发生丢包到恢复到最大窗口尺寸要经历多长时间？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/" data-id="cjnicmev30004zwnfbzsi7yw1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计网-笔记/">计网,笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2018-10-21-SQL上机记录.html/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SQL上机记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL、MySQL/">SQL、MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/first-post/">first_post</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/testDemo/">testDemo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计网-笔记/">计网,笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/SQL、MySQL/" style="font-size: 10px;">SQL、MySQL</a> <a href="/tags/first-post/" style="font-size: 10px;">first_post</a> <a href="/tags/testDemo/" style="font-size: 10px;">testDemo</a> <a href="/tags/计网-笔记/" style="font-size: 20px;">计网,笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/">《计算机网络自顶向下方法》之传输层总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018-10-21-SQL上机记录.html/">SQL上机记录</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/">《计算机网络自顶向下方法》之网络层总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018-08-31-Hexo使用及配置.html/">Hexo使用及配置</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018-08-31-my-first-post.html/">my first post</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Joson lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

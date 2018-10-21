@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>《计算机网络自顶向下方法》之网络层总结 | Josonlee&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="网络层三大组件  IP协议 ICMP互联网控制报文协议 RIP、OSFP、BGP选路协议IP协议IP编址首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用点分十进制  每个接口都必须要分配一个唯一的IP（除了NAT后面的接口），接口的IP也不能随意选取，都是由其所连接的子网决定的  接口：主机和物理链路的边界，路由器和链路的边界   为何接口要有IP？因为主机和路">
+<meta name="keywords" content="计网,笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《计算机网络自顶向下方法》之网络层总结">
+<meta property="og:url" content="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/index.html">
+<meta property="og:site_name" content="Josonlee&#39;s Blog">
+<meta property="og:description" content="网络层三大组件  IP协议 ICMP互联网控制报文协议 RIP、OSFP、BGP选路协议IP协议IP编址首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用点分十进制  每个接口都必须要分配一个唯一的IP（除了NAT后面的接口），接口的IP也不能随意选取，都是由其所连接的子网决定的  接口：主机和物理链路的边界，路由器和链路的边界   为何接口要有IP？因为主机和路">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-21T04:03:30.209Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《计算机网络自顶向下方法》之网络层总结">
+<meta name="twitter:description" content="网络层三大组件  IP协议 ICMP互联网控制报文协议 RIP、OSFP、BGP选路协议IP协议IP编址首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用点分十进制  每个接口都必须要分配一个唯一的IP（除了NAT后面的接口），接口的IP也不能随意选取，都是由其所连接的子网决定的  接口：主机和物理链路的边界，路由器和链路的边界   为何接口要有IP？因为主机和路">
+  
+    <link rel="alternate" href="/atom.xml" title="Josonlee&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Josonlee&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">一点一滴 始于足下</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-《计算机网络自顶向下方法》之网络层总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/" class="article-date">
+  <time datetime="2018-10-21T03:57:04.000Z" itemprop="datePublished">2018-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《计算机网络自顶向下方法》之网络层总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IP协议"><span class="toc-number">1.</span> <span class="toc-text">IP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IP编址"><span class="toc-number">2.</span> <span class="toc-text">IP编址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分类编址-classful-addressing"><span class="toc-number">2.1.</span> <span class="toc-text">分类编址 classful addressing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统管理员向ISP申请手动配置路由器和主机的IP"><span class="toc-number">2.2.</span> <span class="toc-text">系统管理员向ISP申请手动配置路由器和主机的IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态主机配置协议-DHCP"><span class="toc-number">2.3.</span> <span class="toc-text">动态主机配置协议 DHCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络地址转换-NAT"><span class="toc-number">2.4.</span> <span class="toc-text">网络地址转换 NAT</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv6-及IPv4向IPv6转换"><span class="toc-number">3.</span> <span class="toc-text">IPv6 及IPv4向IPv6转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IPv6数据报格式"><span class="toc-number">3.1.</span> <span class="toc-text">IPv6数据报格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IPv4向IPv6迁移（双栈、隧道）"><span class="toc-number">3.2.</span> <span class="toc-text">IPv4向IPv6迁移（双栈、隧道）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ICMP-互联网控制报文协议"><span class="toc-number">4.</span> <span class="toc-text">ICMP 互联网控制报文协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由协议-（RIP、OSFP、BGP）"><span class="toc-number">5.</span> <span class="toc-text">路由协议 （RIP、OSFP、BGP）</span></a></li></ol>
+        </div>
+        
+        <p>网络层三大组件</p>
+<ul>
+<li>IP协议</li>
+<li>ICMP互联网控制报文协议</li>
+<li>RIP、OSFP、BGP选路协议<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><h2 id="IP编址"><a href="#IP编址" class="headerlink" title="IP编址"></a>IP编址</h2>首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用<strong>点分十进制</strong></li>
+</ul>
+<p>每个接口都必须要分配一个唯一的IP（除了NAT后面的接口），<strong>接口的IP也不能随意选取，都是由其所连接的子网决定的</strong></p>
+<blockquote>
+<p>接口：主机和物理链路的边界，路由器和链路的边界</p>
+</blockquote>
+<blockquote>
+<p>为何接口要有IP？因为主机和路由器都能收发IP数据表自然要有源/目的IP</p>
+</blockquote>
+<ul>
+<li>子网（subnet）<blockquote>
+<p>连接多台主机到一台路由器接口的独立以太网络，或者是路由器之间相连的独立网络</p>
+</blockquote>
+</li>
+<li>子网如何确定<blockquote>
+<p>分开主机和路由器的每个接口，产生了几个分离的网络岛。而接口端连接了这些独立的网络岛的端点，这些独立的网络都是一个子网</p>
+</blockquote>
+</li>
+<li>IP编址会为每一个子网分配一个地址（形如223.1.1.0/24，/24称为子网掩码 subnet mask），则子网中主机和接口的IP都是223.1.1.xxx的形式<blockquote>
+<p>子网掩码定义了子网地址，如/24，表明IP前24位bit全1，后8位全0就是子网地址<br><strong>前x为bit也通常称为前缀（prefix，网络前缀）</strong></p>
+</blockquote>
+</li>
+</ul>
+<p>因特网的地址分配策略被称为<strong>无类别域间选路（CIDR）</strong></p>
+<p>路由器在转发数据报时，仅考虑前x bit（最长匹配），寻找所其属组织(可能包含多个子网)；只有组织内部路由器转发分组时，才考虑后面的bit。<strong>可以减少路由器转发表的长度</strong></p>
+<p>好比江西省南昌市XXX这个地址，先找到江西省南昌市这个组织，之后又若干个县镇，就在组织内部比较后xxx位。如果不是南昌市，匹配到江西省后就组织外部转发寻找其他市</p>
+<h3 id="分类编址-classful-addressing"><a href="#分类编址-classful-addressing" class="headerlink" title="分类编址 classful addressing"></a>分类编址 classful addressing</h3><ul>
+<li>A类：(/8)，可容纳2^24-2台主机，以下类似</li>
+<li>B类：(/16)</li>
+<li>C类：(/24)</li>
+</ul>
+<p><strong>减去两个特殊的地址，全0的子网地址，全1的广播地址</strong></p>
+<ul>
+<li>这样分会产生问题，地址空间利用率低</li>
+</ul>
+<h3 id="系统管理员向ISP申请手动配置路由器和主机的IP"><a href="#系统管理员向ISP申请手动配置路由器和主机的IP" class="headerlink" title="系统管理员向ISP申请手动配置路由器和主机的IP"></a>系统管理员向ISP申请手动配置路由器和主机的IP</h3><p>ISP：网络服务提供商</p>
+<h3 id="动态主机配置协议-DHCP"><a href="#动态主机配置协议-DHCP" class="headerlink" title="动态主机配置协议 DHCP"></a>动态主机配置协议 DHCP</h3><blockquote>
+<p>DHCP是应用层协议，服务器端口号67，客户机端口号68。（基于UDP）</p>
+</blockquote>
+<p>主机每次连接网络时都能得到一个相同的IP，或者分配到一个临时IP。DHCP也被称为<strong>即插即用协议（plug-and-play protocol）</strong></p>
+<p>每当主机加入或离开网络时，DHCP会更新其可用IP地址表。加入时，任意分配一个可以IP；离开时，回收地址</p>
+<ol>
+<li><p>DHCP服务器发现<br>新到的主机要先寻找DHCP服务器，借助<strong>DHCP发现报文</strong>，在UDP分组中向端口67号发送数据报，源IP地址指定0.0.0.0，目的IP使用广播地址255.255.255.255</p>
+</li>
+<li><p>DHCP服务器提供<br>因为接收到发现报文的DHCP服务器可能有多台，所以DHCP服务器在接收到发现报文后，仍旧使用广播地址向客户机发送<strong>DHCP提供报文</strong>。提供报文中包含收到的发现报文的事务ID、向客户机推荐的IP地址、网络掩码、IP地址租用期(有效的时间量)，客户机可以选择其中一个服务器</p>
+</li>
+<li><p>DHCP请求<br>新到的主机选择了某个服务器后，发送一个<strong>DHCP请求报文</strong>对选中的服务器响应，回显配置参数</p>
+</li>
+<li>DHCP ACk<br>服务器用<strong>DHCP ACk</strong>响应，证实所要求的参数</li>
+</ol>
+<h3 id="网络地址转换-NAT"><a href="#网络地址转换-NAT" class="headerlink" title="网络地址转换 NAT"></a>网络地址转换 NAT</h3><p>它能解决网络地址不够用问题，分配地址的方法更简单</p>
+<p>先说明一种特殊地址————用于专用网络或具有专用地址的地域（其地址仅对该网络中的设配有意义的网络，如1.0.0.0/24），所有网络都可以用这块地址，但也仅仅是在给定的网络中有意义</p>
+<p>NAT就是用来给这些网络中的设配分配一个对外IP和端口的方法，简而言之NAT路由器对于外界而言就好比拥有单一IP地址的设备</p>
+<p>NAT路由器上有一张NAT转换表，记录了网络内部的端口号和IP，以便将来接收数据时知道该把数据交付给那台设配</p>
+<h2 id="IPv6-及IPv4向IPv6转换"><a href="#IPv6-及IPv4向IPv6转换" class="headerlink" title="IPv6 及IPv4向IPv6转换"></a>IPv6 及IPv4向IPv6转换</h2><h3 id="IPv6数据报格式"><a href="#IPv6数据报格式" class="headerlink" title="IPv6数据报格式"></a>IPv6数据报格式</h3><h3 id="IPv4向IPv6迁移（双栈、隧道）"><a href="#IPv4向IPv6迁移（双栈、隧道）" class="headerlink" title="IPv4向IPv6迁移（双栈、隧道）"></a>IPv4向IPv6迁移（双栈、隧道）</h3><blockquote>
+<p>IPv6传播速度更快，因为相比于IPv4用的人少，路上不堵当然快</p>
+</blockquote>
+<ul>
+<li>双栈（dual-stack）</li>
+</ul>
+<p>既是IPv6节点也可以具有完整IPv4实现，所以IPv6/IPv4节点必须具有IPv6和IPv4地址，而且它们可以请求DNS了解一个节点是支持IPv6(IPv6使能)的还是仅仅支持IPv4的</p>
+<p>两个IPv6使能节点之间不能相互发送IPv4数据报，向IPv4使能点发送也仅是IPv4数据报。ipv6数据报中有一些特定的字段ipv4中没有的，所以经过双栈传输的IPv6数据报最后到达目的时，如果经过了IPv4节点，最后的数据报和原数据报有差别</p>
+<ul>
+<li>隧道（tunnel）</li>
+</ul>
+<p>两台IPv6路由器间经过的IPv4路由器的集合就成为<strong>隧道</strong>，应用中就是给IPv6数据报打上一层IPv4的包裹(IPv4数据报本身含有一个完整的IPv6数据报)</p>
+<h2 id="ICMP-互联网控制报文协议"><a href="#ICMP-互联网控制报文协议" class="headerlink" title="ICMP 互联网控制报文协议"></a>ICMP 互联网控制报文协议</h2><blockquote>
+<p>用于主机和路由器彼此交互网络层信息，典型应用在差错报告；ICMP报文是源抑制报文，最初目的用于执行拥塞控制，允许拥塞的路由器向主机发送该报文，强制减小主机传输速率</p>
+</blockquote>
+<ul>
+<li>ICMP报文是承载在IP报文中的，在体系结构上讲它是位于IP之上，但通常被认为属于IP协议一部分</li>
+</ul>
+<h2 id="路由协议-（RIP、OSFP、BGP）"><a href="#路由协议-（RIP、OSFP、BGP）" class="headerlink" title="路由协议 （RIP、OSFP、BGP）"></a>路由协议 （RIP、OSFP、BGP）</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/" data-id="cjnicmeut0003zwnfonzm6b2k" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计网-笔记/">计网,笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2018-10-21-SQL上机记录.html/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SQL上机记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2018-08-31-Hexo使用及配置.html/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hexo使用及配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL、MySQL/">SQL、MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/first-post/">first_post</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/testDemo/">testDemo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计网-笔记/">计网,笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/SQL、MySQL/" style="font-size: 10px;">SQL、MySQL</a> <a href="/tags/first-post/" style="font-size: 10px;">first_post</a> <a href="/tags/testDemo/" style="font-size: 10px;">testDemo</a> <a href="/tags/计网-笔记/" style="font-size: 20px;">计网,笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/">《计算机网络自顶向下方法》之传输层总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018-10-21-SQL上机记录.html/">SQL上机记录</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/">《计算机网络自顶向下方法》之网络层总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018-08-31-Hexo使用及配置.html/">Hexo使用及配置</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018-08-31-my-first-post.html/">my first post</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Joson lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

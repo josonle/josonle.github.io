@@ -69,6 +69,643 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-《计算机网络自顶向下方法》之传输层总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/" class="article-date">
+  <time datetime="2018-10-21T03:58:29.000Z" itemprop="datePublished">2018-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/">《计算机网络自顶向下方法》之传输层总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><h3 id="传输层基本理论和机制"><a href="#传输层基本理论和机制" class="headerlink" title="传输层基本理论和机制"></a>传输层基本理论和机制</h3><ul>
+<li>多路复用/分用</li>
+<li>可靠数据传输机制</li>
+<li>流量控制机制</li>
+<li>拥塞控制机制</li>
+</ul>
+<h3 id="传输层协议"><a href="#传输层协议" class="headerlink" title="传输层协议"></a>传输层协议</h3><ul>
+<li>UDP：无连接传输服务</li>
+<li>TCP：面向连接的传输服务</li>
+<li>TCP拥塞控制机制</li>
+</ul>
+<h2 id="传输层概述"><a href="#传输层概述" class="headerlink" title="传输层概述"></a>传输层概述</h2><p>传输层协议为不同主机上运行的<strong>进程</strong>提供逻辑通信机制（端到端的）</p>
+<blockquote>
+<p>网络层和传输层区别和联系：</p>
+<p>网络层是在<strong>主机</strong>之间提供逻辑通信机制</p>
+<p>传输层位于网络层之上，依赖网络层服务，对网络层服务进行（可能的）增强</p>
+</blockquote>
+<p>发送方将消息分成一或多个报文段向下传给网络层，接收方将接收到的报文段组装成消息向上交付给应用层</p>
+<ul>
+<li>TCP:可靠按序的交付服务<ul>
+<li>拥塞控制</li>
+<li>流量控制</li>
+<li>连接建立</li>
+</ul>
+</li>
+<li>UDP：不可靠，基于“尽力而为”的网络层协议IP，没有做可靠性方面的扩展</li>
+<li>二者都不保证<strong>延迟、带宽</strong></li>
+</ul>
+<h2 id="多路复用、分用"><a href="#多路复用、分用" class="headerlink" title="多路复用、分用"></a>多路复用、分用</h2><p>参考书上的收寄信件的案例，接收端多路分用（将数据报组合成信息），发送端多路复用（将信息拆分成多个数据报）</p>
+<p>分用工作原理：</p>
+<ul>
+<li>主机接收到的IP数据报都携带源/目的IP地址，每个数据报都携带一个传输层的报文段（Segment），而报文段中携带源/目的端口号</li>
+<li>主机接收报文段后，传输层协议提取IP地址和端口号信息，报报文段导入正确的Socket中。（TCP有更多的处理过程）</li>
+</ul>
+<p>分用对于UDP、TCP的区别：</p>
+<ul>
+<li>UDP只依赖（二元组）源/目的端口号区别</li>
+<li>TCP依赖 <strong>（四元组）</strong> 源/目的IP，源/目的端口号来区别</li>
+</ul>
+<blockquote>
+<p>服务器可同时支持多个TCP Socket，服务器一个进程可以创建多个线程和不同TCP链接相连接，Web服务器为每个客户端都开不同的Socket</p>
+</blockquote>
+<h2 id="UDP协议（用户数据报协议）"><a href="#UDP协议（用户数据报协议）" class="headerlink" title="UDP协议（用户数据报协议）"></a>UDP协议（用户数据报协议）</h2><p>基于IP协议实现了复用/分用，以及简单的错误检验（校验和）</p>
+<p>因为IP是“尽力而为”的，所以UDP段可能丢失、可能不按序到达</p>
+<p>每个UDP段的处理独立于其它段</p>
+<p><strong>UDP协议虽然是不可靠的，但依然可以在UDP上实现可靠数据传输。只要在应用层上增加可靠性机制、错误恢复机制</strong>。</p>
+<h3 id="UDP协议的优势："><a href="#UDP协议的优势：" class="headerlink" title="UDP协议的优势："></a>UDP协议的优势：</h3><ul>
+<li>无需建立连接（减少延迟）</li>
+<li>实现简单，不需要维护连接的状态</li>
+<li>头部开销小（8字节，TCP20字节）</li>
+<li>无拥塞控制，上层应用可更好地控制发送时间和速率</li>
+</ul>
+<p>应用：常用于流媒体应用（容忍丢失，速率敏感），DNS，SNMP</p>
+<h3 id="UDP校验和使用，计算"><a href="#UDP校验和使用，计算" class="headerlink" title="UDP校验和使用，计算"></a>UDP校验和使用，计算</h3><p><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/UDP校验和使用.jpg)</p>
+<ul>
+<li>计算校验和</li>
+</ul>
+<p><strong>如果最高位有进位，要重新加在末尾（末尾再加1）</strong><br><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/校验和实例.jpg)</p>
+<h2 id="可靠数据传输（rdt）原理"><a href="#可靠数据传输（rdt）原理" class="headerlink" title="可靠数据传输（rdt）原理"></a>可靠数据传输（rdt）原理</h2><p>可靠：不错、不丢、不乱</p>
+<p>可靠数据传输对于应用层、传输层、链路层都很重要，它是计网中Top-10的问题。信道的不可靠特性决定了可靠数据传输协议的复杂性</p>
+<h3 id="Rdt协议基本结构图"><a href="#Rdt协议基本结构图" class="headerlink" title="Rdt协议基本结构图"></a>Rdt协议基本结构图</h3><p><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/RDT基本结构图.jpg)<br>注意我箭头所指出的，<br><strong>数据传输单向，控制信息流动双向</strong></p>
+<h3 id="Rdt-1-0：可靠信道上可靠数据传输协议（假设，现实不存在）"><a href="#Rdt-1-0：可靠信道上可靠数据传输协议（假设，现实不存在）" class="headerlink" title="Rdt 1.0：可靠信道上可靠数据传输协议（假设，现实不存在）"></a>Rdt 1.0：可靠信道上可靠数据传输协议（假设，现实不存在）</h3><p>它认为底层信道完全可靠（不发生错误，不丢分组）</p>
+<p><strong>状态机（FSM）</strong>，书上用来刻画传输协议的模型，去翻</p>
+<h3 id="Rdt-2-0：底层信道会产生位错误（bit翻转）"><a href="#Rdt-2-0：底层信道会产生位错误（bit翻转）" class="headerlink" title="Rdt 2.0：底层信道会产生位错误（bit翻转）"></a>Rdt 2.0：底层信道会产生位错误（bit翻转）</h3><ul>
+<li>错误如何检测？<strong>接收方利用校验和检测位错误</strong> 【检测机制】</li>
+<li>错误如何恢复？<ul>
+<li><strong>接收方向发送方反馈控制信息</strong> 【确认机制】</li>
+<li>确认机制（ACK），显式地告诉发送方分组已正确接收</li>
+<li>NAK，告诉发送方分组有错误</li>
+<li><strong>发送方接受NAK，重传分组</strong> 【重传机制】</li>
+</ul>
+</li>
+</ul>
+<p>基于这种重传机制的rdt称为ARQ（Automatic Repeat ReQuest）协议</p>
+<p><strong>停等协议</strong>，发送方有两种状态（等待接受上层应用数据【状态1】，等待反馈信息的接收【状态2】）</p>
+<p>发送方在发送数据后，等待接收反馈信息，如果接收到ACK跳转到状态1等待上层调用；如果接收到NAK再次发送该分组（表明发送方有缓存机制），继续等待，直到接收到ACK</p>
+<h3 id="Rdt-2-1和2-2：解决2-0的缺陷"><a href="#Rdt-2-1和2-2：解决2-0的缺陷" class="headerlink" title="Rdt 2.1和2.2：解决2.0的缺陷"></a>Rdt 2.1和2.2：解决2.0的缺陷</h3><p><strong>Rdt2.0协议的缺陷：反馈信息ACK/NAK有可能错误</strong></p>
+<p>Rdt2.1：</p>
+<p>如何解决？</p>
+<ol>
+<li>为ACK/NAK加上校验和，检错并纠错（难度大）</li>
+<li>为ACK/NAK添加额外的控制信息（控制信息还可能错误）</li>
+<li>如果ACK/NAK错误了，发送方就重传（但不能简单重传，会产生<strong>重复分组</strong>）【采用】</li>
+</ol>
+<p>如何解决重复分组？</p>
+<ul>
+<li>发送方为每个分组增加<strong>序列号</strong>（Sequence number）0和1</li>
+<li>接收方<strong>丢弃重复分组</strong></li>
+</ul>
+<p>发送方、接收方使用停等协议，所以序列号只使用0和1就够用了</p>
+<p>Rdt2.2：无NAK消息协议<br>功能同2.1，但是用<strong>ACK+序列号</strong>替代NAK（ACK消息中加入被确认分组的序列号）。比如说发送方等待序列号为0的分组ACK，但是接收到了序列号信息为1的ACK，表明有错误发生，重传该分组</p>
+<h3 id="Rdt-3-0：底层信道可能错误可能丢失分组"><a href="#Rdt-3-0：底层信道可能错误可能丢失分组" class="headerlink" title="Rdt 3.0：底层信道可能错误可能丢失分组"></a>Rdt 3.0：底层信道可能错误可能丢失分组</h3><p>因为可能丢失分组，所以无论是发送方发送的分组丢失，还是接收方反馈的ACK/NAK丢失，都会造成双方无限等待的情况</p>
+<p>如何解决？<br>设置<strong>定时器</strong>，发送方等待合理时间，如果超时还未接收到确认信息就重传。</p>
+<p>合理时间要设置恰当，因为ACK反馈可能没丢，只是延迟了，但超时时间设置过小，你给他重传了</p>
+<blockquote>
+<p>在2.2基础上改动，无NAK信息</p>
+</blockquote>
+<p>发送方发送数据并启动定时器，若超时时间内收到了正确ACK信息跳转状态；若接收到错误ACK重传，定时器重启；若分组丢失，或者ACK丢失导致超时，发送方重传该分组并重启定时器；若ACK只是延迟，一样超时重传重启定时器</p>
+<p><strong>Rdt 3.0性能很低</strong><br><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/Rdt3.0性能.jpg)</p>
+<hr>
+<p><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/Rdt3.0性能图示.jpg)</p>
+<h3 id="解决效率低下问题————打破停等协议"><a href="#解决效率低下问题————打破停等协议" class="headerlink" title="解决效率低下问题————打破停等协议"></a>解决效率低下问题————打破停等协议</h3><ul>
+<li>流水线机制</li>
+<li>滑动窗口协议（Sliding-window protocol）：GBN、SR协议</li>
+</ul>
+<p>序列号扩大，仅仅0和1不够用</p>
+<h4 id="流水线机制"><a href="#流水线机制" class="headerlink" title="流水线机制"></a>流水线机制</h4><p><strong>允许发送方在接受到ACK回馈前可连续发送多个分组</strong>，要求扩大序列号范围，发送方接收方都要有缓存机制以缓存分组</p>
+<p><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/流水线机制.jpg)</p>
+<p>理论上一次性发送分组越多效率越高</p>
+<h4 id="滑动窗口协议"><a href="#滑动窗口协议" class="headerlink" title="滑动窗口协议"></a>滑动窗口协议</h4><p><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="">/MarkDown_images/滑动窗口协议.jpg)</p>
+<p>如图，窗口大小为 N，绿色的是已确认分组，黄色是已发送等待确认分组数，蓝色是还可以发送分组数</p>
+<ul>
+<li>最多有N个等待确认分组</li>
+<li>随着协议运行，窗口在序列号空间内向前滑动</li>
+<li>如果此时发送方确认了最左端的一个黄色分组，窗口右滑一格</li>
+</ul>
+<h4 id="GBN回退N步协议"><a href="#GBN回退N步协议" class="headerlink" title="GBN回退N步协议"></a>GBN回退N步协议</h4><p>分组头部包含K位(K-bit)分组序号字段，序列号范围2^k</p>
+<p><strong>发送方</strong></p>
+<ul>
+<li>窗口未满时可接受上层应用调用发送分组，如果已满，发送方将数据返回上层，隐示通知窗口已满</li>
+<li><strong>累积确认机制</strong>：接收到ACK(n)，表明到序列号n（含n）之前的分组均被正确接受</li>
+<li>分组的发送需要<strong>设置计时器</strong> （<strong>一个</strong>计时器）</li>
+<li>如果发生<strong>序列号为n的分组超时</strong>旳事件，重传序列号大于等于n的<strong>所有还未接收到ACK确认</strong>的分组</li>
+<li>当接收到ACK(n)且n前面的所有分组都已确认，窗口滑动，base_sequence滑至尚未确认的分组处</li>
+</ul>
+<p>重传存在资源浪费</p>
+<p><strong>接收方</strong></p>
+<ul>
+<li>接收方<strong>按序交付</strong>数据给上层调用</li>
+<li>对于失序分组，接收方直接丢弃处理（<strong>因此不需要缓存机制</strong>）。因为序列号n+1的分组到达，但序列号n的分组丢失，发送方会把依重传机制把它们都重新发送即可</li>
+<li><strong>接收方唯一需要维护的是下一个按序接收的分组序号</strong><ul>
+<li>接收方返回的反馈信息是 ACK(下一个要按序接收的分组序号-1) 【拥有最高序列号、已被正确接受的分组的ACK】</li>
+</ul>
+</li>
+</ul>
+<p><strong>接收方无缓存机制，发送方有</strong></p>
+<blockquote>
+<p>例题：数据链路层依据GBN协议，发送方发送标号0~7的帧，计时器超时后，发送方只收到了0,2,3号帧的确认，需要重传哪几个帧？</p>
+<p>不要想着1号帧，因为依据GBN原理，收到ACK(n)表明包含n在内的之前所有帧都已接收到了。所有是4,5,6，7</p>
+</blockquote>
+<h4 id="SR-选择重传协议-（Selective-Repeat，-SR）"><a href="#SR-选择重传协议-（Selective-Repeat，-SR）" class="headerlink" title="SR 选择重传协议 （Selective Repeat， SR）"></a>SR 选择重传协议 （Selective Repeat， SR）</h4><p>解决GBN的不必要重传缺陷，不采用累积确认机制</p>
+<p><strong>接收方</strong></p>
+<ul>
+<li>对每个分组单独确认，设置缓存机制（缓存乱序到达的分组）</li>
+<li>接收方也设置窗口</li>
+<li>失序分组被缓存，直到所有丢失分组（序列号更小）都被收到，才一次性交付给上层，接收窗口滑动交付分组数量长度</li>
+<li>接收到已确认的分组，任然要发送对应ACK</li>
+</ul>
+<p><strong>发送方</strong></p>
+<ul>
+<li>为<strong>每个分组设置单独的定时器</strong>，只重传没接收到ACK的分组</li>
+</ul>
+<p><strong>图解</strong><br><img src="D:/YoudaoNote/云笔记/3092312003@qq.com(1" alt="图解">/MarkDown_images/SR协议.jpg)</p>
+<p><strong>接收方窗口大小 + 发送方窗口大小 &lt;= 序列号空间大小</strong></p>
+<p><strong>发送方，接收方对于哪些分组正确接收，哪些没有并不总是能看到相同结果</strong></p>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>全双工（full-duplex）服务，面向连接，点对点，同时发送接收</p>
+<p>累积确认，双方都有缓存机制，使用超时/重传机制处理报文段丢失问题</p>
+<h4 id="三次握手-四次挥手"><a href="#三次握手-四次挥手" class="headerlink" title="三次握手 四次挥手"></a>三次握手 四次挥手</h4><h4 id="TCP报文段结构"><a href="#TCP报文段结构" class="headerlink" title="TCP报文段结构"></a>TCP报文段结构</h4><p>TCP报文首部最小20B，最大60B（首部长度字段4bit，但是单位是B，4B*15=60B）</p>
+<p>四元祖：</p>
+<ul>
+<li>源端口号：16bit</li>
+<li>目的端口号：16bit</li>
+<li>序列号Seq：32bit</li>
+<li>确认号Ack：32bit</li>
+<li><p>Seq、Ack最重要</p>
+</li>
+<li><p>接收窗口：用于流量控制，表示接收方愿接收的字节数</p>
+</li>
+<li>6bit标志字段</li>
+</ul>
+<h4 id="超市间隔设置"><a href="#超市间隔设置" class="headerlink" title="超市间隔设置"></a>超市间隔设置</h4><ul>
+<li>样本RTT（SampleRTT）</li>
+<li>样本RTT均值（EstimatedRTT）</li>
+<li>RTT偏差（DevRTT）:Samplertt和EstimatedRTT差值</li>
+</ul>
+<p>样本RTT波动小，DevRTT值就小</p>
+<h3 id="TCP实现的服务"><a href="#TCP实现的服务" class="headerlink" title="TCP实现的服务"></a>TCP实现的服务</h3><h4 id="可靠数据传输"><a href="#可靠数据传输" class="headerlink" title="可靠数据传输"></a>可靠数据传输</h4><h4 id="加倍超时间隔"><a href="#加倍超时间隔" class="headerlink" title="加倍超时间隔"></a>加倍超时间隔</h4><p>拥塞时持续重传反而会加重拥塞，所以每次TCP重传都会将下一次超时间隔设置为先前值的两倍（这是一种有限形式的拥塞控制）</p>
+<h4 id="快速重传"><a href="#快速重传" class="headerlink" title="快速重传"></a>快速重传</h4><p>因为加倍超时间隔有可能使得发送方等待很长时间才重传分组，增加了端到端的时延</p>
+<p>快速重传讲究，未超时前提下，接收冗杂Ack（3次），快速重传该分组</p>
+<p><strong>冗杂Ack是什么？怎么产生？见课本P165</strong></p>
+<h4 id="TCP是GBN还是SR协议"><a href="#TCP是GBN还是SR协议" class="headerlink" title="TCP是GBN还是SR协议"></a>TCP是GBN还是SR协议</h4><p>混合体，见书本p165</p>
+<h3 id="流量控制（流控制-flow-control）"><a href="#流量控制（流控制-flow-control）" class="headerlink" title="流量控制（流控制 flow-control）"></a>流量控制（流控制 flow-control）</h3><p>速度匹配服务，发送方发送速率和接收方应用程序读速率相匹配，解决发送方使接收方缓存溢出的可能</p>
+<blockquote>
+<p>流控制和拥塞控制都是对发送方的遏制</p>
+</blockquote>
+<p>链接两端都维护一个<strong>接收窗口（receive window ，上文提过的首部字段）</strong>，用来表明接收方当下还能接收的字节数</p>
+<h3 id="TCP概述"><a href="#TCP概述" class="headerlink" title="TCP概述"></a>TCP概述</h3><ul>
+<li>点对点，端到端</li>
+<li>可靠按序的字节流，全双工的</li>
+<li>双方都有缓存机制</li>
+<li>流水线机制<ul>
+<li>拥塞控制、流量控制机制</li>
+</ul>
+</li>
+<li>面向连接的<ul>
+<li>数据传输前必须建立连接</li>
+<li>连接状态只在两端维护，不涉及沿途节点</li>
+<li>TCP连接包括：两台主机上的缓存、连接状态变量、socket等</li>
+</ul>
+</li>
+</ul>
+<h4 id="TCP报文段结构（20-60字节）"><a href="#TCP报文段结构（20-60字节）" class="headerlink" title="TCP报文段结构（20~60字节）"></a>TCP报文段结构（20~60字节）</h4><ul>
+<li>源/目的端口号</li>
+<li>Seq：序列号</li>
+<li>Ack：应答号</li>
+</ul>
+<blockquote>
+<p>Seq是双方建立连接时随机取的，他指的是segment中第一个字节的编号，而非segment报文的编号</p>
+</blockquote>
+<blockquote>
+<p>Ack是期望接收到的下一个字节的序列号，<strong>累计确认</strong>（表明该序列号前所有字节都已正确接收）</p>
+</blockquote>
+<ul>
+<li>U、A、P、R、S、F<ul>
+<li>U:URG</li>
+<li>A：ACK是否有效，1就是ACK有效</li>
+<li>P:PSH，立刻向上交付数据（不怎么用）</li>
+<li>RST、SYN、FIN涉及连接建立拆除</li>
+</ul>
+</li>
+<li>Receive Window：可接受的字节数</li>
+</ul>
+<h4 id="可靠数据传输概述"><a href="#可靠数据传输概述" class="headerlink" title="可靠数据传输概述"></a>可靠数据传输概述</h4><ul>
+<li>基于IP层的不可靠服务基础上实现可靠数据传输服务</li>
+<li>流水线机制（提供传输效率）</li>
+<li>累计确认</li>
+<li>TCP使用单一重传定时器</li>
+<li>触发重传事件：超时；收到重复ACK</li>
+</ul>
+<ol>
+<li>如何设置超时时间<ul>
+<li>大于RTT</li>
+<li>过短会造成不必要重传</li>
+<li>过长对段丢失时间反应慢</li>
+</ul>
+</li>
+<li>RTT如何估计？超时设置多大？<ul>
+<li>测量从报文段发出到接收到对应ACK的时间(样本RTT，SampleRTT) 【不考虑重传的报文段】</li>
+<li>测量多个SampleRTT，求平均得到RTT估计值EstimatedRTT</li>
+<li>测量RTT的变化值DevRTT：SampleRTT与EstimatedRTT的差值</li>
+<li>定时器超时时间设置为：<code>$ TimeoutInterval = EstimatedRTT + 4*DevRTT$</code></li>
+</ul>
+</li>
+<li>发送方事件<ul>
+<li>从上层应用收到数据<ol>
+<li>创建Segment，指定序列号（Segment第一个字节的编号）</li>
+<li>开启计时器，设置超时时间</li>
+</ol>
+</li>
+<li>超时<ol>
+<li>重传引起超时的Segment</li>
+<li>重启定时器</li>
+</ol>
+</li>
+<li>收到ACK<ol>
+<li>如果是以前未确认的Segment的ACk会更新SendBase，若窗口中还有未被确认的分组，则重启定时器</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>接收方行为<ul>
+<li>接收到期望的Segment会延迟ACk发送(500ms，避免刚发就有其他Segment到达)</li>
+<li>接收到重复Segment，立刻发送ACK</li>
+<li>接收乱序Segment，立刻发送重复ACK（期望接收的字节序列号）</li>
+<li><blockquote>
+<p>至于乱序到达的Segment如何处理，有程序员决定</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="快速重传机制"><a href="#快速重传机制" class="headerlink" title="快速重传机制"></a>快速重传机制</h4><ol>
+<li>如果<strong>发生超时，发送方超时间隔将会倍增</strong><blockquote>
+<p>这会使得超时间隔很大，重传之前要等待很久</p>
+</blockquote>
+</li>
+<li>通过重复ACk检测分组的丢失<ul>
+<li>某个分组丢失可能引起多个重复ACk</li>
+<li>如果<strong>发送方收到对同一数据的3个ACk，就假定该数据之后的段已经丢失</strong></li>
+</ul>
+</li>
+<li>快速重传：在<strong>定时器超时前</strong>进行重传</li>
+</ol>
+<h4 id="TCP流量控制"><a href="#TCP流量控制" class="headerlink" title="TCP流量控制"></a>TCP流量控制</h4><p><strong>速度匹配</strong>，利用头部的RcvWindow字段</p>
+<p><strong>接收方告诉发送方RcvWindow=0，发送方仍然会发送一个非常小的段，以便接收方处理交付完数据后告知发送方需要的数据</strong></p>
+<h4 id="TCP连接管理"><a href="#TCP连接管理" class="headerlink" title="TCP连接管理"></a>TCP连接管理</h4><ul>
+<li>建立连接，三次握手<ol>
+<li>客户端向服务器发送SYN报文段（不携带数据，syn置1，携带初始序列号）</li>
+<li>服务器同意，则发送SYNACK报文段，同时建立缓存和初始序列号</li>
+<li>客户端接受到SYNACK后会答复一个ACK报文段（同时可携带数据）</li>
+</ol>
+</li>
+<li>关闭连接，四次挥手<ol>
+<li>client向Server发送FIN控制报文段</li>
+<li>Server收到FIN，回复ACK，<strong>进入等待</strong>，关闭连接，发送FIN</li>
+<li>client收到FIN，回复ACK</li>
+<li>Server收到ACK，连接关闭</li>
+</ol>
+</li>
+</ul>
+<h3 id="拥塞控制原理"><a href="#拥塞控制原理" class="headerlink" title="拥塞控制原理"></a>拥塞控制原理</h3><p><strong>网络十大问题之一</strong>，表现在<strong>分组丢失</strong>（路由器缓存溢出）、<strong>分组延迟过大</strong>（在路由器缓存中<strong>排队</strong>）</p>
+<ol>
+<li><p>拥塞的代价</p>
+<ul>
+<li>分组延迟加大</li>
+<li>分组重传造成资源的浪费，降低吞吐率</li>
+<li>涉及多跳传输时，某个路由器将分组丢弃会导致‘上游’（前面经过的路由）传输能力全部浪费掉</li>
+</ul>
+</li>
+<li><p>控制的思想：控制发送速率</p>
+</li>
+<li>拥塞控制的方法<ul>
+<li>端到端的拥塞控制<ol>
+<li>网络层不提供显示支持</li>
+<li>由端系统通过观察数据loss，发送延迟delay等行为来判断是否拥塞</li>
+<li>TCP采取该方法</li>
+</ol>
+</li>
+<li>网络辅助的拥塞控制<ol>
+<li>路由器向发送方显式地反馈拥塞信息</li>
+<li>依赖简单的拥塞指示：SNA,DECbit,TCP/IP ECN,ATM使用<h4 id="ATM的拥塞控制-ABR（available-bit-rate）"><a href="#ATM的拥塞控制-ABR（available-bit-rate）" class="headerlink" title="ATM的拥塞控制 ABR（available bit rate）"></a>ATM的拥塞控制 ABR（available bit rate）</h4></li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>弹性服务</li>
+<li>发送方路径上负载低的话，发送方就会使用可用带宽；拥塞的话，就会将速率降低到最低保障速率</li>
+</ul>
+<p>具体一点，ATM在网路上传输的是一个叫cell的（同之前所说的报文段），包含data cells、RM cells。通过RM cells控制拥塞，它由发送方发送，接收方再返回发送方，RM cell中有<strong>NI</strong>位（rate速率不许增长）、<strong>CI</strong>位（显式拥塞指示），和ER字段(2bit，显式的速率)</p>
+<blockquote>
+<p>NI、CI是接收方反馈的，ER是直接交换机反馈的<br>交换机拥塞时，就可以将ER置为更小，发送方接收到后就能获知路径所能支持最小速率</p>
+</blockquote>
+<p>定性机制（NI/CI），定量机制（速率字段ER）</p>
+<p>数据cell中也有EFCI位：如果拥塞，交换机就把他置为1，那么发送方再返回的RM cell中置CI位（表明拥塞）</p>
+<h3 id="TCP如何控制拥塞"><a href="#TCP如何控制拥塞" class="headerlink" title="TCP如何控制拥塞"></a>TCP如何控制拥塞</h3><p>基本思想也是控制发送速率，设置变量<strong>CongWin</strong>（拥塞窗口）&gt;= 发送的最后有一个byte的序列号 - 发送确认的最后一个应答后，<code>rate ≈ CongWin/RTT</code></p>
+<p>所以可以动态调整CongWin改变发送速率</p>
+<p>采取机制：</p>
+<ul>
+<li>慢启动：SS</li>
+<li>拥塞避免（加性增，乘性减）：AIMD<h4 id="如何判断网络拥塞"><a href="#如何判断网络拥塞" class="headerlink" title="如何判断网络拥塞"></a>如何判断网络拥塞</h4>发生超时，或者收到3个重复ACK，就可以判断拥塞</li>
+</ul>
+<h4 id="AIMD"><a href="#AIMD" class="headerlink" title="AIMD"></a>AIMD</h4><p>线性增加发送速率，直到遇到拥塞发生，然后以减半的方式把速率降下来</p>
+<ul>
+<li><p>加性增：每个RTT将CongWin增大一个MSS—-&gt;拥塞避免</p>
+</li>
+<li><p>乘性减：发生拥塞将CongWin减半</p>
+</li>
+</ul>
+<h4 id="SS"><a href="#SS" class="headerlink" title="SS"></a>SS</h4><p>TCP初始建立连接时一般把CongWin设为1个MSS，初始速率非常低（远小于带宽），考虑速率呈指数性质增长(慢启动)，每一个经过RTT把CongWin翻倍</p>
+<h4 id="指数增长和加性增-线性增长-的转换条件"><a href="#指数增长和加性增-线性增长-的转换条件" class="headerlink" title="指数增长和加性增(线性增长)的转换条件"></a>指数增长和加性增(线性增长)的转换条件</h4><p>当CongWin达到（前一次发生拥塞事件时CongWin的一半，称为Threshold）时，由指数转为线性</p>
+<h4 id="发生拥塞后发送速率怎么变"><a href="#发生拥塞后发送速率怎么变" class="headerlink" title="发生拥塞后发送速率怎么变"></a>发生拥塞后发送速率怎么变</h4><ul>
+<li>如果发生<strong>timeout</strong>，Threshold = CongWin/2，然后<strong>CongWin会直接减为1个MSS，然后慢启动</strong></li>
+<li>如果是接收到<strong>3次重复ACk</strong>，Threshold = CongWin/2，然后<strong>CongWin = CongWin/2，然后线性增</strong></li>
+</ul>
+<p><strong>timeout表明拥塞严重，而重复ACk表示还能发送一些数据</strong></p>
+<h3 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h3><ul>
+<li>假设主机A向主机B发送5个连续的报文段，主机B对每个报文段进行确认，其中第二个报文段丢失，其余报文段以及重传的第二个报文段均被主机B正确接收，主机A正确接收所有ACK报文段；报文段从1开始依次连续编号（即1、2、3……），主机A的超时时间足够长。请回答下列问题：</li>
+</ul>
+<p>1).如果分别采用GBN、SR和TCP协议，则对应这三个协议，主机A分别总共发了多少个报文段？主机B分别总共发送了多少个ACK？它们的序号是什么？(针对3个协议分别给出解答）</p>
+<p>2).如果对上述三个协议，超时时间比5RTT长得多，那么哪个协议将在最短的时间间隔内成功交付5个报文段？</p>
+<hr>
+<ul>
+<li>假设A、B两个端系统通过唯一的一条8Mbps链路连接（M=10^6），该链路的双向传播时延是150ms；A通过一个TCP连接向B发送一个大文件，B的接收缓存足够大，每个TCP段最大段长度（MSS）为1500字节，TCP采用Reno版本，且总是处于拥塞避免阶段（即忽略慢启动）。请回答下列问题：</li>
+</ul>
+<p>1).该TCP连接能够获得的最大窗口尺寸（以TCP段数计）是多少？</p>
+<p>2).该TCP连接的平均窗口尺寸（以TCP段数计）和平均吞吐量（以bps计）是多少？</p>
+<p>3).该TCP连接的拥塞窗口从发生丢包到恢复到最大窗口尺寸要经历多长时间？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/" data-id="cjnicmev30004zwnfbzsi7yw1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计网-笔记/">计网,笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-SQL上机记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018-10-21-SQL上机记录.html/" class="article-date">
+  <time datetime="2018-10-21T03:58:12.000Z" itemprop="datePublished">2018-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018-10-21-SQL上机记录.html/">SQL上机记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <ul>
+<li>sql server 中的isnull()，和MySQL中的ifnull()是否一样</li>
+<li>MySQL中avg()可以传入两个参数</li>
+<li><p>截取/保留小数点后n位</p>
+<ul>
+<li>round(num,n) 保留数num小数点后n位，会自动四舍五入</li>
+<li>truncate(num,n)，同上但不四舍五入</li>
+<li>以上n为负数的话，会截取整数部位</li>
+<li>format(num,n),只能截取小数点后(含0)，会四舍五入<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(<span class="number">123.1235</span>,<span class="number">3</span>);</span><br><span class="line"># 123.124</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">TRUNCATE</span>(<span class="number">123.1235</span>,<span class="number">3</span>);</span><br><span class="line"># 123.123</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(<span class="number">123.1235</span>,<span class="number">-1</span>)</span><br><span class="line"># <span class="number">120</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(<span class="number">123.1235</span>,<span class="number">0</span>)</span><br><span class="line"># <span class="number">123</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">format</span>(<span class="number">123.1235</span>,<span class="number">3</span>)</span><br><span class="line"># <span class="number">123.124</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>mysql不支持full join（全连接），但可以使用合并（union）左连接（left joing）和右连接（right join）</p>
+</li>
+<li>如何不通过max()、排序查询最大值？<blockquote>
+<p>使用集合差集，先查出除最大值之外的所有值，再用全体相减即可</p>
+<p>如查出emp表中工资最大值</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sal</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">except</span></span><br><span class="line"><span class="keyword">SELECT</span> e1.sal</span><br><span class="line"><span class="keyword">FROM</span> emp e1,emp e2</span><br><span class="line"><span class="keyword">WHERE</span> e1.sal &lt; e2.sal</span><br><span class="line"><span class="comment">-- 会有NULL值，排除即可</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>查找前6到10条记录</p>
+<ul>
+<li>SQL Server支持top n输出前n条记录</li>
+<li>MySQL无top用法，但是有limit M,N(从M+1开始输出N条记录)<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- sql server</span></span><br><span class="line"><span class="keyword">select</span> top <span class="number">10</span> * <span class="keyword">from</span> <span class="keyword">users</span> </span><br><span class="line"><span class="keyword">where</span> userID <span class="keyword">not</span> <span class="keyword">in</span>(<span class="keyword">select</span> top <span class="number">5</span> userID <span class="keyword">from</span> <span class="keyword">users</span>)</span><br><span class="line"><span class="comment">-- mysql</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">limit</span> <span class="number">5</span>,<span class="number">5</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>按照id排序后，输出前6到10条记录</p>
+<ul>
+<li>按照上面提到的，另加一步排序操作</li>
+<li>使用Row_number()名次函数，删选6到10<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- sql server</span></span><br><span class="line"><span class="keyword">select</span> *,Row_number() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">id</span>) <span class="keyword">rank</span></span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">where</span> <span class="keyword">rank</span> <span class="keyword">between</span> <span class="number">6</span> <span class="keyword">and</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>区分Row_number()、Rank()、Dense_Rank()、ntile()名次的区别：<a href="https://blog.csdn.net/zt15732625878/article/details/79826411" target="_blank" rel="noopener">【sql】— SQL Server 中的排名函数</a></p>
+</blockquote>
+<ul>
+<li>4个函数的用法都是<code>XXX() over(order by xx )</code>（<strong>必须有含order by的over子句</strong>）</li>
+<li>over中的order by语句和select语句中是否排序无关联</li>
+<li>分组内从1开始排名次</li>
+</ul>
+<p>参考：<a href="http://www.cnblogs.com/52XF/p/4209211.html" target="_blank" rel="noopener">Sql 四大排名函数（ROW_NUMBER、RANK、DENSE_RANK、NTILE）简介</a></p>
+<ul>
+<li>Row_Number()：为每一行都会生成一个名次序号，依次排序不重复</li>
+<li><p>Rank()：为over子句中排序字段相同的生成一样的序号，下一个序号是前面的记录数+1（跳跃排序）<br><img src="https://images.cnblogs.com/cnblogs_com/52XF/642690/o_rank_1.png" alt=""></p>
+</li>
+<li><p>Dense_Rank()：类似Rank，但属于连续排序，下一个序号是承接上一个序号的<br><img src="https://images.cnblogs.com/cnblogs_com/52XF/642690/o_dense_rank.png" alt=""></p>
+</li>
+<li>NTILE(n)：有一个参数n，指定分为多少组<ul>
+<li>每组含多少记录数有一个策略<blockquote>
+<ol>
+<li>每组的记录数不能大于它上一组的记录数，即编号小的桶放的记录数不能小于编号大的桶。也就是说，第1组中的记录数只能大于等于第2组及以后各组中的记录数。
+　　</li>
+<li>所有组中的记录数要么都相同，要么从某一个记录较少的组（命名为X）开始后面所有组的记录数都与该组（X组）的记录数相同。也就是说，如果有个组，前三组的记录数都是9，而第四组的记录数是8，那么第五组和第六组的记录数也必须是8。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>首先系统会去检查能不能对所有满足条件的记录进行平均分组，若能则直接平均分配就完成分组了；若不能，则会先分出一个组，这个组分多少条记录呢？就是 （总记录数/总组数）+1 条，之所以分配 （总记录数/总组数）+1 条是因为当不能进行平均分组时，总记录数%总组数肯定是有余的，又因为分组约定1，所以先分出去的组需要+1条。<br>&nbsp;&nbsp;分完之后系统会继续去比较余下的记录数和未分配的组数能不能进行平均分配，若能，则平均分配余下的记录；若不能，则再分出去一组，这个组的记录数也是（总记录数/总组数）+1条。<br>&nbsp;&nbsp;　然后系统继续去比较余下的记录数和未分配的组数能不能进行平均分配，若能，则平均分配余下的记录；若还是不能，则再分配出去一组，继续比较余下的……这样一直进行下去，直至分组完成。</p>
+</blockquote>
+<h3 id="MySQL中如何实现Rank名次函数"><a href="#MySQL中如何实现Rank名次函数" class="headerlink" title="MySQL中如何实现Rank名次函数"></a><a href="https://www.jianshu.com/p/bb1b72a1623e" target="_blank" rel="noopener">MySQL中如何实现Rank名次函数</a></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- mysql实现名次函数</span></span><br><span class="line"><span class="keyword">SELECT</span> *, @curRank := @curRank + <span class="number">1</span> <span class="keyword">AS</span> <span class="keyword">rank</span></span><br><span class="line"><span class="keyword">FROM</span> players p, (</span><br><span class="line"><span class="keyword">SELECT</span> @curRank := <span class="number">0</span></span><br><span class="line">) q</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">id</span></span><br></pre></td></tr></table></figure>
+<pre><code>&gt; 要在mysql中声明一个变量，你必须在变量名之前使用@符号。FROM子句中的(@curRank := 0)部分允许我们进行变量初始化，而不需要单独的SET命令。当然，也可以使用SET，但它会处理两个查询：
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> @curRank := <span class="number">0</span>;</span><br><span class="line"><span class="keyword">SELECT</span> *, @curRank := @curRank + <span class="number">1</span> <span class="keyword">AS</span> <span class="keyword">rank</span></span><br><span class="line"><span class="keyword">FROM</span> players</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">id</span></span><br></pre></td></tr></table></figure>
+</code></pre><ul>
+<li>局部常量@（用户定义） 和全局常量@@（系统定义，只读）</li>
+<li>MySQL在使用时单一set、select局部常量时可以直接 <code>set @p = 1</code>，但要是涉及该变量赋值要用<code>set @p := 1</code> ,<code>select @p := @p+1</code> <a href="https://dev.mysql.com/doc/refman/8.0/en/user-variables.html" target="_blank" rel="noopener">文档在这</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/2018-10-21-SQL上机记录.html/" data-id="cjnicmetp0000zwnfslga1oj1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL、MySQL/">SQL、MySQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-《计算机网络自顶向下方法》之网络层总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/" class="article-date">
+  <time datetime="2018-10-21T03:57:04.000Z" itemprop="datePublished">2018-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/">《计算机网络自顶向下方法》之网络层总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <p>网络层三大组件</p>
+<ul>
+<li>IP协议</li>
+<li>ICMP互联网控制报文协议</li>
+<li>RIP、OSFP、BGP选路协议<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><h2 id="IP编址"><a href="#IP编址" class="headerlink" title="IP编址"></a>IP编址</h2>首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用<strong>点分十进制</strong></li>
+</ul>
+<p>每个接口都必须要分配一个唯一的IP（除了NAT后面的接口），<strong>接口的IP也不能随意选取，都是由其所连接的子网决定的</strong></p>
+<blockquote>
+<p>接口：主机和物理链路的边界，路由器和链路的边界</p>
+</blockquote>
+<blockquote>
+<p>为何接口要有IP？因为主机和路由器都能收发IP数据表自然要有源/目的IP</p>
+</blockquote>
+<ul>
+<li>子网（subnet）<blockquote>
+<p>连接多台主机到一台路由器接口的独立以太网络，或者是路由器之间相连的独立网络</p>
+</blockquote>
+</li>
+<li>子网如何确定<blockquote>
+<p>分开主机和路由器的每个接口，产生了几个分离的网络岛。而接口端连接了这些独立的网络岛的端点，这些独立的网络都是一个子网</p>
+</blockquote>
+</li>
+<li>IP编址会为每一个子网分配一个地址（形如223.1.1.0/24，/24称为子网掩码 subnet mask），则子网中主机和接口的IP都是223.1.1.xxx的形式<blockquote>
+<p>子网掩码定义了子网地址，如/24，表明IP前24位bit全1，后8位全0就是子网地址<br><strong>前x为bit也通常称为前缀（prefix，网络前缀）</strong></p>
+</blockquote>
+</li>
+</ul>
+<p>因特网的地址分配策略被称为<strong>无类别域间选路（CIDR）</strong></p>
+<p>路由器在转发数据报时，仅考虑前x bit（最长匹配），寻找所其属组织(可能包含多个子网)；只有组织内部路由器转发分组时，才考虑后面的bit。<strong>可以减少路由器转发表的长度</strong></p>
+<p>好比江西省南昌市XXX这个地址，先找到江西省南昌市这个组织，之后又若干个县镇，就在组织内部比较后xxx位。如果不是南昌市，匹配到江西省后就组织外部转发寻找其他市</p>
+<h3 id="分类编址-classful-addressing"><a href="#分类编址-classful-addressing" class="headerlink" title="分类编址 classful addressing"></a>分类编址 classful addressing</h3><ul>
+<li>A类：(/8)，可容纳2^24-2台主机，以下类似</li>
+<li>B类：(/16)</li>
+<li>C类：(/24)</li>
+</ul>
+<p><strong>减去两个特殊的地址，全0的子网地址，全1的广播地址</strong></p>
+<ul>
+<li>这样分会产生问题，地址空间利用率低</li>
+</ul>
+<h3 id="系统管理员向ISP申请手动配置路由器和主机的IP"><a href="#系统管理员向ISP申请手动配置路由器和主机的IP" class="headerlink" title="系统管理员向ISP申请手动配置路由器和主机的IP"></a>系统管理员向ISP申请手动配置路由器和主机的IP</h3><p>ISP：网络服务提供商</p>
+<h3 id="动态主机配置协议-DHCP"><a href="#动态主机配置协议-DHCP" class="headerlink" title="动态主机配置协议 DHCP"></a>动态主机配置协议 DHCP</h3><blockquote>
+<p>DHCP是应用层协议，服务器端口号67，客户机端口号68。（基于UDP）</p>
+</blockquote>
+<p>主机每次连接网络时都能得到一个相同的IP，或者分配到一个临时IP。DHCP也被称为<strong>即插即用协议（plug-and-play protocol）</strong></p>
+<p>每当主机加入或离开网络时，DHCP会更新其可用IP地址表。加入时，任意分配一个可以IP；离开时，回收地址</p>
+<ol>
+<li><p>DHCP服务器发现<br>新到的主机要先寻找DHCP服务器，借助<strong>DHCP发现报文</strong>，在UDP分组中向端口67号发送数据报，源IP地址指定0.0.0.0，目的IP使用广播地址255.255.255.255</p>
+</li>
+<li><p>DHCP服务器提供<br>因为接收到发现报文的DHCP服务器可能有多台，所以DHCP服务器在接收到发现报文后，仍旧使用广播地址向客户机发送<strong>DHCP提供报文</strong>。提供报文中包含收到的发现报文的事务ID、向客户机推荐的IP地址、网络掩码、IP地址租用期(有效的时间量)，客户机可以选择其中一个服务器</p>
+</li>
+<li><p>DHCP请求<br>新到的主机选择了某个服务器后，发送一个<strong>DHCP请求报文</strong>对选中的服务器响应，回显配置参数</p>
+</li>
+<li>DHCP ACk<br>服务器用<strong>DHCP ACk</strong>响应，证实所要求的参数</li>
+</ol>
+<h3 id="网络地址转换-NAT"><a href="#网络地址转换-NAT" class="headerlink" title="网络地址转换 NAT"></a>网络地址转换 NAT</h3><p>它能解决网络地址不够用问题，分配地址的方法更简单</p>
+<p>先说明一种特殊地址————用于专用网络或具有专用地址的地域（其地址仅对该网络中的设配有意义的网络，如1.0.0.0/24），所有网络都可以用这块地址，但也仅仅是在给定的网络中有意义</p>
+<p>NAT就是用来给这些网络中的设配分配一个对外IP和端口的方法，简而言之NAT路由器对于外界而言就好比拥有单一IP地址的设备</p>
+<p>NAT路由器上有一张NAT转换表，记录了网络内部的端口号和IP，以便将来接收数据时知道该把数据交付给那台设配</p>
+<h2 id="IPv6-及IPv4向IPv6转换"><a href="#IPv6-及IPv4向IPv6转换" class="headerlink" title="IPv6 及IPv4向IPv6转换"></a>IPv6 及IPv4向IPv6转换</h2><h3 id="IPv6数据报格式"><a href="#IPv6数据报格式" class="headerlink" title="IPv6数据报格式"></a>IPv6数据报格式</h3><h3 id="IPv4向IPv6迁移（双栈、隧道）"><a href="#IPv4向IPv6迁移（双栈、隧道）" class="headerlink" title="IPv4向IPv6迁移（双栈、隧道）"></a>IPv4向IPv6迁移（双栈、隧道）</h3><blockquote>
+<p>IPv6传播速度更快，因为相比于IPv4用的人少，路上不堵当然快</p>
+</blockquote>
+<ul>
+<li>双栈（dual-stack）</li>
+</ul>
+<p>既是IPv6节点也可以具有完整IPv4实现，所以IPv6/IPv4节点必须具有IPv6和IPv4地址，而且它们可以请求DNS了解一个节点是支持IPv6(IPv6使能)的还是仅仅支持IPv4的</p>
+<p>两个IPv6使能节点之间不能相互发送IPv4数据报，向IPv4使能点发送也仅是IPv4数据报。ipv6数据报中有一些特定的字段ipv4中没有的，所以经过双栈传输的IPv6数据报最后到达目的时，如果经过了IPv4节点，最后的数据报和原数据报有差别</p>
+<ul>
+<li>隧道（tunnel）</li>
+</ul>
+<p>两台IPv6路由器间经过的IPv4路由器的集合就成为<strong>隧道</strong>，应用中就是给IPv6数据报打上一层IPv4的包裹(IPv4数据报本身含有一个完整的IPv6数据报)</p>
+<h2 id="ICMP-互联网控制报文协议"><a href="#ICMP-互联网控制报文协议" class="headerlink" title="ICMP 互联网控制报文协议"></a>ICMP 互联网控制报文协议</h2><blockquote>
+<p>用于主机和路由器彼此交互网络层信息，典型应用在差错报告；ICMP报文是源抑制报文，最初目的用于执行拥塞控制，允许拥塞的路由器向主机发送该报文，强制减小主机传输速率</p>
+</blockquote>
+<ul>
+<li>ICMP报文是承载在IP报文中的，在体系结构上讲它是位于IP之上，但通常被认为属于IP协议一部分</li>
+</ul>
+<h2 id="路由协议-（RIP、OSFP、BGP）"><a href="#路由协议-（RIP、OSFP、BGP）" class="headerlink" title="路由协议 （RIP、OSFP、BGP）"></a>路由协议 （RIP、OSFP、BGP）</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/" data-id="cjnicmeut0003zwnfonzm6b2k" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计网-笔记/">计网,笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Hexo使用及配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/2018-08-31-Hexo使用及配置.html/" class="article-date">
@@ -174,7 +811,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2018-08-31-Hexo使用及配置.html/" data-id="cjnicalep0000wwnfsx07yt3q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/2018-08-31-Hexo使用及配置.html/" data-id="cjnicmew7000fzwnfisbb5273" class="article-share-link">Share</a>
       
       
     </footer>
@@ -211,7 +848,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2018-08-31-my-first-post.html/" data-id="cjnicalgd0002wwnfvkozg3ru" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/2018-08-31-my-first-post.html/" data-id="cjnicmev70006zwnf8zieny6j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/first-post/">first_post</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/testDemo/">testDemo</a></li></ul>
@@ -259,7 +896,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2018-08-31-hello-world.html/" data-id="cjnicalg30001wwnf6fq305d4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/2018-08-31-hello-world.html/" data-id="cjnicmew1000ezwnfpen17ssd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -282,7 +919,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/first-post/">first_post</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/testDemo/">testDemo</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL、MySQL/">SQL、MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/first-post/">first_post</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/testDemo/">testDemo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计网-笔记/">计网,笔记</a></li></ul>
     </div>
   </div>
 
@@ -292,7 +929,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/first-post/" style="font-size: 10px;">first_post</a> <a href="/tags/testDemo/" style="font-size: 10px;">testDemo</a>
+      <a href="/tags/SQL、MySQL/" style="font-size: 10px;">SQL、MySQL</a> <a href="/tags/first-post/" style="font-size: 10px;">first_post</a> <a href="/tags/testDemo/" style="font-size: 10px;">testDemo</a> <a href="/tags/计网-笔记/" style="font-size: 20px;">计网,笔记</a>
     </div>
   </div>
 
@@ -301,7 +938,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
     </div>
   </div>
 
@@ -314,15 +951,23 @@
       <ul>
         
           <li>
+            <a href="/blog/2018-10-21-《计算机网络自顶向下方法》之传输层总结.html/">《计算机网络自顶向下方法》之传输层总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018-10-21-SQL上机记录.html/">SQL上机记录</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/">《计算机网络自顶向下方法》之网络层总结</a>
+          </li>
+        
+          <li>
             <a href="/blog/2018-08-31-Hexo使用及配置.html/">Hexo使用及配置</a>
           </li>
         
           <li>
             <a href="/blog/2018-08-31-my-first-post.html/">my first post</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2018-08-31-hello-world.html/">Hello World</a>
           </li>
         
       </ul>
