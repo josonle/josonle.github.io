@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="计网,笔记," />
+  <meta name="keywords" content="计网," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="网络层三大组件  IP协议 ICMP互联网控制报文协议 RIP、OSFP、BGP选路协议IP协议IP编址首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用点分十进制  每个接口都必须要分配一个唯一的IP（除了NAT后面的接口），接口的IP也不能随意选取，都是由其所连接的子网决定的  接口：主机和物理链路的边界，路由器和链路的边界   为何接口要有IP？因为主机和路">
-<meta name="keywords" content="计网,笔记">
+<meta name="description" content="网络层三大组件  IP协议 ICMP互联网控制报文协议 RIP、OSFP、BGP选路协议  &amp;lt; !– more –&amp;gt; IP协议IP编址首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用点分十进制 每个接口都必须要分配一个唯一的IP（除了NAT后面的接口），接口的IP也不能随意选取，都是由其所连接的子网决定的  接口：主机和物理链路的边界，路由器和链路的">
+<meta name="keywords" content="计网">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《计算机网络自顶向下方法》之网络层总结">
 <meta property="og:url" content="http://yoursite.com/blog/2018-10-21-《计算机网络自顶向下方法》之网络层总结.html/index.html">
 <meta property="og:site_name" content="Josonlee&#39;s Blog">
-<meta property="og:description" content="网络层三大组件  IP协议 ICMP互联网控制报文协议 RIP、OSFP、BGP选路协议IP协议IP编址首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用点分十进制  每个接口都必须要分配一个唯一的IP（除了NAT后面的接口），接口的IP也不能随意选取，都是由其所连接的子网决定的  接口：主机和物理链路的边界，路由器和链路的边界   为何接口要有IP？因为主机和路">
+<meta property="og:description" content="网络层三大组件  IP协议 ICMP互联网控制报文协议 RIP、OSFP、BGP选路协议  &amp;lt; !– more –&amp;gt; IP协议IP编址首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用点分十进制 每个接口都必须要分配一个唯一的IP（除了NAT后面的接口），接口的IP也不能随意选取，都是由其所连接的子网决定的  接口：主机和物理链路的边界，路由器和链路的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-21T04:03:30.209Z">
+<meta property="og:updated_time" content="2018-10-21T07:47:20.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《计算机网络自顶向下方法》之网络层总结">
-<meta name="twitter:description" content="网络层三大组件  IP协议 ICMP互联网控制报文协议 RIP、OSFP、BGP选路协议IP协议IP编址首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用点分十进制  每个接口都必须要分配一个唯一的IP（除了NAT后面的接口），接口的IP也不能随意选取，都是由其所连接的子网决定的  接口：主机和物理链路的边界，路由器和链路的边界   为何接口要有IP？因为主机和路">
+<meta name="twitter:description" content="网络层三大组件  IP协议 ICMP互联网控制报文协议 RIP、OSFP、BGP选路协议  &amp;lt; !– more –&amp;gt; IP协议IP编址首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用点分十进制 每个接口都必须要分配一个唯一的IP（除了NAT后面的接口），接口的IP也不能随意选取，都是由其所连接的子网决定的  接口：主机和物理链路的边界，路由器和链路的">
 
 
 
@@ -230,6 +230,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            给我留言
+          </a>
+        </li>
+      
 
       
     </ul>
@@ -353,8 +363,10 @@
 <ul>
 <li>IP协议</li>
 <li>ICMP互联网控制报文协议</li>
-<li>RIP、OSFP、BGP选路协议<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><h2 id="IP编址"><a href="#IP编址" class="headerlink" title="IP编址"></a>IP编址</h2>首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用<strong>点分十进制</strong></li>
+<li>RIP、OSFP、BGP选路协议</li>
 </ul>
+<p>&lt; !– more –&gt;</p>
+<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><h2 id="IP编址"><a href="#IP编址" class="headerlink" title="IP编址"></a>IP编址</h2><p>首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用<strong>点分十进制</strong></p>
 <p>每个接口都必须要分配一个唯一的IP（除了NAT后面的接口），<strong>接口的IP也不能随意选取，都是由其所连接的子网决定的</strong></p>
 <blockquote>
 <p>接口：主机和物理链路的边界，路由器和链路的边界</p>
@@ -471,7 +483,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/计网-笔记/" rel="tag"># 计网,笔记</a>
+            <a href="/tags/计网/" rel="tag"># 计网</a>
           
         </div>
       

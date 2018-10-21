@@ -229,6 +229,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            给我留言
+          </a>
+        </li>
+      
 
       
     </ul>
@@ -361,14 +371,13 @@
 <h3 id="传输层协议"><a href="#传输层协议" class="headerlink" title="传输层协议"></a>传输层协议</h3><ul>
 <li>UDP：无连接传输服务</li>
 <li>TCP：面向连接的传输服务</li>
-<li>TCP拥塞控制机制</li>
-</ul>
-<h2 id="传输层概述"><a href="#传输层概述" class="headerlink" title="传输层概述"></a>传输层概述</h2><p>传输层协议为不同主机上运行的<strong>进程</strong>提供逻辑通信机制（端到端的）</p>
-<blockquote>
+<li>TCP拥塞控制机制<br>&lt; !– more –&gt;<h2 id="传输层概述"><a href="#传输层概述" class="headerlink" title="传输层概述"></a>传输层概述</h2>传输层协议为不同主机上运行的<strong>进程</strong>提供逻辑通信机制（端到端的）<blockquote>
 <p>网络层和传输层区别和联系：</p>
 <p>网络层是在<strong>主机</strong>之间提供逻辑通信机制</p>
 <p>传输层位于网络层之上，依赖网络层服务，对网络层服务进行（可能的）增强</p>
 </blockquote>
+</li>
+</ul>
 <p>发送方将消息分成一或多个报文段向下传给网络层，接收方将接收到的报文段组装成消息向上交付给应用层</p>
 <ul>
 <li>TCP:可靠按序的交付服务<ul>
@@ -1076,8 +1085,10 @@
 <ul>
 <li>IP协议</li>
 <li>ICMP互联网控制报文协议</li>
-<li>RIP、OSFP、BGP选路协议<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><h2 id="IP编址"><a href="#IP编址" class="headerlink" title="IP编址"></a>IP编址</h2>首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用<strong>点分十进制</strong></li>
+<li>RIP、OSFP、BGP选路协议</li>
 </ul>
+<p>&lt; !– more –&gt;</p>
+<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><h2 id="IP编址"><a href="#IP编址" class="headerlink" title="IP编址"></a>IP编址</h2><p>首先指定IP地址是32位bit组成，可取2^32个，约40亿个取值，IP地址书写采用<strong>点分十进制</strong></p>
 <p>每个接口都必须要分配一个唯一的IP（除了NAT后面的接口），<strong>接口的IP也不能随意选取，都是由其所连接的子网决定的</strong></p>
 <blockquote>
 <p>接口：主机和物理链路的边界，路由器和链路的边界</p>
