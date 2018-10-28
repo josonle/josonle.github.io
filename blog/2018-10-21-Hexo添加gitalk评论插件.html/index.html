@@ -87,15 +87,15 @@
 <meta property="og:site_name" content="Josonlee&#39;s Blog">
 <meta property="og:description" content="配置gitalk插件用于评论和留言，解决gitalk的 Error:Validation Failed 报错问题，并添加留言簿页面">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/MarkDown_images/Hexo配置gitalk.jpg">
-<meta property="og:image" content="http://yoursite.com/MarkDown_images/Hexo配置gitalk.jpg">
-<meta property="og:image" content="http://yoursite.com/MarkDown_images/gitalk截图1.jpg">
-<meta property="og:image" content="http://yoursite.com/MarkDown_images/gitalk截图.jpg">
-<meta property="og:updated_time" content="2018-10-21T12:22:08.892Z">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/network/Hexo配置gitalk.jpg">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/network/gitalk配置1.jpg">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/network/gitalk截图1.jpg">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/network/gitalk截图.jpg">
+<meta property="og:updated_time" content="2018-10-28T12:46:18.584Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo添加gitalk评论插件">
 <meta name="twitter:description" content="配置gitalk插件用于评论和留言，解决gitalk的 Error:Validation Failed 报错问题，并添加留言簿页面">
-<meta name="twitter:image" content="http://yoursite.com/MarkDown_images/Hexo配置gitalk.jpg">
+<meta name="twitter:image" content="http://yoursite.com/MarkDown_images/network/Hexo配置gitalk.jpg">
 
 
 
@@ -384,8 +384,8 @@
 </blockquote>
 <p>废话不多说了，直接主题吧</p>
 <h2 id="注册一个OAuth应用程序"><a href="#注册一个OAuth应用程序" class="headerlink" title="注册一个OAuth应用程序"></a>注册一个OAuth应用程序</h2><p>点击这里 <a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">注册</a></p>
-<p><img src="/MarkDown_images/Hexo配置gitalk.jpg" alt=""></p>
-<p>注册后会生成如图所示的ID、Secret 【下文有用】<br><img src="/MarkDown_images/Hexo配置gitalk.jpg" alt=""></p>
+<p><img src="/MarkDown_images/network/Hexo配置gitalk.jpg" alt=""></p>
+<p>注册后会生成如图所示的ID、Secret 【下文有用】<br><img src="/MarkDown_images/network/gitalk配置1.jpg" alt=""></p>
 <h2 id="配置gitalk"><a href="#配置gitalk" class="headerlink" title="配置gitalk"></a>配置gitalk</h2><ul>
 <li>在<code>\themes\NexT\layout\_third-party\comments\</code>文件夹下新建 gitalk.swig 文件，配置如下</li>
 </ul>
@@ -418,7 +418,7 @@
 <p>然后修改修改gitalk.swig，引入md5.min.js，对id值md5编码化</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if page.comments &amp;&amp; theme.gitalk.enable %&#125;</span><br><span class="line">  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/gitalk/dist/gitalk.css&quot;&gt;</span><br><span class="line">  &lt;script src=&quot;https://unpkg.com/gitalk/dist/gitalk.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script src=&quot;/js/src/md5.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">   &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        var gitalk = new Gitalk(&#123;</span><br><span class="line">          clientID: &apos;&#123;&#123; theme.gitalk.ClientID &#125;&#125;&apos;,</span><br><span class="line">          clientSecret: &apos;&#123;&#123; theme.gitalk.ClientSecret &#125;&#125;&apos;,</span><br><span class="line">          repo: &apos;&#123;&#123; theme.gitalk.repo &#125;&#125;&apos;,</span><br><span class="line">          owner: &apos;&#123;&#123; theme.gitalk.githubID &#125;&#125;&apos;,</span><br><span class="line">          admin: [&apos;&#123;&#123; theme.gitalk.adminUser &#125;&#125;&apos;],</span><br><span class="line"></span><br><span class="line">          id: md5(location.pathname),</span><br><span class="line"></span><br><span class="line">          distractionFreeMode: &apos;&#123;&#123; theme.gitalk.distractionFreeMode &#125;&#125;&apos;</span><br><span class="line">        &#125;)</span><br><span class="line">        gitalk.render(&apos;gitalk-container&apos;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
 <p>应该没问题了，会出现下图所示的样子</p>
-<p><img src="/MarkDown_images/gitalk截图1.jpg" alt=""><br><img src="/MarkDown_images/gitalk截图.jpg" alt=""></p>
+<p><img src="/MarkDown_images/network/gitalk截图1.jpg" alt=""><br><img src="/MarkDown_images/network/gitalk截图.jpg" alt=""></p>
 <h2 id="顺便提一下-增加留言簿页面"><a href="#顺便提一下-增加留言簿页面" class="headerlink" title="顺便提一下 增加留言簿页面"></a>顺便提一下 增加留言簿页面</h2><p>在NexT的_config.yml配置文件下，找到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  about: /about/ || user</span><br><span class="line">  tags: /tags/ || tags</span><br><span class="line">  categories: /categories/ || th</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  guestbook: /guestbook # 增加这一行</span><br></pre></td></tr></table></figure></p>
 <p>在NexT\languages\zh-Hans.yml下，找到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: 首页</span><br><span class="line">  archives: 归档</span><br><span class="line">  categories: 分类</span><br><span class="line">  tags: 标签</span><br><span class="line">  about: 关于</span><br><span class="line">  guestbook: 给我留言</span><br></pre></td></tr></table></figure></p>
 <p>然后新生成一个留言页就OK<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page &quot;guestbook&quot;</span><br></pre></td></tr></table></figure></p>
@@ -491,6 +491,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018-10-22-ubuntu初次获取Root权限并登陆.html/" rel="prev" title="ubuntu初次获取Root权限并登陆">
+                ubuntu初次获取Root权限并登陆 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -573,7 +577,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -586,7 +590,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
