@@ -79,20 +79,21 @@
 
 
 
-<meta name="description" content="sql server 中的isnull()，和MySQL中的ifnull()是否一样 MySQL中avg()可以传入两个参数 截取/保留小数点后n位  round(num,n) 保留数num小数点后n位，会自动四舍五入 truncate(num,n)，同上但不四舍五入 以上n为负数的话，会截取整数部位 format(num,n),只能截取小数点后(含0)，会四舍五入123456789101112">
+<meta name="description" content="基本语法DDL 建表：create table table_name(XXX) 使用旧表创建新表 create table new_table like old_table create table tab_new as select col1,col2… from tab_old definition only   删表：drop table table_name 创建视图：create vie">
 <meta name="keywords" content="SQL、MySQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL上机记录">
 <meta property="og:url" content="http://yoursite.com/blog/2018-10-21-SQL上机记录.html/index.html">
 <meta property="og:site_name" content="Josonlee&#39;s Blog">
-<meta property="og:description" content="sql server 中的isnull()，和MySQL中的ifnull()是否一样 MySQL中avg()可以传入两个参数 截取/保留小数点后n位  round(num,n) 保留数num小数点后n位，会自动四舍五入 truncate(num,n)，同上但不四舍五入 以上n为负数的话，会截取整数部位 format(num,n),只能截取小数点后(含0)，会四舍五入123456789101112">
+<meta property="og:description" content="基本语法DDL 建表：create table table_name(XXX) 使用旧表创建新表 create table new_table like old_table create table tab_new as select col1,col2… from tab_old definition only   删表：drop table table_name 创建视图：create vie">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://images.cnblogs.com/cnblogs_com/52XF/642690/o_rank_1.png">
 <meta property="og:image" content="https://images.cnblogs.com/cnblogs_com/52XF/642690/o_dense_rank.png">
-<meta property="og:updated_time" content="2018-10-21T04:04:17.398Z">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201108/1/0_1312204988MUB9.gif">
+<meta property="og:updated_time" content="2018-11-04T02:41:00.648Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL上机记录">
-<meta name="twitter:description" content="sql server 中的isnull()，和MySQL中的ifnull()是否一样 MySQL中avg()可以传入两个参数 截取/保留小数点后n位  round(num,n) 保留数num小数点后n位，会自动四舍五入 truncate(num,n)，同上但不四舍五入 以上n为负数的话，会截取整数部位 format(num,n),只能截取小数点后(含0)，会四舍五入123456789101112">
+<meta name="twitter:description" content="基本语法DDL 建表：create table table_name(XXX) 使用旧表创建新表 create table new_table like old_table create table tab_new as select col1,col2… from tab_old definition only   删表：drop table table_name 创建视图：create vie">
 <meta name="twitter:image" content="https://images.cnblogs.com/cnblogs_com/52XF/642690/o_rank_1.png">
 
 
@@ -362,8 +363,30 @@
       
 
       
-        <ul>
-<li>sql server 中的isnull()，和MySQL中的ifnull()是否一样</li>
+        <h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h3><ul>
+<li>建表：<code>create table table_name(XXX)</code><ul>
+<li>使用旧表创建新表</li>
+<li><code>create table new_table like old_table</code></li>
+<li><code>create table tab_new as select col1,col2… from tab_old definition only</code></li>
+</ul>
+</li>
+<li>删表：<code>drop table table_name</code></li>
+<li>创建视图：<code>create view view_name as select语句</code></li>
+<li>删除视图：<code>drop view view_name</code></li>
+<li>更新表：<code>Alter table table_name XXX</code></li>
+</ul>
+<h3 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h3><a id="more"></a>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><ul>
+<li><p>完整性约束：实体(主键)/参照(外键)/用户自定义完整性约束</p>
+<ul>
+<li>基于元组、属性的check约束：涉及元组的多个属性的约束，要用基于元组的约束<blockquote>
+<p>与基于属性的CHECK约束相比，基于元组的CHECK约束检查的更频繁，只要该元组的任一个属性被改变，都要检查。而基于属性的CHECK约束只有在相应的属性变化时才检查。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>sql server 中的isnull()，和MySQL中的ifnull()是否一样</p>
+</li>
 <li>MySQL中avg()可以传入两个参数</li>
 <li><p>截取/保留小数点后n位</p>
 <ul>
@@ -437,6 +460,86 @@
 <li>局部常量@（用户定义） 和全局常量@@（系统定义，只读）</li>
 <li>MySQL在使用时单一set、select局部常量时可以直接 <code>set @p = 1</code>，但要是涉及该变量赋值要用<code>set @p := 1</code> ,<code>select @p := @p+1</code> <a href="https://dev.mysql.com/doc/refman/8.0/en/user-variables.html" target="_blank" rel="noopener">文档在这</a></li>
 </ul>
+<h2 id="数据库考试知识点"><a href="#数据库考试知识点" class="headerlink" title="数据库考试知识点"></a>数据库考试知识点</h2><ul>
+<li>数据库系统的核心和基础（数据模型）</li>
+<li>保证数据库系统中的数据具有较高逻辑独立性的是（视图层/逻辑层映像）</li>
+<li>将现实世界抽象为信息世界的是（概念模型）</li>
+<li><p>表和视图</p>
+<ul>
+<li>表是内模式，视图是外模式</li>
+<li>表只用物理空间而视图不占用物理空间，视图只是逻辑概念的存在，表可以及时对它进行修改，但视图只能有创建的语句来修改</li>
+<li>表属于全局模式中的表，是实表；视图属于局部模式的表，是虚表</li>
+<li>视图的建立和删除只影响视图本身，不影响对应的基本表</li>
+<li>基本表和视图都是关系，视图是基本表的抽象和在逻辑意义上建立的新关系</li>
+<li>视图之上还能定义视图</li>
+</ul>
+</li>
+<li><p>SQL语言（结构化查询语言），数据查询、定义、操纵、控制</p>
+</li>
+</ul>
+<blockquote>
+<p>高度非过程化，采用面向集合的操作方式<br>（非关系数据模型是过程化的，采用面向记录的操作方式）</p>
+</blockquote>
+<ul>
+<li><strong>unique约束可以插入NULL</strong>，多个NULL也不算重复（因为和NULL比较结果unknown，所以多个NULL值存在不违反唯一约束）。但 Oracle中 <strong>复合属性的唯一约束不同</strong><br><a href="http://www.cnblogs.com/wzmenjoy/archive/2012/08/23/2652427.html" target="_blank" rel="noopener">Oracle唯一约束中NULL处理</a></li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> test1(<span class="keyword">id</span> <span class="built_in">NUMBER</span>, id2 <span class="built_in">NUMBER</span>);  </span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> test1 <span class="keyword">add</span> <span class="keyword">UNIQUE</span>(<span class="keyword">id</span>, id2); </span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> test1 <span class="keyword">VALUES</span> (<span class="number">1</span>,<span class="number">1</span>);  </span><br><span class="line">INSERT INTO test1VALUES (NULL,NULL); #不违反</span><br><span class="line">INSERT INTO test1VALUES (1,NULL); # 不违反</span><br><span class="line">INSERT INTO test1VALUES (1,NULL); # 违反</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>NOT EXISTS... [EXCEPT]...</code> 模板 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Product (pID, name, category, UnitType, sID, price )</span><br><span class="line">Order (oID, year, month, day, type, cID, shipType, status)</span><br><span class="line">OrderDetail (oID, oDetailNum, pID, unitPrice, quantity)</span><br><span class="line">Customer (cID, name, address, phone, creditLimit)</span><br><span class="line"></span><br><span class="line">利用not exists 的子查询思想解决如下查询</span><br><span class="line">查询从未在2012年10月卖出去的产品信息，</span><br><span class="line">具体包括： 商品ID，商品名</span><br></pre></td></tr></table></figure>
+<p>not exists就是【没有、从未】，其后跟随的子查询就是要解决的后半段问题【肯定部分】</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> pID, <span class="keyword">name</span></span><br><span class="line"><span class="keyword">From</span> product</span><br><span class="line"><span class="keyword">Where</span> <span class="keyword">not</span> <span class="keyword">exists</span></span><br><span class="line">    (<span class="keyword">select</span> *</span><br><span class="line">    <span class="keyword">From</span> <span class="keyword">order</span> <span class="keyword">join</span> orderDetail</span><br><span class="line">        <span class="keyword">on</span> order.oID = orderDetail.oID</span><br><span class="line">    <span class="keyword">Where</span> <span class="keyword">year</span>=<span class="number">2012</span> <span class="keyword">and</span> <span class="keyword">month</span>=<span class="number">10</span> <span class="keyword">and</span></span><br><span class="line">        product.pID = orderDetail.pID)</span><br></pre></td></tr></table></figure>
+<h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><ul>
+<li>候选码K：若K（属性或属性集合）可以完全函数依赖确定全部属性U，则K就是候选码</li>
+<li>主属性：候选码的子集</li>
+<li>1NF：【最基本的】 关系模式R的所有属性 域都是原子的（不可分的）</li>
+<li>2NF：不存在非主属性对候选码部分函数依赖（也就是说<strong>非主属性完全函数依赖于候选码</strong>）</li>
+<li>3NF：不存在非主属性对候选码传递依赖（第三范式又可描述为：表中不存在可以确定其他非主属性的非主属性）</li>
+<li>BCNF：只要属性或属性组A能够决定任何一个属性B，则A的子集中必须有候选键（F的左侧包含超码）</li>
+</ul>
+<p><a href="https://www.cnblogs.com/ybwang/archive/2010/06/04/1751279.html" target="_blank" rel="noopener">数据库设计三大范式与BCNF，学习笔记</a></p>
+<h3 id="求F"><a href="#求F" class="headerlink" title="求F+"></a>求F+</h3><ul>
+<li>第一步：设最终将成为闭包的属性集是Y，把Y初始化为X； </li>
+<li>第二步：检查F中的每一个函数依赖A→B，如果属性集A中所有属性均在Y中，而B中有的属性不在Y中，则将其加入到Y中； </li>
+<li>第三步：重复第二步，直到没有属性可以添加到属性集Y中为止。 最后得到的Y就是X＋</li>
+</ul>
+<p>X是题目会给出的，求谁(X)的闭包;Y是最后所求得的闭包</p>
+<blockquote>
+<p>设关系R(A,B,C,D,E,G)有函数依赖集 <code>F={AB→C,BC→AD,D→E,CG→B}</code>，求AB的闭包</p>
+</blockquote>
+<blockquote>
+<p><code>X = {A、B} {A、B}+ = Y={A、B、C、D、E}</code></p>
+</blockquote>
+<p>由上可知，F逻辑蕴涵AB-&gt;D （因为D被{A、B}+包含）</p>
+<h3 id="求候选码"><a href="#求候选码" class="headerlink" title="求候选码"></a>求候选码</h3><p>候选码：能唯一标识元组的属性组；候选码的闭包是全集U，没有冗杂</p>
+<p>对应<code>R&lt; U、F&gt;</code>（U是属性集，F是函数依赖集）</p>
+<ul>
+<li>如果有属性不在F中出现，那么它必须包含在候选码中</li>
+<li>如果有属性在所有函数依赖中一直存在于左边，则它必包含在候选码中；同理只在右边出现过的属性一定不属于候选码</li>
+<li>如果有属性或属性组能唯一标识元组，则它就是候选</li>
+</ul>
+<blockquote>
+<p>先用前两条，都不满足就凭借最后一条一个一个找</p>
+</blockquote>
+<blockquote>
+<p>有时候选码不止一个，都细分一下</p>
+</blockquote>
+<h3 id="判断满足的最强范式-BCNF、3NF、1NF，感觉2NF都不是）"><a href="#判断满足的最强范式-BCNF、3NF、1NF，感觉2NF都不是）" class="headerlink" title="判断满足的最强范式(BCNF、3NF、1NF，感觉2NF都不是）"></a>判断满足的最强范式(BCNF、3NF、1NF，感觉2NF都不是）</h3><p>通过定义</p>
+<h3 id="不满足BCNF的关系模式分解为BCNF"><a href="#不满足BCNF的关系模式分解为BCNF" class="headerlink" title="不满足BCNF的关系模式分解为BCNF"></a>不满足BCNF的关系模式分解为BCNF</h3><p>对于R&lt;U、F&gt;</p>
+<ul>
+<li>初始化<code>result={R}</code></li>
+<li>找到R中的一个模式S不属于BCNF，且F+中存在一个X-&gt;Y（Y不包含于X），X也不是S的候选码，则S就能分解为<code>{S1、S2}</code>。<code>S1=XY，S2=(S-A)X</code> ，用<code>{S1、S2}</code>代替result中的<code>{S}</code></li>
+<li>继续执行上面这步直到result中所有关系模式都是BCNF</li>
+</ul>
+<blockquote>
+<p>例：关系模式<code>R&lt;U,F&gt;</code>,其中<code>U={C,T,H,R,S,G}</code>，<code>F={CS→G,C→T,TH→R,HR→C,HS→R}</code>，将其分解成BCNF并保持无损连接。</p>
+</blockquote>
+<p><img src="http://hi.csdn.net/attachment/201108/1/0_1312204988MUB9.gif" alt=""></p>
+<blockquote>
+<p>例：关系模式R&lt;U,F&gt;，其中：<code>U={A,B,C,D,E}</code>，<code>F={A→C,C→D,B→C,DE→C,CE→A}</code>，将其分解成BCNF并保持无损连接。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; result=&#123;&#123;A、C&#125;、&#123;B、D&#125;、&#123;A、B、E&#125;&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
 
       
     </div>
@@ -659,7 +762,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL中如何实现Rank名次函数"><span class="nav-number">1.</span> <span class="nav-text">MySQL中如何实现Rank名次函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本语法"><span class="nav-number">1.</span> <span class="nav-text">基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DDL"><span class="nav-number">1.1.</span> <span class="nav-text">DDL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DML"><span class="nav-number">1.2.</span> <span class="nav-text">DML</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意点"><span class="nav-number">2.</span> <span class="nav-text">注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL中如何实现Rank名次函数"><span class="nav-number">2.1.</span> <span class="nav-text">MySQL中如何实现Rank名次函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库考试知识点"><span class="nav-number">3.</span> <span class="nav-text">数据库考试知识点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">4.</span> <span class="nav-text">数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求F"><span class="nav-number">4.1.</span> <span class="nav-text">求F+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求候选码"><span class="nav-number">4.2.</span> <span class="nav-text">求候选码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断满足的最强范式-BCNF、3NF、1NF，感觉2NF都不是）"><span class="nav-number">4.3.</span> <span class="nav-text">判断满足的最强范式(BCNF、3NF、1NF，感觉2NF都不是）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不满足BCNF的关系模式分解为BCNF"><span class="nav-number">4.4.</span> <span class="nav-text">不满足BCNF的关系模式分解为BCNF</span></a></li></ol></li></ol></div>
             
 
           </div>
