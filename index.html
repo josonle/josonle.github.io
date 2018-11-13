@@ -1127,7 +1127,78 @@
       
         
           
-            <ul>
+            <h2 id="Python四种函数参数传递方式"><a href="#Python四种函数参数传递方式" class="headerlink" title="Python四种函数参数传递方式"></a>Python四种函数参数传递方式</h2><ul>
+<li>函数有：<code>func(a,b=value,\*args,\*\*kargs)</code><ul>
+<li>参数顺序如上</li>
+<li>*args可以传入任意个参数，这些参数都被放到了tuple元组中赋值给行参args</li>
+<li>**kargs可以传入任意个参数，但是以key-value的形式向函数传参，这些参数都被放到了dict字典中赋值给行参kargs</li>
+</ul>
+</li>
+<li>参数赋值顺序<ul>
+<li>由参数顺序先把参数按顺序付给对应的a，</li>
+<li>再将b=value形式的实参赋给形参b，</li>
+<li>将剩余的不是key-value形式的实参打包成tuple赋给args</li>
+<li>将多余的key=value形式实参打包成dict赋给kargs</li>
+</ul>
+</li>
+</ul>
+<h2 id="分布式文件系统-HDFS"><a href="#分布式文件系统-HDFS" class="headerlink" title="分布式文件系统 HDFS"></a>分布式文件系统 HDFS</h2><p>分布式文件系统（Distributed FileSystem）是指文件系统管理的物理存储资源不一定直接连接在本地节点上，而是通过计算机网络与节点相连。</p>
+<p>Hadoop有若干文件系统，HDFS只是其中一个，但HDFS是其重要组成部分。HDFS由java的<code>org.apache.hadoop.fs.FileSystem</code>定义，并实现了<code>java.io.Closeable</code>接口，继承了<code>org.apache.hadoop.conf</code></p>
+<p>我们可以通过命令行下 <code>hadoop dfs -ls hdfs:///</code> 访问HDFS文件系统</p>
+<h3 id="HDFS特点"><a href="#HDFS特点" class="headerlink" title="HDFS特点"></a>HDFS特点</h3><ul>
+<li>存储超大文件</li>
+<li>流式文件访问<ul>
+<li>高效访问模式：一次写入、多次访问</li>
+<li>只支持文件追加操作，不能修改</li>
+<li>追加操作要在hdfs-site.xml中的 dfs.support.append 设置为true才行</li>
+</ul>
+</li>
+<li>普通商用硬件上即可运行（实际上普通PC还是不OK，那速度，这都是氪金玩家玩的，hh）</li>
+<li>低时间延迟的数据访问<ul>
+<li>以高时延为代价，获取高数据吞吐量</li>
+<li>响应时间秒级、毫秒级的数据访问，应该采用HBase</li>
+</ul>
+</li>
+<li>多用户在写入文件时有锁机制，只支持单个写入者</li>
+<li>不适合存大量小文件<blockquote>
+<p> 由于 Namenode 将文件系统的元数据存储在内存中，因此<br>HDFS所能存储的文件总数受限于Namenode的内存容量<br>根据经验，每个文件、目录和数据块的存储信息大约占150<br>字节，存储100万个文件大约需要300M内存</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="名称解释"><a href="#名称解释" class="headerlink" title="名称解释"></a>名称解释</h3><ol>
+<li>Cluster 集群</li>
+<li>Rack 机架</li>
+<li>Client 客户机</li>
+<li>Namenode 名称节点</li>
+<li>Datanode 数据节点</li>
+<li>Secondary NameNode 辅助(第二)名称节点</li>
+<li>Metadata 元数据</li>
+<li>Block 块</li>
+</ol>
+<ul>
+<li><p>整体结构<br><img src="MarkDown_images/大数据/HDFS名词.jpg" alt=""></p>
+</li>
+<li><p>Namenode和Secondary Namenode</p>
+</li>
+</ul>
+<p>Namenode是HDFS的智脑，维护整个系统的目录树及目录树中的文件和目录<br>这些信息以镜像文件(FSImage)和编辑日志文件(edit log)的形式永久保存在本地磁盘上，在系统启动时被加载到内存</p>
+<blockquote>
+<p>镜像文件(文件系统镜像)，HDFS元数据的完整快照，每次Namenode启动时会加载最新的镜像</p>
+</blockquote>
+<p>Secondary Namenode不能按照名字以为是Namenode的备份，他只是负责将镜像文件和编辑日志合并，以此来控制 edits 文件的大小在合理的范围，缩短集<br>群重启时Namenode重建fsimage的时间。一般每个集群都有单独运行在一台服务器上的一个Secondary Namenode。Secondary Namenode也有恢复部分数据的作用<br><img src="MarkDown_images/大数据/SecNamenode.jpg" alt=""></p>
+<ul>
+<li>Datanode </li>
+</ul>
+<p>数据节点，HDFS是master/slave结构，Namenode是主，Datanode是从。它存放的是实际的数据块，块在文件系统中会产生两个文件（实际的数据文件和块的附加信息文件，包含数据的校验和、生成时间）</p>
+<p>Datanode通过心跳和namenode通信</p>
+<ul>
+<li>block</li>
+</ul>
+<p>块，文件系统进行数据读写的最小单位，hadoop 2.7之前的块(block)默认64M，之后是128M，可以在 <code>hdfs-site.xml</code> 文件中 <code>dfs.block.size</code> 项中配置块大小，<code>dfs.replication</code> 配置备份份数</p>
+<p>HDFS上文件会被分成若干块分开存储，使得文件可以比磁盘容量大，提供容错能力，也简化了存储子系统</p>
+<p>不同于普通文件系统（即使文件大小小于块大小，仍占一个块的大小），HDFS小于一个块大小的文件不会占用整个块的空间</p>
+<hr>
+<h3 id="HDFS容错能力"><a href="#HDFS容错能力" class="headerlink" title="HDFS容错能力"></a>HDFS容错能力</h3><h2 id="HDFS读写文件"><a href="#HDFS读写文件" class="headerlink" title="HDFS读写文件"></a>HDFS读写文件</h2><ul>
 <li>hadoop 2.7之前的块(block)默认64M，之后是128M</li>
 <li>数据块(block)是磁盘进行数据处理的最小单位，如果文件大小超过block就要分块</li>
 <li>可靠性（不出错）、可用性（出错还能提供服务）</li>
@@ -2082,7 +2153,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2093,7 +2164,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
