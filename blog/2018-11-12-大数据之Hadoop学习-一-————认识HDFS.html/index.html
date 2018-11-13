@@ -87,13 +87,13 @@
 <meta property="og:site_name" content="Josonlee&#39;s Blog">
 <meta property="og:description" content="Python四种函数参数传递方式 函数有：func(a,b=value,\*args,\*\*kargs) 参数顺序如上 *args可以传入任意个参数，这些参数都被放到了tuple元组中赋值给行参args **kargs可以传入任意个参数，但是以key-value的形式向函数传参，这些参数都被放到了dict字典中赋值给行参kargs   参数赋值顺序 由参数顺序先把参数按顺序付给对应的a， 再将b">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/blog/2018-11-12-大数据之Hadoop学习-一-————认识HDFS.html/MarkDown_images/大数据/HDFS名词.jpg">
-<meta property="og:image" content="http://yoursite.com/blog/2018-11-12-大数据之Hadoop学习-一-————认识HDFS.html/MarkDown_images/大数据/SecNamenode.jpg">
-<meta property="og:updated_time" content="2018-11-13T13:01:26.048Z">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/大数据/HDFS名词.jpg">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/大数据/SecNamenode.jpg">
+<meta property="og:updated_time" content="2018-11-13T13:08:40.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据之Hadoop学习&lt;一&gt;————认识HDFS">
 <meta name="twitter:description" content="Python四种函数参数传递方式 函数有：func(a,b=value,\*args,\*\*kargs) 参数顺序如上 *args可以传入任意个参数，这些参数都被放到了tuple元组中赋值给行参args **kargs可以传入任意个参数，但是以key-value的形式向函数传参，这些参数都被放到了dict字典中赋值给行参kargs   参数赋值顺序 由参数顺序先把参数按顺序付给对应的a， 再将b">
-<meta name="twitter:image" content="http://yoursite.com/blog/2018-11-12-大数据之Hadoop学习-一-————认识HDFS.html/MarkDown_images/大数据/HDFS名词.jpg">
+<meta name="twitter:image" content="http://yoursite.com/MarkDown_images/大数据/HDFS名词.jpg">
 
 
 
@@ -435,16 +435,17 @@
 <li>Block 块</li>
 </ol>
 <ul>
-<li><p>整体结构<br><img src="MarkDown_images/大数据/HDFS名词.jpg" alt=""></p>
-</li>
-<li><p>Namenode和Secondary Namenode</p>
-</li>
+<li>整体结构</li>
+</ul>
+<p><img src="/MarkDown_images/大数据/HDFS名词.jpg" alt=""></p>
+<ul>
+<li>Namenode和Secondary Namenode</li>
 </ul>
 <p>Namenode是HDFS的智脑，维护整个系统的目录树及目录树中的文件和目录<br>这些信息以镜像文件(FSImage)和编辑日志文件(edit log)的形式永久保存在本地磁盘上，在系统启动时被加载到内存</p>
 <blockquote>
 <p>镜像文件(文件系统镜像)，HDFS元数据的完整快照，每次Namenode启动时会加载最新的镜像</p>
 </blockquote>
-<p>Secondary Namenode不能按照名字以为是Namenode的备份，他只是负责将镜像文件和编辑日志合并，以此来控制 edits 文件的大小在合理的范围，缩短集<br>群重启时Namenode重建fsimage的时间。一般每个集群都有单独运行在一台服务器上的一个Secondary Namenode。Secondary Namenode也有恢复部分数据的作用<br><img src="MarkDown_images/大数据/SecNamenode.jpg" alt=""></p>
+<p>Secondary Namenode不能按照名字以为是Namenode的备份，他只是负责将镜像文件和编辑日志合并，以此来控制 edits 文件的大小在合理的范围，缩短集<br>群重启时Namenode重建fsimage的时间。一般每个集群都有单独运行在一台服务器上的一个Secondary Namenode。Secondary Namenode也有恢复部分数据的作用<br><img src="/MarkDown_images/大数据/SecNamenode.jpg" alt=""></p>
 <ul>
 <li>Datanode </li>
 </ul>
@@ -628,7 +629,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -639,7 +640,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
