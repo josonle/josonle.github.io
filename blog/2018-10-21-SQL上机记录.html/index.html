@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="SQL、MySQL," />
+  <meta name="keywords" content="SQL," />
 
 
 
@@ -80,21 +80,21 @@
 
 
 <meta name="description" content="基本语法DDL 建表：create table table_name(XXX) 使用旧表创建新表 create table new_table like old_table create table tab_new as select col1,col2… from tab_old definition only   删表：drop table table_name 创建视图：create vie">
-<meta name="keywords" content="SQL、MySQL">
+<meta name="keywords" content="SQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL上机记录">
 <meta property="og:url" content="http://yoursite.com/blog/2018-10-21-SQL上机记录.html/index.html">
 <meta property="og:site_name" content="Josonlee&#39;s Blog">
 <meta property="og:description" content="基本语法DDL 建表：create table table_name(XXX) 使用旧表创建新表 create table new_table like old_table create table tab_new as select col1,col2… from tab_old definition only   删表：drop table table_name 创建视图：create vie">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://images.cnblogs.com/cnblogs_com/52XF/642690/o_rank_1.png">
-<meta property="og:image" content="https://images.cnblogs.com/cnblogs_com/52XF/642690/o_dense_rank.png">
-<meta property="og:image" content="http://hi.csdn.net/attachment/201108/1/0_1312204988MUB9.gif">
-<meta property="og:updated_time" content="2018-11-04T02:41:00.648Z">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/数据库/Rank.jpg">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/数据库/Dense_Rank.jpg">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/数据库/BCNF分解.jpg">
+<meta property="og:updated_time" content="2018-11-13T08:11:36.406Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL上机记录">
 <meta name="twitter:description" content="基本语法DDL 建表：create table table_name(XXX) 使用旧表创建新表 create table new_table like old_table create table tab_new as select col1,col2… from tab_old definition only   删表：drop table table_name 创建视图：create vie">
-<meta name="twitter:image" content="https://images.cnblogs.com/cnblogs_com/52XF/642690/o_rank_1.png">
+<meta name="twitter:image" content="http://yoursite.com/MarkDown_images/数据库/Rank.jpg">
 
 
 
@@ -317,6 +317,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库、SQL/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库、SQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -327,6 +349,8 @@
 
           
 
+             <span class="post-meta-divider">|</span>   <span id="busuanzi_value_page_pv"></span>次阅读 
+          
           
             <div class="post-wordcount">
               
@@ -433,9 +457,9 @@
 <p>参考：<a href="http://www.cnblogs.com/52XF/p/4209211.html" target="_blank" rel="noopener">Sql 四大排名函数（ROW_NUMBER、RANK、DENSE_RANK、NTILE）简介</a></p>
 <ul>
 <li>Row_Number()：为每一行都会生成一个名次序号，依次排序不重复</li>
-<li><p>Rank()：为over子句中排序字段相同的生成一样的序号，下一个序号是前面的记录数+1（跳跃排序）<br><img src="https://images.cnblogs.com/cnblogs_com/52XF/642690/o_rank_1.png" alt=""></p>
+<li><p>Rank()：为over子句中排序字段相同的生成一样的序号，下一个序号是前面的记录数+1（跳跃排序）<br><img src="/MarkDown_images/数据库/Rank.jpg" alt=""></p>
 </li>
-<li><p>Dense_Rank()：类似Rank，但属于连续排序，下一个序号是承接上一个序号的<br><img src="https://images.cnblogs.com/cnblogs_com/52XF/642690/o_dense_rank.png" alt=""></p>
+<li><p>Dense_Rank()：类似Rank，但属于连续排序，下一个序号是承接上一个序号的<br><img src="/MarkDown_images/数据库/Dense_Rank.jpg" alt=""></p>
 </li>
 <li>NTILE(n)：有一个参数n，指定分为多少组<ul>
 <li>每组含多少记录数有一个策略<blockquote>
@@ -535,7 +559,7 @@
 <blockquote>
 <p>例：关系模式<code>R&lt;U,F&gt;</code>,其中<code>U={C,T,H,R,S,G}</code>，<code>F={CS→G,C→T,TH→R,HR→C,HS→R}</code>，将其分解成BCNF并保持无损连接。</p>
 </blockquote>
-<p><img src="http://hi.csdn.net/attachment/201108/1/0_1312204988MUB9.gif" alt=""></p>
+<p><img src="/MarkDown_images/数据库/BCNF分解.jpg" alt=""></p>
 <blockquote>
 <p>例：关系模式R&lt;U,F&gt;，其中：<code>U={A,B,C,D,E}</code>，<code>F={A→C,C→D,B→C,DE→C,CE→A}</code>，将其分解成BCNF并保持无损连接。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; result=&#123;&#123;A、C&#125;、&#123;B、D&#125;、&#123;A、B、E&#125;&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
@@ -586,7 +610,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/SQL、MySQL/" rel="tag"># SQL、MySQL</a>
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
           
         </div>
       
@@ -694,22 +718,31 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
             
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">7</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -815,6 +848,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
 
 
 
@@ -990,6 +1043,21 @@
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
   

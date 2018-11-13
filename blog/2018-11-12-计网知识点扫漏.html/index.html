@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计网," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="计算机网络中常用的三种有线媒体是同轴电缆、  双绞线  、光纤 用电话线接入Internet上网时除了要缴纳信息费给ISP外还要按接入的时间缴纳电话通信费给电信局，这是因为（这种接入方式使用了电路交换技术） 用拨号IP方式连入Internet所需的硬件设备主要有（计算机、Modem、分配了电话号码的电话线） 在Internet中，用字符串表示的IP地址称为（域名） VLAN的划分不包括以下哪种方">
+<meta name="keywords" content="计网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计网知识点扫漏">
+<meta property="og:url" content="http://yoursite.com/blog/2018-11-12-计网知识点扫漏.html/index.html">
+<meta property="og:site_name" content="Josonlee&#39;s Blog">
+<meta property="og:description" content="计算机网络中常用的三种有线媒体是同轴电缆、  双绞线  、光纤 用电话线接入Internet上网时除了要缴纳信息费给ISP外还要按接入的时间缴纳电话通信费给电信局，这是因为（这种接入方式使用了电路交换技术） 用拨号IP方式连入Internet所需的硬件设备主要有（计算机、Modem、分配了电话号码的电话线） 在Internet中，用字符串表示的IP地址称为（域名） VLAN的划分不包括以下哪种方">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/07/iTBVe0.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/07/iTBkyn.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/07/iTBFQs.jpg">
+<meta property="og:updated_time" content="2018-11-12T13:50:51.551Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计网知识点扫漏">
+<meta name="twitter:description" content="计算机网络中常用的三种有线媒体是同轴电缆、  双绞线  、光纤 用电话线接入Internet上网时除了要缴纳信息费给ISP外还要按接入的时间缴纳电话通信费给电信局，这是因为（这种接入方式使用了电路交换技术） 用拨号IP方式连入Internet所需的硬件设备主要有（计算机、Modem、分配了电话号码的电话线） 在Internet中，用字符串表示的IP地址称为（域名） VLAN的划分不包括以下哪种方">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/11/07/iTBVe0.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/blog/2018-11-12-计网知识点扫漏.html/"/>
+
+
+
+
+
+  <title>计网知识点扫漏 | Josonlee's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Josonlee's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一点一滴 始于足下</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            给我留言
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-11-12-计网知识点扫漏.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计网知识点扫漏</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T21:49:54+08:00">
+                2018-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机网络/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+             <span class="post-meta-divider">|</span>   <span id="busuanzi_value_page_pv"></span>次阅读 
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>计算机网络中常用的三种有线媒体是同轴电缆、  双绞线  、光纤</li>
+<li>用电话线接入Internet上网时除了要缴纳信息费给ISP外还要按接入的时间缴纳电话通信费给电信局，这是因为（这种接入方式使用了电路交换技术）</li>
+<li>用拨号IP方式连入Internet所需的硬件设备主要有（计算机、Modem、分配了电话号码的电话线）</li>
+<li>在Internet中，用字符串表示的IP地址称为（域名）</li>
+<li>VLAN的划分不包括以下哪种方法？<strong><strong>D_</strong></strong>。</li>
+</ul>
+<p>A.基于端口      B.基于MAC地址       </p>
+<p>C.基于协议      D.基于物理位置<br><a id="more"></a></p>
+<ul>
+<li>路由器能在LAN之间存储转发帧</li>
+<li>在路由器互联的多个局域网中，通常要求每个局域网的（数据链路层协议和物理层协议都可以不相同）</li>
+<li>OSPF路由协议有最高的可信度</li>
+<li>下面对三层交换机的描述中最准确的是<strong><strong>C_</strong></strong>。</li>
+</ul>
+<p>A.使用X.25交换机     B.用路由器代替交换机</p>
+<p>C.二层交换，三层转发     D.由交换机识别MAC地址进行交换 </p>
+<ul>
+<li>网络层含有四个重要的协议，分别为（IP、ICMP、ARP、RARP）<blockquote>
+<p>其他说法，TCP/IP协议栈网络层的4个协议：IP协议、ICMP协议、IGMP协议和ARP协议</p>
+<p>像路由协议RIP、BGP、OSPF分别基于UDP、TCP、IP，所以从层次上看分别划分进应用层、应用层、传输层  参考：<a href="http://blog.sina.com.cn/s/blog_995092640101cqh4.html" target="_blank" rel="noopener">RIP,OSPF等路由协议严格意义上讲属哪一层?</a></p>
+<p>老师说ospf，icmp,arp是网络层协议,rip,bgp是应用层协议</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>路由器的路由表包括目的地址、下一站地址以及距离、计时器、标志位</li>
+<li>采用 TCP/IP 数据封装时，常用应用程序端口号范围：0~1023</li>
+<li>网桥   和交换机或路由器能够划分冲突域</li>
+<li>路由器和虚拟局域网(vlan)能够划分广播域</li>
+<li>计算机网络按作用范围（距离）可分为局域网、城域网和  广域网/ WAN </li>
+<li>按交换方式来分类，计算机网络可以分为电路交换网，报文交换网和  分组交换网  三种</li>
+<li>VLAN基本上可以看成是一个广播域即一组客户工作站的集合。这些工作站不必处于同一个物理网络上，它们可以不受地理位置的限制而像处于同一个LAN上那样进行通信和箱息交换</li>
+<li>对一个规模较大的网络而言，广播包从一个LAN传送到另外一个LAN，常会引起大量的  多路广播  ，造成网络效率下降，最严重的会导致广播风暴，使整个网络瘫痪</li>
+<li>在公共总线或拓扑结构的局域网上，任何站点帧的发送和接收过程，都通常使用  带碰撞检测的载波侦听多路访问（CSMA/CD） 技术</li>
+</ul>
+<h2 id="简答"><a href="#简答" class="headerlink" title="简答"></a>简答</h2><ul>
+<li><p>网络协议的三个要素是什么？各有什么含义？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">答：网络协议：为进行网络中的数据交换而建立的规则、标准或约定。由以下三个要素组成： </span><br><span class="line">（1）语法：即数据与控制信息的结构或格式。</span><br><span class="line">（2）语义：即需要发出何种控制信息，完成何种动作以及做出何种响应。</span><br><span class="line">（3）同步：即事件实现顺序的详细说明。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>网络层向上提供的服务有哪两种？是比较其优缺点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">网络层向运输层提供 “面向连接”虚电路（Virtual Circuit）服务或“无连接”数据报服务。</span><br><span class="line">前者预约了双方通信所需的一切网络资源。优点是能提供服务质量的承诺。即所传送的分组不出错、丢失、重复和失序（不按序列到达终点），也保证分组传送的时限，缺点是路由器复杂，网络成本高；</span><br><span class="line">后者无网络资源障碍，尽力而为，优缺点与前者互易</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>试说明IP地址与硬件地址的区别，为什么要使用这两种不同的地址？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IP 地址就是给每个连接在因特网上的主机（或路由器）分配一个在全世界范围是唯一的 32 位的标识符。从而把整个因特网看成为一个单一的、抽象的网络</span><br><span class="line">在实际网络的链路上传送数据帧时，最终还是必须使用硬件地址。</span><br><span class="line">MAC地址在一定程度上与硬件一致，基于物理、能够标识具体的链路通信对象、IP地址给予逻辑域的划分、不受硬件限制。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>RIP使用UDP，OSPF使用IP，而BGP使用TCP。这样做有何优点？为什么RIP周期性地和临站交换路由器由信息而BGP却不这样做？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">答：RIP只和邻站交换信息，使用UDP无可靠保障，但开销小，可以满足RIP要求；</span><br><span class="line">OSPF使用可靠的洪泛法，直接使用IP，灵活、开销小；</span><br><span class="line">BGP需要交换整个路由表和更新信息，TCP提供可靠交付以减少带宽消耗；</span><br><span class="line">RIP使用不保证可靠交付的UDP，因此必须不断地（周期性地）和邻站交换信息才能使路由信息及时得到更新。但BGP使用保证可靠交付的TCP因此不需要这样做。</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ul>
+<h2 id="1105"><a href="#1105" class="headerlink" title="1105"></a>1105</h2><ul>
+<li><strong>带宽时延</strong>积：R<em>t = R</em>S/V（S/V是传播时延），一条链路的带宽时延积就是这条链路上具有的比特数的最大值</li>
+<li><p>有个概念是：<strong>UDP支持组播和广播，TCP不支持</strong>，UDP是面向数据报（消息）的，数据有边界；TCP是面向字节流的，数据无边界</p>
+<blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">向报文的传输方式是应用层交给UDP多长的报文，UDP就照样发送，即一次发送一个报文。因此，应用程序必须选择合适大小的报文。若报文太长，则IP层需要分片，降低效率。若太短，会是IP太小。UDP对应用层交下来的报文，既不合并，也不拆分，而是保留这些报文的边界。这也就是说，应用层交给UDP多长的报文，UDP就照样发送，即一次发送一个报文。    </span><br><span class="line">  虽然应用程序和TCP的交互是一次一个数据块（大小不等），但TCP把应用程序看成是一连串的无结构的字节流。TCP有一个缓冲，当应用程序传送的数据块太长，TCP就可以把它划分短一些再传送。如果应用程序一次只发送一个字节，TCP也可以等待积累有足够多的字节后再构成报文段发送出去。    </span><br><span class="line">在TCP建立连接前两次握手的SYN报文中选项字段的MSS值，通信双方商定通信的最大报文长度。如果应用层交付下来的数据过大，就会对数据分段，然后发送；否则通过滑动窗口协议来控制通信双发的数据。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>udp首部8字节，tcp首部20 ~ 60字节，IPv4首部20 ~ 60字节(一般就是20字节），IPv6首部40字节（IP地址各128比特）</p>
+</li>
+<li>校验和，IPv6没有该字段，IPv4的校验和是只对IP首部进行校验，而udp、tcp校验和对整个报文段进行校验（这也是可以理解的，毕竟传输层会校验，网络层就不必多此一举）<ul>
+<li>IP校验和计算是首部中每两个字节当做一个数，求和，再求反码就是</li>
+<li>IP首部的校验和是会变的，因为每经过一个路由器TTL会减一</li>
+</ul>
+</li>
+<li>IP分片在路由器上，重组在端系统上<ul>
+<li>IP分片基于首部的标识、标志、偏移字段</li>
+<li>标识字段16比特，指明分片属于那个分组</li>
+<li>标志3比特（D、DF、MF），<strong>记住MF除了最后一个分片是0，其余都是1</strong>，D为0表示可分片</li>
+<li>偏移字段13比特，指明分片在分组中的位置，偏移量应当是8的倍数。为了端系统重组，和确认分片是否丢失</li>
+</ul>
+</li>
+<li><p>IP地址分类注意事项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">A类地址中的私有地址和保留地址：</span><br><span class="line">-  10.X.X.X是私有地址（所谓的私有地址就是在互联网上不使用，而被用在局域网络中的地址）。 范围（10.0.0.0---10.255.255.255） </span><br><span class="line">-  127.X.X.X是保留地址，用做循环测试用的。</span><br><span class="line">B类地址的私有地址和保留地址 </span><br><span class="line">- 172.16.0.0---172.31.255.255是私有地址 </span><br><span class="line">- 169.254.X.X是保留地址。如果你的IP地址是自动获取IP地址，而你在网络上又没有找到可用的DHCP服务器。就会得到其中一个IP。</span><br><span class="line">C类地址中的私有地址： </span><br><span class="line">- 192.168.X.X是私有地址。</span><br><span class="line">D类地址 </span><br><span class="line">- D类地址不分网络地址和主机地址，它的第1个字节的前四位固定为1110</span><br><span class="line">E类地址</span><br><span class="line">- E类地址不分网络地址和主机地址，它的第1个字节的前五位固定为11110。 </span><br><span class="line">- E类地址范围：240.0.0.1---255.255.255.254</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>路由选路</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">自治系统内部选路：</span><br><span class="line">- RIP：距离向量路由选择协议,它选择路由的度量标准（metric)是跳数，最大跳数是15跳，如果大于15跳，它就会丢弃数据包。 </span><br><span class="line">- OSPF: 链路状态路由选择协议，它选择路由的度量标准是带宽，延迟。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>组播和广播的相同点和不同点是什么?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答：相同点：一个发送端，多个接收端；</span><br><span class="line">不同点：与发送方处于同一网段上的所有计算机都是广播中的接收端；组播中的接收端只能是与发送方处于同一组群内的计算机。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在什么情况下,一个主机在发送一个IP分组前不需要检索其ARP缓存或使用ARP ?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">答：广播或组播。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简述循环冗余码 CRC 校验方法？（只需叙述校验过程，不需要计算）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">答：把要发送的信息数据与一个通信双方共同约定的数据进行除法运算，并根据余数得出</span><br><span class="line">一个校验码，然后将这个校验码附加在信息数据帧之后发送出去。</span><br><span class="line">接收端在接收到数据后，将包括校验码在内的数据帧再与约定的数据进行除法运算，若余</span><br><span class="line">数为零，则表明数据传 送正确，否则，表示传输有错。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="子网划分"><a href="#子网划分" class="headerlink" title="子网划分"></a>子网划分</h2><ul>
+<li>假定一个LAN系统上有3890台联网设备(主机、服务器，等), 若对其分配VLSM(可变长子网掩码的)IP地址, 问子网掩码最长可达多少? 若分配有类型的IP地址, 问A、B、C哪一类最合适?至少可以划分多少个子网？ 简要说明计算过程。</li>
+</ul>
+<blockquote>
+<p>题目强调了VLSM，不是CIDR。2^12=4096，所以子网掩码最长20位，所以适合选择B类地址。在子网掩码20位的基础上划分子网，假设子网数x，对于每个子网有主机地址全0和1的IP不可用，所以有2x个IP不能用。其次，12位中全0和1也不行，所以4096 = 2+2x+3890，子网数x至少101</p>
+</blockquote>
+<ul>
+<li>VLSM（可变长子网掩码）和CIDR（无类别域间选路）区别  ——&gt;<a href="https://blog.csdn.net/nordesertwolf/article/details/51564127" target="_blank" rel="noopener">子网划分和子网聚合</a></li>
+</ul>
+<blockquote>
+<ul>
+<li>CIDR，网络聚合，是把几个标准网络合成一个大的网络</li>
+<li>VLSM，网络划分，是把一个标准网络分成几个子网</li>
+<li>CIDR是子网掩码往左边移了，VLSM是子网掩码往右边移了</li>
+</ul>
+</blockquote>
+<h2 id="CRC校验"><a href="#CRC校验" class="headerlink" title="CRC校验"></a>CRC校验</h2><ul>
+<li>要发送的数据为 1101011011。采用CRC的生成多项式是P(x)=x^4+x+1。试求应添加在数据后面的余数。数据在传输过程中最后一个 1 变成了 0，问接收端能否发现？若数据在传输过程中最后两个 1 都变成了0，问接收端能否发现？<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">答：添加的检验序列为 1110（11010110110000 除以 10011）。</span><br><span class="line">数据在传输过程中最后一个 1 变成了 0，11010110111100 除以 10011，余数为 10，不为 0，接</span><br><span class="line">收端可以发现差错。</span><br><span class="line">数据在传输过程中最后两个 1 都变成了 0，11010110111000 除以 10011，余数为 110，不为 0，</span><br><span class="line">接收端可以发现差错。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p><strong>校验码R的位数比生成多项式G的位数少1</strong> <a href="https://www.jianshu.com/p/4f836f247af2" target="_blank" rel="noopener">参考：CRC校验·胖达_阿宝</a><br><img src="https://s1.ax1x.com/2018/11/07/iTBVe0.jpg" alt="iTBVe0.jpg"><br><img src="https://s1.ax1x.com/2018/11/07/iTBkyn.jpg" alt="iTBkyn.jpg"><br><img src="https://s1.ax1x.com/2018/11/07/iTBFQs.jpg" alt="iTBFQs.jpg"></p>
+</blockquote>
+<ul>
+<li>广播 broadcast：从一个节点向同一子网下所有其他节点交付分组<ul>
+<li>洪泛(flooding)：一种实现广播的方法<ul>
+<li>无控制洪泛，易产生广播风暴(broadcast storm)</li>
+<li>受控洪泛：序号控制洪泛(sequence-number-controlled flooding)，反向路径转发(reverse path forwarding，RPF)，可以避免广播风暴，但是仍有冗杂广播分组传播的产生</li>
+<li>生成树广播，解决冗杂广播分组传播的问题</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>多播 multicast：单个节点向其他网络节点的一个子集发送分组<ul>
+<li>距离向量多播选路协议（DVMRP）</li>
+<li>协议无关的多播（Protocol-Independent Multicast，PIM）选路协议，用得最多</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话，不妨加个鸡腿，O(∩_∩)O哈哈~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weChatPay.jpg" alt="Joson lee 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliPay.jpg" alt="Joson lee 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计网/" rel="tag"># 计网</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018-11-12-关系数据库设计（F-闭包、候选码求解、范式判断及BCNF分解）.html/" rel="next" title="关系数据库设计（F+闭包、候选码求解、范式判断及BCNF分解）">
+                <i class="fa fa-chevron-left"></i> 关系数据库设计（F+闭包、候选码求解、范式判断及BCNF分解）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018-11-13-SQL中NOT-EXISTS-EXCEPT-的妙用.html/" rel="prev" title="SQL中NOT EXISTS...[EXCEPT]的妙用">
+                SQL中NOT EXISTS...[EXCEPT]的妙用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="Joson lee" />
+            
+              <p class="site-author-name" itemprop="name">Joson lee</p>
+              <p class="site-description motion-element" itemprop="description">Python数据分析、机器学习、Django、java学习</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/josonle" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://blog.csdn.net/lzw2016" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:3092312003@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简答"><span class="nav-number">1.</span> <span class="nav-text">简答</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1105"><span class="nav-number">2.</span> <span class="nav-text">1105</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子网划分"><span class="nav-number">3.</span> <span class="nav-text">子网划分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRC校验"><span class="nav-number">4.</span> <span class="nav-text">CRC校验</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joson lee</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'a94818509a8f36c0a222',
+          clientSecret: '4d6bcd339e8df5f3e1f9e653afa2a5b9a1023f0f',
+          repo: 'josonle.github.io',
+          owner: 'josonle',
+          admin: ['josonle'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+    </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

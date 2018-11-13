@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="SQL," />
 
 
 
@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="经历 目前某985本科在读  工作方向 Python数据挖掘与机器学习 爬虫 java开发">
-<meta property="og:type" content="website">
-<meta property="og:title" content="&#39;About me&#39;">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="F+闭包怎么求 第一步：设最终将成为闭包的属性集是Y，把Y初始化为X；  第二步：检查F中的每一个函数依赖A→B，如果属性集A中所有属性均在Y中，而B中有的属性不在Y中，则将其加入到Y中；  第三步：重复第二步，直到没有属性可以添加到属性集Y中为止。 最后得到的Y就是X＋  X是题目会给出的，求谁（即X）的闭包;Y是最后所求得的闭包  设关系R(A,B,C,D,E,G)有函数依赖集 F={AB→C">
+<meta name="keywords" content="SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关系数据库设计（F+闭包、候选码求解、范式判断及BCNF分解）">
+<meta property="og:url" content="http://yoursite.com/blog/2018-11-12-关系数据库设计（F-闭包、候选码求解、范式判断及BCNF分解）.html/index.html">
 <meta property="og:site_name" content="Josonlee&#39;s Blog">
-<meta property="og:description" content="经历 目前某985本科在读  工作方向 Python数据挖掘与机器学习 爬虫 java开发">
+<meta property="og:description" content="F+闭包怎么求 第一步：设最终将成为闭包的属性集是Y，把Y初始化为X；  第二步：检查F中的每一个函数依赖A→B，如果属性集A中所有属性均在Y中，而B中有的属性不在Y中，则将其加入到Y中；  第三步：重复第二步，直到没有属性可以添加到属性集Y中为止。 最后得到的Y就是X＋  X是题目会给出的，求谁（即X）的闭包;Y是最后所求得的闭包  设关系R(A,B,C,D,E,G)有函数依赖集 F={AB→C">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-21T07:50:12.604Z">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/数据库/BCNF分解.jpg">
+<meta property="og:updated_time" content="2018-11-13T08:08:42.664Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="&#39;About me&#39;">
-<meta name="twitter:description" content="经历 目前某985本科在读  工作方向 Python数据挖掘与机器学习 爬虫 java开发">
+<meta name="twitter:title" content="关系数据库设计（F+闭包、候选码求解、范式判断及BCNF分解）">
+<meta name="twitter:description" content="F+闭包怎么求 第一步：设最终将成为闭包的属性集是Y，把Y初始化为X；  第二步：检查F中的每一个函数依赖A→B，如果属性集A中所有属性均在Y中，而B中有的属性不在Y中，则将其加入到Y中；  第三步：重复第二步，直到没有属性可以添加到属性集Y中为止。 最后得到的Y就是X＋  X是题目会给出的，求谁（即X）的闭包;Y是最后所求得的闭包  设关系R(A,B,C,D,E,G)有函数依赖集 F={AB→C">
+<meta name="twitter:image" content="http://yoursite.com/MarkDown_images/数据库/BCNF分解.jpg">
 
 
 
@@ -119,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/blog/2018-11-12-关系数据库设计（F-闭包、候选码求解、范式判断及BCNF分解）.html/"/>
 
 
 
 
 
-  <title>'About me' | Josonlee's Blog</title>
+  <title>关系数据库设计（F+闭包、候选码求解、范式判断及BCNF分解） | Josonlee's Blog</title>
   
 
 
@@ -260,41 +263,272 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-11-12-关系数据库设计（F-闭包、候选码求解、范式判断及BCNF分解）.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">'About me'</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h3 id="经历"><a href="#经历" class="headerlink" title="经历"></a>经历</h3><ul>
-<li>目前某985本科在读</li>
+          <h1 class="post-title" itemprop="name headline">关系数据库设计（F+闭包、候选码求解、范式判断及BCNF分解）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T21:46:32+08:00">
+                2018-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库、SQL/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库、SQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+             <span class="post-meta-divider">|</span>   <span id="busuanzi_value_page_pv"></span>次阅读 
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="F-闭包怎么求"><a href="#F-闭包怎么求" class="headerlink" title="F+闭包怎么求"></a>F+闭包怎么求</h2><ul>
+<li>第一步：设最终将成为闭包的属性集是Y，把Y初始化为X； </li>
+<li>第二步：检查F中的每一个函数依赖<code>A→B</code>，如果属性集A中所有属性均在Y中，而B中有的属性不在Y中，则将其加入到Y中； </li>
+<li>第三步：重复第二步，直到没有属性可以添加到属性集Y中为止。 最后得到的Y就是X＋</li>
 </ul>
-<h3 id="工作方向"><a href="#工作方向" class="headerlink" title="工作方向"></a>工作方向</h3><ul>
-<li>Python数据挖掘与机器学习</li>
-<li>爬虫</li>
-<li>java开发</li>
+<p>X是题目会给出的，求谁（即X）的闭包;Y是最后所求得的闭包</p>
+<blockquote>
+<p>设关系<code>R(A,B,C,D,E,G)</code>有函数依赖集 <code>F={AB→C,BC→AD,D→E,CG→B}</code>，求AB的闭包</p>
+</blockquote>
+<blockquote>
+<p>X = <code>{A、B}</code>  <code>{A、B}+ = Y ={A、B、C、D、E}</code></p>
+</blockquote>
+<p>由上可知，F逻辑蕴涵<code>AB-&gt;D</code> （因为D被<code>{A、B}+</code>包含）<br><a id="more"></a></p>
+<h2 id="关系模式的候选码怎么求"><a href="#关系模式的候选码怎么求" class="headerlink" title="关系模式的候选码怎么求"></a>关系模式的候选码怎么求</h2><p>候选码：能唯一 <strong>完全函数依赖确定元组</strong> 的属性(或属性集合)；候选码的闭包是全集U，没有冗杂</p>
+<p>对应<code>R&lt; U、F&gt;</code>（U是属性集，F是函数依赖集）</p>
+<ul>
+<li>如果有属性不在F中出现，那么它必须包含在候选码中</li>
+<li>如果有属性在所有函数依赖中一直存在于左边，则它必包含在候选码中；同理只在右边出现过的属性一定不属于候选码</li>
+<li>如果有属性或属性组能唯一标识元组，则它就是候选码</li>
 </ul>
+<blockquote>
+<p>先用前两条，都不满足就凭借最后一条一个一个找</p>
+</blockquote>
+<blockquote>
+<p>有时候选码不止一个，都细分一下</p>
+</blockquote>
+<h2 id="范式判断"><a href="#范式判断" class="headerlink" title="范式判断"></a>范式判断</h2><ul>
+<li>候选码K：若K（属性或属性集合）可以完全函数依赖确定全部属性U，则K就是候选码</li>
+<li>主属性：候选码的子集</li>
+<li>1NF：【最基本的】 关系模式R的所有属性 域都是原子的（不可分的）</li>
+<li>2NF：不存在非主属性对候选码部分函数依赖（也就是说<strong>非主属性完全函数依赖于候选码</strong>）</li>
+<li>3NF：不存在非主属性对候选码传递依赖（第三范式又可描述为：表中不存在可以确定其他非主属性的非主属性）</li>
+<li><p>BCNF：只要属性或属性组A能够决定任何一个属性B，则A的子集中必须有候选键（F的左侧包含超码）</p>
+<blockquote>
+<p>范式之间是包含关系，1NF&gt;2NF&gt;3NF&gt;BCNF（这里&gt;表示包含）</p>
+</blockquote>
+</li>
+</ul>
+<p><a href="https://www.cnblogs.com/ybwang/archive/2010/06/04/1751279.html" target="_blank" rel="noopener">数据库设计三大范式与BCNF，学习笔记</a></p>
+<h2 id="分解成（无损连接的）BCNF范式"><a href="#分解成（无损连接的）BCNF范式" class="headerlink" title="分解成（无损连接的）BCNF范式"></a>分解成（无损连接的）BCNF范式</h2><p>对于<code>R&lt;U、F&gt;</code></p>
+<ul>
+<li>初始化 <code>result={R}</code></li>
+<li>找到R中的一个模式S不属于BCNF，且F+中存在一个 <code>X-&gt;Y</code> （Y不包含于X），X也不是S的候选码，则S就能分解为 <code>{S1、S2}</code> 。 <code>S1=XY，S2=(S-A)X</code> ，用 <code>{S1、S2}</code> 代替result中的 <code>{S}</code></li>
+<li>继续执行上面这步直到result中所有关系模式都是BCNF</li>
+</ul>
+<blockquote>
+<p>例：关系模式 <code>R&lt;U,F&gt;</code> ，其中 <code>U={C,T,H,R,S,G}</code> ，<code>F={CS→G,C→T,TH→R,HR→C,HS→R}</code>，将其分解成BCNF并保持无损连接</p>
+</blockquote>
+<p><img src="/MarkDown_images/数据库/BCNF分解.jpg" alt=""></p>
+<blockquote>
+<p>例：关系模式<code>R&lt;U,F&gt;</code>，其中：<code>U={A,B,C,D,E}</code>，<code>F={A→C,C→D,B→C,DE→C,CE→A}</code>，将其分解成BCNF并保持无损连接。</p>
+<p><code>result={ {A、C}、{B、D}、{A、B、E} }</code></p>
+</blockquote>
 
-        
-      </div>
-      
-      
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话，不妨加个鸡腿，O(∩_∩)O哈哈~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weChatPay.jpg" alt="Joson lee 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliPay.jpg" alt="Joson lee 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018-11-12-SQL平时上机题汇总.html/" rel="next" title="SQL平时上机题汇总">
+                <i class="fa fa-chevron-left"></i> SQL平时上机题汇总
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018-11-12-计网知识点扫漏.html/" rel="prev" title="计网知识点扫漏">
+                计网知识点扫漏 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -435,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#经历"><span class="nav-number">1.</span> <span class="nav-text">经历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作方向"><span class="nav-number">2.</span> <span class="nav-text">工作方向</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#F-闭包怎么求"><span class="nav-number">1.</span> <span class="nav-text">F+闭包怎么求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系模式的候选码怎么求"><span class="nav-number">2.</span> <span class="nav-text">关系模式的候选码怎么求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范式判断"><span class="nav-number">3.</span> <span class="nav-text">范式判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分解成（无损连接的）BCNF范式"><span class="nav-number">4.</span> <span class="nav-text">分解成（无损连接的）BCNF范式</span></a></li></ol></div>
             
 
           </div>

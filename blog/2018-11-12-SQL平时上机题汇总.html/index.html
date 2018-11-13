@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="SQL," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="[TOC] 第一次建表12345678910111213141516171819202122232425262728293031323334CREATE TABLE DEPT (DEPTNO      INT,DNAME       VARCHAR(14),LOC         VARCHAR(13),-- 名为 PK_DEPT的主键CONSTRAINT PK_DEPT PRIMARY KEY">
+<meta name="keywords" content="SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL平时上机题汇总">
+<meta property="og:url" content="http://yoursite.com/blog/2018-11-12-SQL平时上机题汇总.html/index.html">
+<meta property="og:site_name" content="Josonlee&#39;s Blog">
+<meta property="og:description" content="[TOC] 第一次建表12345678910111213141516171819202122232425262728293031323334CREATE TABLE DEPT (DEPTNO      INT,DNAME       VARCHAR(14),LOC         VARCHAR(13),-- 名为 PK_DEPT的主键CONSTRAINT PK_DEPT PRIMARY KEY">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/07/i7E4nx.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/07/i7Efj1.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/07/i7EWcR.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/07/i7AIYQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/07/i7EA0K.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/07/i7Ekm6.jpg">
+<meta property="og:updated_time" content="2018-11-13T08:49:12.053Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL平时上机题汇总">
+<meta name="twitter:description" content="[TOC] 第一次建表12345678910111213141516171819202122232425262728293031323334CREATE TABLE DEPT (DEPTNO      INT,DNAME       VARCHAR(14),LOC         VARCHAR(13),-- 名为 PK_DEPT的主键CONSTRAINT PK_DEPT PRIMARY KEY">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/11/07/i7E4nx.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/blog/2018-11-12-SQL平时上机题汇总.html/"/>
+
+
+
+
+
+  <title>SQL平时上机题汇总 | Josonlee's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Josonlee's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一点一滴 始于足下</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            给我留言
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-11-12-SQL平时上机题汇总.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SQL平时上机题汇总</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T21:44:55+08:00">
+                2018-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库、SQL/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库、SQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+             <span class="post-meta-divider">|</span>   <span id="busuanzi_value_page_pv"></span>次阅读 
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h2 id="第一次"><a href="#第一次" class="headerlink" title="第一次"></a>第一次</h2><h3 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> DEPT (</span><br><span class="line">DEPTNO      <span class="built_in">INT</span>,</span><br><span class="line">DNAME       <span class="built_in">VARCHAR</span>(<span class="number">14</span>),</span><br><span class="line">LOC         <span class="built_in">VARCHAR</span>(<span class="number">13</span>),</span><br><span class="line"><span class="comment">-- 名为 PK_DEPT的主键</span></span><br><span class="line"><span class="keyword">CONSTRAINT</span> PK_DEPT PRIMARY <span class="keyword">KEY</span> (DEPTNO)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> BONUS (</span><br><span class="line">ENAME       <span class="built_in">VARCHAR</span>(<span class="number">10</span>),</span><br><span class="line">JOB         <span class="built_in">VARCHAR</span>(<span class="number">9</span>),</span><br><span class="line">SAL         <span class="built_in">INT</span>,</span><br><span class="line">COMM        <span class="built_in">INT</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> SALGRADE (</span><br><span class="line">GRADE       <span class="built_in">INT</span>,</span><br><span class="line">LOSAL       <span class="built_in">INT</span>,</span><br><span class="line">HISAL       <span class="built_in">INT</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> EMP (</span><br><span class="line">EMPNO       <span class="built_in">INT</span>,</span><br><span class="line">ENAME       <span class="built_in">VARCHAR</span>(<span class="number">10</span>),</span><br><span class="line">JOB         <span class="built_in">VARCHAR</span>(<span class="number">9</span>),</span><br><span class="line">MGR         <span class="built_in">INT</span>,</span><br><span class="line">HIREDATE    DATETIME,</span><br><span class="line">SAL         <span class="built_in">FLOAT</span>,</span><br><span class="line">COMM        <span class="built_in">FLOAT</span>,</span><br><span class="line">DEPTNO      <span class="built_in">INT</span>,</span><br><span class="line"><span class="comment">-- 名为 PK_EMP 的主键，名为FK_DEPTNO指向表DEPT的DEPTNO的外键</span></span><br><span class="line"><span class="keyword">CONSTRAINT</span> PK_EMP PRIMARY <span class="keyword">KEY</span> (EMPNO),</span><br><span class="line"><span class="keyword">CONSTRAINT</span> FK_DEPTNO FOREIGN <span class="keyword">KEY</span> (DEPTNO) <span class="keyword">REFERENCES</span> DEPT(DEPTNO)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2018/11/07/i7E4nx.jpg" alt="i7E4nx.jpg"></p>
+<hr>
+<p><img src="https://s1.ax1x.com/2018/11/07/i7Efj1.jpg" alt="i7Efj1.jpg"></p>
+<hr>
+<p><img src="https://s1.ax1x.com/2018/11/07/i7EWcR.jpg" alt="i7EWcR.jpg"></p>
+<hr>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><ul>
+<li>将所有员工的工资上浮10%.然后查询员工姓名、薪水、补助。</li>
+</ul>
+<p>（emp.sal为工资，emp.comm为补助）<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">TABLE</span> emp <span class="keyword">SET</span> sal=sal*<span class="number">0.1</span>;</span><br><span class="line"><span class="keyword">SELECT</span> ename, sal, comm <span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>查看EMP表中部门号为10的员工的姓名，职位，参加工作时间，工资。<br><code>SELECT ename, job, hiredate, sal FROM emp WHERE DEPTNO = 10;</code></p>
+</li>
+<li><p>查所有已有的职位，要求去除重复项。<br><code>SELECT DISTINCT job FROM emp;</code></p>
+</li>
+<li><p>计算每个员工的年薪，并取列名为Salary of Year（emp.sal为员工的月薪），要求输出员工姓名，年薪。</p>
+</li>
+</ul>
+<p><code>SELECT e.ename, e.sal*12 AS &#39;Salary of Year&#39; FROM emp as e;</code><br><a id="more"></a></p>
+<ul>
+<li>查询每个员工每个月拿到的总金额（emp.sal为工资，emp.comm为补助）。（提示：isnull（ex1,ex2）表示如果ex1为空则返回ex2）</li>
+</ul>
+<p>– MySQL这里是 IFNULL(expr1,expr2)<br><code>SELECT e.sal + IFNULL(e.comm,0) AS ALL_Sal FROM emp AS e;</code></p>
+<ul>
+<li>显示职位是主管（manager）的员工的姓名，工资。</li>
+</ul>
+<p><code>SELECT ename, sal FROM emp WHERE JOB=&#39;manager&#39;;</code></p>
+<ul>
+<li>显示第3个字符为大写O的所有员工的姓名及工资。</li>
+</ul>
+<p><code>SELECT ename, sal from emp WHERE ENAME LIKE &#39;__O%&#39;;</code></p>
+<ul>
+<li>显示职位为销售员（SALESMAN）或主管（MANAGER）的员工的姓名，工资，职位。</li>
+</ul>
+<p><code>SELECT ename, sal, job from emp WHERE job in (&#39;salesman&#39;,&#39;manager&#39;);</code></p>
+<ul>
+<li>显示所有没有佣金的员工的姓名。</li>
+</ul>
+<p><code>SELECT ename from emp WHERE COMM IS NULL;</code></p>
+<ul>
+<li>显示有佣金的员工的姓名，工资，补助。</li>
+</ul>
+<p><code>SELECT ename, sal ,comm FROM emp WHERE comm is NOT NULL;</code></p>
+<ul>
+<li>排序显示所有员工的姓名，工资（按工资降序方式）。</li>
+</ul>
+<p><code>SELECT ename, sal FROM emp ORDER BY sal DESC;</code></p>
+<ul>
+<li>显示员工的最高工资和最低工资。</li>
+</ul>
+<p><code>SELECT MAX(sal) max_sal, MIN(sal) min_sal FROM emp;</code></p>
+<ul>
+<li>显示所有员工的平均工资和总计工资</li>
+</ul>
+<p><code>SELECT AVG(sal), SUM(sal) FROM emp;</code></p>
+<ul>
+<li>显示佣金在员工中的发放比例、即有多少比例的员工有佣金。（此题需注意两个问题：1.select语句中进行除法如何保留小数点后数据。2.count函数如何处理null型数据。</li>
+</ul>
+<p>– 如何保留小数点后位数？<br>– ROUND(num，小数点位数n) 会自动四舍五入<br>– TRUNCATE(num,n)，不会四舍五入<br>– n为负数的话，会截取整数部位</p>
+<p><code>SELECT round(count(comm)/COUNT(*),8) from emp;</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(<span class="number">123.1235</span>,<span class="number">3</span>);</span><br><span class="line"># 123.124</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">TRUNCATE</span>(<span class="number">123.1235</span>,<span class="number">-2</span>);</span><br><span class="line"># 123.123</span><br></pre></td></tr></table></figure>
+<p>– 聚合查询</p>
+<ul>
+<li>显示每种职业的平均工资。</li>
+</ul>
+<p><code>SELECT job, avg(sal) FROM emp GROUP BY job;</code></p>
+<ul>
+<li>显示每个部门每种岗位的平均工资和最高工资。</li>
+</ul>
+<p><code>SELECT deptno ,job, avg(sal), max(sal) FROM emp GROUP BY DEPTNO,job;</code></p>
+<ul>
+<li><p>显示平均工资低于2500的部门号，平均工资及最高工资</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> deptno, <span class="keyword">avg</span>(sal), <span class="keyword">max</span>(sal) <span class="keyword">FROM</span> emp </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> DEPTNO</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">avg</span>(sal);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上一条语句以平均工资升序排序</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> deptno, <span class="keyword">avg</span>(sal), <span class="keyword">max</span>(sal) <span class="keyword">FROM</span> emp </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> DEPTNO</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">avg</span>(sal)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">avg</span>(sal);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>– 多表查询</p>
+<ul>
+<li>显示工资高于2500或岗位为MANAGER的所有员工的姓名，工资，职位，和部门号</li>
+</ul>
+<p><code>SELECT ename, sal, job, deptno FROM emp WHERE sal&gt;2500 OR job=&#39;manager&#39;;</code></p>
+<ul>
+<li>排序显示所有员工的姓名，部门号，工资（以部门号升序，工资降序，雇用日期升序显示</li>
+</ul>
+<p><code>SELECT ename, deptno, sal FROM emp ORDER BY deptno, sal DESC, hiredate ;</code></p>
+<ul>
+<li>采用自然连接原理显示部门名以及相应的员工姓名。（Sql server不支持NATURAL JOIN语法</li>
+</ul>
+<p><code>SELECT d.dname, e.ename FROM dept AS d NATURAL JOIN emp AS e;</code></p>
+<ul>
+<li><p>查询SCOTT的上级领导的姓名。最直接能想到的就是标量子查询，当然也可以用连接的方式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> m.ename </span><br><span class="line"><span class="keyword">FROM</span> emp <span class="keyword">AS</span> m <span class="keyword">JOIN</span> emp <span class="keyword">AS</span> e <span class="keyword">ON</span> <span class="number">1</span>=<span class="number">1</span> </span><br><span class="line"><span class="keyword">WHERE</span> e.mgr = m.empno <span class="keyword">AND</span> e.ename=<span class="string">'scott'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示部门的部门名称，员工名即使部门没有员工也显示部门名称</p>
+</li>
+</ul>
+<p><code>SELECT d.dname, e.ename FROM dept AS d LEFT JOIN emp AS e ON d.DEPTNO=e.DEPTNO;</code></p>
+<p>– 子查询</p>
+<ul>
+<li>显示所有员工的名称、工资以及工资级别<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> e.ename, e.sal, g.grade <span class="keyword">FROM</span> emp e, salgrade g </span><br><span class="line"><span class="keyword">WHERE</span> e.sal&lt; (<span class="keyword">SELECT</span> HISAL <span class="keyword">FROM</span> salgrade) <span class="keyword">AND</span> e.sal&gt; (<span class="keyword">SELECT</span> LOSAL <span class="keyword">FROM</span>  salgrade);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="第二次"><a href="#第二次" class="headerlink" title="第二次"></a>第二次</h2><h3 id="建表-1"><a href="#建表-1" class="headerlink" title="建表"></a>建表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> classroom</span><br><span class="line">    (building       <span class="built_in">varchar</span>(<span class="number">15</span>),</span><br><span class="line">     room_number        <span class="built_in">varchar</span>(<span class="number">7</span>),</span><br><span class="line">     <span class="keyword">capacity</span>       <span class="built_in">numeric</span>(<span class="number">4</span>,<span class="number">0</span>),</span><br><span class="line">     primary <span class="keyword">key</span> (building, room_number)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> department</span><br><span class="line">    (dept_name      <span class="built_in">varchar</span>(<span class="number">20</span>), </span><br><span class="line">     building       <span class="built_in">varchar</span>(<span class="number">15</span>), </span><br><span class="line">     budget             <span class="built_in">numeric</span>(<span class="number">12</span>,<span class="number">2</span>) <span class="keyword">check</span> (budget &gt; <span class="number">0</span>),</span><br><span class="line">     primary <span class="keyword">key</span> (dept_name)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="comment">-- [Err] 1215 - Cannot add foreign key constraint</span></span><br><span class="line"><span class="comment">-- 添加外键约束错误</span></span><br><span class="line"><span class="comment">-- 解决：要保证两张表对应键数据类型相同，references后面不仅要有父表，还要有对应列信息，如 REFERENCES department(dept_name)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> course</span><br><span class="line">    (course_id      <span class="built_in">varchar</span>(<span class="number">8</span>), </span><br><span class="line">     title          <span class="built_in">varchar</span>(<span class="number">50</span>), </span><br><span class="line">     dept_name      <span class="built_in">varchar</span>(<span class="number">20</span>),</span><br><span class="line">     credits        <span class="built_in">numeric</span>(<span class="number">2</span>,<span class="number">0</span>) <span class="keyword">check</span> (credits &gt; <span class="number">0</span>),</span><br><span class="line">     primary <span class="keyword">key</span> (course_id),</span><br><span class="line">     foreign <span class="keyword">key</span> (dept_name) <span class="keyword">references</span> department(dept_name)</span><br><span class="line">        <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">set</span> <span class="literal">null</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 教师表</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> instructor</span><br><span class="line">    (<span class="keyword">ID</span>         <span class="built_in">varchar</span>(<span class="number">5</span>), </span><br><span class="line">     <span class="keyword">name</span>           <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>, </span><br><span class="line">     dept_name      <span class="built_in">varchar</span>(<span class="number">20</span>), </span><br><span class="line">     salary         <span class="built_in">numeric</span>(<span class="number">8</span>,<span class="number">2</span>), <span class="comment">-- check (salary &gt; 29000)</span></span><br><span class="line">     primary <span class="keyword">key</span> (<span class="keyword">ID</span>),</span><br><span class="line">     foreign <span class="keyword">key</span> (dept_name) <span class="keyword">references</span> department(dept_name)</span><br><span class="line">        <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">set</span> <span class="literal">null</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="comment">-- section部门 semester学期、</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">section</span></span><br><span class="line">    (course_id      <span class="built_in">varchar</span>(<span class="number">8</span>), </span><br><span class="line">         sec_id         <span class="built_in">varchar</span>(<span class="number">8</span>),</span><br><span class="line">     semester       <span class="built_in">varchar</span>(<span class="number">6</span>)</span><br><span class="line">        <span class="keyword">check</span> (semester <span class="keyword">in</span> (<span class="string">'Fall'</span>, <span class="string">'Winter'</span>, <span class="string">'Spring'</span>, <span class="string">'Summer'</span>)), </span><br><span class="line">     <span class="keyword">year</span>           <span class="built_in">numeric</span>(<span class="number">4</span>,<span class="number">0</span>) <span class="keyword">check</span> (<span class="keyword">year</span> &gt; <span class="number">1701</span> <span class="keyword">and</span> <span class="keyword">year</span> &lt; <span class="number">2100</span>), </span><br><span class="line">     building       <span class="built_in">varchar</span>(<span class="number">15</span>),</span><br><span class="line">     room_number        <span class="built_in">varchar</span>(<span class="number">7</span>),</span><br><span class="line">     time_slot_id       <span class="built_in">varchar</span>(<span class="number">4</span>),</span><br><span class="line">     primary <span class="keyword">key</span> (course_id, sec_id, semester, <span class="keyword">year</span>),</span><br><span class="line">     foreign <span class="keyword">key</span> (course_id) <span class="keyword">references</span> course(course_id)</span><br><span class="line">        <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">cascade</span>,</span><br><span class="line">     foreign <span class="keyword">key</span> (building, room_number) <span class="keyword">references</span> classroom(building, room_number)</span><br><span class="line">        <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">set</span> <span class="literal">null</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> teaches</span><br><span class="line">    (<span class="keyword">ID</span>         <span class="built_in">varchar</span>(<span class="number">5</span>), </span><br><span class="line">     course_id      <span class="built_in">varchar</span>(<span class="number">8</span>),</span><br><span class="line">     sec_id         <span class="built_in">varchar</span>(<span class="number">8</span>), </span><br><span class="line">     semester       <span class="built_in">varchar</span>(<span class="number">6</span>),</span><br><span class="line">     <span class="keyword">year</span>           <span class="built_in">numeric</span>(<span class="number">4</span>,<span class="number">0</span>),</span><br><span class="line">     primary <span class="keyword">key</span> (<span class="keyword">ID</span>, course_id, sec_id, semester, <span class="keyword">year</span>),</span><br><span class="line">     foreign <span class="keyword">key</span> (course_id,sec_id, semester, <span class="keyword">year</span>) <span class="keyword">references</span> <span class="keyword">section</span>(course_id,sec_id, semester, <span class="keyword">year</span>)</span><br><span class="line">        <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">cascade</span>,</span><br><span class="line">     foreign <span class="keyword">key</span> (<span class="keyword">ID</span>) <span class="keyword">references</span> instructor(<span class="keyword">ID</span>)</span><br><span class="line">        <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">cascade</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student</span><br><span class="line">    (<span class="keyword">ID</span>         <span class="built_in">varchar</span>(<span class="number">5</span>), </span><br><span class="line">     <span class="keyword">name</span>           <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>, </span><br><span class="line">     dept_name      <span class="built_in">varchar</span>(<span class="number">20</span>), </span><br><span class="line">     tot_cred       <span class="built_in">numeric</span>(<span class="number">3</span>,<span class="number">0</span>) <span class="keyword">check</span> (tot_cred &gt;= <span class="number">0</span>), <span class="comment">-- 总学分</span></span><br><span class="line">     primary <span class="keyword">key</span> (<span class="keyword">ID</span>),</span><br><span class="line">     foreign <span class="keyword">key</span> (dept_name) <span class="keyword">references</span> department(dept_name)</span><br><span class="line">        <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">set</span> <span class="literal">null</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> takes</span><br><span class="line">    (<span class="keyword">ID</span>         <span class="built_in">varchar</span>(<span class="number">5</span>), </span><br><span class="line">     course_id      <span class="built_in">varchar</span>(<span class="number">8</span>),</span><br><span class="line">     sec_id         <span class="built_in">varchar</span>(<span class="number">8</span>), </span><br><span class="line">     semester       <span class="built_in">varchar</span>(<span class="number">6</span>),</span><br><span class="line">     <span class="keyword">year</span>           <span class="built_in">numeric</span>(<span class="number">4</span>,<span class="number">0</span>),</span><br><span class="line">     grade              <span class="built_in">varchar</span>(<span class="number">2</span>),</span><br><span class="line">     primary <span class="keyword">key</span> (<span class="keyword">ID</span>, course_id, sec_id, semester, <span class="keyword">year</span>),</span><br><span class="line">     foreign <span class="keyword">key</span> (course_id,sec_id, semester, <span class="keyword">year</span>) <span class="keyword">references</span> <span class="keyword">section</span>(course_id,sec_id, semester, <span class="keyword">year</span>)</span><br><span class="line">        <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">cascade</span>,</span><br><span class="line">     foreign <span class="keyword">key</span> (<span class="keyword">ID</span>) <span class="keyword">references</span> student(<span class="keyword">ID</span>)</span><br><span class="line">        <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">cascade</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 导师</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> advisor</span><br><span class="line">    (s_ID           <span class="built_in">varchar</span>(<span class="number">5</span>),</span><br><span class="line">     i_ID           <span class="built_in">varchar</span>(<span class="number">5</span>),</span><br><span class="line">     primary <span class="keyword">key</span> (s_ID),</span><br><span class="line">     foreign <span class="keyword">key</span> (i_ID) <span class="keyword">references</span> instructor (<span class="keyword">ID</span>)</span><br><span class="line">        <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">set</span> <span class="literal">null</span>,</span><br><span class="line">     foreign <span class="keyword">key</span> (s_ID) <span class="keyword">references</span> student (<span class="keyword">ID</span>)</span><br><span class="line">        <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">cascade</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="comment">-- time_slot时间段</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> time_slot</span><br><span class="line">    (time_slot_id       <span class="built_in">varchar</span>(<span class="number">4</span>),</span><br><span class="line">     <span class="keyword">day</span>            <span class="built_in">varchar</span>(<span class="number">1</span>),</span><br><span class="line">     start_hr       <span class="built_in">numeric</span>(<span class="number">2</span>) <span class="keyword">check</span> (start_hr &gt;= <span class="number">0</span> <span class="keyword">and</span> start_hr &lt; <span class="number">24</span>),</span><br><span class="line">     start_min      <span class="built_in">numeric</span>(<span class="number">2</span>) <span class="keyword">check</span> (start_min &gt;= <span class="number">0</span> <span class="keyword">and</span> start_min &lt; <span class="number">60</span>),</span><br><span class="line">     end_hr         <span class="built_in">numeric</span>(<span class="number">2</span>) <span class="keyword">check</span> (end_hr &gt;= <span class="number">0</span> <span class="keyword">and</span> end_hr &lt; <span class="number">24</span>),</span><br><span class="line">     end_min        <span class="built_in">numeric</span>(<span class="number">2</span>) <span class="keyword">check</span> (end_min &gt;= <span class="number">0</span> <span class="keyword">and</span> end_min &lt; <span class="number">60</span>),</span><br><span class="line">     primary <span class="keyword">key</span> (time_slot_id, <span class="keyword">day</span>, start_hr, start_min)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> prereq</span><br><span class="line">    (course_id      <span class="built_in">varchar</span>(<span class="number">8</span>), </span><br><span class="line">     prereq_id      <span class="built_in">varchar</span>(<span class="number">8</span>),</span><br><span class="line">     primary <span class="keyword">key</span> (course_id, prereq_id),</span><br><span class="line">     foreign <span class="keyword">key</span> (course_id) <span class="keyword">references</span> course(course_id)</span><br><span class="line">        <span class="keyword">on</span> <span class="keyword">delete</span> <span class="keyword">cascade</span>,</span><br><span class="line">     foreign <span class="keyword">key</span> (prereq_id) <span class="keyword">references</span> course(prereq_id)</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+<h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><ul>
+<li>查询学生至少两次选择的课程的课程名，学生名，选的次数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- SELECT s.name, c.title, </span><br><span class="line">-- FROM student s, course c</span><br><span class="line">-- WHERE (s.ID, c.course_id) in (</span><br><span class="line">-- SELECT id, course_id</span><br><span class="line">-- FROM takes</span><br><span class="line">-- GROUP BY id,course_id</span><br><span class="line">-- HAVING COUNT(course_id)&gt;=2);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    student. <span class="keyword">NAME</span>,</span><br><span class="line">    <span class="keyword">COUNT</span>(takes.course_id) <span class="keyword">AS</span> Counts,</span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span></span><br><span class="line">            title</span><br><span class="line">        <span class="keyword">FROM</span></span><br><span class="line">            course</span><br><span class="line">        <span class="keyword">WHERE</span></span><br><span class="line">            course.course_id = takes.course_id</span><br><span class="line">    ) <span class="keyword">AS</span> title</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    student</span><br><span class="line"><span class="keyword">JOIN</span> takes <span class="keyword">ON</span> student.ID = takes.ID</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">    takes.ID,</span><br><span class="line">    takes.course_id</span><br><span class="line"><span class="keyword">HAVING</span></span><br><span class="line">    <span class="keyword">COUNT</span>(takes.course_id) &gt;= <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>老师的答案<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;   select S.name, C.title, count(S.name) cnt</span><br><span class="line">    from (student S join takes T on S.ID=T.ID) </span><br><span class="line">            join course C on T.course_id=C.course_id</span><br><span class="line">    group by S.name, C.title</span><br><span class="line">    having count(S.name) &gt;= 2;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>查询从没注册过课程的学生ID、name<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    student.ID,</span><br><span class="line">    <span class="keyword">NAME</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    student</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> takes <span class="keyword">ON</span> student.ID = takes.ID</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    takes.ID <span class="keyword">IS</span> <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>老师的<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;   select S.ID, S.name</span><br><span class="line">    from student S</span><br><span class="line">    where S.ID not in ( </span><br><span class="line">        <span class="keyword">select</span> <span class="keyword">distinct</span> T.ID</span><br><span class="line">        <span class="keyword">from</span> takes T) </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>查找已注册的但学分不明的课程名，及对应section的ID、年份、学期<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    <span class="keyword">ID</span>,</span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span></span><br><span class="line">            title</span><br><span class="line">        <span class="keyword">FROM</span></span><br><span class="line">            course</span><br><span class="line">        <span class="keyword">WHERE</span></span><br><span class="line">            course.course_id = takes.course_id</span><br><span class="line">    ) <span class="keyword">AS</span> title,</span><br><span class="line">    sec_id,</span><br><span class="line">    semester,</span><br><span class="line">    <span class="keyword">YEAR</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    takes</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    grade <span class="keyword">IS</span> <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>老师的<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;   select C.title, T.ID, T.year, T.semester</span><br><span class="line">    from course C join takes T on C.course_id = T.course_id</span><br><span class="line">    where T.grade is null</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>查询注册至少有4名教师的部门的学生id、name，部门name。<br>– 提供两种方法</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    s.id,</span><br><span class="line">    s. <span class="keyword">NAME</span>,</span><br><span class="line">    s.dept_name</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    student s</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    s.dept_name <span class="keyword">IN</span> (</span><br><span class="line">        <span class="keyword">SELECT</span></span><br><span class="line">            dept_name</span><br><span class="line">        <span class="keyword">FROM</span></span><br><span class="line">            instructor</span><br><span class="line">        <span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">            dept_name</span><br><span class="line">        <span class="keyword">HAVING</span></span><br><span class="line">            <span class="keyword">COUNT</span>(<span class="keyword">NAME</span>) &gt;= <span class="number">4</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 二</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    s.id,</span><br><span class="line">    s. <span class="keyword">NAME</span>,</span><br><span class="line">    s.dept_name</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    student s</span><br><span class="line"><span class="keyword">JOIN</span> (</span><br><span class="line">    <span class="keyword">SELECT</span></span><br><span class="line">        dept_name</span><br><span class="line">    <span class="keyword">FROM</span></span><br><span class="line">        instructor</span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">        dept_name</span><br><span class="line">    <span class="keyword">HAVING</span></span><br><span class="line">        <span class="keyword">COUNT</span>(<span class="keyword">NAME</span>) &gt;= <span class="number">4</span></span><br><span class="line">) <span class="keyword">AS</span> i <span class="keyword">ON</span> s.dept_name = i.dept_name;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 三</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    s.id,</span><br><span class="line">    s. <span class="keyword">NAME</span>,</span><br><span class="line">    s.dept_name</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    student s</span><br><span class="line"><span class="keyword">JOIN</span> instructor i <span class="keyword">ON</span> s.dept_name = i.dept_name</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">    s.id,</span><br><span class="line">    s. <span class="keyword">NAME</span>,</span><br><span class="line">    s.dept_name</span><br><span class="line"><span class="keyword">HAVING</span></span><br><span class="line">    <span class="keyword">COUNT</span>(i. <span class="keyword">NAME</span>) &gt;= <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;   4-1.</span><br><span class="line">    <span class="keyword">select</span> S.ID, S.name, S.dept_name</span><br><span class="line">    <span class="keyword">from</span> student S</span><br><span class="line">    <span class="keyword">where</span> S.dept_name <span class="keyword">in</span> (</span><br><span class="line">                <span class="keyword">select</span> I.dept_name</span><br><span class="line">                <span class="keyword">from</span> instructor I</span><br><span class="line">                <span class="keyword">group</span> <span class="keyword">by</span> I.dept_name</span><br><span class="line">                <span class="keyword">having</span> <span class="keyword">count</span>(I.dept_name) &gt;= <span class="number">4</span>)</span><br><span class="line">    <span class="number">4</span><span class="number">-2.</span></span><br><span class="line">    <span class="keyword">select</span> S.ID, S.name, S.dept_name</span><br><span class="line">    <span class="keyword">from</span> student S <span class="keyword">join</span> instructor I <span class="keyword">on</span> S.dept_name=I.dept_name</span><br><span class="line">    <span class="keyword">group</span> <span class="keyword">by</span> S.ID, S.name, S.dept_name</span><br><span class="line">    <span class="keyword">having</span> <span class="keyword">count</span>(S.dept_name) &gt;= <span class="number">4</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li>查找聘请教师姓名中含有”世”的部门名、教学楼、聘请教师数<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    d.dept_name,</span><br><span class="line">    d.building,</span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span></span><br><span class="line">            <span class="keyword">COUNT</span>(*)</span><br><span class="line">        <span class="keyword">FROM</span></span><br><span class="line">            instructor</span><br><span class="line">        <span class="keyword">WHERE</span></span><br><span class="line">            dept_name = d.dept_name</span><br><span class="line">    ) <span class="keyword">AS</span> counts</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    department d</span><br><span class="line">     <span class="keyword">WHERE</span></span><br><span class="line">    d.dept_name <span class="keyword">IN</span> (</span><br><span class="line">        <span class="keyword">SELECT</span></span><br><span class="line">            dept_name</span><br><span class="line">        <span class="keyword">FROM</span></span><br><span class="line">            instructor</span><br><span class="line">        <span class="keyword">WHERE</span></span><br><span class="line">            <span class="keyword">NAME</span> <span class="keyword">LIKE</span> <span class="string">"%世%"</span></span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>Teacher:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;   select D.dept_name, D.building, count(*) cnt</span><br><span class="line">    from department D join instructor I on D.dept_name=I.dept_name</span><br><span class="line">    group by D.dept_name, D.building</span><br><span class="line">    having D.dept_name in( </span><br><span class="line">            <span class="keyword">select</span> I.dept_name</span><br><span class="line">            <span class="keyword">from</span> instructor I</span><br><span class="line">            <span class="keyword">where</span> I.name <span class="keyword">like</span> <span class="string">'%世%'</span>)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="第三次"><a href="#第三次" class="headerlink" title="第三次"></a>第三次</h2><ul>
+<li>查询不包含成绩为F的课程（没人注册的课程也包含在内），课程名，统计与该课程相关联的section数</li>
+</ul>
+<p>– 法一<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> c.course_id,c.title,(<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(course_id) </span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">section</span> </span><br><span class="line"><span class="keyword">WHERE</span> section.course_id =c.course_id)<span class="keyword">AS</span> <span class="string">'count(section)'</span></span><br><span class="line"><span class="keyword">FROM</span> takes t <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> course c <span class="keyword">ON</span> t.course_id = c.course_id</span><br><span class="line"><span class="keyword">WHERE</span> c.course_id <span class="keyword">NOT</span> <span class="keyword">in</span> (<span class="keyword">SELECT</span> course_id <span class="keyword">FROM</span> takes <span class="keyword">WHERE</span> grade=<span class="string">'F'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>– 法二<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> c.course_id,c.title,( <span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) </span><br><span class="line">        <span class="keyword">FROM</span> <span class="keyword">section</span> </span><br><span class="line">        <span class="keyword">WHERE</span> section.course_id=c.course_id</span><br><span class="line">        ) <span class="keyword">AS</span> <span class="string">'count(section)'</span></span><br><span class="line"><span class="keyword">FROM</span> takes t <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> course c <span class="keyword">ON</span> t.course_id = c.course_id</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>(<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> takes <span class="keyword">WHERE</span> takes.grade = <span class="string">'F'</span> <span class="keyword">AND</span> takes.course_id=t.course_id);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> c.title, <span class="keyword">count</span>(sec_id)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">(</span><br><span class="line">        <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> section.course_id, section.sec_id </span><br><span class="line">        <span class="keyword">FROM</span> takes <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> <span class="keyword">section</span> <span class="keyword">ON</span> takes.course_id = section.course_id</span><br><span class="line">        <span class="keyword">WHERE</span> section.course_id <span class="keyword">NOT</span> <span class="keyword">in</span> (<span class="keyword">SELECT</span> course_id <span class="keyword">FROM</span> takes <span class="keyword">WHERE</span> grade=<span class="string">'F'</span>)</span><br><span class="line">) <span class="keyword">AS</span> s <span class="keyword">left</span> <span class="keyword">JOIN</span> course c <span class="keyword">ON</span> s.course_id = c.course_id</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> c.title;</span><br></pre></td></tr></table></figure></p>
+<p>– 法三<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">WITH takes_course(course_id) AS(</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> course_id </span><br><span class="line">    <span class="keyword">FROM</span> takes</span><br><span class="line">    <span class="keyword">WHERE</span> takes.course_id <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">SELECT</span> course_id <span class="keyword">FROM</span> takes <span class="keyword">WHERE</span> grade=<span class="string">'F'</span>)</span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> c.course_id, c.title,(<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) <span class="keyword">FROM</span> <span class="keyword">section</span> <span class="keyword">WHERE</span> section.course_id=c.course_id)<span class="keyword">AS</span> <span class="string">'count(section)'</span></span><br><span class="line"><span class="keyword">FROM</span> takes_course t <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> course c <span class="keyword">ON</span> t.course_id = c.course_id</span><br></pre></td></tr></table></figure></p>
+<p>– 法四<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">with course_(course_id,title)as(</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> course.course_id ,course.title</span><br><span class="line">    <span class="keyword">FROM</span> takes <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> course <span class="keyword">on</span> takes.course_id = course.course_id</span><br><span class="line">    <span class="keyword">WHERE</span> takes.course_id <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">SELECT</span> course_id <span class="keyword">FROM</span> takes <span class="keyword">WHERE</span> grade=<span class="string">'F'</span>)</span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> c.course_id, c.title, <span class="keyword">COUNT</span>(section.course_id) <span class="keyword">AS</span> <span class="string">'count(section)'</span></span><br><span class="line"><span class="keyword">FROM</span> course_  c <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="keyword">section</span> <span class="keyword">ON</span> c.course_id=section.course_id</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> c.course_id, c.title;</span><br></pre></td></tr></table></figure></p>
+<p>– 法五<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> course.title, <span class="keyword">count</span>(section.course_id)<span class="keyword">AS</span> <span class="string">'count(sec)'</span></span><br><span class="line"><span class="keyword">FROM</span> course <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="keyword">section</span> <span class="keyword">ON</span> course.course_id = section.course_id</span><br><span class="line"><span class="keyword">WHERE</span> <span class="number">1</span>&gt;(<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(course_id)</span><br><span class="line">                    <span class="keyword">FROM</span> takes</span><br><span class="line">                    <span class="keyword">WHERE</span> grade = <span class="string">'F'</span> <span class="keyword">AND</span> course.course_id = takes.course_id</span><br><span class="line">)</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> course.title;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Teacher’s Anwsers<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">&gt;  with cur1 as (</span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">distinct</span> course.course_id, title</span><br><span class="line">    <span class="keyword">from</span> course <span class="keyword">left</span> <span class="keyword">join</span> takes <span class="keyword">on</span> course.course_id = takes.course_id</span><br><span class="line">    <span class="keyword">where</span> course.course_id <span class="keyword">not</span> <span class="keyword">in</span>(</span><br><span class="line">        <span class="keyword">select</span> <span class="keyword">distinct</span> course_id</span><br><span class="line">        <span class="keyword">from</span> takes</span><br><span class="line">        <span class="keyword">where</span> grade = <span class="string">'F'</span></span><br><span class="line">        )</span><br><span class="line">    ),</span><br><span class="line">    cur2 <span class="keyword">as</span> (</span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">distinct</span> course.course_id, title</span><br><span class="line">    <span class="keyword">from</span> course <span class="keyword">left</span> <span class="keyword">join</span> takes <span class="keyword">on</span> course.course_id = takes.course_id</span><br><span class="line">    <span class="keyword">where</span> course.course_id != all(</span><br><span class="line">        <span class="keyword">select</span> <span class="keyword">distinct</span> course_id</span><br><span class="line">        <span class="keyword">from</span> takes</span><br><span class="line">        <span class="keyword">where</span> grade = <span class="string">'F'</span></span><br><span class="line">        )</span><br><span class="line">    ),</span><br><span class="line">    cur3 <span class="keyword">as</span> (</span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">distinct</span> course.course_id, title</span><br><span class="line">    <span class="keyword">from</span> course <span class="keyword">left</span> <span class="keyword">join</span> takes <span class="keyword">on</span> course.course_id = takes.course_id</span><br><span class="line">    <span class="keyword">where</span> <span class="keyword">not</span> <span class="keyword">exists</span> (</span><br><span class="line">        <span class="keyword">select</span> <span class="keyword">distinct</span> course_id</span><br><span class="line">        <span class="keyword">from</span> takes</span><br><span class="line">        <span class="keyword">where</span> grade = <span class="string">'F'</span></span><br><span class="line">            <span class="keyword">and</span> course.course_id=takes.course_id</span><br><span class="line">        )</span><br><span class="line">    ),</span><br><span class="line">    cur4 <span class="keyword">as</span> (</span><br><span class="line">        <span class="keyword">select</span> <span class="keyword">distinct</span> course.course_id, title</span><br><span class="line">        <span class="keyword">from</span> course <span class="keyword">join</span> takes <span class="keyword">on</span> course.course_id = takes.course_id</span><br><span class="line">        <span class="keyword">where</span> <span class="keyword">not</span> <span class="keyword">exists</span> (</span><br><span class="line">            <span class="keyword">select</span> <span class="keyword">distinct</span> course_id</span><br><span class="line">            <span class="keyword">from</span> takes</span><br><span class="line">            <span class="keyword">where</span> grade = <span class="string">'F'</span></span><br><span class="line">                <span class="keyword">and</span> course.course_id=takes.course_id</span><br><span class="line">            )</span><br><span class="line">        <span class="keyword">union</span></span><br><span class="line">        <span class="keyword">select</span> <span class="keyword">distinct</span> course.course_id, title</span><br><span class="line">        <span class="keyword">from</span> course </span><br><span class="line">        <span class="keyword">where</span> course_id <span class="keyword">not</span> <span class="keyword">in</span> (</span><br><span class="line">            <span class="keyword">select</span> course_id</span><br><span class="line">            <span class="keyword">from</span> takes</span><br><span class="line">        )</span><br><span class="line">    ),</span><br><span class="line">    cur <span class="keyword">as</span> (</span><br><span class="line">        <span class="keyword">select</span> course_id, title</span><br><span class="line">        <span class="keyword">from</span> course</span><br><span class="line">        <span class="keyword">where</span> course_id <span class="keyword">in</span> (</span><br><span class="line">            <span class="keyword">select</span> course_id</span><br><span class="line">            <span class="keyword">from</span> course </span><br><span class="line">            <span class="keyword">except</span></span><br><span class="line">            <span class="keyword">select</span> course_id</span><br><span class="line">            <span class="keyword">from</span> takes </span><br><span class="line">            <span class="keyword">where</span> grade = <span class="string">'F'</span></span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">select</span> cur.course_id, title, <span class="keyword">count</span>(section.course_id) cnt</span><br><span class="line">    <span class="keyword">from</span> cur <span class="keyword">left</span> <span class="keyword">join</span> <span class="keyword">section</span> </span><br><span class="line">        <span class="keyword">on</span> cur.course_id=section.course_id</span><br><span class="line">    <span class="keyword">group</span> <span class="keyword">by</span> cur.course_id, title</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>查询每个部门的成绩分布<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> course_id,sec_id,semester,<span class="keyword">year</span>,<span class="keyword">sum</span>(<span class="keyword">CASE</span> <span class="keyword">when</span> grade <span class="keyword">LIKE</span> <span class="string">'A%'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) A,</span><br><span class="line">                <span class="keyword">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">when</span> grade <span class="keyword">LIKE</span> <span class="string">'B%'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) B,</span><br><span class="line">                <span class="keyword">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">when</span> grade <span class="keyword">LIKE</span> <span class="string">'C%'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) C,</span><br><span class="line">                <span class="keyword">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">when</span> grade <span class="keyword">LIKE</span> <span class="string">'D%'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) D,</span><br><span class="line">                <span class="keyword">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">when</span> grade <span class="keyword">LIKE</span> <span class="string">'E%'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) E,</span><br><span class="line">                <span class="keyword">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">when</span> grade <span class="keyword">LIKE</span> <span class="string">'F%'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) F,<span class="keyword">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> grade <span class="keyword">IS</span> <span class="literal">NULL</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) NO_grade</span><br><span class="line"><span class="keyword">FROM</span> takes</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> course_id,sec_id,semester,<span class="string">`year`</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>Teacher:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&gt;   with tempt as(</span><br><span class="line">    <span class="keyword">select</span> course_id, <span class="keyword">year</span>, semester, sec_id, </span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">when</span> grade <span class="keyword">like</span> <span class="string">'A%'</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">end</span> A,</span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">when</span> grade <span class="keyword">like</span> <span class="string">'B%'</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">end</span> B,</span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">when</span> grade <span class="keyword">like</span> <span class="string">'C%'</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">end</span> C,</span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">when</span> grade <span class="keyword">like</span> <span class="string">'D%'</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">end</span> D,</span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">when</span> grade=<span class="string">'F'</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">end</span> F,</span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">when</span> grade <span class="keyword">is</span> <span class="literal">null</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">end</span> nograde</span><br><span class="line">    <span class="keyword">from</span> takes</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">select</span> course_id, <span class="keyword">year</span>, semester, sec_id,</span><br><span class="line">        <span class="keyword">isnull</span>(<span class="keyword">sum</span>(A), <span class="number">0</span>) A,</span><br><span class="line">        <span class="keyword">isnull</span>(<span class="keyword">sum</span>(B), <span class="number">0</span>) B,</span><br><span class="line">        <span class="keyword">isnull</span>(<span class="keyword">sum</span>(C), <span class="number">0</span>) C,</span><br><span class="line">        <span class="keyword">isnull</span>(<span class="keyword">sum</span>(D), <span class="number">0</span>) D,</span><br><span class="line">        <span class="keyword">isnull</span>(<span class="keyword">sum</span>(F), <span class="number">0</span>) F,</span><br><span class="line">        <span class="keyword">isnull</span>(<span class="keyword">sum</span>(nograde), <span class="number">0</span>) nograde</span><br><span class="line">    <span class="keyword">from</span> tempt</span><br><span class="line">    <span class="keyword">group</span> <span class="keyword">by</span> course_id, <span class="keyword">year</span>, semester, sec_id</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>查询每门课每周的学时（一学时为50分钟），且每学期该门课有相关联的部门<br>查询该门课的名称，年份，学期，统计同年同学期开设该门课的部门数，每周学时</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> (<span class="keyword">SELECT</span> title <span class="keyword">from</span> course <span class="keyword">WHERE</span> course_id=section.course_id) <span class="keyword">AS</span> course_title,<span class="string">`year`</span>,semester,</span><br><span class="line">(</span><br><span class="line">                <span class="keyword">SELECT</span> <span class="keyword">SUM</span>((end_hr-start_hr)*<span class="number">60</span>/<span class="number">50</span>+(end_min-start_min)/<span class="number">50</span>) </span><br><span class="line">                <span class="keyword">FROM</span> time_slot</span><br><span class="line">                <span class="keyword">WHERE</span> time_slot_id=section.time_slot_id</span><br><span class="line">                <span class="keyword">GROUP</span> <span class="keyword">BY</span> time_slot_id</span><br><span class="line">)<span class="keyword">AS</span> <span class="string">'credit hour/week'</span>, </span><br><span class="line">count_s.count_section</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">section</span> <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) <span class="keyword">AS</span> count_section,course_id <span class="keyword">FROM</span> <span class="keyword">section</span> <span class="keyword">GROUP</span> <span class="keyword">BY</span> course_id)<span class="keyword">AS</span> count_s <span class="keyword">ON</span> section.course_id = count_s.course_id</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+<p>– 感觉这种是对的<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> title,<span class="string">`year`</span>,semester, temp.cred_hr, <span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">(<span class="keyword">select</span> time_slot_id, <span class="keyword">sum</span>(((end_hr-start_hr)*<span class="number">60</span>+(end_min-start_min))/<span class="number">50</span>) <span class="keyword">as</span> cred_hr</span><br><span class="line"><span class="keyword">from</span> time_slot </span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> time_slot_id</span><br><span class="line">)<span class="keyword">AS</span> temp <span class="keyword">JOIN</span> <span class="keyword">section</span> <span class="keyword">ON</span> temp.time_slot_id = section.time_slot_id <span class="keyword">JOIN</span> course <span class="keyword">ON</span> section.course_id = course.course_id</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> title, <span class="string">`year`</span>, semester, temp.cred_hr;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Teacher’s Awq</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">with timeslot_credithour as(</span><br><span class="line">    <span class="keyword">select</span> time_slot_id, <span class="keyword">count</span>(*) * ((end_hr-start_hr)*<span class="number">60</span>+(end_min-start_min))/<span class="number">50</span> credit_hr</span><br><span class="line">    <span class="keyword">from</span> time_slot</span><br><span class="line">    <span class="keyword">group</span> <span class="keyword">by</span> time_slot_id, start_hr, end_hr, start_min, end_min);</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> course_id, <span class="keyword">year</span>, semester,<span class="keyword">count</span>(*) sec_cnt, <span class="keyword">sum</span>(credit_hr) cred_hr</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">join</span> timeslot_credithour </span><br><span class="line">    <span class="keyword">on</span> section.time_slot_id=timeslot_credithour.time_slot_id</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> course_id, <span class="keyword">year</span>, semester;</span><br><span class="line"></span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">with A as(<span class="keyword">select</span> section.course_id,section.semester,<span class="keyword">year</span>,section.sec_id,section.time_slot_id <span class="keyword">as</span> slotid,start_hr,start_min,end_hr,end_min</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">join</span> time_slot <span class="keyword">on</span> section.time_slot_id=time_slot.time_slot_id)</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> course_id,<span class="keyword">year</span>,semester,<span class="keyword">sum</span>(((end_hr-start_hr)*<span class="number">60</span>+end_min-start_min)/<span class="number">50</span>) <span class="keyword">as</span> totalhours</span><br><span class="line"><span class="keyword">from</span> A</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> course_id,<span class="keyword">year</span>,semester</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询学生和老师对，要求同一部门中该学生选了该老师的课，同时该老师也是学生的导师<br>列出学生名，老师名</li>
+</ul>
+<blockquote>
+<p>Teacher’s AWQ</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> student.name, instructor.name</span><br><span class="line"><span class="keyword">from</span> student, instructor, (</span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">distinct</span> TK.ID s_id, TC.ID t_id</span><br><span class="line">    <span class="keyword">from</span> takes TK <span class="keyword">join</span> teaches TC <span class="keyword">on</span></span><br><span class="line">        TK.course_id=TC.course_id <span class="keyword">and</span> TK.year=TC.year</span><br><span class="line">        <span class="keyword">and</span> TK.sec_id=TC.sec_id <span class="keyword">and</span> TK.semester=TC.semester</span><br><span class="line">    <span class="keyword">where</span> <span class="keyword">exists</span> (</span><br><span class="line">        <span class="keyword">select</span> *</span><br><span class="line">        <span class="keyword">from</span> advisor</span><br><span class="line">        <span class="keyword">where</span> TK.ID=advisor.s_ID </span><br><span class="line">            <span class="keyword">and</span> TC.ID=advisor.i_ID</span><br><span class="line">    ) </span><br><span class="line">) t_s_i</span><br><span class="line"><span class="keyword">where</span> student.ID=t_s_i.s_id <span class="keyword">and</span> instructor.ID=t_s_i.t_id;</span><br></pre></td></tr></table></figure>
+<h2 id="第四次"><a href="#第四次" class="headerlink" title="第四次"></a>第四次</h2><ul>
+<li>更新所有学生的总学分tot_cred（如果该生无成绩为F）<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">复制一张新表student_1</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student_1 <span class="keyword">LIKE</span> student;</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student_1 <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student;</span><br><span class="line"></span><br><span class="line"><span class="keyword">UPDATE</span> student_1</span><br><span class="line"><span class="keyword">SET</span> tot_cred = (<span class="keyword">SELECT</span> <span class="keyword">sum</span>(credits)</span><br><span class="line"><span class="keyword">FROM</span> takes, course</span><br><span class="line"><span class="keyword">WHERE</span> takes.course_id = course.course_id <span class="keyword">AND</span> takes.grade != <span class="string">'F'</span> <span class="keyword">AND</span> takes.grade <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">AND</span> takes.ID = student_1.ID</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">ID</span> )</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>Teacher:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt;   with passed_course_credit as (</span><br><span class="line">        <span class="keyword">select</span> <span class="keyword">ID</span>, c_id, credits</span><br><span class="line">        <span class="keyword">from</span> course <span class="keyword">join</span> (</span><br><span class="line">            <span class="keyword">select</span> <span class="keyword">distinct</span> <span class="keyword">ID</span>, course_id c_id</span><br><span class="line">            <span class="keyword">from</span> takes</span><br><span class="line">            <span class="keyword">where</span> grade != <span class="string">'F'</span>) passed_course</span><br><span class="line">            <span class="keyword">on</span> course_id = passed_course.c_id</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">update</span> student</span><br><span class="line">    <span class="keyword">set</span> tot_cred = (</span><br><span class="line">        <span class="keyword">select</span> <span class="keyword">sum</span>(credits)</span><br><span class="line">        <span class="keyword">from</span> passed_course_credit</span><br><span class="line">        <span class="keyword">where</span> student.ID=passed_course_credit.ID</span><br><span class="line">        <span class="keyword">group</span> <span class="keyword">by</span> passed_course_credit.ID</span><br><span class="line">    )</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>查找学生，该生通过了其所属的部门开设的 <strong>所有</strong> 课程，列出stu_name，dept_name<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> <span class="string">`name`</span>, student.dept_name</span><br><span class="line"><span class="keyword">FROM</span> student <span class="keyword">JOIN</span> course <span class="keyword">ON</span> student.dept_name = course.dept_name </span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> ( </span><br><span class="line">        <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> takes <span class="keyword">WHERE</span> grade != <span class="string">'F'</span> <span class="keyword">AND</span> <span class="keyword">ID</span> = student.ID <span class="keyword">AND</span> course_id = course.course_id</span><br><span class="line">) </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="string">`name`</span>,student.dept_name</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> course_id)= (</span><br><span class="line">            <span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(course_id) </span><br><span class="line">            <span class="keyword">FROM</span> course </span><br><span class="line">            <span class="keyword">WHERE</span> student.dept_name=course.dept_name </span><br><span class="line">            <span class="keyword">GROUP</span> <span class="keyword">BY</span> course.dept_name);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>Teacher:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;   select name, dept_name</span><br><span class="line">    from student</span><br><span class="line">    where not exists (</span><br><span class="line">        <span class="keyword">select</span> course_id</span><br><span class="line">        <span class="keyword">from</span> course</span><br><span class="line">        <span class="keyword">where</span> student.dept_name=course.dept_name</span><br><span class="line">        <span class="keyword">except</span></span><br><span class="line">        <span class="keyword">select</span> course_id</span><br><span class="line">        <span class="keyword">from</span> takes</span><br><span class="line">        <span class="keyword">where</span> student.ID = takes.ID </span><br><span class="line">            <span class="keyword">and</span> grade != <span class="string">'F'</span></span><br><span class="line">    )</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>学生学号升序排列ascending，输出第六到第十个学生的name，id（提供两种方法）</li>
+</ul>
+<p>– 法一<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span>,<span class="keyword">id</span> </span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span>, <span class="keyword">id</span> , @curRank := @curRank +<span class="number">1</span> <span class="keyword">AS</span> <span class="keyword">rank</span></span><br><span class="line"><span class="keyword">FROM</span> student,(<span class="keyword">SELECT</span> @curRank :=<span class="number">0</span>) p</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">id</span> <span class="keyword">ASC</span>) temp</span><br><span class="line"><span class="keyword">WHERE</span> temp.rank <span class="keyword">BETWEEN</span> <span class="number">6</span> <span class="keyword">AND</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure></p>
+<p>– 法二<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> top <span class="number">10</span> <span class="keyword">ID</span> ,<span class="keyword">name</span></span><br><span class="line"><span class="keyword">FROM</span> student</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">ID</span></span><br><span class="line"><span class="keyword">except</span></span><br><span class="line"><span class="keyword">SELECT</span> top <span class="number">5</span> <span class="keyword">ID</span> ,<span class="keyword">name</span> </span><br><span class="line"><span class="keyword">FROM</span> student</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">ID</span> ;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> top <span class="number">10</span> <span class="keyword">ID</span> , <span class="keyword">name</span> </span><br><span class="line"><span class="keyword">FROM</span> student</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">ID</span> <span class="keyword">NOT</span> <span class="keyword">in</span> (<span class="keyword">SELECT</span> top <span class="number">5</span> <span class="keyword">ID</span> <span class="keyword">FROM</span> student <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">ID</span>)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">ID</span>;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Teacher:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt;   with rk_stu1 as ( </span><br><span class="line">    <span class="keyword">select</span> row_number() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">ID</span> ) rk, <span class="keyword">ID</span>, <span class="keyword">name</span></span><br><span class="line">    <span class="keyword">from</span> student</span><br><span class="line">    )</span><br><span class="line">    , rk_stu2 <span class="keyword">as</span> (  </span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">ID</span> ) rk, <span class="keyword">ID</span>, <span class="keyword">name</span></span><br><span class="line">    <span class="keyword">from</span> student</span><br><span class="line">    )</span><br><span class="line">    , rk_stu <span class="keyword">as</span> (   </span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">count</span>(*) rk, s1.ID, s1.name</span><br><span class="line">    <span class="keyword">from</span> student s1 , student s2</span><br><span class="line">    <span class="keyword">where</span> s1.ID &gt;= s2.ID</span><br><span class="line">    <span class="keyword">group</span> <span class="keyword">by</span> s1.ID, s1.name</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">ID</span>, <span class="keyword">name</span></span><br><span class="line">    <span class="keyword">from</span> rk_stu</span><br><span class="line">    <span class="keyword">where</span> rk <span class="keyword">in</span> (<span class="number">6</span>,<span class="number">10</span>)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>找出挂过科并且重修也没过的学生，id，name和现阶段重修没过科目数目<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> s.name, s.ID, <span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> student s <span class="keyword">JOIN</span> (</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ID</span>,course_id</span><br><span class="line"><span class="keyword">FROM</span> takes</span><br><span class="line"><span class="keyword">WHERE</span> grade=<span class="string">'F'</span> <span class="keyword">AND</span> (<span class="keyword">ID</span>,course_id) <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> <span class="keyword">id</span>,course_id <span class="keyword">FROM</span> takes <span class="keyword">WHERE</span> grade !=<span class="string">'F'</span>)</span><br><span class="line">) t</span><br><span class="line"><span class="keyword">ON</span> s.ID=t.ID</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> s.ID,s.name;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>– 就是成绩为F的集合减去不为F的集合（仍旧未通过）<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> student.ID,student.<span class="string">`name`</span>,<span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">from</span> takes t <span class="keyword">JOIN</span> student <span class="keyword">ON</span> t.ID=student.ID</span><br><span class="line"><span class="keyword">where</span> t.grade=<span class="string">'F'</span><span class="keyword">and</span> t.grade <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">AND</span> (t.id,t.course_id) <span class="keyword">NOT</span> <span class="keyword">in</span> (<span class="keyword">select</span> <span class="keyword">id</span>,course_id</span><br><span class="line"><span class="keyword">from</span> takes </span><br><span class="line"><span class="keyword">where</span> grade!=<span class="string">'F'</span><span class="keyword">and</span> grade <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> student.ID,student.<span class="string">`name`</span>;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Teacher:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;   with tempt as (</span><br><span class="line">        <span class="keyword">select</span> <span class="keyword">ID</span>, course_id</span><br><span class="line">        <span class="keyword">from</span> takes</span><br><span class="line">        <span class="keyword">where</span> grade=<span class="string">'F'</span></span><br><span class="line">        <span class="keyword">except</span></span><br><span class="line">        <span class="keyword">select</span> <span class="keyword">ID</span>, course_id</span><br><span class="line">        <span class="keyword">from</span> takes</span><br><span class="line">        <span class="keyword">where</span> grade!=<span class="string">'F'</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">select</span> tempt.ID, <span class="keyword">name</span>, <span class="keyword">count</span>(*) cnt </span><br><span class="line">    <span class="keyword">from</span> student <span class="keyword">join</span> tempt <span class="keyword">on</span> student.ID=tempt.ID</span><br><span class="line">    <span class="keyword">group</span> <span class="keyword">by</span> tempt.ID, <span class="keyword">name</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>找到上过某些课超过一次的学生，id，name，课程title，该生上课次数，以及这门课挂科记录次数</li>
+</ul>
+<p>– 自己的<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">with a AS(</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ID</span>,course_id,<span class="keyword">count</span>(*) <span class="keyword">AS</span> <span class="string">'count'</span>,<span class="keyword">count</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> grade=<span class="string">'F'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">END</span>) <span class="keyword">AS</span> <span class="string">'count_F'</span></span><br><span class="line"><span class="keyword">FROM</span> takes</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">ID</span>,course_id</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(*)&gt;<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> student.ID, student.<span class="string">`name`</span>, course.title, a.count, a.count_F</span><br><span class="line"><span class="keyword">FROM</span> student,course,a</span><br><span class="line"><span class="keyword">WHERE</span> student.ID = a.id <span class="keyword">AND</span> course.course_id = a.course_id</span><br></pre></td></tr></table></figure></p>
+<p>– 老师写的<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> student.id,student.<span class="string">`name`</span>,title,<span class="keyword">count</span>(*),<span class="keyword">count</span>(<span class="keyword">case</span> grade <span class="keyword">when</span> <span class="string">'F'</span> <span class="keyword">then</span> <span class="number">1</span>  <span class="keyword">end</span> )</span><br><span class="line"><span class="keyword">from</span> takes <span class="keyword">join</span> course <span class="keyword">on</span> course.course_id=takes.course_id,student</span><br><span class="line"><span class="keyword">WHERE</span> takes.ID=student.ID</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">id</span>,title</span><br><span class="line"><span class="keyword">having</span> <span class="keyword">count</span>(*)&gt;<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Teacher:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    with course_grade as (</span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">ID</span>, course_id, </span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">when</span> grade = <span class="string">'F'</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span> F</span><br><span class="line">    <span class="keyword">from</span> takes</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">select</span> student.ID, <span class="keyword">name</span>, course_id, <span class="keyword">count</span>(F) cnt_stu, <span class="keyword">sum</span>(F) cnt_fail_course</span><br><span class="line">    <span class="keyword">from</span> course_grade <span class="keyword">join</span> student </span><br><span class="line">        <span class="keyword">on</span> course_grade.ID = student.ID</span><br><span class="line">    <span class="keyword">group</span> <span class="keyword">by</span> student.ID, <span class="keyword">name</span>, course_id</span><br><span class="line">    <span class="keyword">having</span> <span class="keyword">count</span>(*) &gt; <span class="number">1</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="第五次-E-R图，关系数据库设计"><a href="#第五次-E-R图，关系数据库设计" class="headerlink" title="第五次 E-R图，关系数据库设计"></a>第五次 E-R图，关系数据库设计</h2><h3 id="医院病房管理系统"><a href="#医院病房管理系统" class="headerlink" title="医院病房管理系统"></a>医院病房管理系统</h3><p>需求：</p>
+<ul>
+<li>一个科室有多个病房、多个医生和一个科室主任。</li>
+<li>一个病房只属于一个科室、一个医生只能在一个科室工作。</li>
+<li>一个医生可以同时做多个病人的主治医生。</li>
+<li>一个病人只能有一个主治医生、也只能入住一个病房。</li>
+<li><strong>一个护士负责多个病房、一个病房由多个护士负责</strong>。</li>
+<li><strong>一个护士属于一个科室、一个科室拥有多个护士</strong>。</li>
+</ul>
+<p>问题： </p>
+<ol>
+<li>在给出的需求基础上，进一步进行分析，完善需求，并列出添加的需求（上面加粗的部分）</li>
+<li><p>根据以上需求，抽象出实体和实体间关系，包括实体和关系的属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">科室（科室编码、所在建筑、科室主任）</span><br><span class="line">病房（病房号、所在建筑、病房床数）</span><br><span class="line">医生（医生编码、年龄、性别）</span><br><span class="line">病人（病人编码、年龄、性别）</span><br><span class="line">护士（护士编码、年龄、性别）</span><br><span class="line">属于（科室编码、病房编码）</span><br><span class="line">医生工作（科室编码、医生编码）</span><br><span class="line">护士工作（科室编码、医生编码）</span><br><span class="line">入住（病人编码、病房号）</span><br><span class="line">护理（护士编码、病房号）</span><br><span class="line">治疗（病人编码、医生编码）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据分析得到的实体和实体间关系，画出E-R图。<br><img src="https://s1.ax1x.com/2018/11/07/i7AIYQ.png" alt="i7AIYQ.png"></p>
+</li>
+<li>将设计得到的E-R图转换为等价的关系模式。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">科室（科室编码、所在建筑、科室主任）</span><br><span class="line">病房（病房号、科室编码、所在建筑、病房床数）</span><br><span class="line">医生（医生编码、科室编码、年龄、性别）</span><br><span class="line">病人（病人编码、医生编码、病房号、年龄、性别）</span><br><span class="line">护士（护士编码、科室编码、年龄、性别）</span><br><span class="line">护理（护士编码、病房号）</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="第六次-关系代数和范式"><a href="#第六次-关系代数和范式" class="headerlink" title="第六次 关系代数和范式"></a>第六次 关系代数和范式</h2><h3 id="关系代数练习题目（基于EMP-DEPT数据库）"><a href="#关系代数练习题目（基于EMP-DEPT数据库）" class="headerlink" title="关系代数练习题目（基于EMP-DEPT数据库）"></a>关系代数练习题目（基于EMP-DEPT数据库）</h3><p><img src="https://s1.ax1x.com/2018/11/07/i7EA0K.jpg" alt="i7EA0K.jpg"><br><img src="https://s1.ax1x.com/2018/11/07/i7Ekm6.jpg" alt="i7Ekm6.jpg"></p>
+<h3 id="关系规范化练习题目"><a href="#关系规范化练习题目" class="headerlink" title="关系规范化练习题目"></a>关系规范化练习题目</h3><ul>
+<li>设有关系模式 R（A，B，C，D），其上的函数依赖集为：<br>F={A-&gt;C, C-&gt;A, B-&gt;AC, D-&gt;AC} </li>
+</ul>
+<p>（1）计算（AD）+ </p>
+<p>ACD</p>
+<p>（2）求 R 的候选码 </p>
+<p>BD</p>
+<p>（3）把 R 分解为满足 BCNF 的关系模式集合。</p>
+<p>(AC) 和 (ABD)</p>
+<p>(AC) 和 (CBD)</p>
+<p>(AC)、(BC) 和 (BD)</p>
+<p>(AC)、(AB) 和 (BD)</p>
+<p>(AC)、(CD) 和 (BD)</p>
+<p>(AC)、(AD) 和 (BD)</p>
+<ul>
+<li><p>设有关系模式 R&lt;U,F&gt;，其中：U={A,B,C,D,E,P}, F={A-&gt;B,C-&gt;P,E-&gt;A,CE-&gt;D}求R的所有候选码。</p>
+<p>  CE </p>
+</li>
+<li><p>设属性 X={BG}，函数依赖集 F 包含 9 个函数依赖：<br>{AC-&gt;PE, PG-&gt;A, B-&gt;CE, A-&gt;P, A-&gt;B, GC-&gt;A, PAB-&gt;G, AG-&gt;BG, ABCP-&gt;H}<br>求 X 关于 F 的的属性闭包 X+。</p>
+<p>ABCEGPH</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话，不妨加个鸡腿，O(∩_∩)O哈哈~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weChatPay.jpg" alt="Joson lee 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliPay.jpg" alt="Joson lee 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018-11-12-大数据之Hadoop学习-一-————认识HDFS.html/" rel="next" title="大数据之Hadoop学习<一>————认识HDFS">
+                <i class="fa fa-chevron-left"></i> 大数据之Hadoop学习<一>————认识HDFS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018-11-12-关系数据库设计（F-闭包、候选码求解、范式判断及BCNF分解）.html/" rel="prev" title="关系数据库设计（F+闭包、候选码求解、范式判断及BCNF分解）">
+                关系数据库设计（F+闭包、候选码求解、范式判断及BCNF分解） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="Joson lee" />
+            
+              <p class="site-author-name" itemprop="name">Joson lee</p>
+              <p class="site-description motion-element" itemprop="description">Python数据分析、机器学习、Django、java学习</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/josonle" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://blog.csdn.net/lzw2016" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:3092312003@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一次"><span class="nav-number">1.</span> <span class="nav-text">第一次</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建表"><span class="nav-number">1.1.</span> <span class="nav-text">建表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.2.</span> <span class="nav-text">题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二次"><span class="nav-number">2.</span> <span class="nav-text">第二次</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建表-1"><span class="nav-number">2.1.</span> <span class="nav-text">建表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-1"><span class="nav-number">2.2.</span> <span class="nav-text">题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三次"><span class="nav-number">3.</span> <span class="nav-text">第三次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四次"><span class="nav-number">4.</span> <span class="nav-text">第四次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五次-E-R图，关系数据库设计"><span class="nav-number">5.</span> <span class="nav-text">第五次 E-R图，关系数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#医院病房管理系统"><span class="nav-number">5.1.</span> <span class="nav-text">医院病房管理系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六次-关系代数和范式"><span class="nav-number">6.</span> <span class="nav-text">第六次 关系代数和范式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关系代数练习题目（基于EMP-DEPT数据库）"><span class="nav-number">6.1.</span> <span class="nav-text">关系代数练习题目（基于EMP-DEPT数据库）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系规范化练习题目"><span class="nav-number">6.2.</span> <span class="nav-text">关系规范化练习题目</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joson lee</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'a94818509a8f36c0a222',
+          clientSecret: '4d6bcd339e8df5f3e1f9e653afa2a5b9a1023f0f',
+          repo: 'josonle.github.io',
+          owner: 'josonle',
+          admin: ['josonle'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+    </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

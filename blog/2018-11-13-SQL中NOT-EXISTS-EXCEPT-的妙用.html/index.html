@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Linux," />
+  <meta name="keywords" content="SQL," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="今天在虚拟机中配置了下brat文本标注工具，ubuntu已启动就黑屏，搞了半天没办法有重新安装了下，涉及到初次切换root权限登录的问题，好久没用又忘记了，现在在这里记录下">
-<meta name="keywords" content="Linux">
+<meta name="description" content="EXISTS子查询可以理解为存在，但也不能死扣字眼，多用在where子句中用来删选满足条件的记录，只要子查询能找到就是True，EXISTS条件就成立，反之不成立；NOT EXISTS与之相反 有以下四张表：1234Product (pID, name, category, UnitType, sID, price )Order (oID, year, month, day, type, cID,">
+<meta name="keywords" content="SQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu初次获取Root权限并登陆">
-<meta property="og:url" content="http://yoursite.com/blog/2018-10-22-ubuntu初次获取Root权限并登陆.html/index.html">
+<meta property="og:title" content="SQL中NOT EXISTS...[EXCEPT]的妙用">
+<meta property="og:url" content="http://yoursite.com/blog/2018-11-13-SQL中NOT-EXISTS-EXCEPT-的妙用.html/index.html">
 <meta property="og:site_name" content="Josonlee&#39;s Blog">
-<meta property="og:description" content="今天在虚拟机中配置了下brat文本标注工具，ubuntu已启动就黑屏，搞了半天没办法有重新安装了下，涉及到初次切换root权限登录的问题，好久没用又忘记了，现在在这里记录下">
+<meta property="og:description" content="EXISTS子查询可以理解为存在，但也不能死扣字眼，多用在where子句中用来删选满足条件的记录，只要子查询能找到就是True，EXISTS条件就成立，反之不成立；NOT EXISTS与之相反 有以下四张表：1234Product (pID, name, category, UnitType, sID, price )Order (oID, year, month, day, type, cID,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-12T13:37:31.205Z">
+<meta property="og:updated_time" content="2018-11-13T08:46:47.103Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ubuntu初次获取Root权限并登陆">
-<meta name="twitter:description" content="今天在虚拟机中配置了下brat文本标注工具，ubuntu已启动就黑屏，搞了半天没办法有重新安装了下，涉及到初次切换root权限登录的问题，好久没用又忘记了，现在在这里记录下">
+<meta name="twitter:title" content="SQL中NOT EXISTS...[EXCEPT]的妙用">
+<meta name="twitter:description" content="EXISTS子查询可以理解为存在，但也不能死扣字眼，多用在where子句中用来删选满足条件的记录，只要子查询能找到就是True，EXISTS条件就成立，反之不成立；NOT EXISTS与之相反 有以下四张表：1234Product (pID, name, category, UnitType, sID, price )Order (oID, year, month, day, type, cID,">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/blog/2018-10-22-ubuntu初次获取Root权限并登陆.html/"/>
+  <link rel="canonical" href="http://yoursite.com/blog/2018-11-13-SQL中NOT-EXISTS-EXCEPT-的妙用.html/"/>
 
 
 
 
 
-  <title>ubuntu初次获取Root权限并登陆 | Josonlee's Blog</title>
+  <title>SQL中NOT EXISTS...[EXCEPT]的妙用 | Josonlee's Blog</title>
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-10-22-ubuntu初次获取Root权限并登陆.html/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-11-13-SQL中NOT-EXISTS-EXCEPT-的妙用.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joson lee">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ubuntu初次获取Root权限并登陆</h1>
+          <h1 class="post-title" itemprop="name headline">SQL中NOT EXISTS...[EXCEPT]的妙用</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-22T16:38:08+08:00">
-                2018-10-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-13T16:15:30+08:00">
+                2018-11-13
               </time>
             
 
@@ -325,8 +325,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/数据库、SQL/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库、SQL</span>
                   </a>
                 </span>
 
@@ -383,19 +383,44 @@
       
 
       
-        <p>今天在虚拟机中配置了下brat文本标注工具，ubuntu已启动就黑屏，搞了半天没办法有重新安装了下，涉及到初次切换root权限登录的问题，好久没用又忘记了，现在在这里记录下<br><a id="more"></a></p>
-<h2 id="设置root密码"><a href="#设置root密码" class="headerlink" title="设置root密码"></a>设置root密码</h2><blockquote>
-<p>~$ sudo passwd root</p>
-</blockquote>
-<p>然后按照提示输入你本机设置的管理员密码和设置的root密码</p>
-<h2 id="切换root权限"><a href="#切换root权限" class="headerlink" title="切换root权限"></a>切换root权限</h2><blockquote>
-<p>~$ su root<br>或者</p>
-<p>su -i //获取root权限后更改当前路径为根目录/root<br>su -s //获取root权限后仍在当前目录下</p>
-</blockquote>
-<p>安照提示输入root密码，只要<code>$</code> 符合变成了<code>#</code>就OK了</p>
-<p>退出的话输入<code>exit</code> 就可以</p>
-<h2 id="更改root密码"><a href="#更改root密码" class="headerlink" title="更改root密码"></a>更改root密码</h2><p>前提是进入root权限下，输入<code>~$ sudo passwd root</code>，同上过程更改密码</p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>以上过程切换root权限只是临时的，永久权限可参考：<a href="https://blog.csdn.net/fhqfghgdx1993/article/details/72773181?utm_source=blogxgwz0" target="_blank" rel="noopener">Ubuntu 获取 root 权限 （临时&amp;永久）</a></p>
+        <p>EXISTS子查询可以理解为存在，但也不能死扣字眼，多用在where子句中用来删选满足条件的记录，只要子查询能找到就是True，EXISTS条件就成立，反之不成立；NOT EXISTS与之相反</p>
+<p>有以下四张表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Product (pID, name, category, UnitType, sID, price )</span><br><span class="line">Order (oID, year, month, day, type, cID, shipType, status)</span><br><span class="line">OrderDetail (oID, oDetailNum, pID, unitPrice, quantity)</span><br><span class="line">Customer (cID, name, address, phone, creditLimit)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>利用not exists 的子查询思想解决如下查询<ul>
+<li>查询从未在2012年10月卖出去的产品信息，</li>
+<li>具体包括： 商品ID，商品名</li>
+</ul>
+</li>
+</ul>
+<p>not exists就是【没有、从未】，其后跟随的子查询就是要解决的后半段问题【肯定部分】</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> pID, <span class="keyword">name</span></span><br><span class="line"><span class="keyword">From</span> product</span><br><span class="line"><span class="keyword">Where</span> <span class="keyword">not</span> <span class="keyword">exists</span></span><br><span class="line">    (<span class="keyword">select</span> *</span><br><span class="line">    <span class="keyword">From</span> <span class="keyword">order</span> <span class="keyword">join</span> orderDetail</span><br><span class="line">        <span class="keyword">on</span> order.oID = orderDetail.oID</span><br><span class="line">    <span class="keyword">Where</span> <span class="keyword">year</span>=<span class="number">2012</span> <span class="keyword">and</span> <span class="keyword">month</span>=<span class="number">10</span> <span class="keyword">and</span></span><br><span class="line">        product.pID = orderDetail.pID)</span><br></pre></td></tr></table></figure>
+<p>有上面代码可以看出not exists只是解释了需求中的【从未】，而子查询负责【在2012年10月卖出去的产品信息】</p>
+<p>如果子查询结果集为空，就是没有售卖的信息，not exists【没有、不存在】满足，条件成立</p>
+<ul>
+<li>查找学生，该生通过了其所属的系开设的 所有 课程，列出stu_name，dept_name<ul>
+<li>要用到的有student表(包含学生id，所属的系名，学生名)，Course表(包含开课的系名，课程id等)，takes表(包含学生id，课程id，成绩等)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>, dept_name</span><br><span class="line">  <span class="keyword">from</span> student</span><br><span class="line">  <span class="keyword">where</span> <span class="keyword">not</span> <span class="keyword">exists</span> (</span><br><span class="line">      <span class="keyword">select</span> course_id</span><br><span class="line">      <span class="keyword">from</span> course</span><br><span class="line">      <span class="keyword">where</span> student.dept_name=course.dept_name</span><br><span class="line">      <span class="keyword">except</span></span><br><span class="line">      <span class="keyword">select</span> course_id</span><br><span class="line">      <span class="keyword">from</span> takes</span><br><span class="line">      <span class="keyword">where</span> student.ID = takes.ID </span><br><span class="line">          <span class="keyword">and</span> grade != <span class="string">'F'</span></span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+<p>我们知道except是求差集，所以可以有如下解释<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">where not exists (</span><br><span class="line">    该学生所属的系开设的所有课程C1</span><br><span class="line">    except</span><br><span class="line">    学生所有及格的课程C2</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>C1-C2为空，就是C1是C2的子集，not exists成立，满足条件</p>
+<ul>
+<li>not exists… except 有两种用法，要根据所求语义判断</li>
+</ul>
+<p>比如说公司中若干部门，若干等级的职位</p>
+<ul>
+<li>求所有职位都是B等级的部门<ul>
+<li>‘{部门所有职位} except {所有B等级的职位}’</li>
+</ul>
+</li>
+<li>求包含所有B等级职位的部门<ul>
+<li>‘{所有B等级的职位} except {部门所有职位}’</li>
+</ul>
+</li>
+</ul>
+<p>其实很简单，判断时画个图，就知道谁该包含谁了</p>
+<p>如果还想不通，可以参考这篇分析更细致的文章：<a href="https://www.cnblogs.com/losesea/archive/2012/10/10/2718093.html" target="_blank" rel="noopener">查询选修了全部课程的学生姓名</a></p>
 
       
     </div>
@@ -442,7 +467,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
           
         </div>
       
@@ -455,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018-10-21-Hexo添加gitalk评论插件.html/" rel="next" title="Hexo添加gitalk评论插件">
-                <i class="fa fa-chevron-left"></i> Hexo添加gitalk评论插件
+              <a href="/blog/2018-11-12-计网知识点扫漏.html/" rel="next" title="计网知识点扫漏">
+                <i class="fa fa-chevron-left"></i> 计网知识点扫漏
               </a>
             
           </div>
@@ -464,10 +489,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018-10-22-VirtualBox设置与主机共享文件夹和粘贴板问题.html/" rel="prev" title="VirtualBox设置与主机共享文件夹和粘贴板问题">
-                VirtualBox设置与主机共享文件夹和粘贴板问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -521,17 +542,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -617,22 +629,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置root密码"><span class="nav-number">1.</span> <span class="nav-text">设置root密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切换root权限"><span class="nav-number">2.</span> <span class="nav-text">切换root权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改root密码"><span class="nav-number">3.</span> <span class="nav-text">更改root密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">4.</span> <span class="nav-text">注意</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
