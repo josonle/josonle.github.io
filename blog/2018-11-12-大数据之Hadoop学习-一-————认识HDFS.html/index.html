@@ -79,20 +79,24 @@
 
 
 
-<meta name="description" content="Python四种函数参数传递方式 函数有：func(a,b=value,\*args,\*\*kargs) 参数顺序如上 *args可以传入任意个参数，这些参数都被放到了tuple元组中赋值给行参args **kargs可以传入任意个参数，但是以key-value的形式向函数传参，这些参数都被放到了dict字典中赋值给行参kargs   参数赋值顺序 由参数顺序先把参数按顺序付给对应的a， 再将b">
+<meta name="description" content="分布式文件系统 HDFS分布式文件系统（Distributed FileSystem）是指文件系统管理的物理存储资源不一定直接连接在本地节点上，而是通过计算机网络与节点相连。 Hadoop有若干文件系统，HDFS只是其中一个，但HDFS是其重要组成部分。HDFS由java的org.apache.hadoop.fs.FileSystem定义，并实现了java.io.Closeable接口，继承了or">
 <meta name="keywords" content="Hadoop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大数据之Hadoop学习&lt;一&gt;————认识HDFS">
 <meta property="og:url" content="http://yoursite.com/blog/2018-11-12-大数据之Hadoop学习-一-————认识HDFS.html/index.html">
 <meta property="og:site_name" content="Josonlee&#39;s Blog">
-<meta property="og:description" content="Python四种函数参数传递方式 函数有：func(a,b=value,\*args,\*\*kargs) 参数顺序如上 *args可以传入任意个参数，这些参数都被放到了tuple元组中赋值给行参args **kargs可以传入任意个参数，但是以key-value的形式向函数传参，这些参数都被放到了dict字典中赋值给行参kargs   参数赋值顺序 由参数顺序先把参数按顺序付给对应的a， 再将b">
+<meta property="og:description" content="分布式文件系统 HDFS分布式文件系统（Distributed FileSystem）是指文件系统管理的物理存储资源不一定直接连接在本地节点上，而是通过计算机网络与节点相连。 Hadoop有若干文件系统，HDFS只是其中一个，但HDFS是其重要组成部分。HDFS由java的org.apache.hadoop.fs.FileSystem定义，并实现了java.io.Closeable接口，继承了or">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/MarkDown_images/大数据/HDFS名词.jpg">
 <meta property="og:image" content="http://yoursite.com/MarkDown_images/大数据/SecNamenode.jpg">
-<meta property="og:updated_time" content="2018-11-14T07:29:20.760Z">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/大数据/metadata.jpg">
+<meta property="og:image" content="https://img.xiaoxiaomo.com/blog%2Fimg%2F20160412195903.png">
+<meta property="og:image" content="https://img.xiaoxiaomo.com/blog%2Fimg%2F20160412195756.png">
+<meta property="og:image" content="https://img.xiaoxiaomo.com/blog%2Fimg%2F20160412202260.png">
+<meta property="og:updated_time" content="2018-11-18T08:15:57.953Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据之Hadoop学习&lt;一&gt;————认识HDFS">
-<meta name="twitter:description" content="Python四种函数参数传递方式 函数有：func(a,b=value,\*args,\*\*kargs) 参数顺序如上 *args可以传入任意个参数，这些参数都被放到了tuple元组中赋值给行参args **kargs可以传入任意个参数，但是以key-value的形式向函数传参，这些参数都被放到了dict字典中赋值给行参kargs   参数赋值顺序 由参数顺序先把参数按顺序付给对应的a， 再将b">
+<meta name="twitter:description" content="分布式文件系统 HDFS分布式文件系统（Distributed FileSystem）是指文件系统管理的物理存储资源不一定直接连接在本地节点上，而是通过计算机网络与节点相连。 Hadoop有若干文件系统，HDFS只是其中一个，但HDFS是其重要组成部分。HDFS由java的org.apache.hadoop.fs.FileSystem定义，并实现了java.io.Closeable接口，继承了or">
 <meta name="twitter:image" content="http://yoursite.com/MarkDown_images/大数据/HDFS名词.jpg">
 
 
@@ -386,22 +390,7 @@
       
 
       
-        <h2 id="Python四种函数参数传递方式"><a href="#Python四种函数参数传递方式" class="headerlink" title="Python四种函数参数传递方式"></a>Python四种函数参数传递方式</h2><ul>
-<li>函数有：<code>func(a,b=value,\*args,\*\*kargs)</code><ul>
-<li>参数顺序如上</li>
-<li>*args可以传入任意个参数，这些参数都被放到了tuple元组中赋值给行参args</li>
-<li>**kargs可以传入任意个参数，但是以key-value的形式向函数传参，这些参数都被放到了dict字典中赋值给行参kargs</li>
-</ul>
-</li>
-<li>参数赋值顺序<ul>
-<li>由参数顺序先把参数按顺序付给对应的a，</li>
-<li>再将b=value形式的实参赋给形参b，</li>
-<li>将剩余的不是key-value形式的实参打包成tuple赋给args</li>
-<li>将多余的key=value形式实参打包成dict赋给kargs</li>
-</ul>
-</li>
-</ul>
-<h2 id="分布式文件系统-HDFS"><a href="#分布式文件系统-HDFS" class="headerlink" title="分布式文件系统 HDFS"></a>分布式文件系统 HDFS</h2><p>分布式文件系统（Distributed FileSystem）是指文件系统管理的物理存储资源不一定直接连接在本地节点上，而是通过计算机网络与节点相连。</p>
+        <h2 id="分布式文件系统-HDFS"><a href="#分布式文件系统-HDFS" class="headerlink" title="分布式文件系统 HDFS"></a>分布式文件系统 HDFS</h2><p>分布式文件系统（Distributed FileSystem）是指文件系统管理的物理存储资源不一定直接连接在本地节点上，而是通过计算机网络与节点相连。</p>
 <p>Hadoop有若干文件系统，HDFS只是其中一个，但HDFS是其重要组成部分。HDFS由java的<code>org.apache.hadoop.fs.FileSystem</code>定义，并实现了<code>java.io.Closeable</code>接口，继承了<code>org.apache.hadoop.conf</code></p>
 <p>我们可以通过命令行下 <code>hadoop dfs -ls hdfs:///</code> 访问HDFS文件系统</p>
 <h3 id="HDFS特点"><a href="#HDFS特点" class="headerlink" title="HDFS特点"></a>HDFS特点</h3><ul>
@@ -421,10 +410,11 @@
 <li>多用户在写入文件时有锁机制，只支持单个写入者</li>
 <li>不适合存大量小文件<blockquote>
 <p> 由于 Namenode 将文件系统的元数据存储在内存中，因此<br>HDFS所能存储的文件总数受限于Namenode的内存容量<br>根据经验，每个文件、目录和数据块的存储信息大约占150<br>字节，存储100万个文件大约需要300M内存</p>
+<a id="more"></a>
 </blockquote>
-</li>
+<h3 id="名称解释"><a href="#名称解释" class="headerlink" title="名称解释"></a>名称解释</h3></li>
 </ul>
-<h3 id="名称解释"><a href="#名称解释" class="headerlink" title="名称解释"></a>名称解释</h3><ol>
+<ol>
 <li>Cluster 集群</li>
 <li>Rack 机架</li>
 <li>Client 客户机</li>
@@ -457,15 +447,64 @@
 <p>块，文件系统进行数据读写的最小单位，hadoop 2.7之前的块(block)默认64M，之后是128M，可以在 <code>hdfs-site.xml</code> 文件中 <code>dfs.block.size</code> 项中配置块大小，<code>dfs.replication</code> 配置备份份数</p>
 <p>HDFS上文件会被分成若干块分开存储，使得文件可以比磁盘容量大，提供容错能力，也简化了存储子系统</p>
 <p>不同于普通文件系统（即使文件大小小于块大小，仍占一个块的大小），HDFS小于一个块大小的文件不会占用整个块的空间</p>
-<hr>
-<h3 id="HDFS容错能力"><a href="#HDFS容错能力" class="headerlink" title="HDFS容错能力"></a>HDFS容错能力</h3><h2 id="HDFS读写文件"><a href="#HDFS读写文件" class="headerlink" title="HDFS读写文件"></a>HDFS读写文件</h2><ul>
-<li>hadoop 2.7之前的块(block)默认64M，之后是128M</li>
-<li>数据块(block)是磁盘进行数据处理的最小单位，如果文件大小超过block就要分块</li>
-<li>可靠性（不出错）、可用性（出错还能提供服务）</li>
-<li>三副本放置策略</li>
+<ul>
+<li>MetaData</li>
 </ul>
-<h2 id="操作HDFS"><a href="#操作HDFS" class="headerlink" title="操作HDFS"></a>操作HDFS</h2><h3 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h3><p>HDFS的相关命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-mkdir            在HDFS创建目录    hdfs dfs -mkdir /data</span><br><span class="line">-ls               查看当前目录      hdfs dfs -ls /</span><br><span class="line">-ls -R            查看目录与子目录</span><br><span class="line">-put              上传一个文件      hdfs dfs -put data.txt /data/input</span><br><span class="line">-moveFromLocal    上传一个文件，会删除本地文件：ctrl + X</span><br><span class="line">-copyFromLocal    上传一个文件，与put一样</span><br><span class="line">-copyToLocal      下载文件  hdfs dfs -copyToLocal /data/input/data.txt </span><br><span class="line">-get              下载文件  hdfs dfs -get /data/input/data.txt </span><br><span class="line">-rm               删除文件  hdfs dfs -rm /data/input/data.txt </span><br><span class="line">-getmerge         将目录所有的文件先合并，再下载</span><br><span class="line">-cp               拷贝： hdfs dfs -cp /data/input/data.txt  /data/input/data01.txt </span><br><span class="line">-mv               移动： hdfs dfs -mv /data/input/data.txt  /data/input/data02.txt </span><br><span class="line">-count            统计目录下的文件个数</span><br><span class="line">-text、-cat       查看文件的内容  hdfs dfs -cat /data/input/data.txt </span><br><span class="line">-balancer         平衡操作</span><br></pre></td></tr></table></figure></p>
-<h3 id="java-API"><a href="#java-API" class="headerlink" title="java API"></a>java API</h3>
+<p>元数据包括<strong>文件系统目录树信息</strong>和<strong>文件和块对应关系的信息</strong></p>
+<pre><code>- 文件系统目录树信息
+    - 文件名，目录名
+    - 文件和目录的从属关系
+    - 文件和目录的大小，创建及最后访问时间
+    - 权限
+- 文件和块的对应关系
+    - 文件由哪些块组成、块ID
+    - 每个块的存放位置
+</code></pre><p>其存储是依赖本地文件：镜像文件和编辑日志文件，前者保存上面提到的两类，后者保存的是客户端请求新建、移动、写文件操作时的记录（先记录在编辑日志，成功后才更改内存中数据）<br><img src="/MarkDown_images/大数据/metadata.jpg" alt=""></p>
+<h3 id="HDFS容错能力"><a href="#HDFS容错能力" class="headerlink" title="HDFS容错能力"></a>HDFS容错能力</h3><ul>
+<li>可靠性（不出错）、可用性（出错还能提供服务）</li>
+<li><p>文件系统的容错性 <a href="http://f.dataguru.cn/hadoop-25108-1-1.html" target="_blank" rel="noopener">引用：HDFS的容错能力</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1)心跳机制,在Namenode和Datanode之间维持心跳检测，当由于网络故障之类的原因，导致Datanode发出的心跳包没有被Namenode正常收到的时候，Namenode就不会将任何新的IO操作派发给那个Datanode，该Datanode上的数据被认为是无效的，因此Namenode会检测是否有文件block的副本数目小于设置值，如果小于就自动开始复制新的副本并分发到其他Datanode节点。</span><br><span class="line"></span><br><span class="line">2）检测文件block的完整性，HDFS会记录每个新创建的文件的所有block的校验和。当以后检索这些文件的时候，从某个节点获取block，会首先确认校验和是否一致，如果不一致，会从其他Datanode节点上获取该block的副本。</span><br><span class="line"></span><br><span class="line">3）集群的负载均衡，由于节点的失效或者增加，可能导致数据分布的不均匀，当某个Datanode节点的空闲空间大于一个临界值的时候，HDFS会自动从其他Datanode迁移数据过来。</span><br><span class="line"></span><br><span class="line">4）Namenode上的fsimage和edits日志文件是HDFS的核心数据结构，如果这些文件损坏了，HDFS将失效。因而，Namenode可以配置成支持维护多个FsImage和Editlog的拷贝。任何对FsImage或者Editlog的修改，都将同步到它们的副本上。它总是选取最近的一致的FsImage和Editlog使用。Namenode在HDFS是单点存在，如果Namenode所在的机器错误，手工的干预是必须的。</span><br><span class="line"></span><br><span class="line">5)文件的删除，删除并不是马上从Namenode移出namespace，而是放在/trash目录随时可恢复，直到超过设置时间才被正式移除。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hadoop本身的容错性</p>
+<ul>
+<li>支持升级、回滚，升级出现不兼容等可以回滚</li>
+</ul>
+</li>
+<li>可参考：<a href="https://www.cnblogs.com/zhangyinhua/p/7681146.html" target="_blank" rel="noopener">Hadoop（七）HDFS容错机制详解</a><h3 id="HDFS-副本存储机制"><a href="#HDFS-副本存储机制" class="headerlink" title="HDFS 副本存储机制"></a>HDFS 副本存储机制</h3>hdfs提供的是<strong>三副本放置策略</strong>，每个块在HDFS集群中会存储多份，默认3份。其目的是平衡二者：提高数据存储的可靠性、可用性（多备份一些），减少数据写入的开销（少备份一些）</li>
+</ul>
+<p>三副本放置策略：</p>
+<ul>
+<li>写请求方所在机器是其中一个Datanode，则第一份副本直接存放在本地，否则随机在集群中选择一个Datanode</li>
+<li>第二个副本存放于不同第一个副本的所在的机架</li>
+<li>第三个副本存放于第二个副本所在的机架,但是属于不同的节点</li>
+</ul>
+<p>超过三份副本可随机放置，但满足：一个节点最多放一个副本，副本数少于机架数的两倍，则一个机架不能放超过两份副本</p>
+<h2 id="HDFS读写文件流程"><a href="#HDFS读写文件流程" class="headerlink" title="HDFS读写文件流程"></a>HDFS读写文件流程</h2><p>图片引自：<a href="https://blog.xiaoxiaomo.com/2016/06/26/Hadoop-HDFS之读写流程/" target="_blank" rel="noopener">Hadoop–HDFS之读写流程</a></p>
+<h3 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h3><p><img src="https://img.xiaoxiaomo.com/blog%2Fimg%2F20160412195903.png" alt=""><br><img src="https://img.xiaoxiaomo.com/blog%2Fimg%2F20160412195756.png" alt=""></p>
+<h3 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h3><p><img src="https://img.xiaoxiaomo.com/blog%2Fimg%2F20160412202260.png" alt=""></p>
+<h2 id="操作HDFS"><a href="#操作HDFS" class="headerlink" title="操作HDFS"></a>操作HDFS</h2><h3 id="命令行-文档：命令手册"><a href="#命令行-文档：命令手册" class="headerlink" title="命令行 文档：命令手册"></a>命令行 <a href="https://hadoop.apache.org/docs/r1.0.4/cn/commands_manual.html" target="_blank" rel="noopener">文档：命令手册</a></h3><p>HDFS的基本命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-mkdir            在HDFS创建目录    hdfs dfs -mkdir /data</span><br><span class="line">-ls               查看根目录      hdfs dfs -ls /</span><br><span class="line">-ls -R            查看目录与子目录</span><br><span class="line">-put              上传一个文件      hdfs dfs -put data.txt /data/input</span><br><span class="line">-moveFromLocal    上传一个文件，会删除本地文件：ctrl + X</span><br><span class="line">-copyFromLocal    上传一个文件，与put一样</span><br><span class="line">-copyToLocal      下载文件  hdfs dfs -copyToLocal /data/input/data.txt </span><br><span class="line">-get              下载文件  hdfs dfs -get /data/input/data.txt </span><br><span class="line">-rm               删除文件  hdfs dfs -rm /data/input/data.txt </span><br><span class="line">-getmerge         将目录所有的文件先合并，再下载</span><br><span class="line">-cp               拷贝： hdfs dfs -cp /data/input/data.txt  /data/input/data01.txt </span><br><span class="line">-mv               移动： hdfs dfs -mv /data/input/data.txt  /data/input/data02.txt </span><br><span class="line">-count            统计目录下的文件个数</span><br><span class="line">-text、-cat       查看文件的内容  hdfs dfs -cat /data/input/data.txt </span><br><span class="line">-balancer         平衡操作</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>启动、关闭hdfs服务：start-dfs.sh/stop-dfs.sh</li>
+<li>jps 查看服务进程</li>
+</ul>
+<p>HDFS的管理命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hdfs version        查看版本</span><br><span class="line">hdfs namenode [ -format ]       格式化</span><br><span class="line">hdfs fsck &lt;path&gt; [ -files [ -blocks [ -locations | -racks ] ] ]     查看HDFS文件对应的文件块信息(Block)和位置信息</span><br><span class="line">hdfs dfsadmin -report           文件系统使用报告</span><br><span class="line">hdfs dfsadmin -safemode [ get | enter | leave ]         进入、退出安全模式</span><br><span class="line">hdfs -help      帮助</span><br></pre></td></tr></table></figure></p>
+<h3 id="java-API"><a href="#java-API" class="headerlink" title="java API"></a>java API</h3><ul>
+<li>Configuration：HDFS环境配置类</li>
+<li>FileSystem：分布式文件系统类</li>
+<li>Path：HDFS文件路径类</li>
+<li>FSDataInputStream / FSDataOutputStream：文件系统输入输出流类</li>
+<li>URI：文件资源定位类</li>
+</ul>
+<blockquote>
+<p>顺便提一下HDFS的URI格式是：hdfs://namenode主机名[或namenode的IP]:端口/文件路径</p>
+</blockquote>
+<p>参考资料：</p>
+<ul>
+<li><a href="https://www.cnblogs.com/zhangyinhua/p/7681146.html" target="_blank" rel="noopener">Hadoop（七）HDFS容错机制详解</a></li>
+<li><a href="https://blog.xiaoxiaomo.com/2016/06/26/Hadoop-HDFS之读写流程/" target="_blank" rel="noopener">Hadoop–HDFS之读写流程</a></li>
+<li><a href="https://hadoop.apache.org/docs/r1.0.4/cn/quickstart.html" target="_blank" rel="noopener">hadoop.apache.org 中文文档</a></li>
+</ul>
+
       
     </div>
     
@@ -619,7 +658,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -696,7 +735,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Python四种函数参数传递方式"><span class="nav-number">1.</span> <span class="nav-text">Python四种函数参数传递方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式文件系统-HDFS"><span class="nav-number">2.</span> <span class="nav-text">分布式文件系统 HDFS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HDFS特点"><span class="nav-number">2.1.</span> <span class="nav-text">HDFS特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#名称解释"><span class="nav-number">2.2.</span> <span class="nav-text">名称解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HDFS容错能力"><span class="nav-number">2.3.</span> <span class="nav-text">HDFS容错能力</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS读写文件"><span class="nav-number">3.</span> <span class="nav-text">HDFS读写文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作HDFS"><span class="nav-number">4.</span> <span class="nav-text">操作HDFS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行"><span class="nav-number">4.1.</span> <span class="nav-text">命令行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java-API"><span class="nav-number">4.2.</span> <span class="nav-text">java API</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式文件系统-HDFS"><span class="nav-number">1.</span> <span class="nav-text">分布式文件系统 HDFS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HDFS特点"><span class="nav-number">1.1.</span> <span class="nav-text">HDFS特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#名称解释"><span class="nav-number">1.2.</span> <span class="nav-text">名称解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HDFS容错能力"><span class="nav-number">1.3.</span> <span class="nav-text">HDFS容错能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HDFS-副本存储机制"><span class="nav-number">1.4.</span> <span class="nav-text">HDFS 副本存储机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS读写文件流程"><span class="nav-number">2.</span> <span class="nav-text">HDFS读写文件流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#写入文件"><span class="nav-number">2.1.</span> <span class="nav-text">写入文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取文件"><span class="nav-number">2.2.</span> <span class="nav-text">读取文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作HDFS"><span class="nav-number">3.</span> <span class="nav-text">操作HDFS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行-文档：命令手册"><span class="nav-number">3.1.</span> <span class="nav-text">命令行 文档：命令手册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java-API"><span class="nav-number">3.2.</span> <span class="nav-text">java API</span></a></li></ol></li></ol></div>
             
 
           </div>
