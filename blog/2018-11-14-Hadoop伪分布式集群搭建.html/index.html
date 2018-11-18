@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hadoop," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言准备Win10上通过VMware12 + Centos7准备好了基本环境，配置虚拟机的子网IP地址（我这里是192.168.17.0），如图通过管理员可配置子网IP，掩码，网关（我这里是192.168.17.2） 伪分布式特点具备Hadoop的所有功能，在单机上模拟一个分布式的环境，需要配置hdfs和yarn框架  HDFS：主节点：master，从节点：slave 【伪分布式这里也是mast">
+<meta name="keywords" content="Hadoop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop伪分布式集群搭建">
+<meta property="og:url" content="http://yoursite.com/blog/2018-11-14-Hadoop伪分布式集群搭建.html/index.html">
+<meta property="og:site_name" content="Josonlee&#39;s Blog">
+<meta property="og:description" content="前言准备Win10上通过VMware12 + Centos7准备好了基本环境，配置虚拟机的子网IP地址（我这里是192.168.17.0），如图通过管理员可配置子网IP，掩码，网关（我这里是192.168.17.2） 伪分布式特点具备Hadoop的所有功能，在单机上模拟一个分布式的环境，需要配置hdfs和yarn框架  HDFS：主节点：master，从节点：slave 【伪分布式这里也是mast">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/大数据/子网IP配置.jpg">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/大数据/java配置.jpg">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/大数据/start_dfs.jpg">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/大数据/jps.jpg">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/大数据/web_hdfs.jpg">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/大数据/start_yarn.jpg">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/大数据/web_yarn.jpg">
+<meta property="og:updated_time" content="2018-11-18T06:37:08.895Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hadoop伪分布式集群搭建">
+<meta name="twitter:description" content="前言准备Win10上通过VMware12 + Centos7准备好了基本环境，配置虚拟机的子网IP地址（我这里是192.168.17.0），如图通过管理员可配置子网IP，掩码，网关（我这里是192.168.17.2） 伪分布式特点具备Hadoop的所有功能，在单机上模拟一个分布式的环境，需要配置hdfs和yarn框架  HDFS：主节点：master，从节点：slave 【伪分布式这里也是mast">
+<meta name="twitter:image" content="http://yoursite.com/MarkDown_images/大数据/子网IP配置.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/blog/2018-11-14-Hadoop伪分布式集群搭建.html/"/>
+
+
+
+
+
+  <title>Hadoop伪分布式集群搭建 | Josonlee's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Josonlee's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一点一滴 始于足下</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            给我留言
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-11-14-Hadoop伪分布式集群搭建.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hadoop伪分布式集群搭建</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-14T15:17:20+08:00">
+                2018-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+             <span class="post-meta-divider">|</span>   <span id="busuanzi_value_page_pv"></span>次阅读 
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言准备"><a href="#前言准备" class="headerlink" title="前言准备"></a>前言准备</h2><p>Win10上通过VMware12 + Centos7准备好了基本环境，配置虚拟机的子网IP地址（我这里是192.168.17.0），如图通过管理员可配置子网IP，掩码，网关（我这里是192.168.17.2）<br><img src="/MarkDown_images/大数据/子网IP配置.jpg" alt=""></p>
+<h2 id="伪分布式特点"><a href="#伪分布式特点" class="headerlink" title="伪分布式特点"></a>伪分布式特点</h2><p>具备Hadoop的所有功能，在单机上模拟一个分布式的环境，需要配置hdfs和yarn框架</p>
+<ul>
+<li>HDFS：主节点：master，从节点：slave 【伪分布式这里也是master】</li>
+<li><p>Yarn：容器，运行MapReduce程序</p>
+<ul>
+<li>主节点：ResourceManager</li>
+<li>从节点：NodeManager<a id="more"></a>
+<h2 id="JDK-下载和环境配置"><a href="#JDK-下载和环境配置" class="headerlink" title="JDK 下载和环境配置"></a>JDK 下载和环境配置</h2></li>
+</ul>
+</li>
+<li><p>下载安装</p>
+</li>
+</ul>
+<p>这里下载Linux版本：<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a> ，我这里使用的是 jdk-8u131-linux-x64 版本</p>
+<p>首先要把下载的文件上传到centos系统下的随便那个目录下（最好root下），把文件解压缩到<code>/root</code> 目录下</p>
+<p><strong>以下操作都是在root管理员权限下操作</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /root</span><br><span class="line">rpm -ivh [你下载的文件名]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>环境配置</li>
+</ul>
+<p>编辑环境变量，在<code>/etc/profile</code>文件中添加如下变量<br><img src="/MarkDown_images/大数据/java配置.jpg" alt=""></p>
+<p>注意，我这里jdk1.8.0_131换成你下载的jdk版本号即可</p>
+<ul>
+<li>测试</li>
+</ul>
+<p>命令行下输入 <code>java -version</code>，能正确查看到java的版本就表示上面步骤配置成功</p>
+<h2 id="配置虚拟机网络环境"><a href="#配置虚拟机网络环境" class="headerlink" title="配置虚拟机网络环境"></a>配置虚拟机网络环境</h2><p>首先要知道完全分布式和伪分布式的原理是一样的，都得有master和slave节点，节点之间通信时不可能有DHCP临时随机配置IP，所以要配置虚拟机的固定IP</p>
+<ul>
+<li>设置静态IP</li>
+</ul>
+<p>同样是在<code>/etc</code>下（这是配置文件所在地）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls sysconfig/network-scripts/ifcfg-ens*</span><br><span class="line"># 输出结果就是要配置的文件</span><br><span class="line"></span><br><span class="line">vi sysconfig/network-scripts/ifcfg-en*</span><br><span class="line"># 进入编辑</span><br></pre></td></tr></table></figure></p>
+<p>改动以下设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BOOTPROTO=static //改成static</span><br><span class="line">ONBOOT=yes //改成yes</span><br><span class="line">IPADDR=192.168.17.10 //随便设，不过要在子网192.168.17.0下</span><br><span class="line">NETMASK=255.255.255.0 //掩码</span><br><span class="line">GATEWAY=192.168.17.2 //第一步配置时设好的</span><br><span class="line">DNS1=192.168.17.2 //随便写</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>设置主机名</li>
+</ul>
+<p>命令行下输入<code>hostname</code>可查看主机名，一般是localhost，但为了方便重新设置主机名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/hostname</span><br></pre></td></tr></table></figure></p>
+<p>删掉原先的，配置主机名（如master，namenode等）</p>
+<ul>
+<li>绑定IP地址和主机名</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/hosts</span><br><span class="line"></span><br><span class="line"># 追加如下内容</span><br><span class="line">127.168.17.10 master //就是你配置的固定IP和主机名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>关闭防火墙</li>
+</ul>
+<p>我这里是centos，防火墙是firewall，而不是iptables【其他系统有其他关闭方法】。防火墙务必要关闭，否则完全分布式搭建的话无法和其他主机相连</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld    //停止firewall服务</span><br><span class="line">systemctl disable firewalld   //禁止firewall开机启动</span><br></pre></td></tr></table></figure>
+<p>然后可以通过<code>systemctl status firewalld</code>查看防火墙状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Active: inactive (dead) //这就是关闭了</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>重启网络服务</li>
+</ul>
+<p><code>systemctl restart network</code>，然后你可以ping以下主机名<code>ping master</code>，看可以ping通吗，可以的话就OK</p>
+<h2 id="配置Hadoop的环境"><a href="#配置Hadoop的环境" class="headerlink" title="配置Hadoop的环境"></a>配置Hadoop的环境</h2><h3 id="下载Hadoop"><a href="#下载Hadoop" class="headerlink" title="下载Hadoop"></a>下载Hadoop</h3><p>(1) apache hadoop：<a href="http://www-us.apache.org/dist/hadoop/common/" target="_blank" rel="noopener">http://www-us.apache.org/dist/hadoop/common/</a>  【这个是开源的】</p>
+<p>(2) cloudera hadoop（CDH）：<a href="http://archive-primary.cloudera.com/cdh5/cdh/5/" target="_blank" rel="noopener">http://archive-primary.cloudera.com/cdh5/cdh/5/</a> 【推荐使用】</p>
+<p>CDH是hadoop的一个版本，我们老师推荐的，原因没记住是啥</p>
+<h3 id="上传并解压安装"><a href="#上传并解压安装" class="headerlink" title="上传并解压安装"></a>上传并解压安装</h3><p>我这里是下的<code>hadoop-2.6.0-cdh5.12.1</code>，一样是上传放在了<code>/root</code>目录下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf hadoop-2.6.0-cdh5.12.1.tar.gz -C /home/hadoop //把hadoop-2.6.0-cdh5.12.1解压到/home/hadoop目录下</span><br><span class="line"></span><br><span class="line">cd /home/hadoop/hadoop-2.6.0-cdh5.12.1 //切换到该目录下</span><br></pre></td></tr></table></figure></p>
+<p>hdfs在运行时需要name，data，logs，tmp文件夹用来存放原数据，实际数据，日志，临时文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir hdfs hdfs/name hdfs/data logs tmp         //在hadoop目录中创建</span><br></pre></td></tr></table></figure></p>
+<h3 id="配置Hadoop环境变量"><a href="#配置Hadoop环境变量" class="headerlink" title="配置Hadoop环境变量"></a>配置Hadoop环境变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi /home/hadoop/.bash_profile </span><br><span class="line"># 修改添加下列内容</span><br><span class="line"></span><br><span class="line">export HADOOP_HOME=/home/hadoop/hadoop-2.6.0-cdh5.12.1    //hadoop主目录</span><br><span class="line">export HADOOP_LOG_DIR=$HADOOP_HOME/logs         //hadoop日志目录</span><br><span class="line">export YARN_LOG_DIR=$HADOOP_LOG_DIR             //YARN日志目录</span><br><span class="line">export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH    //添加hadoop命令路径</span><br></pre></td></tr></table></figure>
+<p>中文去掉</p>
+<h3 id="修改hadoop配置文件"><a href="#修改hadoop配置文件" class="headerlink" title="修改hadoop配置文件"></a>修改hadoop配置文件</h3><p>我在文末会放一个链接，你可以直接下载，修改其中的主机名上传到<code>/home/hadoop/hadoop-2.6.0-cdh5.12.1/etc/hadoop</code>目录下，覆盖原文件即可</p>
+<p><code>cd /home/hadoop/hadoop-2.6.0-cdh5.12.1/etc/hadoop</code></p>
+<p><strong>中文统统都去掉</strong></p>
+<ul>
+<li>设置java所在环境变量</li>
+</ul>
+<p>在hadoop-env.sh、mapred-env.sh、yarn-env.sh中分别设置JAVA_HOME</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_131 //之前设置的</span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置slaves文件 设置slave节点名<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi slaves</span><br><span class="line">#添加slave节点名</span><br><span class="line"></span><br><span class="line">master</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>因为是伪分布式，一台虚拟机充当master也充当slave</p>
+<ul>
+<li>修改log4j.properties文件</li>
+</ul>
+<p>追加一行内容：<code>log4j.logger.org.apache.hadoop.util.NativeCodeLoader=ERROR</code>，避免启动时报警</p>
+<ul>
+<li><p>配置core-site.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://master:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span> //指定对外访问接口</span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>/home/hadoop/hadoop-2.6.0-cdh5.12.1/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span> //指定临时文件放哪</span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置hdfs-site.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>/home/hadoop/hadoop-2.6.0-cdh5.12.1/hdfs/name<span class="tag">&lt;/<span class="name">value</span>&gt;</span> //元数据放哪</span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>/home/hadoop/hadoop-2.6.0-cdh5.12.1/hdfs/data<span class="tag">&lt;/<span class="name">value</span>&gt;</span> //实际数据放哪</span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span>          // 这个1是指定数据备份几份 【默认3份，伪分布式1是因为只有一个slave】</span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.permissions<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span>    // 跳过身份验证</span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>以上是hdfs的配置，下面是yarn的配置</p>
+<ul>
+<li>配置mapred-site.xml文件</li>
+</ul>
+<p><code>cp mapred-site.xml.template mapred-site.xml</code></p>
+<p>该文件默认不存在，需要用模板文件来创建</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span> //配置MapReduce运行时用的框架为yarn</span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>配置yarn-site.xml文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span> //配置ResourceManager的地址</span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>master:8031<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span> //配置NodeManager执行任务的方式</span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置hadoop目录的owner</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R hadoop:hadoop /home/hadoop/hadoop-2.6.0-cdh5.12.1 //修改hadoop目录的owner</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>以上就是Hadoop基本配置</strong></p>
+<h2 id="配置hadoop用户免密登录"><a href="#配置hadoop用户免密登录" class="headerlink" title="配置hadoop用户免密登录"></a>配置hadoop用户免密登录</h2><p>从上文可以看出，我的centos的普通用户是hadoop(/home/hadoop)，设置hadoop用户免密登录可以便于集群间后台数据传输时省去密码的输入过程</p>
+<p>这里使用ssh免密登录，rsa加密算法</p>
+<ul>
+<li><strong>切换到hadoop用户</strong></li>
+<li>命令行执行 <code>ssh -keygen -t rsa</code><ul>
+<li>遇到提示时，回车即可；三次回车</li>
+<li>默认会在<code>/home/hadoop/.ssh/</code>下生成私钥（id_rsa）、公钥（id_rsa.pub）</li>
+</ul>
+</li>
+</ul>
+<p>进入<code>.ssh</code>目录，把公钥汇总到授权文件（authorized_keys），并授权<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys       //在master执行，合并授权文件</span><br><span class="line">chmod 600 authorized_keys         //设置授权文件的访问权限为读写</span><br></pre></td></tr></table></figure></p>
+<p>如果是完全分布式搭建，这里略有不同。要在每台主机上都生成公钥、私钥，并把公钥汇总到master节点的授权文件中，然后master再把授权文件分发给每个节点</p>
+<ul>
+<li>测试ssh免密登录</li>
+</ul>
+<p>如果配置成功，输入<code>ssh master[主机名]</code>即可登录，登录会显示<code>Last login:XXX...</code>。第一次登录会有提示，输入yes就OK</p>
+<p><strong>如果以上配置都成功了，那恭喜你，配置成功了</strong></p>
+<h2 id="启动Hadoop"><a href="#启动Hadoop" class="headerlink" title="启动Hadoop"></a>启动Hadoop</h2><h3 id="格式化hdfs文件系统"><a href="#格式化hdfs文件系统" class="headerlink" title="格式化hdfs文件系统"></a>格式化hdfs文件系统</h3><p>第一次启动时干的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs namenode -format</span><br></pre></td></tr></table></figure></p>
+<h3 id="启动hdfs"><a href="#启动hdfs" class="headerlink" title="启动hdfs"></a>启动hdfs</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-dfs.sh</span><br></pre></td></tr></table></figure>
+<p>结果如下图<br><img src="/MarkDown_images/大数据/start_dfs.jpg" alt=""></p>
+<p>你可以使用jps命令查看当前运行的进程<br><img src="/MarkDown_images/大数据/jps.jpg" alt=""></p>
+<p>你也可以本地通过浏览器查看，打开浏览器输入 <a href="http://192.168.17.10:50070" target="_blank" rel="noopener">http://192.168.17.10:50070</a> 【这个IP是前面配的固定IP地址】<br><img src="/MarkDown_images/大数据/web_hdfs.jpg" alt=""></p>
+<h3 id="启动yarn"><a href="#启动yarn" class="headerlink" title="启动yarn"></a>启动yarn</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-yarn.sh</span><br></pre></td></tr></table></figure>
+<p>master启动ResourceManager进程，slave启动NodeManager进程<br><img src="/MarkDown_images/大数据/start_yarn.jpg" alt=""></p>
+<p>你也可以本地通过浏览器查看，打开浏览器输入 <a href="http://192.168.17.10:8088" target="_blank" rel="noopener">http://192.168.17.10:8088</a><br><img src="/MarkDown_images/大数据/web_yarn.jpg" alt=""></p>
+<h3 id="启动JobHistory-Server（MR）"><a href="#启动JobHistory-Server（MR）" class="headerlink" title="启动JobHistory Server（MR）"></a>启动JobHistory Server（MR）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mr-jobhistory-daemon.sh start historyserver</span><br></pre></td></tr></table></figure>
+<p>记录分布式环境下提交的作业记录，namenode启动JobHistoryServer进程</p>
+<p>你也可以本地通过浏览器查看，打开浏览器输入 <a href="http://192.168.17.10:19888" target="_blank" rel="noopener">http://192.168.17.10:19888</a>  </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话，不妨加个鸡腿，O(∩_∩)O哈哈~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weChatPay.jpg" alt="Joson lee 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliPay.jpg" alt="Joson lee 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hadoop/" rel="tag"># Hadoop</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018-11-13-SQL中NOT-EXISTS-EXCEPT-的妙用.html/" rel="next" title="SQL中NOT EXISTS...[EXCEPT]的妙用">
+                <i class="fa fa-chevron-left"></i> SQL中NOT EXISTS...[EXCEPT]的妙用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="Joson lee" />
+            
+              <p class="site-author-name" itemprop="name">Joson lee</p>
+              <p class="site-description motion-element" itemprop="description">Python数据分析、机器学习、Django、java学习</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/josonle" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://blog.csdn.net/lzw2016" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:3092312003@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言准备"><span class="nav-number">1.</span> <span class="nav-text">前言准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪分布式特点"><span class="nav-number">2.</span> <span class="nav-text">伪分布式特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK-下载和环境配置"><span class="nav-number">3.</span> <span class="nav-text">JDK 下载和环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置虚拟机网络环境"><span class="nav-number">4.</span> <span class="nav-text">配置虚拟机网络环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Hadoop的环境"><span class="nav-number">5.</span> <span class="nav-text">配置Hadoop的环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载Hadoop"><span class="nav-number">5.1.</span> <span class="nav-text">下载Hadoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上传并解压安装"><span class="nav-number">5.2.</span> <span class="nav-text">上传并解压安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置Hadoop环境变量"><span class="nav-number">5.3.</span> <span class="nav-text">配置Hadoop环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改hadoop配置文件"><span class="nav-number">5.4.</span> <span class="nav-text">修改hadoop配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置hadoop用户免密登录"><span class="nav-number">6.</span> <span class="nav-text">配置hadoop用户免密登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动Hadoop"><span class="nav-number">7.</span> <span class="nav-text">启动Hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#格式化hdfs文件系统"><span class="nav-number">7.1.</span> <span class="nav-text">格式化hdfs文件系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动hdfs"><span class="nav-number">7.2.</span> <span class="nav-text">启动hdfs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动yarn"><span class="nav-number">7.3.</span> <span class="nav-text">启动yarn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动JobHistory-Server（MR）"><span class="nav-number">7.4.</span> <span class="nav-text">启动JobHistory Server（MR）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joson lee</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'a94818509a8f36c0a222',
+          clientSecret: '4d6bcd339e8df5f3e1f9e653afa2a5b9a1023f0f',
+          repo: 'josonle.github.io',
+          owner: 'josonle',
+          admin: ['josonle'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+    </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
