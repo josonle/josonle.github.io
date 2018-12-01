@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spark," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="变量定义 输入输出条件、循环控制结构 异常处理数据结构容器 collectioncollection容器，包含List、Vector、Set、Map 在scala.collection.mutable 中是可变容器，scala.collection.immutable 不可变容器  List列表  不同于其他语言，scala中List是不可变的，而且是抽象的，不能通过new来创建;直接通过List">
+<meta name="keywords" content="Spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark先修课---Scala语言学习">
+<meta property="og:url" content="http://yoursite.com/blog/2018-11-21-Spark先修课-Scala语言学习.html/index.html">
+<meta property="og:site_name" content="Josonlee&#39;s Blog">
+<meta property="og:description" content="变量定义 输入输出条件、循环控制结构 异常处理数据结构容器 collectioncollection容器，包含List、Vector、Set、Map 在scala.collection.mutable 中是可变容器，scala.collection.immutable 不可变容器  List列表  不同于其他语言，scala中List是不可变的，而且是抽象的，不能通过new来创建;直接通过List">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-30T03:47:25.976Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spark先修课---Scala语言学习">
+<meta name="twitter:description" content="变量定义 输入输出条件、循环控制结构 异常处理数据结构容器 collectioncollection容器，包含List、Vector、Set、Map 在scala.collection.mutable 中是可变容器，scala.collection.immutable 不可变容器  List列表  不同于其他语言，scala中List是不可变的，而且是抽象的，不能通过new来创建;直接通过List">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/blog/2018-11-21-Spark先修课-Scala语言学习.html/"/>
+
+
+
+
+
+  <title>Spark先修课---Scala语言学习 | Josonlee's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Josonlee's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一点一滴 始于足下</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            给我留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-book">
+          <a href="/book/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-11-21-Spark先修课-Scala语言学习.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spark先修课---Scala语言学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T12:20:26+08:00">
+                2018-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+             <span class="post-meta-divider">|</span>   <span id="busuanzi_value_page_pv"></span>次阅读 
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="变量定义-输入输出"><a href="#变量定义-输入输出" class="headerlink" title="变量定义 输入输出"></a>变量定义 输入输出</h2><h2 id="条件、循环控制结构-异常处理"><a href="#条件、循环控制结构-异常处理" class="headerlink" title="条件、循环控制结构 异常处理"></a>条件、循环控制结构 异常处理</h2><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="容器-collection"><a href="#容器-collection" class="headerlink" title="容器 collection"></a>容器 collection</h3><p>collection容器，包含List、Vector、Set、Map</p>
+<p>在scala.collection.mutable 中是可变容器，scala.collection.immutable 不可变容器</p>
+<ul>
+<li>List列表</li>
+</ul>
+<p>不同于其他语言，scala中List是不可变的，而且是抽象的，不能通过new来创建;直接通过List(xxx)，默认会调用apply工厂方法创建列表。可指定类型，也可以不指定，同上文所说scala会自动推断类型<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> l = <span class="keyword">new</span> <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">&lt;console&gt;:<span class="number">11</span>: error: <span class="class"><span class="keyword">class</span> <span class="title">List</span> <span class="title">is</span> <span class="title">abstract</span></span>; cannot be instantiated</span><br><span class="line">       <span class="keyword">val</span> l = <span class="keyword">new</span> <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> l = <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">l: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>像List、Set、Map无需导入scala.collection.immutable.XXX，因为scala默认导入了Predef对象，该对象为许多数据类型提供了别名定义，包含了List、不可变Set、不可变Map</p>
+</blockquote>
+<ul>
+<li>Vector 不可变向量</li>
+</ul>
+<p>List、Vector对应的可变版本是ListBuffer、ArrayBuffer</p>
+<ul>
+<li>Range 不可变数字等差数列</li>
+</ul>
+<p>创建如下，必须指定第三个步长参数。<code>Range(1,5,1)</code>等同于<code>1 until 5</code>，都不包含5；<code>1 to 5</code>包含5。同样是通过索引访问，如r(1)<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> r =<span class="keyword">new</span> <span class="type">Range</span>(<span class="number">1</span>,<span class="number">5</span>,<span class="number">2</span>)</span><br><span class="line">r: scala.collection.immutable.<span class="type">Range</span> = <span class="type">Range</span> <span class="number">1</span> until <span class="number">5</span> by <span class="number">2</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="number">1</span> to <span class="number">5</span></span><br><span class="line">res24: scala.collection.immutable.<span class="type">Range</span>.<span class="type">Inclusive</span> = <span class="type">Range</span> <span class="number">1</span> to <span class="number">5</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="number">1</span> until <span class="number">5</span> <span class="comment">//by 可以指定步长</span></span><br><span class="line">res25: scala.collection.immutable.<span class="type">Range</span> = <span class="type">Range</span> <span class="number">1</span> until <span class="number">5</span></span><br><span class="line"></span><br><span class="line">scala&gt; r(<span class="number">1</span>)</span><br><span class="line">res28: <span class="type">Int</span> = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">scala&gt; ('a' to 'e' by <span class="number">2</span>)(<span class="number">1</span>)</span><br><span class="line">res33: <span class="type">Char</span> = c</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Set 不重复元素集合</li>
+</ul>
+<p>可变和不可变集合。默认不导入scala.collection.mutable.Set时，是不可变的。<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">var</span> s = <span class="type">Set</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)   <span class="comment">// var定义set指向的对象可变</span></span><br><span class="line">s: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; s += <span class="number">4</span>   <span class="comment">//s指向了新的Set对象</span></span><br><span class="line">scala&gt; s</span><br><span class="line">res37: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> set = <span class="type">Set</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) <span class="comment">// val定义set指向的对象不变</span></span><br><span class="line">set: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; set + <span class="number">4</span> <span class="comment">// 这是新生成了个set</span></span><br><span class="line">res19: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; set <span class="comment">// set并未改变</span></span><br><span class="line">res20: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; set += <span class="number">4</span> <span class="comment">//报错，immutable.Set不可改变</span></span><br><span class="line">&lt;console&gt;:<span class="number">15</span>: error: value += is not a member of scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>]</span><br><span class="line">  <span class="type">Expression</span> does not convert to assignment because receiver is not assignable.</span><br><span class="line">       set += <span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>这里有一个是，Set和Map不能通过new来初始化，同上面List。但是可以如<code>new HashSet[T](xxx)</code>来创建，创建的依旧是Set、Map<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scala.collection.mutable.<span class="type">Set</span></span><br><span class="line"><span class="keyword">val</span> set =  <span class="type">Set</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">println(set)</span><br><span class="line">set += <span class="number">4</span></span><br><span class="line">println(set)</span><br><span class="line">set.add(<span class="number">5</span>) <span class="comment">// set += 5</span></span><br><span class="line">println(set)</span><br><span class="line">set ++= <span class="type">Set</span>(<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">println(<span class="string">"Set元素不重复"</span>,set)</span><br><span class="line">set.remove(<span class="number">3</span>) <span class="comment">//set -= 3</span></span><br><span class="line">println(set)</span><br></pre></td></tr></table></figure></p>
+<p>或许你会觉得val set，set不是指向的对象不可变吗？但set的内容为什么改变了？很简单，set是变量名，指针指向一个固定的Set对象，但是这个Set对象本身可以变。就算Set本身变了，但指针还是指向该Set对象的，没有毛病</p>
+<p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Set(1, 2, 3)</span><br><span class="line">Set(1, 2, 3, 4)</span><br><span class="line">Set(1, 5, 2, 3, 4)</span><br><span class="line">(Set元素不重复,Set(1, 5, 2, 3, 4))</span><br><span class="line">Set(1, 5, 2, 4)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Map 键值对容器</li>
+</ul>
+<p>键唯一，值不唯一。也分为可变和不可变两类，同Set<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scala.collection.mutable.<span class="type">Map</span></span><br><span class="line"><span class="keyword">val</span> map = <span class="type">Map</span>(<span class="string">"H"</span>-&gt;<span class="string">"Hadoop"</span>,<span class="string">"S"</span>-&gt;(<span class="string">"Spark"</span>,<span class="string">"scala"</span>))</span><br><span class="line">println(map)</span><br><span class="line">map += (<span class="string">"D"</span>-&gt;<span class="string">"DUT"</span>) <span class="comment">//添加key-value</span></span><br><span class="line">println(map)</span><br><span class="line">map.put(<span class="string">"key"</span>,<span class="string">"value"</span>) <span class="comment">//添加key-value</span></span><br><span class="line">map.remove(<span class="string">"D"</span>) <span class="comment">// map -= "D"，移除key-value</span></span><br><span class="line">println(map)</span><br><span class="line">println(<span class="string">"包含某个键，map.contains(\"Key\")"</span>,map.contains(<span class="string">"key"</span>)) <span class="comment">//包含某个键</span></span><br><span class="line">println(<span class="string">"获取键A对应的值，map.get(\"key\")="</span>+map.get(<span class="string">"key"</span>))</span><br><span class="line">println(<span class="string">"所有键，map.keys"</span>,map.keys)</span><br><span class="line">println(<span class="string">"所有值，map.values"</span>,map.values)</span><br><span class="line">println(<span class="string">"合并map，map++Map(\"D\"-&gt;\"DUT\")"</span>,map++<span class="type">Map</span>(<span class="string">"D"</span>-&gt;<span class="string">"DUT"</span>))</span><br></pre></td></tr></table></figure></p>
+<p>结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Map(S -&gt; (Spark,scala), H -&gt; Hadoop)</span><br><span class="line">Map(S -&gt; (Spark,scala), D -&gt; DUT, H -&gt; Hadoop)</span><br><span class="line">Map(S -&gt; (Spark,scala), key -&gt; value, H -&gt; Hadoop)</span><br><span class="line">(包含某个键，map.contains(&quot;Key&quot;),true)</span><br><span class="line">获取键A对应的值，map.get(&quot;key&quot;)=Some(value)</span><br><span class="line">(所有键，map.keys,Set(S, key, H))</span><br><span class="line">(所有值，map.values,HashMap((Spark,scala), value, Hadoop))</span><br><span class="line">(合并map，map++Map(&quot;D&quot;-&gt;&quot;DUT&quot;),Map(S -&gt; (Spark,scala), D -&gt; DUT, key -&gt; value, H -&gt; Hadoop))</span><br></pre></td></tr></table></figure></p>
+<h2 id="scala方法定义及参数使用"><a href="#scala方法定义及参数使用" class="headerlink" title="scala方法定义及参数使用"></a>scala方法定义及参数使用</h2><p>方法定义：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func_name</span></span>(参数名:类型,...): 返回值类型 = &#123;</span><br><span class="line">    <span class="comment">//方法体</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 最后一行是返回值，不写return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>方法体中只有一行代码时，可不写括号，直接跟在等号后面即可<br>更多内容见下方代码</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Test_4_Function</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line"><span class="comment">//    函数定义</span></span><br><span class="line">    println(add(<span class="number">1</span>,<span class="number">2</span>))</span><br><span class="line">    print_name()</span><br><span class="line">    print_name  <span class="comment">//无需参数时，函数调用可以不带括号（注：参数都有默认值时仍要带括号）</span></span><br><span class="line">    print_name()</span><br><span class="line"><span class="comment">//    默认参数</span></span><br><span class="line">    print_name1(<span class="string">"Spark"</span>)</span><br><span class="line">    print_name1()</span><br><span class="line"></span><br><span class="line"><span class="comment">//    命名参数</span></span><br><span class="line">    println(max(<span class="number">1</span>,<span class="number">2</span>))</span><br><span class="line">    println(max(y = <span class="number">2</span>,x = <span class="number">1</span>))  <span class="comment">//这就是命名参数，通过参数名指定哪个是哪个，可以不按照顺序传入，但保证参数名没错</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    可变参数</span></span><br><span class="line">    println(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(x:<span class="type">Int</span>,y:<span class="type">Int</span>):<span class="type">Int</span> =&#123;  <span class="comment">//等同于 def add(x:Int,y:Int):Int = x+y</span></span><br><span class="line">    x+y</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">print_name</span></span>(name: <span class="type">String</span>=<span class="string">"Hadoop"</span>): <span class="type">Unit</span> =&#123;  <span class="comment">//重载，但是未输入参数时，解释器仍按照无默认参数的函数执行；和定义函数的顺序无关</span></span><br><span class="line">    println(<span class="string">"my name is"</span>+name)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">print_name</span></span>(): <span class="type">Unit</span> =&#123;</span><br><span class="line">    println(<span class="string">"My name is Scala"</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">print_name1</span></span>(name: <span class="type">String</span>=<span class="string">"Hadoop"</span>): <span class="type">Unit</span> =&#123; <span class="comment">//方法无返回值时，以Unit代替（从main函数可以看出来）</span></span><br><span class="line">    println(<span class="string">"my name is"</span>+name)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">max</span></span>(x:<span class="type">Int</span>,y:<span class="type">Int</span>):<span class="type">Int</span> =&#123;</span><br><span class="line">    <span class="keyword">if</span> (x&gt;=y)</span><br><span class="line">      x</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      y</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(nums:<span class="type">Int</span>*)=&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(num&lt;-nums)&#123;</span><br><span class="line">      i += num</span><br><span class="line">    &#125;</span><br><span class="line">    i</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">My name is Scala</span><br><span class="line">My name is Scala</span><br><span class="line">My name is Scala</span><br><span class="line">my name isSpark</span><br><span class="line">my name isHadoop</span><br><span class="line">2</span><br><span class="line">2</span><br><span class="line">15</span><br></pre></td></tr></table></figure></p>
+<h2 id="匿名函数、高阶函数"><a href="#匿名函数、高阶函数" class="headerlink" title="匿名函数、高阶函数"></a>匿名函数、高阶函数</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> add=(a:<span class="type">Int</span>,b:<span class="type">Int</span>)=&gt;a+b</span><br><span class="line"><span class="comment">//等同于下面的</span></span><br><span class="line"><span class="keyword">val</span> add = (_:<span class="type">Int</span>)+(_:<span class="type">Int</span>) <span class="comment">//参数在函数字面量内仅出现一次可省略=&gt;，用下划线占位（第一个_代表第一个参数）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> sum=(f:(<span class="type">Int</span>,<span class="type">Int</span>)=&gt;<span class="type">Int</span>,a:<span class="type">Int</span>,b:<span class="type">Int</span>)=&gt;f(a,b)</span><br></pre></td></tr></table></figure>
+<h2 id="Error汇集"><a href="#Error汇集" class="headerlink" title="Error汇集"></a>Error汇集</h2><ul>
+<li><code>Value += is not member of Int</code></li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i: <span class="type">Int</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i &lt;- <span class="number">0</span> to <span class="number">10</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (i == <span class="number">2</span>) &#123; </span><br><span class="line">     i += <span class="number">1</span>     </span><br><span class="line">  &#125;</span><br><span class="line">  println(i)</span><br><span class="line">&#125;</span><br><span class="line">&gt;&lt;console&gt;:<span class="number">15</span>: error: value += is not a member of <span class="type">Int</span></span><br><span class="line">  <span class="type">Expression</span> does not convert to assignment because receiver is not assignable.</span><br><span class="line">            i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>遇到这个问题时，头都大了，想不通这居然有错误。中文搜了一波没结果，然后我在shell窗口下输入<code>val a = 0;var b = 1;a += b;</code>，天，也是报这个错误，严重摧毁我学习的热情，我仔细再看了下，发现a申明成了不可变val变量，然后我猜测上面那个函数定义i的时候有两次定义，是不是内层循环中i也是val变量，之后我google英文搜了一下（google就是强），确实是这个问题。</p>
+<blockquote>
+<p>You’re declaring i twice, one at the outer scope and one in the inner. Your for comprehension looks at the inner i, which is a val, not a var, thus shadowing the external declaration.</p>
+</blockquote>
+<p>问题就是for循环中申明的变量是一个val，换个名字就好了</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话，不妨加个鸡腿，O(∩_∩)O哈哈~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weChatPay.jpg" alt="Joson lee 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliPay.jpg" alt="Joson lee 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spark/" rel="tag"># Spark</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018-11-18-Hadoop及Spark学习路线及资源收纳.html/" rel="next" title="Hadoop及Spark学习路线及资源收纳">
+                <i class="fa fa-chevron-left"></i> Hadoop及Spark学习路线及资源收纳
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018-11-22-使用Java-API操作HDFS文件系统.html/" rel="prev" title="使用Java API操作HDFS文件系统">
+                使用Java API操作HDFS文件系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="Joson lee" />
+            
+              <p class="site-author-name" itemprop="name">Joson lee</p>
+              <p class="site-description motion-element" itemprop="description">Python数据分析、机器学习、Django、java学习</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/josonle" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://blog.csdn.net/lzw2016" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:3092312003@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量定义-输入输出"><span class="nav-number">1.</span> <span class="nav-text">变量定义 输入输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件、循环控制结构-异常处理"><span class="nav-number">2.</span> <span class="nav-text">条件、循环控制结构 异常处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">3.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#容器-collection"><span class="nav-number">3.1.</span> <span class="nav-text">容器 collection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scala方法定义及参数使用"><span class="nav-number">4.</span> <span class="nav-text">scala方法定义及参数使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匿名函数、高阶函数"><span class="nav-number">5.</span> <span class="nav-text">匿名函数、高阶函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Error汇集"><span class="nav-number">6.</span> <span class="nav-text">Error汇集</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joson lee</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'a94818509a8f36c0a222',
+          clientSecret: '4d6bcd339e8df5f3e1f9e653afa2a5b9a1023f0f',
+          repo: 'josonle.github.io',
+          owner: 'josonle',
+          admin: ['josonle'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+    </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

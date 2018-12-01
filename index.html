@@ -282,6 +282,784 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-12-01-Spark本地安装及Linux下伪分布式搭建.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018-12-01-Spark本地安装及Linux下伪分布式搭建.html/" itemprop="url">Spark本地安装及Linux下伪分布式搭建</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-01T12:34:35+08:00">
+                2018-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>spark可以在Linux上搭建，也能不安装hadoop直接在Windows上搭建单机版本。首先是从官网上<a href="http://spark.apache.org/downloads.html" target="_blank" rel="noopener">下载</a>和你hadoop版本匹配的spark版本（版本不要太新，选择稳定版本，如我的是hadoop2.6版本对应spark-2.0.2-bin-hadoop2.6.tgz）</p>
+<p>可以放心的是，spark安装远比hadoop安装简单的多</p>
+<h2 id="本地安装"><a href="#本地安装" class="headerlink" title="本地安装"></a>本地安装</h2><p>把下载的压缩包解压到本地某个位置上，修改环境变量，添加<code>%SPARK_HOME%:解压的位置</code>；修改Path，增加一栏<code>%SPARK_HOME%/bin</code></p>
+<p><img src="MarkDown_Images/大数据/spark本地安装.jpg" alt=""></p>
+<p>好了，本地安装就这么简单。打开CMD命令行工具，输入<code>spark-shell</code>，如图显示就是安装成功了<br><img src="MarkDown_Images/大数据/spark本地运行.jpg" alt=""></p>
+<ul>
+<li>Error：安装后运行是有可能会遇到一个错误：<code>Failed to find Spark jars directory</code><ul>
+<li>解决方法：安装路径名上不能有空格（比如Program Files就不行）<h2 id="基于hadoop伪分布式搭建"><a href="#基于hadoop伪分布式搭建" class="headerlink" title="基于hadoop伪分布式搭建"></a>基于hadoop伪分布式搭建</h2>将你下载的spark压缩包，通过某些工具（我用的是WinSCP）上传到虚拟机中</li>
+</ul>
+</li>
+</ul>
+<p>有必要说一下，我的是centos7系统，hadoop也是伪分布式的，主从节点名namenode（具体的你可以看我之前<a href="https://josonle.github.io/blog/2018-11-14-Hadoop%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA.html/" target="_blank" rel="noopener">搭建hadoop的博客</a>）</p>
+<ul>
+<li><p>解压到用户目录下（我这里是<code>/home/hadoop</code>）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 上传到了/root目录下，cd到该目录下执行</span><br><span class="line">tar -zxvf spark-2.0.2-bin-hadoop2.6.tgz -C /home/hadoop</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>同本地安装一样，配置环境变量</p>
+<ul>
+<li>可以选择在系统环境变量中配置<code>/etc/profile</code>，也可以选择用户环境变量中配置<code>/home/hadoop/.bash_profile</code>，推荐后者<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi .bash_profile</span><br><span class="line"># 添加</span><br><span class="line">export SPARK_HOME=/home/hadoop/spark-2.0.2-bin-hadoop2.6</span><br><span class="line">export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin</span><br><span class="line"></span><br><span class="line"># 保存退出后，source .bash_profile使配置生效</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>配置完成后同样可以输入spark-shell查看运行</p>
+<ul>
+<li>配置spark的设置文件(conf目录下)spark-env.sh和slaves</li>
+</ul>
+<p>切换到spark下的conf目录下，<code>cd /home/hadoop/spark-2.0.2-bin-hadoop2.6/conf</code></p>
+<p>spark没有spark-env.sh和slaves文件，只有以template结尾的两个模板文件，依据模板文件生成即可<code>cp spark-env.sh.template spark-env.sh</code>，<code>cp slaves.template slaves</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 修改spark-env.sh</span><br><span class="line">vi spark-env.sh</span><br><span class="line"># 增加类似下文内容</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_131</span><br><span class="line">export HADOOP_HOME=/home/hadoop/hadoop-2.6.0-cdh5.12.1</span><br><span class="line">export HADOOP_CONF_DIR=/home/hadoop/hadoop-2.6.0-cdh5.12.1/etc/hadoop</span><br><span class="line">export SPARK_MASTER_HOST=namenode</span><br><span class="line">export SPARK_WORKER_MEMORY=1024m</span><br><span class="line">export SPARK_WORKER_CORES=2</span><br><span class="line">export SPARK_WORKER_INSTANCES=1</span><br></pre></td></tr></table></figure>
+<p>像JAVA_HOME,HADOOP_HOME是你之前java和hadoop安装的位置，可以使用<code>echo JAVA_HOME</code>查看</p>
+<p>SPARK_MASTER_HOST，spark也是主从关系，这里<strong>指定spark主节点为hadoop的主节点名即可</strong></p>
+<p>后三行是默认配置，依你电脑配置可修改。分别代表worker内存、核、实例分配</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 修改slaves</span><br><span class="line">vi slaves</span><br><span class="line"># 增加从节点</span><br><span class="line">namenode   #因为是伪分布式，namenode既是主也是从</span><br></pre></td></tr></table></figure>
+<p>还有就是要注意，你之前配置hadoop时已经完成了ip和名的映射</p>
+<p>以上内容完成后，就搭建完了</p>
+<h3 id="启动spark"><a href="#启动spark" class="headerlink" title="启动spark"></a>启动spark</h3><p>先完成一个事，你可以看到spark下sbin目录中启动和结束的命令是<code>start-all.sh</code>，<code>stop-all.sh</code>，和hadoop启动结束命令重名了，用mv命令修改为start-spark-all.sh，stop-spark-all.sh就好了</p>
+<ul>
+<li>启动hadoop集群 <code>start-hdfs.sh</code>，<code>start-yarn.sh</code></li>
+<li>启动spark <code>start-spark-all.sh</code></li>
+<li>使用jps命令查看运行情况</li>
+<li>本地浏览器打开<code>http://192.168.17.10:8080</code>（这个IP是我之前在hadoop中配置的namenode的IP，端口是固定的）<br><img src="MarkDown_Images/大数据/start_spark.jpg" alt=""><br><img src="MarkDown_Images/大数据/spark_web.jpg" alt=""></li>
+</ul>
+<h3 id="安装过程可能遇到的问题"><a href="#安装过程可能遇到的问题" class="headerlink" title="安装过程可能遇到的问题"></a>安装过程可能遇到的问题</h3><p>在配置以上设置时，一定要分清楚，这都是我的环境设置，要合理的区分开。比如说你java，hadoop安装的位置和我的不一样等等</p>
+<p>在替别人查看这一块配置时，它运行spark集群时，遇到了几个问题</p>
+<ul>
+<li>用户hadoop无权限在spark下创建logs等目录<ul>
+<li>通过<code>ls -l</code>查看spark-2.0.2-bin-hadoop2.6这个文件夹所属组和用户是root</li>
+<li>修改文件夹所属组和用户即可，<code>chown -R hadoop:hadoop /home/hadoop/spark-2.0.2-bin-hadoop2.6</code></li>
+</ul>
+</li>
+<li><code>spark-class: line 71…No such file or directory</code>，显示大概是找不到java<ul>
+<li>这个问题就是配置写错了，spark-env.sh中java_home写错了</li>
+</ul>
+</li>
+</ul>
+<h2 id="spark完全分布集群搭建"><a href="#spark完全分布集群搭建" class="headerlink" title="spark完全分布集群搭建"></a>spark完全分布集群搭建</h2><p>过程和伪分布式搭建一样，不同在于<code>slaves</code>中设置的从节点名为datanode1、datanode2类似的<br>然后，再复制到从节点主机中，如<code>scp -r /home/hadoop/spark-2.0.2-bin-hadoop2.6 datanode1:/home/hadoop</code> （这是因为之前配好了ssh免密登录）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-11-25-MapReduce编程初步及源码分析.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018-11-25-MapReduce编程初步及源码分析.html/" itemprop="url">MapReduce编程初步及源码分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T22:52:12+08:00">
+                2018-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="初识MapReduce"><a href="#初识MapReduce" class="headerlink" title="初识MapReduce"></a>初识MapReduce</h2><p>先看一张图<br><img src="/MarkDown_images/大数据/mapreduce.jpg" alt=""></p>
+<h2 id="MapReduce程序词频统计源码分析"><a href="#MapReduce程序词频统计源码分析" class="headerlink" title="MapReduce程序词频统计源码分析"></a>MapReduce程序词频统计源码分析</h2><ul>
+<li>前言<ul>
+<li>hdfs中有自己的数据类型，java中的Int对应IntWritable，String对应Text</li>
+<li>为了实现文件序列化，编程中必须把Int、String转变为上面的两个</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WordCount</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenizerMapper</span> </span></span><br><span class="line"><span class="class">       <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">Object</span>, <span class="title">Text</span>, <span class="title">Text</span>, <span class="title">IntWritable</span>&gt;</span>&#123;<span class="comment">//定义MAP的输入输出的Key-Value类型，第一对key-value的key不一定是字符串，所以申明为Object类型</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> IntWritable one = <span class="keyword">new</span> IntWritable(<span class="number">1</span>);<span class="comment">//key-value中经常用到1，申明为常量</span></span><br><span class="line">    <span class="keyword">private</span> Text word = <span class="keyword">new</span> Text();<span class="comment">//相当于java中的String</span></span><br><span class="line">      </span><br><span class="line"><span class="comment">//    map方法每次只处理一行【应该是的，我在另一个程序中打印输出是每次一行，还待深究】</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(Object key, Text value, Context context</span></span></span><br><span class="line"><span class="function"><span class="params">                    )</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;<span class="comment">//这里三个变量，前两个对应上面的，context封装了输出的key-value</span></span><br><span class="line">      StringTokenizer itr = <span class="keyword">new</span> StringTokenizer(value.toString());<span class="comment">//字符串分词器</span></span><br><span class="line"><span class="comment">//      String[] strs = value.toString().split(" "); //等于上面这行，就是分词</span></span><br><span class="line">      <span class="keyword">while</span> (itr.hasMoreTokens()) &#123;<span class="comment">// 取出子串，并赋1，写入context。不用管context存在什么地方</span></span><br><span class="line">        word.set(itr.nextToken());</span><br><span class="line">        context.write(word, one);</span><br><span class="line">        <span class="comment">//有个概念要知道，这里他给每个词都赋值value=1，实际上value=2也是可以的（</span></span><br><span class="line">        <span class="comment">// 比如hello hello，可以一次计算value=2），看你怎么处理了(value=1省去了一步相同词再汇总过程)</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntSumReducer</span> </span></span><br><span class="line"><span class="class">       <span class="keyword">extends</span> <span class="title">Reducer</span>&lt;<span class="title">Text</span>,<span class="title">IntWritable</span>,<span class="title">Text</span>,<span class="title">IntWritable</span>&gt; </span>&#123;<span class="comment">//如上，不过输入、出都是字符串-Int型</span></span><br><span class="line">    <span class="keyword">private</span> IntWritable result = <span class="keyword">new</span> IntWritable();<span class="comment">//对每个key，求value的和为result，比如&lt;hello,3&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(Text key, Iterable&lt;IntWritable&gt; values, </span></span></span><br><span class="line"><span class="function"><span class="params">                       Context context</span></span></span><br><span class="line"><span class="function"><span class="params">                       )</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">      <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> (IntWritable val : values) &#123;</span><br><span class="line">        sum += val.get();<span class="comment">// get是将IntWritable转为Int类型，set相反，见下面</span></span><br><span class="line">      &#125;</span><br><span class="line">      result.set(sum);<span class="comment">// sum是Int类型，hadoop无法将之序列化，所以转为IntWritable类型</span></span><br><span class="line">      context.write(key, result);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">    String[] otherArgs = <span class="keyword">new</span> GenericOptionsParser(conf, args).getRemainingArgs();</span><br><span class="line">    <span class="keyword">if</span> (otherArgs.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">      System.err.println(<span class="string">"Usage: wordcount &lt;in&gt; [&lt;in&gt;...] &lt;out&gt;"</span>);</span><br><span class="line">      System.exit(<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 作业调度</span></span><br><span class="line">    Job job = <span class="keyword">new</span> Job(conf, <span class="string">"word count"</span>);</span><br><span class="line">    job.setJarByClass(WordCount.class);<span class="comment">// 指定作业调度的类</span></span><br><span class="line">    job.setMapperClass(TokenizerMapper.class);<span class="comment">//指定Mapper类</span></span><br><span class="line">    job.setCombinerClass(IntSumReducer.class);<span class="comment">//指定Combiner类</span></span><br><span class="line">    job.setReducerClass(IntSumReducer.class);<span class="comment">//指定Reducer类</span></span><br><span class="line">    job.setOutputKeyClass(Text.class);</span><br><span class="line">    job.setOutputValueClass(IntWritable.class);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; otherArgs.length - <span class="number">1</span>; ++i) &#123;    <span class="comment">//传入的文件参数可为多个【最后一个是输出文件】</span></span><br><span class="line">      FileInputFormat.addInputPath(job, <span class="keyword">new</span> Path(otherArgs[i]));</span><br><span class="line">    &#125;</span><br><span class="line">    FileOutputFormat.setOutputPath(job,</span><br><span class="line">      <span class="keyword">new</span> Path(otherArgs[otherArgs.length - <span class="number">1</span>]));</span><br><span class="line">    System.exit(job.waitForCompletion(<span class="keyword">true</span>) ? <span class="number">0</span> : <span class="number">1</span>);<span class="comment">//等待执行，0是正常退出，1是错误退出</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Windows下实现MapReduce编程初步"><a href="#Windows下实现MapReduce编程初步" class="headerlink" title="Windows下实现MapReduce编程初步"></a>Windows下实现MapReduce编程初步</h2><h3 id="宿主机上开发环境配置"><a href="#宿主机上开发环境配置" class="headerlink" title="宿主机上开发环境配置"></a>宿主机上开发环境配置</h3><h3 id="基于MapReduce统计学生平均成绩"><a href="#基于MapReduce统计学生平均成绩" class="headerlink" title="基于MapReduce统计学生平均成绩"></a>基于MapReduce统计学生平均成绩</h3><p>如图，在hdfs的<code>/expr/studentgrades/grades/</code> 下创建，几个文件，随便写几行数据，类似如下(学号 成绩)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1001 90</span><br><span class="line">1002 100</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>代码及注释如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> gradesAverage;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.StringTokenizer;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IntWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Job;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> mapReduceTest.wordCount.WordCount;</span><br><span class="line"><span class="keyword">import</span> mapReduceTest.wordCount.WordCount.IntSumReducer;</span><br><span class="line"><span class="keyword">import</span> mapReduceTest.wordCount.WordCount.TokenizerMapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GradesAverage</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenizerMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">Object</span>, <span class="title">Text</span>, <span class="title">Text</span>, <span class="title">IntWritable</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Text student = <span class="keyword">new</span> Text();</span><br><span class="line">        <span class="keyword">private</span> IntWritable grade = <span class="keyword">new</span> IntWritable();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* (non-Javadoc)</span></span><br><span class="line"><span class="comment">         * @see org.apache.hadoop.mapreduce.Mapper#map(KEYIN, VALUEIN, org.apache.hadoop.mapreduce.Mapper.Context)</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="comment">/* (non-Javadoc)</span></span><br><span class="line"><span class="comment">         * @see org.apache.hadoop.mapreduce.Mapper#map(KEYIN, VALUEIN, org.apache.hadoop.mapreduce.Mapper.Context)</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(Object key, Text value, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line"><span class="comment">//          StringTokenizer iTokenizer = new StringTokenizer(value.toString(),"\n");</span></span><br><span class="line">            System.out.println(<span class="string">"key is："</span>+key+<span class="string">"value is: "</span>+value.toString());</span><br><span class="line"><span class="comment">//          while (iTokenizer.hasMoreTokens()) &#123;</span></span><br><span class="line"><span class="comment">//              </span></span><br><span class="line"><span class="comment">//          &#125;</span></span><br><span class="line">            String[] list_strs = value.toString().split(<span class="string">" "</span>);</span><br><span class="line">            <span class="comment">// 因为每行只有一个学号和对应成绩，不需要考虑切分多个词</span></span><br><span class="line">            student.set(list_strs[<span class="number">0</span>]);</span><br><span class="line">            grade.set(Integer.parseInt(list_strs[<span class="number">1</span>]));</span><br><span class="line">            context.write(student, grade);</span><br><span class="line">            </span><br><span class="line"><span class="comment">//          String line = value.toString(); //将输入的纯文本文件的数据转化成String</span></span><br><span class="line"><span class="comment">//          System.out.println(line);//为了便于程序的调试，输出读入的内容   </span></span><br><span class="line"><span class="comment">//                           //将输入的数据先按行进行分割</span></span><br><span class="line"><span class="comment">//          StringTokenizer tokenizerArticle = new StringTokenizer(line,"\n"); </span></span><br><span class="line"><span class="comment">//                  //分别对每一行进行处理</span></span><br><span class="line"><span class="comment">//          while(tokenizerArticle.hasMoreTokens())&#123;</span></span><br><span class="line"><span class="comment">//                              //每行按空格划分</span></span><br><span class="line"><span class="comment">//          StringTokenizer tokenizerLine = new StringTokenizer(tokenizerArticle.nextToken()); </span></span><br><span class="line"><span class="comment">//          String strName = tokenizerLine.nextToken(); //学生姓名部分  </span></span><br><span class="line"><span class="comment">//          String strScore = tokenizerLine.nextToken();//成绩部分</span></span><br><span class="line"><span class="comment">//          Text name = new Text(strName);//学生姓名  </span></span><br><span class="line"><span class="comment">//          int scoreInt = Integer.parseInt(strScore);//学生成绩score of student</span></span><br><span class="line"><span class="comment">//          context.write(name, new IntWritable(scoreInt));//输出姓名和成绩</span></span><br><span class="line"><span class="comment">//          &#125;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">gradesAverageReducer</span> <span class="keyword">extends</span> <span class="title">Reducer</span>&lt;<span class="title">Text</span>, <span class="title">IntWritable</span>, <span class="title">Text</span>, <span class="title">IntWritable</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> IntWritable gradesSum = <span class="keyword">new</span> IntWritable();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(Text key, Iterable&lt;IntWritable&gt; values, Context context)</span></span></span><br><span class="line"><span class="function">                <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> grades = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (IntWritable val : values) &#123;</span><br><span class="line">                sum += <span class="number">1</span>;</span><br><span class="line">                grades += val.get();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"student is:"</span>+key.toString()+<span class="string">",grades is:"</span>+grades+<span class="string">",sum is:"</span>+sum);</span><br><span class="line">            gradesSum.set((<span class="keyword">int</span>)grades/sum);</span><br><span class="line">            context.write(key, gradesSum);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, InterruptedException </span>&#123;</span><br><span class="line">        <span class="comment">// 1.设置HDFS配置信息</span></span><br><span class="line">        String namenode_ip = <span class="string">"192.168.17.10"</span>;</span><br><span class="line">        String hdfs = <span class="string">"hdfs://"</span> + namenode_ip + <span class="string">":9000"</span>;</span><br><span class="line">        Configuration conf = <span class="keyword">new</span> Configuration(); <span class="comment">// Hadoop配置类</span></span><br><span class="line">        conf.set(<span class="string">"fs.defaultFS"</span>, hdfs);</span><br><span class="line">        conf.set(<span class="string">"mapreduce.app-submission.cross-platform"</span>, <span class="string">"true"</span>); <span class="comment">// 集群交叉提交</span></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * conf.set("hadoop.job.user", "hadoop"); conf.set("mapreduce.framework.name",</span></span><br><span class="line"><span class="comment">         * "yarn"); conf.set("mapreduce.jobtracker.address", namenode_ip + ":9001");</span></span><br><span class="line"><span class="comment">         * conf.set("yarn.resourcemanager.hostname", namenode_ip);</span></span><br><span class="line"><span class="comment">         * conf.set("yarn.resourcemanager.resource-tracker.address", namenode_ip +</span></span><br><span class="line"><span class="comment">         * ":8031"); conf.set("yarn.resourcemtanager.address", namenode_ip + ":8032");</span></span><br><span class="line"><span class="comment">         * conf.set("yarn.resourcemanager.admin.address", namenode_ip + ":8033");</span></span><br><span class="line"><span class="comment">         * conf.set("yarn.resourcemanager.scheduler.address", namenode_ip + ":8034");</span></span><br><span class="line"><span class="comment">         * conf.set("mapreduce.jobhistory.address", namenode_ip + ":10020");</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2.设置MapReduce作业配置信息</span></span><br><span class="line">        String jobName = <span class="string">"GradesAverage"</span>; <span class="comment">// 定义作业名称</span></span><br><span class="line">        Job job = Job.getInstance(conf, jobName);</span><br><span class="line">        job.setJarByClass(GradesAverage.class); <span class="comment">// 指定作业类</span></span><br><span class="line">        job.setJar(<span class="string">"export\\GradesAverage.jar"</span>); <span class="comment">// 指定本地jar包</span></span><br><span class="line">        job.setMapperClass(TokenizerMapper.class);</span><br><span class="line">        job.setCombinerClass(gradesAverageReducer.class); <span class="comment">// 指定Combiner类</span></span><br><span class="line">        job.setReducerClass(gradesAverageReducer.class);</span><br><span class="line">        job.setOutputKeyClass(Text.class);</span><br><span class="line">        job.setOutputValueClass(IntWritable.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3.设置作业输入和输出路径</span></span><br><span class="line">        String dataDir = <span class="string">"/expr/studentgrades/grades"</span>; <span class="comment">// 实验数据目录</span></span><br><span class="line">        String outputDir = <span class="string">"/expr/studentgrades/output"</span>; <span class="comment">// 实验输出目录</span></span><br><span class="line">        Path inPath = <span class="keyword">new</span> Path(hdfs + dataDir);</span><br><span class="line">        Path outPath = <span class="keyword">new</span> Path(hdfs + outputDir);</span><br><span class="line">        FileInputFormat.addInputPath(job, inPath);</span><br><span class="line">        FileOutputFormat.setOutputPath(job, outPath);</span><br><span class="line">        <span class="comment">// 如果输出目录已存在则删除</span></span><br><span class="line">        FileSystem fs = FileSystem.get(conf);</span><br><span class="line">        <span class="keyword">if</span> (fs.exists(outPath)) &#123;</span><br><span class="line">            fs.delete(outPath, <span class="keyword">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4.运行作业</span></span><br><span class="line">        System.out.println(<span class="string">"Job: "</span> + jobName + <span class="string">" is running..."</span>);</span><br><span class="line">        <span class="keyword">if</span> (job.waitForCompletion(<span class="keyword">true</span>)) &#123;</span><br><span class="line">            System.out.println(<span class="string">"统计 success!"</span>);</span><br><span class="line">            System.exit(<span class="number">0</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"统计 failed!"</span>);</span><br><span class="line">            System.exit(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>查看平均成绩结果文件，目录结构如图<br><img src="/MarkDown_images/大数据/MapReduce_coding.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-11-22-使用Java-API操作HDFS文件系统.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018-11-22-使用Java-API操作HDFS文件系统.html/" itemprop="url">使用Java API操作HDFS文件系统</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T09:20:49+08:00">
+                2018-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p><code>org.apache.hadoop.conf.Configuration</code> 用来创建HDFS的配置对象（conf），一般可通过它来设置hdfs文件系统的uri</p>
+<h2 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h2><p><code>org.apache.hadoop.fs.Path</code> 用来定义文件路径对象（path），类似java中Path</p>
+<h2 id="FileSystem"><a href="#FileSystem" class="headerlink" title="FileSystem"></a>FileSystem</h2><p><code>org.apache.hadoop.fs.FileSystem</code> 用来定义hdfs文件系统对象（fs）</p>
+<ul>
+<li>初始化fs实例的方法：<ul>
+<li><code>FileSystem.get(conf)</code></li>
+<li><code>FileSystem.get(uri,conf)</code></li>
+<li><code>path.getFileSystem(conf)</code> 这个实际上创建path时会传入uri，实际上调用第二种方法<code>FileSystem.get(uri,conf)</code></li>
+</ul>
+</li>
+<li>fs具体方法：<ul>
+<li>创建目录：<code>public boolean mkdirs(Path f) throws IOException</code></li>
+<li>创建文件：<code>public static FSDataOutputStream create(FileSystem fs,
+Path file, FsPermission permission) throws IOException</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="IOUtils"><a href="#IOUtils" class="headerlink" title="IOUtils"></a>IOUtils</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-11-21-Spark先修课-Scala语言学习.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018-11-21-Spark先修课-Scala语言学习.html/" itemprop="url">Spark先修课---Scala语言学习</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T12:20:26+08:00">
+                2018-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="变量定义-输入输出"><a href="#变量定义-输入输出" class="headerlink" title="变量定义 输入输出"></a>变量定义 输入输出</h2><h2 id="条件、循环控制结构-异常处理"><a href="#条件、循环控制结构-异常处理" class="headerlink" title="条件、循环控制结构 异常处理"></a>条件、循环控制结构 异常处理</h2><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="容器-collection"><a href="#容器-collection" class="headerlink" title="容器 collection"></a>容器 collection</h3><p>collection容器，包含List、Vector、Set、Map</p>
+<p>在scala.collection.mutable 中是可变容器，scala.collection.immutable 不可变容器</p>
+<ul>
+<li>List列表</li>
+</ul>
+<p>不同于其他语言，scala中List是不可变的，而且是抽象的，不能通过new来创建;直接通过List(xxx)，默认会调用apply工厂方法创建列表。可指定类型，也可以不指定，同上文所说scala会自动推断类型<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> l = <span class="keyword">new</span> <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">&lt;console&gt;:<span class="number">11</span>: error: <span class="class"><span class="keyword">class</span> <span class="title">List</span> <span class="title">is</span> <span class="title">abstract</span></span>; cannot be instantiated</span><br><span class="line">       <span class="keyword">val</span> l = <span class="keyword">new</span> <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> l = <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">l: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>像List、Set、Map无需导入scala.collection.immutable.XXX，因为scala默认导入了Predef对象，该对象为许多数据类型提供了别名定义，包含了List、不可变Set、不可变Map</p>
+</blockquote>
+<ul>
+<li>Vector 不可变向量</li>
+</ul>
+<p>List、Vector对应的可变版本是ListBuffer、ArrayBuffer</p>
+<ul>
+<li>Range 不可变数字等差数列</li>
+</ul>
+<p>创建如下，必须指定第三个步长参数。<code>Range(1,5,1)</code>等同于<code>1 until 5</code>，都不包含5；<code>1 to 5</code>包含5。同样是通过索引访问，如r(1)<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> r =<span class="keyword">new</span> <span class="type">Range</span>(<span class="number">1</span>,<span class="number">5</span>,<span class="number">2</span>)</span><br><span class="line">r: scala.collection.immutable.<span class="type">Range</span> = <span class="type">Range</span> <span class="number">1</span> until <span class="number">5</span> by <span class="number">2</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="number">1</span> to <span class="number">5</span></span><br><span class="line">res24: scala.collection.immutable.<span class="type">Range</span>.<span class="type">Inclusive</span> = <span class="type">Range</span> <span class="number">1</span> to <span class="number">5</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="number">1</span> until <span class="number">5</span> <span class="comment">//by 可以指定步长</span></span><br><span class="line">res25: scala.collection.immutable.<span class="type">Range</span> = <span class="type">Range</span> <span class="number">1</span> until <span class="number">5</span></span><br><span class="line"></span><br><span class="line">scala&gt; r(<span class="number">1</span>)</span><br><span class="line">res28: <span class="type">Int</span> = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">scala&gt; ('a' to 'e' by <span class="number">2</span>)(<span class="number">1</span>)</span><br><span class="line">res33: <span class="type">Char</span> = c</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Set 不重复元素集合</li>
+</ul>
+<p>可变和不可变集合。默认不导入scala.collection.mutable.Set时，是不可变的。<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">var</span> s = <span class="type">Set</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)   <span class="comment">// var定义set指向的对象可变</span></span><br><span class="line">s: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; s += <span class="number">4</span>   <span class="comment">//s指向了新的Set对象</span></span><br><span class="line">scala&gt; s</span><br><span class="line">res37: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> set = <span class="type">Set</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) <span class="comment">// val定义set指向的对象不变</span></span><br><span class="line">set: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; set + <span class="number">4</span> <span class="comment">// 这是新生成了个set</span></span><br><span class="line">res19: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; set <span class="comment">// set并未改变</span></span><br><span class="line">res20: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; set += <span class="number">4</span> <span class="comment">//报错，immutable.Set不可改变</span></span><br><span class="line">&lt;console&gt;:<span class="number">15</span>: error: value += is not a member of scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>]</span><br><span class="line">  <span class="type">Expression</span> does not convert to assignment because receiver is not assignable.</span><br><span class="line">       set += <span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>这里有一个是，Set和Map不能通过new来初始化，同上面List。但是可以如<code>new HashSet[T](xxx)</code>来创建，创建的依旧是Set、Map<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scala.collection.mutable.<span class="type">Set</span></span><br><span class="line"><span class="keyword">val</span> set =  <span class="type">Set</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">println(set)</span><br><span class="line">set += <span class="number">4</span></span><br><span class="line">println(set)</span><br><span class="line">set.add(<span class="number">5</span>) <span class="comment">// set += 5</span></span><br><span class="line">println(set)</span><br><span class="line">set ++= <span class="type">Set</span>(<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">println(<span class="string">"Set元素不重复"</span>,set)</span><br><span class="line">set.remove(<span class="number">3</span>) <span class="comment">//set -= 3</span></span><br><span class="line">println(set)</span><br></pre></td></tr></table></figure></p>
+<p>或许你会觉得val set，set不是指向的对象不可变吗？但set的内容为什么改变了？很简单，set是变量名，指针指向一个固定的Set对象，但是这个Set对象本身可以变。就算Set本身变了，但指针还是指向该Set对象的，没有毛病</p>
+<p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Set(1, 2, 3)</span><br><span class="line">Set(1, 2, 3, 4)</span><br><span class="line">Set(1, 5, 2, 3, 4)</span><br><span class="line">(Set元素不重复,Set(1, 5, 2, 3, 4))</span><br><span class="line">Set(1, 5, 2, 4)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Map 键值对容器</li>
+</ul>
+<p>键唯一，值不唯一。也分为可变和不可变两类，同Set<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scala.collection.mutable.<span class="type">Map</span></span><br><span class="line"><span class="keyword">val</span> map = <span class="type">Map</span>(<span class="string">"H"</span>-&gt;<span class="string">"Hadoop"</span>,<span class="string">"S"</span>-&gt;(<span class="string">"Spark"</span>,<span class="string">"scala"</span>))</span><br><span class="line">println(map)</span><br><span class="line">map += (<span class="string">"D"</span>-&gt;<span class="string">"DUT"</span>) <span class="comment">//添加key-value</span></span><br><span class="line">println(map)</span><br><span class="line">map.put(<span class="string">"key"</span>,<span class="string">"value"</span>) <span class="comment">//添加key-value</span></span><br><span class="line">map.remove(<span class="string">"D"</span>) <span class="comment">// map -= "D"，移除key-value</span></span><br><span class="line">println(map)</span><br><span class="line">println(<span class="string">"包含某个键，map.contains(\"Key\")"</span>,map.contains(<span class="string">"key"</span>)) <span class="comment">//包含某个键</span></span><br><span class="line">println(<span class="string">"获取键A对应的值，map.get(\"key\")="</span>+map.get(<span class="string">"key"</span>))</span><br><span class="line">println(<span class="string">"所有键，map.keys"</span>,map.keys)</span><br><span class="line">println(<span class="string">"所有值，map.values"</span>,map.values)</span><br><span class="line">println(<span class="string">"合并map，map++Map(\"D\"-&gt;\"DUT\")"</span>,map++<span class="type">Map</span>(<span class="string">"D"</span>-&gt;<span class="string">"DUT"</span>))</span><br></pre></td></tr></table></figure></p>
+<p>结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Map(S -&gt; (Spark,scala), H -&gt; Hadoop)</span><br><span class="line">Map(S -&gt; (Spark,scala), D -&gt; DUT, H -&gt; Hadoop)</span><br><span class="line">Map(S -&gt; (Spark,scala), key -&gt; value, H -&gt; Hadoop)</span><br><span class="line">(包含某个键，map.contains(&quot;Key&quot;),true)</span><br><span class="line">获取键A对应的值，map.get(&quot;key&quot;)=Some(value)</span><br><span class="line">(所有键，map.keys,Set(S, key, H))</span><br><span class="line">(所有值，map.values,HashMap((Spark,scala), value, Hadoop))</span><br><span class="line">(合并map，map++Map(&quot;D&quot;-&gt;&quot;DUT&quot;),Map(S -&gt; (Spark,scala), D -&gt; DUT, key -&gt; value, H -&gt; Hadoop))</span><br></pre></td></tr></table></figure></p>
+<h2 id="scala方法定义及参数使用"><a href="#scala方法定义及参数使用" class="headerlink" title="scala方法定义及参数使用"></a>scala方法定义及参数使用</h2><p>方法定义：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func_name</span></span>(参数名:类型,...): 返回值类型 = &#123;</span><br><span class="line">    <span class="comment">//方法体</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 最后一行是返回值，不写return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>方法体中只有一行代码时，可不写括号，直接跟在等号后面即可<br>更多内容见下方代码</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Test_4_Function</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line"><span class="comment">//    函数定义</span></span><br><span class="line">    println(add(<span class="number">1</span>,<span class="number">2</span>))</span><br><span class="line">    print_name()</span><br><span class="line">    print_name  <span class="comment">//无需参数时，函数调用可以不带括号（注：参数都有默认值时仍要带括号）</span></span><br><span class="line">    print_name()</span><br><span class="line"><span class="comment">//    默认参数</span></span><br><span class="line">    print_name1(<span class="string">"Spark"</span>)</span><br><span class="line">    print_name1()</span><br><span class="line"></span><br><span class="line"><span class="comment">//    命名参数</span></span><br><span class="line">    println(max(<span class="number">1</span>,<span class="number">2</span>))</span><br><span class="line">    println(max(y = <span class="number">2</span>,x = <span class="number">1</span>))  <span class="comment">//这就是命名参数，通过参数名指定哪个是哪个，可以不按照顺序传入，但保证参数名没错</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    可变参数</span></span><br><span class="line">    println(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(x:<span class="type">Int</span>,y:<span class="type">Int</span>):<span class="type">Int</span> =&#123;  <span class="comment">//等同于 def add(x:Int,y:Int):Int = x+y</span></span><br><span class="line">    x+y</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">print_name</span></span>(name: <span class="type">String</span>=<span class="string">"Hadoop"</span>): <span class="type">Unit</span> =&#123;  <span class="comment">//重载，但是未输入参数时，解释器仍按照无默认参数的函数执行；和定义函数的顺序无关</span></span><br><span class="line">    println(<span class="string">"my name is"</span>+name)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">print_name</span></span>(): <span class="type">Unit</span> =&#123;</span><br><span class="line">    println(<span class="string">"My name is Scala"</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">print_name1</span></span>(name: <span class="type">String</span>=<span class="string">"Hadoop"</span>): <span class="type">Unit</span> =&#123; <span class="comment">//方法无返回值时，以Unit代替（从main函数可以看出来）</span></span><br><span class="line">    println(<span class="string">"my name is"</span>+name)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">max</span></span>(x:<span class="type">Int</span>,y:<span class="type">Int</span>):<span class="type">Int</span> =&#123;</span><br><span class="line">    <span class="keyword">if</span> (x&gt;=y)</span><br><span class="line">      x</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      y</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(nums:<span class="type">Int</span>*)=&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(num&lt;-nums)&#123;</span><br><span class="line">      i += num</span><br><span class="line">    &#125;</span><br><span class="line">    i</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">My name is Scala</span><br><span class="line">My name is Scala</span><br><span class="line">My name is Scala</span><br><span class="line">my name isSpark</span><br><span class="line">my name isHadoop</span><br><span class="line">2</span><br><span class="line">2</span><br><span class="line">15</span><br></pre></td></tr></table></figure></p>
+<h2 id="匿名函数、高阶函数"><a href="#匿名函数、高阶函数" class="headerlink" title="匿名函数、高阶函数"></a>匿名函数、高阶函数</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> add=(a:<span class="type">Int</span>,b:<span class="type">Int</span>)=&gt;a+b</span><br><span class="line"><span class="comment">//等同于下面的</span></span><br><span class="line"><span class="keyword">val</span> add = (_:<span class="type">Int</span>)+(_:<span class="type">Int</span>) <span class="comment">//参数在函数字面量内仅出现一次可省略=&gt;，用下划线占位（第一个_代表第一个参数）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> sum=(f:(<span class="type">Int</span>,<span class="type">Int</span>)=&gt;<span class="type">Int</span>,a:<span class="type">Int</span>,b:<span class="type">Int</span>)=&gt;f(a,b)</span><br></pre></td></tr></table></figure>
+<h2 id="Error汇集"><a href="#Error汇集" class="headerlink" title="Error汇集"></a>Error汇集</h2><ul>
+<li><code>Value += is not member of Int</code></li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i: <span class="type">Int</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i &lt;- <span class="number">0</span> to <span class="number">10</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (i == <span class="number">2</span>) &#123; </span><br><span class="line">     i += <span class="number">1</span>     </span><br><span class="line">  &#125;</span><br><span class="line">  println(i)</span><br><span class="line">&#125;</span><br><span class="line">&gt;&lt;console&gt;:<span class="number">15</span>: error: value += is not a member of <span class="type">Int</span></span><br><span class="line">  <span class="type">Expression</span> does not convert to assignment because receiver is not assignable.</span><br><span class="line">            i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>遇到这个问题时，头都大了，想不通这居然有错误。中文搜了一波没结果，然后我在shell窗口下输入<code>val a = 0;var b = 1;a += b;</code>，天，也是报这个错误，严重摧毁我学习的热情，我仔细再看了下，发现a申明成了不可变val变量，然后我猜测上面那个函数定义i的时候有两次定义，是不是内层循环中i也是val变量，之后我google英文搜了一下（google就是强），确实是这个问题。</p>
+<blockquote>
+<p>You’re declaring i twice, one at the outer scope and one in the inner. Your for comprehension looks at the inner i, which is a val, not a var, thus shadowing the external declaration.</p>
+</blockquote>
+<p>问题就是for循环中申明的变量是一个val，换个名字就好了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-11-18-Hadoop及Spark学习路线及资源收纳.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1418,695 +2196,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-11-12-大数据之Hadoop学习-一-————认识HDFS.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joson lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Josonlee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018-11-12-大数据之Hadoop学习-一-————认识HDFS.html/" itemprop="url">大数据之Hadoop学习<一>————认识HDFS</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T20:31:36+08:00">
-                2018-11-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/大数据/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-          
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="分布式文件系统-HDFS"><a href="#分布式文件系统-HDFS" class="headerlink" title="分布式文件系统 HDFS"></a>分布式文件系统 HDFS</h2><p>分布式文件系统（Distributed FileSystem）是指文件系统管理的物理存储资源不一定直接连接在本地节点上，而是通过计算机网络与节点相连。</p>
-<p>Hadoop有若干文件系统，HDFS只是其中一个，但HDFS是其重要组成部分。HDFS由java的<code>org.apache.hadoop.fs.FileSystem</code>定义，并实现了<code>java.io.Closeable</code>接口，继承了<code>org.apache.hadoop.conf</code></p>
-<p>我们可以通过命令行下 <code>hadoop dfs -ls hdfs:///</code> 访问HDFS文件系统</p>
-<h3 id="HDFS特点"><a href="#HDFS特点" class="headerlink" title="HDFS特点"></a>HDFS特点</h3><ul>
-<li>存储超大文件</li>
-<li>流式文件访问<ul>
-<li>高效访问模式：一次写入、多次访问</li>
-<li>只支持文件追加操作，不能修改</li>
-<li>追加操作要在hdfs-site.xml中的 dfs.support.append 设置为true才行</li>
-</ul>
-</li>
-<li>普通商用硬件上即可运行（实际上普通PC还是不OK，那速度，这都是氪金玩家玩的，hh）</li>
-<li>低时间延迟的数据访问<ul>
-<li>以高时延为代价，获取高数据吞吐量</li>
-<li>响应时间秒级、毫秒级的数据访问，应该采用HBase</li>
-</ul>
-</li>
-<li>多用户在写入文件时有锁机制，只支持单个写入者</li>
-<li>不适合存大量小文件<blockquote>
-<p> 由于 Namenode 将文件系统的元数据存储在内存中，因此<br>HDFS所能存储的文件总数受限于Namenode的内存容量<br>根据经验，每个文件、目录和数据块的存储信息大约占150<br>字节，存储100万个文件大约需要300M内存</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2018-11-12-大数据之Hadoop学习-一-————认识HDFS.html/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-10-22-VirtualBox设置与主机共享文件夹和粘贴板问题.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joson lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Josonlee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018-10-22-VirtualBox设置与主机共享文件夹和粘贴板问题.html/" itemprop="url">VirtualBox设置与主机共享文件夹和粘贴板问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-22T16:53:33+08:00">
-                2018-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-          
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p><a href="https://blog.csdn.net/skylake_/article/details/53132499" target="_blank" rel="noopener">分享Virtualbox Ubuntu 共享文件夹、自动挂载的一些问题</a></p>
-</li>
-<li><p><a href="https://blog.csdn.net/pan_tian/article/details/22619687?utm_source=blogxgwz0" target="_blank" rel="noopener">Virtualbox主机和虚拟机之间文件夹共享及双向拷贝</a></p>
-</li>
-</ul>
-<p><strong>前提是安装那个增强功能</strong>，没有遇到什么问题，一遍就过了</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-10-22-ubuntu初次获取Root权限并登陆.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joson lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Josonlee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018-10-22-ubuntu初次获取Root权限并登陆.html/" itemprop="url">ubuntu初次获取Root权限并登陆</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-22T16:38:08+08:00">
-                2018-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-          
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>今天在虚拟机中配置了下brat文本标注工具，ubuntu已启动就黑屏，搞了半天没办法有重新安装了下，涉及到初次切换root权限登录的问题，好久没用又忘记了，现在在这里记录下<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2018-10-22-ubuntu初次获取Root权限并登陆.html/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-10-21-Hexo添加gitalk评论插件.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joson lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Josonlee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018-10-21-Hexo添加gitalk评论插件.html/" itemprop="url">Hexo添加gitalk评论插件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T19:05:44+08:00">
-                2018-10-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-          
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          配置gitalk插件用于评论和留言，解决gitalk的 Error:Validation Failed 报错问题，并添加留言簿页面
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2018-10-21-Hexo添加gitalk评论插件.html/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2161,7 +2250,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2183,7 +2272,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

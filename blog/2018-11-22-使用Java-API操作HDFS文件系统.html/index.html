@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Hadoop、Spark," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="经历 目前某985本科在读  学习方向 Python数据挖掘与机器学习 爬虫 java开发 大数据与云计算">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于我">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="Configurationorg.apache.hadoop.conf.Configuration 用来创建HDFS的配置对象（conf），一般可通过它来设置hdfs文件系统的uri Pathorg.apache.hadoop.fs.Path 用来定义文件路径对象（path），类似java中Path FileSystemorg.apache.hadoop.fs.FileSystem 用来定义hdf">
+<meta name="keywords" content="Hadoop、Spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Java API操作HDFS文件系统">
+<meta property="og:url" content="http://yoursite.com/blog/2018-11-22-使用Java-API操作HDFS文件系统.html/index.html">
 <meta property="og:site_name" content="Josonlee&#39;s Blog">
-<meta property="og:description" content="经历 目前某985本科在读  学习方向 Python数据挖掘与机器学习 爬虫 java开发 大数据与云计算">
+<meta property="og:description" content="Configurationorg.apache.hadoop.conf.Configuration 用来创建HDFS的配置对象（conf），一般可通过它来设置hdfs文件系统的uri Pathorg.apache.hadoop.fs.Path 用来定义文件路径对象（path），类似java中Path FileSystemorg.apache.hadoop.fs.FileSystem 用来定义hdf">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-18T10:14:59.404Z">
+<meta property="og:updated_time" content="2018-11-25T15:29:40.901Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于我">
-<meta name="twitter:description" content="经历 目前某985本科在读  学习方向 Python数据挖掘与机器学习 爬虫 java开发 大数据与云计算">
+<meta name="twitter:title" content="使用Java API操作HDFS文件系统">
+<meta name="twitter:description" content="Configurationorg.apache.hadoop.conf.Configuration 用来创建HDFS的配置对象（conf），一般可通过它来设置hdfs文件系统的uri Pathorg.apache.hadoop.fs.Path 用来定义文件路径对象（path），类似java中Path FileSystemorg.apache.hadoop.fs.FileSystem 用来定义hdf">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/blog/2018-11-22-使用Java-API操作HDFS文件系统.html/"/>
 
 
 
 
 
-  <title>关于我 | Josonlee's Blog</title>
+  <title>使用Java API操作HDFS文件系统 | Josonlee's Blog</title>
   
 
 
@@ -270,42 +271,236 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-11-22-使用Java-API操作HDFS文件系统.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">关于我</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h3 id="经历"><a href="#经历" class="headerlink" title="经历"></a>经历</h3><ul>
-<li>目前某985本科在读</li>
+          <h1 class="post-title" itemprop="name headline">使用Java API操作HDFS文件系统</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T09:20:49+08:00">
+                2018-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+             <span class="post-meta-divider">|</span>   <span id="busuanzi_value_page_pv"></span>次阅读 
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p><code>org.apache.hadoop.conf.Configuration</code> 用来创建HDFS的配置对象（conf），一般可通过它来设置hdfs文件系统的uri</p>
+<h2 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h2><p><code>org.apache.hadoop.fs.Path</code> 用来定义文件路径对象（path），类似java中Path</p>
+<h2 id="FileSystem"><a href="#FileSystem" class="headerlink" title="FileSystem"></a>FileSystem</h2><p><code>org.apache.hadoop.fs.FileSystem</code> 用来定义hdfs文件系统对象（fs）</p>
+<ul>
+<li>初始化fs实例的方法：<ul>
+<li><code>FileSystem.get(conf)</code></li>
+<li><code>FileSystem.get(uri,conf)</code></li>
+<li><code>path.getFileSystem(conf)</code> 这个实际上创建path时会传入uri，实际上调用第二种方法<code>FileSystem.get(uri,conf)</code></li>
 </ul>
-<h3 id="学习方向"><a href="#学习方向" class="headerlink" title="学习方向"></a>学习方向</h3><ul>
-<li>Python数据挖掘与机器学习</li>
-<li>爬虫</li>
-<li>java开发</li>
-<li>大数据与云计算</li>
+</li>
+<li>fs具体方法：<ul>
+<li>创建目录：<code>public boolean mkdirs(Path f) throws IOException</code></li>
+<li>创建文件：<code>public static FSDataOutputStream create(FileSystem fs,
+Path file, FsPermission permission) throws IOException</code></li>
 </ul>
-
-        
-      </div>
-      
-      
+</li>
+</ul>
+<h2 id="IOUtils"><a href="#IOUtils" class="headerlink" title="IOUtils"></a>IOUtils</h2>
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话，不妨加个鸡腿，O(∩_∩)O哈哈~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weChatPay.jpg" alt="Joson lee 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliPay.jpg" alt="Joson lee 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hadoop、Spark/" rel="tag"># Hadoop、Spark</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018-11-21-Spark先修课-Scala语言学习.html/" rel="next" title="Spark先修课---Scala语言学习">
+                <i class="fa fa-chevron-left"></i> Spark先修课---Scala语言学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018-11-25-MapReduce编程初步及源码分析.html/" rel="prev" title="MapReduce编程初步及源码分析">
+                MapReduce编程初步及源码分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -446,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#经历"><span class="nav-number">1.</span> <span class="nav-text">经历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习方向"><span class="nav-number">2.</span> <span class="nav-text">学习方向</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Configuration"><span class="nav-number">1.</span> <span class="nav-text">Configuration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Path"><span class="nav-number">2.</span> <span class="nav-text">Path</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FileSystem"><span class="nav-number">3.</span> <span class="nav-text">FileSystem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IOUtils"><span class="nav-number">4.</span> <span class="nav-text">IOUtils</span></a></li></ol></div>
             
 
           </div>
