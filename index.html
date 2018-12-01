@@ -395,66 +395,21 @@
 
       
         
-          
-            <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>spark可以在Linux上搭建，也能不安装hadoop直接在Windows上搭建单机版本。首先是从官网上<a href="http://spark.apache.org/downloads.html" target="_blank" rel="noopener">下载</a>和你hadoop版本匹配的spark版本（版本不要太新，选择稳定版本，如我的是hadoop2.6版本对应spark-2.0.2-bin-hadoop2.6.tgz）</p>
+          <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>spark可以在Linux上搭建，也能不安装hadoop直接在Windows上搭建单机版本。首先是从官网上<a href="http://spark.apache.org/downloads.html" target="_blank" rel="noopener">下载</a>和你hadoop版本匹配的spark版本（版本不要太新，选择稳定版本，如我的是hadoop2.6版本对应spark-2.0.2-bin-hadoop2.6.tgz）</p>
 <p>可以放心的是，spark安装远比hadoop安装简单的多</p>
 <h2 id="本地安装"><a href="#本地安装" class="headerlink" title="本地安装"></a>本地安装</h2><p>把下载的压缩包解压到本地某个位置上，修改环境变量，添加<code>%SPARK_HOME%:解压的位置</code>；修改Path，增加一栏<code>%SPARK_HOME%/bin</code></p>
 <p><img src="MarkDown_Images/大数据/spark本地安装.jpg" alt=""></p>
 <p>好了，本地安装就这么简单。打开CMD命令行工具，输入<code>spark-shell</code>，如图显示就是安装成功了<br><img src="MarkDown_Images/大数据/spark本地运行.jpg" alt=""></p>
 <ul>
 <li>Error：安装后运行是有可能会遇到一个错误：<code>Failed to find Spark jars directory</code><ul>
-<li>解决方法：安装路径名上不能有空格（比如Program Files就不行）<h2 id="基于hadoop伪分布式搭建"><a href="#基于hadoop伪分布式搭建" class="headerlink" title="基于hadoop伪分布式搭建"></a>基于hadoop伪分布式搭建</h2>将你下载的spark压缩包，通过某些工具（我用的是WinSCP）上传到虚拟机中</li>
-</ul>
-</li>
-</ul>
-<p>有必要说一下，我的是centos7系统，hadoop也是伪分布式的，主从节点名namenode（具体的你可以看我之前<a href="https://josonle.github.io/blog/2018-11-14-Hadoop%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA.html/" target="_blank" rel="noopener">搭建hadoop的博客</a>）</p>
-<ul>
-<li><p>解压到用户目录下（我这里是<code>/home/hadoop</code>）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 上传到了/root目录下，cd到该目录下执行</span><br><span class="line">tar -zxvf spark-2.0.2-bin-hadoop2.6.tgz -C /home/hadoop</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>同本地安装一样，配置环境变量</p>
-<ul>
-<li>可以选择在系统环境变量中配置<code>/etc/profile</code>，也可以选择用户环境变量中配置<code>/home/hadoop/.bash_profile</code>，推荐后者<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi .bash_profile</span><br><span class="line"># 添加</span><br><span class="line">export SPARK_HOME=/home/hadoop/spark-2.0.2-bin-hadoop2.6</span><br><span class="line">export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin</span><br><span class="line"></span><br><span class="line"># 保存退出后，source .bash_profile使配置生效</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<p>配置完成后同样可以输入spark-shell查看运行</p>
-<ul>
-<li>配置spark的设置文件(conf目录下)spark-env.sh和slaves</li>
-</ul>
-<p>切换到spark下的conf目录下，<code>cd /home/hadoop/spark-2.0.2-bin-hadoop2.6/conf</code></p>
-<p>spark没有spark-env.sh和slaves文件，只有以template结尾的两个模板文件，依据模板文件生成即可<code>cp spark-env.sh.template spark-env.sh</code>，<code>cp slaves.template slaves</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 修改spark-env.sh</span><br><span class="line">vi spark-env.sh</span><br><span class="line"># 增加类似下文内容</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_131</span><br><span class="line">export HADOOP_HOME=/home/hadoop/hadoop-2.6.0-cdh5.12.1</span><br><span class="line">export HADOOP_CONF_DIR=/home/hadoop/hadoop-2.6.0-cdh5.12.1/etc/hadoop</span><br><span class="line">export SPARK_MASTER_HOST=namenode</span><br><span class="line">export SPARK_WORKER_MEMORY=1024m</span><br><span class="line">export SPARK_WORKER_CORES=2</span><br><span class="line">export SPARK_WORKER_INSTANCES=1</span><br></pre></td></tr></table></figure>
-<p>像JAVA_HOME,HADOOP_HOME是你之前java和hadoop安装的位置，可以使用<code>echo JAVA_HOME</code>查看</p>
-<p>SPARK_MASTER_HOST，spark也是主从关系，这里<strong>指定spark主节点为hadoop的主节点名即可</strong></p>
-<p>后三行是默认配置，依你电脑配置可修改。分别代表worker内存、核、实例分配</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 修改slaves</span><br><span class="line">vi slaves</span><br><span class="line"># 增加从节点</span><br><span class="line">namenode   #因为是伪分布式，namenode既是主也是从</span><br></pre></td></tr></table></figure>
-<p>还有就是要注意，你之前配置hadoop时已经完成了ip和名的映射</p>
-<p>以上内容完成后，就搭建完了</p>
-<h3 id="启动spark"><a href="#启动spark" class="headerlink" title="启动spark"></a>启动spark</h3><p>先完成一个事，你可以看到spark下sbin目录中启动和结束的命令是<code>start-all.sh</code>，<code>stop-all.sh</code>，和hadoop启动结束命令重名了，用mv命令修改为start-spark-all.sh，stop-spark-all.sh就好了</p>
-<ul>
-<li>启动hadoop集群 <code>start-hdfs.sh</code>，<code>start-yarn.sh</code></li>
-<li>启动spark <code>start-spark-all.sh</code></li>
-<li>使用jps命令查看运行情况</li>
-<li>本地浏览器打开<code>http://192.168.17.10:8080</code>（这个IP是我之前在hadoop中配置的namenode的IP，端口是固定的）<br><img src="MarkDown_Images/大数据/start_spark.jpg" alt=""><br><img src="MarkDown_Images/大数据/spark_web.jpg" alt=""></li>
-</ul>
-<h3 id="安装过程可能遇到的问题"><a href="#安装过程可能遇到的问题" class="headerlink" title="安装过程可能遇到的问题"></a>安装过程可能遇到的问题</h3><p>在配置以上设置时，一定要分清楚，这都是我的环境设置，要合理的区分开。比如说你java，hadoop安装的位置和我的不一样等等</p>
-<p>在替别人查看这一块配置时，它运行spark集群时，遇到了几个问题</p>
-<ul>
-<li>用户hadoop无权限在spark下创建logs等目录<ul>
-<li>通过<code>ls -l</code>查看spark-2.0.2-bin-hadoop2.6这个文件夹所属组和用户是root</li>
-<li>修改文件夹所属组和用户即可，<code>chown -R hadoop:hadoop /home/hadoop/spark-2.0.2-bin-hadoop2.6</code></li>
-</ul>
-</li>
-<li><code>spark-class: line 71…No such file or directory</code>，显示大概是找不到java<ul>
-<li>这个问题就是配置写错了，spark-env.sh中java_home写错了</li>
-</ul>
-</li>
-</ul>
-<h2 id="spark完全分布集群搭建"><a href="#spark完全分布集群搭建" class="headerlink" title="spark完全分布集群搭建"></a>spark完全分布集群搭建</h2><p>过程和伪分布式搭建一样，不同在于<code>slaves</code>中设置的从节点名为datanode1、datanode2类似的<br>然后，再复制到从节点主机中，如<code>scp -r /home/hadoop/spark-2.0.2-bin-hadoop2.6 datanode1:/home/hadoop</code> （这是因为之前配好了ssh免密登录）</p>
-
-          
+<li>解决方法：安装路径名上不能有空格（比如Program Files就不行）
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018-12-01-Spark本地安装及Linux下伪分布式搭建.html/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
