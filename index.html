@@ -398,8 +398,8 @@
           <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>spark可以在Linux上搭建，也能不安装hadoop直接在Windows上搭建单机版本。首先是从官网上<a href="http://spark.apache.org/downloads.html" target="_blank" rel="noopener">下载</a>和你hadoop版本匹配的spark版本（版本不要太新，选择稳定版本，如我的是hadoop2.6版本对应spark-2.0.2-bin-hadoop2.6.tgz）</p>
 <p>可以放心的是，spark安装远比hadoop安装简单的多</p>
 <h2 id="本地安装"><a href="#本地安装" class="headerlink" title="本地安装"></a>本地安装</h2><p>把下载的压缩包解压到本地某个位置上，修改环境变量，添加<code>%SPARK_HOME%:解压的位置</code>；修改Path，增加一栏<code>%SPARK_HOME%/bin</code></p>
-<p><img src="MarkDown_Images/大数据/spark本地安装.jpg" alt=""></p>
-<p>好了，本地安装就这么简单。打开CMD命令行工具，输入<code>spark-shell</code>，如图显示就是安装成功了<br><img src="MarkDown_Images/大数据/spark本地运行.jpg" alt=""></p>
+<p><img src="MarkDown_images/大数据/spark本地安装.jpg" alt=""></p>
+<p>好了，本地安装就这么简单。打开CMD命令行工具，输入<code>spark-shell</code>，如图显示就是安装成功了<br><img src="MarkDown_images/大数据/spark本地运行.jpg" alt=""></p>
 <ul>
 <li>Error：安装后运行是有可能会遇到一个错误：<code>Failed to find Spark jars directory</code><ul>
 <li>解决方法：安装路径名上不能有空格（比如Program Files就不行）

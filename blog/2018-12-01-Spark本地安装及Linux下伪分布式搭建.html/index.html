@@ -87,15 +87,15 @@
 <meta property="og:site_name" content="Josonlee&#39;s Blog">
 <meta property="og:description" content="前期准备spark可以在Linux上搭建，也能不安装hadoop直接在Windows上搭建单机版本。首先是从官网上下载和你hadoop版本匹配的spark版本（版本不要太新，选择稳定版本，如我的是hadoop2.6版本对应spark-2.0.2-bin-hadoop2.6.tgz） 可以放心的是，spark安装远比hadoop安装简单的多 本地安装把下载的压缩包解压到本地某个位置上，修改环境变量，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/blog/2018-12-01-Spark本地安装及Linux下伪分布式搭建.html/MarkDown_Images/大数据/spark本地安装.jpg">
-<meta property="og:image" content="http://yoursite.com/blog/2018-12-01-Spark本地安装及Linux下伪分布式搭建.html/MarkDown_Images/大数据/spark本地运行.jpg">
-<meta property="og:image" content="http://yoursite.com/blog/2018-12-01-Spark本地安装及Linux下伪分布式搭建.html/MarkDown_Images/大数据/start_spark.jpg">
-<meta property="og:image" content="http://yoursite.com/blog/2018-12-01-Spark本地安装及Linux下伪分布式搭建.html/MarkDown_Images/大数据/spark_web.jpg">
-<meta property="og:updated_time" content="2018-12-01T06:09:23.522Z">
+<meta property="og:image" content="http://yoursite.com/blog/2018-12-01-Spark本地安装及Linux下伪分布式搭建.html/MarkDown_images/大数据/spark本地安装.jpg">
+<meta property="og:image" content="http://yoursite.com/blog/2018-12-01-Spark本地安装及Linux下伪分布式搭建.html/MarkDown_images/大数据/spark本地运行.jpg">
+<meta property="og:image" content="http://yoursite.com/blog/2018-12-01-Spark本地安装及Linux下伪分布式搭建.html/MarkDown_images/大数据/start_spark.jpg">
+<meta property="og:image" content="http://yoursite.com/blog/2018-12-01-Spark本地安装及Linux下伪分布式搭建.html/MarkDown_images/大数据/spark_web.jpg">
+<meta property="og:updated_time" content="2018-12-01T06:17:31.249Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark本地安装及Linux下伪分布式搭建">
 <meta name="twitter:description" content="前期准备spark可以在Linux上搭建，也能不安装hadoop直接在Windows上搭建单机版本。首先是从官网上下载和你hadoop版本匹配的spark版本（版本不要太新，选择稳定版本，如我的是hadoop2.6版本对应spark-2.0.2-bin-hadoop2.6.tgz） 可以放心的是，spark安装远比hadoop安装简单的多 本地安装把下载的压缩包解压到本地某个位置上，修改环境变量，">
-<meta name="twitter:image" content="http://yoursite.com/blog/2018-12-01-Spark本地安装及Linux下伪分布式搭建.html/MarkDown_Images/大数据/spark本地安装.jpg">
+<meta name="twitter:image" content="http://yoursite.com/blog/2018-12-01-Spark本地安装及Linux下伪分布式搭建.html/MarkDown_images/大数据/spark本地安装.jpg">
 
 
 
@@ -401,8 +401,8 @@
         <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>spark可以在Linux上搭建，也能不安装hadoop直接在Windows上搭建单机版本。首先是从官网上<a href="http://spark.apache.org/downloads.html" target="_blank" rel="noopener">下载</a>和你hadoop版本匹配的spark版本（版本不要太新，选择稳定版本，如我的是hadoop2.6版本对应spark-2.0.2-bin-hadoop2.6.tgz）</p>
 <p>可以放心的是，spark安装远比hadoop安装简单的多</p>
 <h2 id="本地安装"><a href="#本地安装" class="headerlink" title="本地安装"></a>本地安装</h2><p>把下载的压缩包解压到本地某个位置上，修改环境变量，添加<code>%SPARK_HOME%:解压的位置</code>；修改Path，增加一栏<code>%SPARK_HOME%/bin</code></p>
-<p><img src="MarkDown_Images/大数据/spark本地安装.jpg" alt=""></p>
-<p>好了，本地安装就这么简单。打开CMD命令行工具，输入<code>spark-shell</code>，如图显示就是安装成功了<br><img src="MarkDown_Images/大数据/spark本地运行.jpg" alt=""></p>
+<p><img src="MarkDown_images/大数据/spark本地安装.jpg" alt=""></p>
+<p>好了，本地安装就这么简单。打开CMD命令行工具，输入<code>spark-shell</code>，如图显示就是安装成功了<br><img src="MarkDown_images/大数据/spark本地运行.jpg" alt=""></p>
 <ul>
 <li>Error：安装后运行是有可能会遇到一个错误：<code>Failed to find Spark jars directory</code><ul>
 <li>解决方法：安装路径名上不能有空格（比如Program Files就不行）<a id="more"></a>
@@ -440,7 +440,7 @@
 <li>启动hadoop集群 <code>start-hdfs.sh</code>，<code>start-yarn.sh</code></li>
 <li>启动spark <code>start-spark-all.sh</code></li>
 <li>使用jps命令查看运行情况</li>
-<li>本地浏览器打开<code>http://192.168.17.10:8080</code>（这个IP是我之前在hadoop中配置的namenode的IP，端口是固定的）<br><img src="MarkDown_Images/大数据/start_spark.jpg" alt=""><br><img src="MarkDown_Images/大数据/spark_web.jpg" alt=""></li>
+<li>本地浏览器打开<code>http://192.168.17.10:8080</code>（这个IP是我之前在hadoop中配置的namenode的IP，端口是固定的）<br><img src="MarkDown_images/大数据/start_spark.jpg" alt=""><br><img src="MarkDown_images/大数据/spark_web.jpg" alt=""></li>
 </ul>
 <h3 id="安装过程可能遇到的问题"><a href="#安装过程可能遇到的问题" class="headerlink" title="安装过程可能遇到的问题"></a>安装过程可能遇到的问题</h3><p>在配置以上设置时，一定要分清楚，这都是我的环境设置，要合理的区分开。比如说你java，hadoop安装的位置和我的不一样等等</p>
 <p>在替别人查看这一块配置时，它运行spark集群时，遇到了几个问题</p>
