@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Spark," />
+  <meta name="keywords" content="数据机构," />
 
 
 
@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="LeetCode刷题心得数组链表链表设计 单链表，双链表，循环链表 合理增加哨兵节点（head、tail节点） head节点是不是要放在第一个节点位置，还是在第一个节点前；tail指向最后一个节点   删除节点p怎么方便？   通常遇到都会考虑，找到p前面一个节点q，然后q-&amp;gt;next = q-&amp;gt;next-&amp;gt;next / 还有一种是找到节点p，然后替换p的值为后一个节点的值(p">
-<meta name="keywords" content="Spark">
+<meta name="description" content="[TOC] LeetCode刷题心得 181212 链表刷题">
+<meta name="keywords" content="数据机构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode刷题心得">
-<meta property="og:url" content="http://yoursite.com/blog/2018-12-01-LeetCode刷题心得.html/index.html">
+<meta property="og:url" content="http://yoursite.com/blog/2018-12-12-LeetCode刷题心得.html/index.html">
 <meta property="og:site_name" content="Josonlee&#39;s Blog">
-<meta property="og:description" content="LeetCode刷题心得数组链表链表设计 单链表，双链表，循环链表 合理增加哨兵节点（head、tail节点） head节点是不是要放在第一个节点位置，还是在第一个节点前；tail指向最后一个节点   删除节点p怎么方便？   通常遇到都会考虑，找到p前面一个节点q，然后q-&amp;gt;next = q-&amp;gt;next-&amp;gt;next / 还有一种是找到节点p，然后替换p的值为后一个节点的值(p">
+<meta property="og:description" content="[TOC] LeetCode刷题心得 181212 链表刷题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/blog/2018-12-01-LeetCode刷题心得.html/MarkDown_images/leetcode/Cycle.png">
-<meta property="og:updated_time" content="2018-12-12T13:24:00.828Z">
+<meta property="og:image" content="http://yoursite.com/blog/2018-12-12-LeetCode刷题心得.html/MarkDown_images/leetcode/Cycle.png">
+<meta property="og:updated_time" content="2018-12-12T13:36:58.409Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode刷题心得">
-<meta name="twitter:description" content="LeetCode刷题心得数组链表链表设计 单链表，双链表，循环链表 合理增加哨兵节点（head、tail节点） head节点是不是要放在第一个节点位置，还是在第一个节点前；tail指向最后一个节点   删除节点p怎么方便？   通常遇到都会考虑，找到p前面一个节点q，然后q-&amp;gt;next = q-&amp;gt;next-&amp;gt;next / 还有一种是找到节点p，然后替换p的值为后一个节点的值(p">
-<meta name="twitter:image" content="http://yoursite.com/blog/2018-12-01-LeetCode刷题心得.html/MarkDown_images/leetcode/Cycle.png">
+<meta name="twitter:description" content="[TOC] LeetCode刷题心得 181212 链表刷题">
+<meta name="twitter:image" content="http://yoursite.com/blog/2018-12-12-LeetCode刷题心得.html/MarkDown_images/leetcode/Cycle.png">
 
 
 
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/blog/2018-12-01-LeetCode刷题心得.html/"/>
+  <link rel="canonical" href="http://yoursite.com/blog/2018-12-12-LeetCode刷题心得.html/"/>
 
 
 
@@ -285,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-12-01-LeetCode刷题心得.html/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-12-12-LeetCode刷题心得.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joson lee">
@@ -314,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-01T12:34:35+08:00">
-                2018-12-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-12T12:34:35+08:00">
+                2018-12-12
               </time>
             
 
@@ -337,8 +337,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/大数据/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
+                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
                   </a>
                 </span>
 
@@ -395,8 +395,12 @@
       
 
       
-        <hr>
-<h1 id="LeetCode刷题心得"><a href="#LeetCode刷题心得" class="headerlink" title="LeetCode刷题心得"></a>LeetCode刷题心得</h1><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="链表设计"><a href="#链表设计" class="headerlink" title="链表设计"></a>链表设计</h3><ul>
+        <p>[TOC]</p>
+<h1 id="LeetCode刷题心得"><a href="#LeetCode刷题心得" class="headerlink" title="LeetCode刷题心得"></a>LeetCode刷题心得</h1><ul>
+<li>181212 链表刷题<a id="more"></a>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2></li>
+</ul>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="链表设计"><a href="#链表设计" class="headerlink" title="链表设计"></a>链表设计</h3><ul>
 <li>单链表，双链表，循环链表</li>
 <li>合理增加哨兵节点（head、tail节点）<ul>
 <li>head节点是不是要放在第一个节点位置，还是在第一个节点前；tail指向最后一个节点</li>
@@ -509,7 +513,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Spark/" rel="tag"># Spark</a>
+            <a href="/tags/数据机构/" rel="tag"># 数据机构</a>
           
         </div>
       
@@ -522,8 +526,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018-11-25-MapReduce编程初步及源码分析.html/" rel="next" title="MapReduce编程初步及源码分析">
-                <i class="fa fa-chevron-left"></i> MapReduce编程初步及源码分析
+              <a href="/blog/2018-12-10-Spark理论、进阶、实践.html/" rel="next" title="Spark理论、进阶、实践">
+                <i class="fa fa-chevron-left"></i> Spark理论、进阶、实践
               </a>
             
           </div>
@@ -531,10 +535,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018-12-01-Spark本地安装及Linux下伪分布式搭建.html/" rel="prev" title="Spark本地安装及Linux下伪分布式搭建">
-                Spark本地安装及Linux下伪分布式搭建 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -617,7 +617,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -628,7 +628,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -639,7 +639,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
