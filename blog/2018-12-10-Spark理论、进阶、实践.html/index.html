@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Spark," />
 
 
 
@@ -79,16 +79,20 @@
 
 
 
-<meta name="description" content="Python数据分析、机器学习、Django、java学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Josonlee&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/Hadoop、Spark/index.html">
+<meta name="description" content="Spark–最全面详解从理论、实践到案例【附案例及数据】(出处: about云开发)  Hadoop组件可以通过以下方式与Spark一起使用：   HDFS：Spark可以在HDFS之上运行，以利用分布式存储。 MapReduce：Spark可以与MapReduce一起用于同一个Hadoop集群，也可以单独作为处理框架使用。 YARN：可以使Spark应用程序在YARN（Hadoop NextGe">
+<meta name="keywords" content="Spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark理论、进阶、实践">
+<meta property="og:url" content="http://yoursite.com/blog/2018-12-10-Spark理论、进阶、实践.html/index.html">
 <meta property="og:site_name" content="Josonlee&#39;s Blog">
-<meta property="og:description" content="Python数据分析、机器学习、Django、java学习">
+<meta property="og:description" content="Spark–最全面详解从理论、实践到案例【附案例及数据】(出处: about云开发)  Hadoop组件可以通过以下方式与Spark一起使用：   HDFS：Spark可以在HDFS之上运行，以利用分布式存储。 MapReduce：Spark可以与MapReduce一起用于同一个Hadoop集群，也可以单独作为处理框架使用。 YARN：可以使Spark应用程序在YARN（Hadoop NextGe">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.aboutyun.com/data/attachment/forum/201702/17/161739dlk3yy0yy4lwr33w.png">
+<meta property="og:updated_time" content="2018-12-12T13:27:35.278Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Josonlee&#39;s Blog">
-<meta name="twitter:description" content="Python数据分析、机器学习、Django、java学习">
+<meta name="twitter:title" content="Spark理论、进阶、实践">
+<meta name="twitter:description" content="Spark–最全面详解从理论、实践到案例【附案例及数据】(出处: about云开发)  Hadoop组件可以通过以下方式与Spark一起使用：   HDFS：Spark可以在HDFS之上运行，以利用分布式存储。 MapReduce：Spark可以与MapReduce一起用于同一个Hadoop集群，也可以单独作为处理框架使用。 YARN：可以使Spark应用程序在YARN（Hadoop NextGe">
+<meta name="twitter:image" content="http://www.aboutyun.com/data/attachment/forum/201702/17/161739dlk3yy0yy4lwr33w.png">
 
 
 
@@ -118,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/Hadoop、Spark/"/>
+  <link rel="canonical" href="http://yoursite.com/blog/2018-12-10-Spark理论、进阶、实践.html/"/>
 
 
 
 
 
-  <title>标签: Hadoop、Spark | Josonlee's Blog</title>
+  <title>Spark理论、进阶、实践 | Josonlee's Blog</title>
   
 
 
@@ -143,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -267,110 +271,234 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Hadoop、Spark<small>标签</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-12-10-Spark理论、进阶、实践.html/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/blog/2018-11-25-MapReduce编程初步及源码分析.html/" itemprop="url">
-              
-                <span itemprop="name">MapReduce编程初步及源码分析</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Spark理论、进阶、实践</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-25T22:52:12+08:00"
-              content="2018-11-25" >
-          11-25
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T20:03:24+08:00">
+                2018-12-10
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+             <span class="post-meta-divider">|</span>   <span id="busuanzi_value_page_pv"></span>次阅读 
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2018-11-22-使用Java-API操作HDFS文件系统.html/" itemprop="url">
-              
-                <span itemprop="name">使用Java API操作HDFS文件系统</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-22T09:20:49+08:00"
-              content="2018-11-22" >
-          11-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2018-11-18-Hadoop及Spark学习路线及资源收纳.html/" itemprop="url">
-              
-                <span itemprop="name">Hadoop及Spark学习路线及资源收纳</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-18T16:19:54+08:00"
-              content="2018-11-18" >
-          11-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <p><a href="http://www.aboutyun.com/thread-24883-1-1.html" target="_blank" rel="noopener">Spark–最全面详解从理论、实践到案例【附案例及数据】</a>(出处: about云开发)</p>
+<p> Hadoop组件可以通过以下方式与Spark一起使用： </p>
+<ul>
+<li><strong>HDFS</strong>：Spark可以在HDFS之上运行，以利用分布式存储。</li>
+<li><strong>MapReduce</strong>：Spark可以与MapReduce一起用于同一个Hadoop集群，也可以单独作为处理框架使用。</li>
+<li><strong>YARN</strong>：可以使Spark应用程序在YARN（Hadoop NextGen）上运行。</li>
+<li><strong>批处理和实时处理</strong>：MapReduce和Spark一起使用，其中MapReduce用于批处理，Spark用于实时处理。</li>
+</ul>
+<h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><p><a href="http://www.aboutyun.com/forum.php?mod=forumdisplay&amp;fid=146&amp;filter=typeid&amp;typeid=502" target="_blank" rel="noopener">[学习线路]</a> <a href="http://www.aboutyun.com/thread-21959-1-1.html" target="_blank" rel="noopener">spark零基础学习线路指导[spark2已更新]</a></p>
+<p><img src="http://www.aboutyun.com/data/attachment/forum/201702/17/161739dlk3yy0yy4lwr33w.png" alt="img"> </p>
+<hr>
+<hr>
+<p>更多资料推荐<br>Spark1.0.0 学习路线指导<br><a href="http://www.aboutyun.com/forum.php?mod=viewthread&amp;tid=8421" target="_blank" rel="noopener">http://www.aboutyun.com/forum.php?mod=viewthread&amp;tid=8421</a></p>
+<p>Spark学习总结—入门<br><a href="http://www.aboutyun.com/forum.php?mod=viewthread&amp;tid=20710" target="_blank" rel="noopener">http://www.aboutyun.com/forum.php?mod=viewthread&amp;tid=20710</a></p>
+<p>spark个人学习总结<br><a href="http://www.aboutyun.com/forum.php?mod=viewthread&amp;tid=14584" target="_blank" rel="noopener">http://www.aboutyun.com/forum.php?mod=viewthread&amp;tid=14584</a></p>
+<p>spark入门教程及经验总结<br><a href="http://www.aboutyun.com/forum.php?mod=viewthread&amp;tid=11128" target="_blank" rel="noopener">http://www.aboutyun.com/forum.php?mod=viewthread&amp;tid=11128</a></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话，不妨加个鸡腿，O(∩_∩)O哈哈~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weChatPay.jpg" alt="Joson lee 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliPay.jpg" alt="Joson lee 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spark/" rel="tag"># Spark</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018-12-05-Kaggle笔记.html/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -378,6 +506,12 @@
 
 
           
+
+  
+    <div id="gitalk-container"></div>
+  
+
+
 
         </div>
         
@@ -398,8 +532,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -485,6 +628,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"> </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -654,6 +813,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -692,6 +855,22 @@
 
 
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'a94818509a8f36c0a222',
+          clientSecret: '4d6bcd339e8df5f3e1f9e653afa2a5b9a1023f0f',
+          repo: 'josonle.github.io',
+          owner: 'josonle',
+          admin: ['josonle'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+    </script>
 
 
 
