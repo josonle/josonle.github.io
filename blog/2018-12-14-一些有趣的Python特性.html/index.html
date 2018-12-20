@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一些有趣的Python特性—-阅读《wtfPython》记录181214 看这道题  12345&amp;gt;&amp;gt;&amp;gt; row = [&amp;apos;&amp;apos;]*3&amp;gt;&amp;gt;&amp;gt; board = [row]*3&amp;gt;&amp;gt;&amp;gt; board[0][0] = &amp;apos;x&amp;apos;&amp;gt;&amp;gt;&amp;gt; board???会输出什么 1234567891011121314151">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Josonlee&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/blog/2018-12-14-一些有趣的Python特性.html/index.html">
+<meta property="og:site_name" content="Josonlee&#39;s Blog">
+<meta property="og:description" content="一些有趣的Python特性—-阅读《wtfPython》记录181214 看这道题  12345&amp;gt;&amp;gt;&amp;gt; row = [&amp;apos;&amp;apos;]*3&amp;gt;&amp;gt;&amp;gt; board = [row]*3&amp;gt;&amp;gt;&amp;gt; board[0][0] = &amp;apos;x&amp;apos;&amp;gt;&amp;gt;&amp;gt; board???会输出什么 1234567891011121314151">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-20T12:43:36.873Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Josonlee&#39;s Blog">
+<meta name="twitter:description" content="一些有趣的Python特性—-阅读《wtfPython》记录181214 看这道题  12345&amp;gt;&amp;gt;&amp;gt; row = [&amp;apos;&amp;apos;]*3&amp;gt;&amp;gt;&amp;gt; board = [row]*3&amp;gt;&amp;gt;&amp;gt; board[0][0] = &amp;apos;x&amp;apos;&amp;gt;&amp;gt;&amp;gt; board???会输出什么 1234567891011121314151">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/blog/2018-12-14-一些有趣的Python特性.html/"/>
+
+
+
+
+
+  <title> | Josonlee's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Josonlee's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一点一滴 始于足下</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            给我留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-book">
+          <a href="/book/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-12-14-一些有趣的Python特性.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T10:25:53+08:00">
+                2018-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+             <span class="post-meta-divider">|</span>   <span id="busuanzi_value_page_pv"></span>次阅读 
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一些有趣的Python特性—-阅读《wtfPython》记录"><a href="#一些有趣的Python特性—-阅读《wtfPython》记录" class="headerlink" title="一些有趣的Python特性—-阅读《wtfPython》记录"></a>一些有趣的Python特性—-阅读《wtfPython》记录</h2><h3 id="181214"><a href="#181214" class="headerlink" title="181214"></a>181214</h3><ol>
+<li>看这道题</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; row = [&apos;&apos;]*3</span><br><span class="line">&gt;&gt;&gt; board = [row]*3</span><br><span class="line">&gt;&gt;&gt; board[0][0] = &apos;x&apos;</span><br><span class="line">&gt;&gt;&gt; board</span><br><span class="line">???会输出什么</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>row = [<span class="string">''</span>]*<span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(row)</span><br><span class="line"><span class="number">2511596760840</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>board = [row]*<span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>board</span><br><span class="line">[[<span class="string">''</span>, <span class="string">''</span>, <span class="string">''</span>], [<span class="string">''</span>, <span class="string">''</span>, <span class="string">''</span>], [<span class="string">''</span>, <span class="string">''</span>, <span class="string">''</span>]]</span><br><span class="line"><span class="comment"># 像最初创建时，row、board中每个元素指向地址都是一样的</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(board[<span class="number">0</span>])</span><br><span class="line"><span class="number">2511596760840</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(board[<span class="number">1</span>])</span><br><span class="line"><span class="number">2511596760840</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(board[<span class="number">2</span>])</span><br><span class="line"><span class="number">2511596760840</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(row[<span class="number">0</span>])</span><br><span class="line"><span class="number">2511562308272</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(row[<span class="number">1</span>])</span><br><span class="line"><span class="number">2511562308272</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(row[<span class="number">2</span>])</span><br><span class="line"><span class="number">2511562308272</span></span><br><span class="line"><span class="comment"># 一旦给其中某个元素赋了值，该元素指向地址就发生了改变</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>row[<span class="number">0</span>]=<span class="string">'x'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>row</span><br><span class="line">[<span class="string">'x'</span>, <span class="string">''</span>, <span class="string">''</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(row[<span class="number">0</span>])</span><br><span class="line"><span class="number">2511566106048</span></span><br><span class="line"><span class="comment"># 但board中每个元素仍旧指向row对象</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>board</span><br><span class="line">[[<span class="string">'x'</span>, <span class="string">''</span>, <span class="string">''</span>], [<span class="string">'x'</span>, <span class="string">''</span>, <span class="string">''</span>], [<span class="string">'x'</span>, <span class="string">''</span>, <span class="string">''</span>]]</span><br><span class="line"><span class="comment"># 这个同上面row[0]修改一样</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>board[<span class="number">0</span>]=[<span class="string">'y'</span>,<span class="string">'z'</span>,<span class="string">'x'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>board</span><br><span class="line">[[<span class="string">'y'</span>, <span class="string">'z'</span>, <span class="string">'x'</span>], [<span class="string">'x'</span>, <span class="string">''</span>, <span class="string">''</span>], [<span class="string">'x'</span>, <span class="string">''</span>, <span class="string">''</span>]]</span><br></pre></td></tr></table></figure>
+<p>这个关键是board是通过一个对象row来创建的，而row对象也是通过一个对象来创建的，所以board[0]，board[1]，board[2]，row都指向了同一列表对象</p>
+<p>要是想只改变<code>board[0][0]</code>，那就不要通过一个row对象来创建就好了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>board = [[<span class="string">''</span>]*<span class="number">3</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">3</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(board[<span class="number">0</span>])</span><br><span class="line"><span class="number">2511596761672</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(board[<span class="number">1</span>])</span><br><span class="line"><span class="number">2511596761416</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(board[<span class="number">2</span>])</span><br><span class="line"><span class="number">2511596761032</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>board[<span class="number">0</span>][<span class="number">0</span>] = <span class="string">'x'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>board</span><br><span class="line">[[<span class="string">'x'</span>, <span class="string">''</span>, <span class="string">''</span>], [<span class="string">''</span>, <span class="string">''</span>, <span class="string">''</span>], [<span class="string">''</span>, <span class="string">''</span>, <span class="string">''</span>]]</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>is not… 和 is (not …)…不同</li>
+</ol>
+<p>我想这个不难理解，对非空对象都能判断，主要是None对象的理解。记住下面这个就OK了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span> <span class="keyword">is</span> (<span class="keyword">not</span> <span class="keyword">None</span>)</span><br><span class="line"><span class="keyword">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span> <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span></span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>字符串末尾的反斜杠</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'asdf\'</span></span><br><span class="line"><span class="string">  File "&lt;stdin&gt;", line 1</span></span><br><span class="line"><span class="string">    '</span>asdf\<span class="string">'</span></span><br><span class="line"><span class="string">          ^</span></span><br><span class="line"><span class="string">SyntaxError: EOL while scanning string literal</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; '</span>asdf\\<span class="string">'</span></span><br><span class="line"><span class="string">'</span>asdf\\<span class="string">'</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; r'</span>asdf\<span class="string">'</span></span><br><span class="line"><span class="string">  File "&lt;stdin&gt;", line 1</span></span><br><span class="line"><span class="string">    r'</span>asdf\<span class="string">'</span></span><br><span class="line"><span class="string">           ^</span></span><br><span class="line"><span class="string">SyntaxError: EOL while scanning string literal</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; r'</span>asdf\\<span class="string">'</span></span><br><span class="line"><span class="string">'</span>asdf\\\\<span class="string">'</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; r'</span><span class="keyword">as</span>\df\\<span class="string">'</span></span><br><span class="line"><span class="string">'</span><span class="keyword">as</span>\\df\\\\<span class="string">'</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; r'</span><span class="keyword">as</span>\<span class="string">'df\\'</span></span><br><span class="line"><span class="string">"as\\'df\\\\"</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><code>==</code> 优先级高于 <code>not</code></li>
+</ol>
+<p>看下这个会输出什么</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">True</span> == <span class="keyword">False</span></span><br><span class="line">???</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">True</span> == <span class="keyword">not</span> <span class="keyword">False</span></span><br><span class="line">???</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">True</span> == <span class="keyword">not</span> <span class="keyword">False</span></span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span></span><br><span class="line">    <span class="keyword">True</span> == <span class="keyword">not</span> <span class="keyword">False</span></span><br><span class="line">              ^</span><br><span class="line">SyntaxError: invalid syntax</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">not</span> <span class="keyword">True</span> == <span class="keyword">False</span></span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p><code>==</code>  优先级高于<code>not</code> ，所以 <code>True == not False</code> 等同于· <code>(True == not) False</code> ，自然语法错误</p>
+<blockquote>
+<p>== 和 not in 优先级同级</p>
+</blockquote>
+<ol start="5">
+<li>字符串的隐式连接</li>
+</ol>
+<p>看下文会输出什么</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'hello'</span><span class="string">''</span></span><br><span class="line">???</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'hello'</span> <span class="string">''</span></span><br><span class="line">???</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'hello'</span><span class="string">''</span></span><br><span class="line"><span class="string">'hello'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'hello'</span> <span class="string">''</span></span><br><span class="line"><span class="string">'hello'</span></span><br><span class="line"><span class="comment"># 隐式连接，没有空格</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'hello'</span> <span class="string">'python'</span></span><br><span class="line"><span class="string">'hellopython'</span></span><br><span class="line"><span class="comment"># 但是三个引号在前，反而会报错</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'''hello')</span></span><br><span class="line"><span class="string"># 解释器先遇到三引号会认为是多行字符串，就会默认去寻找三个终止的引号，找不到报错</span></span><br><span class="line"><span class="string"># 像命令行下python解释器不到三引号结尾根本不会打印</span></span><br></pre></td></tr></table></figure>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><ul>
+<li>列表推导式中，for循环部分居然可以用 <code>_</code> 来占位</li>
+</ul>
+<h3 id="181215"><a href="#181215" class="headerlink" title="181215"></a>181215</h3><ul>
+<li>布尔类型是int类型的子类</li>
+</ul>
+<p>看下下面会输出什么</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dict = &#123;&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dict[<span class="keyword">True</span>] = <span class="string">"python"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dict[<span class="number">1</span>] = <span class="string">"scala"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dict[<span class="number">1.0</span>] = <span class="string">"spark"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dict[<span class="keyword">True</span>]</span><br><span class="line">???</span><br></pre></td></tr></table></figure>
+<p>结果是spark。布尔类型是int类型的子类，所以True的整数值就是1，False是0。其次，字典中是通过判断key的哈希值是否相等来判断键是否相同的，所以1、1.0、True都是1</p>
+<p>See this：<a href="https://stackoverflow.com/questions/8169001/why-is-bool-a-subclass-of-int" target="_blank" rel="noopener">Why is bool a subclass of int?</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>some_bool = <span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some_bool*<span class="string">"wtf"</span></span><br><span class="line"><span class="string">'wtf'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some_bool = <span class="keyword">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some_bool*<span class="string">"wtf"</span></span><br><span class="line"><span class="comment"># isinstance(object,classinfo)判断object对象是否是已知的classinfo类型</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(<span class="keyword">True</span>,int)</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(<span class="keyword">False</span>,int)</span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>关于isinstance()和type()用法见补充</p>
+<ul>
+<li>类变量和类实例变量</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; <span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    	x = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">&gt;&gt; <span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></span><br><span class="line">   		<span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">&gt;&gt; <span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(A)</span>:</span></span><br><span class="line">    	<span class="keyword">pass</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A.x,B.x,C.x</span><br><span class="line">(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C.x =<span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A.x,B.x,C.x</span><br><span class="line">(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A.x = <span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A.x,B.x,C.x</span><br><span class="line">(<span class="number">3</span>, <span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = A()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.x</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.x = <span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.x,A.x</span><br><span class="line">(<span class="number">4</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>首先类B、C都是A的子类，a是A的实例对象，其次要知道一点，类变量和实例变量在内部是通过类对象的 <code>__dict__</code> 属性来处理. 如果在当前类的字典中找不到的话就去它的父类中寻找 </p>
+<p>所以，C类给x赋值2后，C中已经有了该实例变量，但B中仍旧是用的父类A的变量。实例a也是如此</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span>:</span></span><br><span class="line"><span class="meta">... </span>    some_var = <span class="number">15</span></span><br><span class="line"><span class="meta">... </span>    some_list = [<span class="number">5</span>]</span><br><span class="line"><span class="meta">... </span>    another_list = [<span class="number">5</span>]</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line"><span class="meta">... </span>        self.some_var = x + <span class="number">1</span></span><br><span class="line"><span class="meta">... </span>        self.some_list = self.some_list + [x]</span><br><span class="line"><span class="meta">... </span>        self.another_list += [x]</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some = SomeClass(<span class="number">10</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some.some_var</span><br><span class="line"><span class="number">11</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some.some_list</span><br><span class="line">[<span class="number">5</span>, <span class="number">10</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some.another_list</span><br><span class="line">[<span class="number">5</span>, <span class="number">10</span>]</span><br><span class="line"><span class="comment"># 注意这两个</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some.some_list <span class="keyword">is</span> SomeClass.some_list</span><br><span class="line"><span class="keyword">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some.another_list <span class="keyword">is</span> SomeClass.another_list</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>another = SomeClass(<span class="number">15</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>another.some_list</span><br><span class="line">[<span class="number">5</span>, <span class="number">15</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>another.another_list</span><br><span class="line">[<span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>]</span><br></pre></td></tr></table></figure>
+<p><strong><code>+=</code> 回原地修改可变对象，并不改变对象</strong>，所以some的some_list不是原属性对象，another_list仍是原对象</p>
+<ul>
+<li>tuple到底可不可变</li>
+</ul>
+<p>看下下面这个</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>some_tuple = ([<span class="number">1</span>],[<span class="number">2</span>],[<span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some_tuple[<span class="number">0</span>] += [<span class="number">2</span>]</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">TypeError: <span class="string">'tuple'</span> object does <span class="keyword">not</span> support item assignment</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some_tuple</span><br><span class="line">([<span class="number">1</span>, <span class="number">2</span>], [<span class="number">2</span>], [<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some_tuple[<span class="number">0</span>] = [<span class="number">2</span>]</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">TypeError: <span class="string">'tuple'</span> object does <span class="keyword">not</span> support item assignment</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some_tuple</span><br><span class="line">([<span class="number">1</span>, <span class="number">2</span>], [<span class="number">2</span>], [<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>不可变序列 不可变序列的对象一旦创建就不能再改变. (如果对象包含对其他对象的引用，则这些其他对象可能是可变的并且可能会被修改; 但是，由不可变对象直接引用的对象集合不能更改.) </p>
+</blockquote>
+<p>没错，不可变的tuple确实报了错（tuple不支持修改），但是使用<code>+=</code>时，确实改变了tuple</p>
+<p>像上面说的<code>+=</code>回原地修改可变对象，而tuple中<code>+=</code>是两个过程，先<code>+</code>再<code>=</code>，所以<code>+</code>操作时已经修改了原对象，但是再次赋值就触犯了元组不能修改规则，抛出异常</p>
+<blockquote>
+<p>首先需要重温<code>+=</code>这个运算符,如<code>a+=b</code>:</p>
+<ul>
+<li>对于可变对象(mutable object)如<code>list</code>, <code>+=</code>操作的结果会直接在<code>a</code>对应的变量进行修改，而<code>a</code>对应的地址不变.</li>
+<li>对于不可变对象(imutable object)如<code>tuple</code>, <code>+=</code>则是等价于<code>a = a+b</code> 会产生新的变量，然后绑定到<code>a</code>上而已.</li>
+</ul>
+<p>参考这个：<a href="https://segmentfault.com/a/1190000010767068" target="_blank" rel="noopener">Python中tuple+=赋值的四个问题</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = some_tuple[<span class="number">0</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a += [<span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>some_tuple</span><br><span class="line">([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">2</span>], [<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<p>所以元组到底可不可变？从上面可以看到tuple不支持<code>=</code>这种assign操作，但是对其中可变元素的原地修改是可以的</p>
+<p><code>+=, -=, =, /=, //=, %=, *=, &lt;&lt;=, &gt;&gt;=, &amp;=, ^=, |=</code>这些操作符都是原地修改可变对象，不会改变对象</p>
+<p>所以，tuple元组的不可变是指元素对象的引用不可变，不能对其再次赋值，但是在其中可变元素对象的引用不被修改前提下，仍旧可以对可变元素对象修改</p>
+<p>部分参考如下：</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/10397121/why-does-of-a-list-within-a-python-tuple-raise-typeerror-but-modify-the-list" target="_blank" rel="noopener">why-does-of-a-list-within-a-python-tuple-raise-typeerror-but-modify-the-list</a> by Stack Overflow</li>
+<li><a href="https://segmentfault.com/a/1190000010767068" target="_blank" rel="noopener">Python中tuple+=赋值的四个问题</a></li>
+</ul>
+<h3 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h3><ul>
+<li>isinstance和type方法的异同</li>
+</ul>
+<p>二者都可用来判断一个对象的类型，type是直接返回类型。但是isinstance方法会考虑继承的关系，会认为子类是一种父类类型，就像上面提到的True是int类型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(<span class="keyword">True</span>,int)</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="comment"># 差异</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(<span class="keyword">True</span>) == int</span><br><span class="line"><span class="keyword">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(<span class="keyword">True</span>) == bool</span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p><code>isinstance(object,classinfo)</code> ，classinfo 可以是直接或<strong>间接类名</strong>、基本类型<strong>或者由它们组成的元组</strong></p>
+<p><strong>推荐使用isinstance</strong></p>
+<ul>
+<li><code>+=, -=, =, /=, //=, %=, *=, &lt;&lt;=, &gt;&gt;=, &amp;=, ^=, |=</code>这些操作符都是原地修改可变对象，不会改变对象</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话，不妨加个鸡腿，O(∩_∩)O哈哈~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weChatPay.jpg" alt="Joson lee 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliPay.jpg" alt="Joson lee 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018-12-12-LeetCode刷题心得.html/" rel="next" title="LeetCode刷题心得">
+                <i class="fa fa-chevron-left"></i> LeetCode刷题心得
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018-12-20-推荐系统理论初探.html/" rel="prev" title="推荐系统理论初探">
+                推荐系统理论初探 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="Joson lee" />
+            
+              <p class="site-author-name" itemprop="name">Joson lee</p>
+              <p class="site-description motion-element" itemprop="description">Python数据分析、机器学习、Django、java学习</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/josonle" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://blog.csdn.net/lzw2016" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:3092312003@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一些有趣的Python特性—-阅读《wtfPython》记录"><span class="nav-number">1.</span> <span class="nav-text">一些有趣的Python特性—-阅读《wtfPython》记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#181214"><span class="nav-number">1.1.</span> <span class="nav-text">181214</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充"><span class="nav-number">1.2.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#181215"><span class="nav-number">1.3.</span> <span class="nav-text">181215</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充-1"><span class="nav-number">1.4.</span> <span class="nav-text">补充</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joson lee</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'a94818509a8f36c0a222',
+          clientSecret: '4d6bcd339e8df5f3e1f9e653afa2a5b9a1023f0f',
+          repo: 'josonle.github.io',
+          owner: 'josonle',
+          admin: ['josonle'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+    </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
