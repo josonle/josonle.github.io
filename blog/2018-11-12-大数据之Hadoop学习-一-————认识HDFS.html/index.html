@@ -93,7 +93,7 @@
 <meta property="og:image" content="https://img.xiaoxiaomo.com/blog%2Fimg%2F20160412195903.png">
 <meta property="og:image" content="https://img.xiaoxiaomo.com/blog%2Fimg%2F20160412195756.png">
 <meta property="og:image" content="https://img.xiaoxiaomo.com/blog%2Fimg%2F20160412202260.png">
-<meta property="og:updated_time" content="2018-11-18T08:15:57.953Z">
+<meta property="og:updated_time" content="2018-12-28T08:53:32.142Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据之Hadoop学习&lt;一&gt;————认识HDFS">
 <meta name="twitter:description" content="分布式文件系统 HDFS分布式文件系统（Distributed FileSystem）是指文件系统管理的物理存储资源不一定直接连接在本地节点上，而是通过计算机网络与节点相连。 Hadoop有若干文件系统，HDFS只是其中一个，但HDFS是其重要组成部分。HDFS由java的org.apache.hadoop.fs.FileSystem定义，并实现了java.io.Closeable接口，继承了or">
@@ -484,8 +484,8 @@
 </ul>
 <p>三副本放置策略：</p>
 <ul>
-<li>写请求方所在机器是其中一个Datanode，则第一份副本直接存放在本地，否则随机在集群中选择一个Datanode</li>
-<li>第二个副本存放于不同第一个副本的所在的机架</li>
+<li>写请求方所在机器是其中一个Datanode（即客户端的节点），则第一份副本直接存放在本地，否则随机在集群中选择一个Datanode</li>
+<li>第二个副本存放于不同于第一个副本所在机架的机架上某一个节点</li>
 <li>第三个副本存放于第二个副本所在的机架,但是属于不同的节点</li>
 </ul>
 <p>超过三份副本可随机放置，但满足：一个节点最多放一个副本，副本数少于机架数的两倍，则一个机架不能放超过两份副本</p>
