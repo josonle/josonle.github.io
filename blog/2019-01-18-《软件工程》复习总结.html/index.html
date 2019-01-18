@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="软件工程," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="第二章：可行性研究数据流图和数据字典  P40 P47数据流图完成功能的需求，数据字典完成数据定义  画数据流图要注意哪些事项？答：1.设计数据流图时只需考虑系统必须完成的基本逻辑功能，不需要考虑怎样具体的实现这些功能。2.从顶层数据流开始。3.并不是所有数据存储和数据流都能直接从问题描述中提取出来；4.当进一步分解将涉及如何具体地实现一个功能时，就不应该在分解了；5.数据流图中个成分的命名要仔细">
+<meta name="keywords" content="软件工程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《软件工程》复习总结">
+<meta property="og:url" content="http://yoursite.com/blog/2019-01-18-《软件工程》复习总结.html/index.html">
+<meta property="og:site_name" content="Josonlee&#39;s Blog">
+<meta property="og:description" content="第二章：可行性研究数据流图和数据字典  P40 P47数据流图完成功能的需求，数据字典完成数据定义  画数据流图要注意哪些事项？答：1.设计数据流图时只需考虑系统必须完成的基本逻辑功能，不需要考虑怎样具体的实现这些功能。2.从顶层数据流开始。3.并不是所有数据存储和数据流都能直接从问题描述中提取出来；4.当进一步分解将涉及如何具体地实现一个功能时，就不应该在分解了；5.数据流图中个成分的命名要仔细">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546826407679.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546827212580.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546827141760.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546826346837.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546826778046.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546826913687.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546827667395.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546829101200.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546829150554.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546828721769.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546828778955.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546829371774.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546829617473.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546701860223.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546849983561.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546849900736.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546745763355.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546760577001.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546761260457.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546761428933.png">
+<meta property="og:image" content="http://yoursite.com/MarkDown_images/软件工程/1546763155022.png">
+<meta property="og:image" content="https://img-blog.csdn.net/20140309205852609?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHU5MzAxMjQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2019-01-18T06:07:40.008Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《软件工程》复习总结">
+<meta name="twitter:description" content="第二章：可行性研究数据流图和数据字典  P40 P47数据流图完成功能的需求，数据字典完成数据定义  画数据流图要注意哪些事项？答：1.设计数据流图时只需考虑系统必须完成的基本逻辑功能，不需要考虑怎样具体的实现这些功能。2.从顶层数据流开始。3.并不是所有数据存储和数据流都能直接从问题描述中提取出来；4.当进一步分解将涉及如何具体地实现一个功能时，就不应该在分解了；5.数据流图中个成分的命名要仔细">
+<meta name="twitter:image" content="http://yoursite.com/MarkDown_images/软件工程/1546826407679.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/blog/2019-01-18-《软件工程》复习总结.html/"/>
+
+
+
+
+
+  <title>《软件工程》复习总结 | Josonlee's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Josonlee's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一点一滴 始于足下</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            给我留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-book">
+          <a href="/book/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            读书
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019-01-18-《软件工程》复习总结.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《软件工程》复习总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-18T13:38:26+08:00">
+                2019-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程/" itemprop="url" rel="index">
+                    <span itemprop="name">软件工程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+             <span class="post-meta-divider">|</span>   <span id="busuanzi_value_page_pv"></span>次阅读 
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="第二章：可行性研究"><a href="#第二章：可行性研究" class="headerlink" title="第二章：可行性研究"></a>第二章：可行性研究</h3><h4 id="数据流图和数据字典-P40-P47"><a href="#数据流图和数据字典-P40-P47" class="headerlink" title="数据流图和数据字典  P40 P47"></a>数据流图和数据字典  P40 P47</h4><p>数据流图完成功能的需求，数据字典完成数据定义</p>
+<blockquote>
+<p>画数据流图要注意哪些事项？<br>答：1.设计数据流图时只需考虑系统必须完成的基本逻辑功能，不需要考虑怎样具体的实现<br>这些功能。<br>2.从顶层数据流开始。<br>3.并不是所有数据存储和数据流都能直接从问题描述中提取出来；<br>4.当进一步分解将涉及如何具体地实现一个功能时，就不应该在分解了；<br>5.数据流图中个成分的命名要仔细推敲，看是否恰当；</p>
+</blockquote>
+<p><img src="/MarkDown_images/软件工程/1546826407679.png" alt="1546826407679"></p>
+<hr>
+<p><img src="/MarkDown_images/软件工程/1546827212580.png" alt="1546827141760"></p>
+<p><img src="/MarkDown_images/软件工程/1546827141760.png" alt=""></p>
+<hr>
+<p>数据字典：名字、别名、描述、定义、位置</p>
+<p>定义中，=（是）、[ A|B ]（A或B）、1{A}5（A重复1到5次）、A+B（A和B）、(A)（A可选）</p>
+<p><img src="/MarkDown_images/软件工程/1546826346837.png" alt="1546826346837"></p>
+<h3 id="第三章：需求分析阶段"><a href="#第三章：需求分析阶段" class="headerlink" title="第三章：需求分析阶段"></a>第三章：需求分析阶段</h3><p>结构化分析方法：面向数据流自顶向下逐步求精进行需求分析的方法</p>
+<p>快速建立软件原型</p>
+<p>E-R模型</p>
+<h4 id="状态图（状态转换图）-P66"><a href="#状态图（状态转换图）-P66" class="headerlink" title="状态图（状态转换图） P66"></a>状态图（状态转换图） P66</h4><p><strong>注意：初态是实心圆，终态是同心圆(内部实心圆)</strong>，中间状态是圆形框</p>
+<p><img src="/MarkDown_images/软件工程/1546826778046.png" alt="1546826778046"></p>
+<h4 id="P69-IPO图"><a href="#P69-IPO图" class="headerlink" title="P69 IPO图"></a>P69 IPO图</h4><p><img src="/MarkDown_images/软件工程/1546826913687.png" alt="1546826913687"></p>
+<p>• 左边框中列出有关的输入<br>• 中间框中列出主要的处理<br>• 右边框中列出产生的输出<br>• <strong>处理的顺序暗示了执行的顺序</strong><br>• 箭头指出数据通信的情况</p>
+<h3 id="第五章：总体设计（系统设计阶段、结构设计阶段）"><a href="#第五章：总体设计（系统设计阶段、结构设计阶段）" class="headerlink" title="第五章：总体设计（系统设计阶段、结构设计阶段）"></a>第五章：总体设计（系统设计阶段、结构设计阶段）</h3><h4 id="层次图和-HIPO-图-H图，带标签的层次图-P103"><a href="#层次图和-HIPO-图-H图，带标签的层次图-P103" class="headerlink" title="层次图和 HIPO 图(H图，带标签的层次图)  P103"></a>层次图和 HIPO 图(H图，带标签的层次图)  P103</h4><p>通常用层次图作为描述软件结构的文档</p>
+<p><img src="/MarkDown_images/软件工程/1546827667395.png" alt="1546827667395"></p>
+<p>如图是HIPO图，去掉数字是层次图</p>
+<h4 id="数据流图转成软件结构图"><a href="#数据流图转成软件结构图" class="headerlink" title="数据流图转成软件结构图"></a>数据流图转成软件结构图</h4><p>软件结构图可在层次图基础上，在方框间加入箭头代表模块的调用关系</p>
+<p><strong>箭头尾部</strong>是<strong>空心圆</strong>表示传递的是数据，<strong>实心圆</strong>表示传递的是控制信息</p>
+<hr>
+<h4 id="模块独立性：耦合、内聚-P97"><a href="#模块独立性：耦合、内聚-P97" class="headerlink" title="模块独立性：耦合、内聚  P97"></a>模块独立性：耦合、内聚  P97</h4><p>低【数据耦合】、中【控制耦合、特征耦合、公共环境耦合】、高【内容耦合】</p>
+<blockquote>
+<p>尽量用数据耦合，少使用控制、特征耦合，限制公共环境耦合的范围，不用内容耦合</p>
+</blockquote>
+<p>低内聚【偶然内聚、逻辑内聚、时间内聚】、中内聚【过程内聚、通信内聚】、高内聚【顺序内聚、功能内聚】</p>
+<p><strong>耦合越低、内聚越高，独立性越好</strong></p>
+<h3 id="第六章：详细设计"><a href="#第六章：详细设计" class="headerlink" title="第六章：详细设计"></a>第六章：详细设计</h3><h4 id="判定表和判定树-P127-、129"><a href="#判定表和判定树-P127-、129" class="headerlink" title="判定表和判定树  P127 、129"></a>判定表和判定树  P127 、129</h4><p><img src="/MarkDown_images/软件工程/1546829101200.png" alt="1546829101200"></p>
+<p>这是判定树（判定表的变种）</p>
+<p><img src="/MarkDown_images/软件工程/1546829150554.png" alt="1546829150554"></p>
+<h4 id="程序流程图和盒图-P125"><a href="#程序流程图和盒图-P125" class="headerlink" title="程序流程图和盒图 P125"></a>程序流程图和盒图 P125</h4><p>程序流程图要区分 <strong>while-do</strong>和 <strong>do-until</strong>两种，还有case语句图</p>
+<p><img src="/MarkDown_images/软件工程/1546828721769.png" alt="1546828721769"></p>
+<p>下面是盒图：</p>
+<p><img src="/MarkDown_images/软件工程/1546828778955.png" alt="盒图"></p>
+<h4 id="依据伪码（PDL）画出流图，并计算复杂度-P138（以及控制结构测试中求出流图的独立路径）-P166"><a href="#依据伪码（PDL）画出流图，并计算复杂度-P138（以及控制结构测试中求出流图的独立路径）-P166" class="headerlink" title="依据伪码（PDL）画出流图，并计算复杂度 P138（以及控制结构测试中求出流图的独立路径） P166"></a>依据伪码（PDL）画出流图，并计算复杂度 P138（以及控制结构测试中求出流图的独立路径） P166</h4><p>流图有的地方也叫<strong>控制流图</strong>、程序图</p>
+<p>McCabe方法</p>
+<p>复杂度是E-N+2（边数-点数+2）</p>
+<p><img src="/MarkDown_images/软件工程/1546829371774.png" alt="1546829371774"></p>
+<p><img src="/MarkDown_images/软件工程/1546829617473.png" alt="1546829617473"></p>
+<p>上面这个是判定<code>a OR b</code></p>
+<h3 id="第七章：软件实现与测试"><a href="#第七章：软件实现与测试" class="headerlink" title="第七章：软件实现与测试"></a>第七章：软件实现与测试</h3><p>编码和测试统称为实现</p>
+<p>软件测试在软件生命周期中横跨两个阶段：开发中的开发者进行的<strong>单元测试</strong>（编码和单元测试属于软件生命周期的同一阶段），专门测试人员负责的<strong>综合测试</strong></p>
+<p>测试是发现错误，最终目的是<strong>调试</strong>（诊断并改正错误，发生在测试之后）</p>
+<p>调试方法：蛮干法、回溯法、原因排除法</p>
+<p>可靠性模型</p>
+<blockquote>
+<p>软件<strong>可靠性</strong>是程序在给定的 <strong>时间间隔内</strong> ，按照规格说明书的规定成功地运行的概率</p>
+<p>软件<strong>可用性</strong>是程序在给定的 <strong>时间点</strong> ，按照规格说明书的规定，成功地运行的概率</p>
+<p>应同时使用可靠性和可用性衡量</p>
+</blockquote>
+<h4 id="测试方法：黑、白盒测试"><a href="#测试方法：黑、白盒测试" class="headerlink" title="测试方法：黑、白盒测试"></a><strong>测试方法：黑、白盒测试</strong></h4><ul>
+<li>黑盒测试又称功能测试，在程序接口进行的测试。按照规格说明书的规定功能是否有效，能否适当接收数据产生正确信息<ul>
+<li>主要技术：等价划分、边界值分析、错误推测</li>
+</ul>
+</li>
+<li>白盒测试又称结构测试，检测程序内部逻辑结构是否正确<ul>
+<li>主要技术：<strong>逻辑覆盖、控制结构测试</strong></li>
+</ul>
+</li>
+</ul>
+<p>逻辑覆盖分为：语句覆盖、判定覆盖、条件覆盖、（判定条件覆盖、条件组合覆盖）、路径覆盖 【覆盖强度依次增强】</p>
+<ul>
+<li>语句覆盖是保证每个语句至少执行一次<ul>
+<li>如下图所示，<strong>语句K，J都执行一次</strong>，只能选择数据组1、2</li>
+</ul>
+</li>
+<li>路径覆盖是走过所有路径，测试用例可以覆盖程序中所有可能的执行路径</li>
+</ul>
+<p><strong>判定覆盖和条件覆盖的区别</strong>：</p>
+<ul>
+<li><strong>判定覆盖</strong>：不仅每个语句必须至少执行一次，而且每个判定的每种可能的结果都应该至少执行一次，也就是每个判定的每个分支都至少执行一次</li>
+<li><strong>条件覆盖</strong>：类似判定覆盖，<strong>但是保证每个判定中的每个条件语句都可取到各种结果</strong></li>
+</ul>
+<blockquote>
+<p> <img src="/MarkDown_images/软件工程/1546701860223.png" alt="1546701860223">针</p>
+<p>对这里的条件覆盖为什么不能选8，因为第2、4组只能使得x&lt;1取到一种结果</p>
+</blockquote>
+<ul>
+<li>判定-条件覆盖</li>
+</ul>
+<p><img src="/MarkDown_images/软件工程/1546849983561.png" alt="1546849983561"></p>
+<ul>
+<li>条件组合覆盖</li>
+</ul>
+<p><img src="/MarkDown_images/软件工程/1546849900736.png" alt="1546849900736"></p>
+<p>Pareto原理：80%的错误很可能由20%的模块造成</p>
+<p>测试应该从小规模开始，逐步进行大规模测试，<strong>不可能穷举测试</strong></p>
+<p>测试四步骤：</p>
+<ul>
+<li>单元测试：针对各个单独模块，采用白盒测试</li>
+<li>集成测试：各个模块集成一起形成完整软件包，同时测试。常用黑盒测试，也可使用部分白盒<ul>
+<li>集成模块时，又分渐增式和非渐增式测试</li>
+<li>自顶向下集成</li>
+<li>自底向上集成</li>
+<li>回归测试(  回归测试 是指重新执行已经做过的测试的某个子集，以保证上述这些变化没有带来非预期的副作用) </li>
+</ul>
+</li>
+<li>确认测试：<strong>仅使用黑盒测试</strong>，验证需求分析阶段确认的标准</li>
+<li>系统测试</li>
+</ul>
+<blockquote>
+<p>软件测试包括哪些步骤？同时说明这些步骤的测试目的是什么？ </p>
+<p>答：（1）单元测试，目的是代码达到模块说明书的要求</p>
+<p>（2）集成测试，目的是将经过单元测试的模块逐步组装成具有良好一致性的完整的程序</p>
+<p>（3）确认测试，目的是确认程序系统是否满足软件需求规格说明书的要求</p>
+<p>（4）系统测试，目的是检查能否与系统的其余部分协调运行，并且完成SRS对他的要求。</p>
+</blockquote>
+<h4 id="控制结构测试-P166-【这也是一种白盒测试方法】"><a href="#控制结构测试-P166-【这也是一种白盒测试方法】" class="headerlink" title="控制结构测试  P166 【这也是一种白盒测试方法】"></a>控制结构测试  P166 【这也是一种白盒测试方法】</h4><p>分为 <strong>基本路径测试</strong>、<strong>条件测试</strong>、<strong>循环测试</strong>（包含<strong>简单、嵌套、串接循环</strong>三种）</p>
+<ul>
+<li>基本路径测试流程：<ol>
+<li>一般是根据伪码画出流图</li>
+<li>求出流图复杂度</li>
+<li>确定线性独立路径的基本集合 【<strong>独立路径数同复杂度值</strong>】<ul>
+<li><strong>独立路径至少包含一条在定义该路径之前不曾用过的边</strong></li>
+</ul>
+</li>
+<li>设计每条路径的测试用例</li>
+</ol>
+</li>
+</ul>
+<h3 id="第八章：软件维护（生命周期最后一个阶段）"><a href="#第八章：软件维护（生命周期最后一个阶段）" class="headerlink" title="第八章：软件维护（生命周期最后一个阶段）"></a>第八章：软件维护（生命周期最后一个阶段）</h3><ul>
+<li>改正错误</li>
+<li>满足新的需求</li>
+</ul>
+<p><img src="/MarkDown_images/软件工程/1546745763355.png" alt="1546745763355"></p>
+<p>完善性维护占主要，其次是改正性、适应性维护                      </p>
+<p>决定可维护性的因素：</p>
+<ul>
+<li>软件的可理解性、可测试性、可修改性</li>
+<li>文档描述符合要求、用户文档简洁明确、系统文档完整标准</li>
+</ul>
+<h3 id="第九章：面向对象分析"><a href="#第九章：面向对象分析" class="headerlink" title="第九章：面向对象分析"></a>第九章：面向对象分析</h3><p>优点：</p>
+<ul>
+<li>与人的思维方法一致</li>
+<li>稳定性好</li>
+<li>可重用性好</li>
+<li>较易开发大型软件</li>
+<li>可维护性好</li>
+</ul>
+<p>对象的特点：以数据为中心，实现了数据的封装，对象是主动的，并行性，模块独立性好</p>
+<ol>
+<li>对象模型：<strong>类图</strong>  P218</li>
+<li>动态模型：每个类用一张<strong>状态图</strong>（状态转换图）描述，状态图见3.6节，P66；事件跟踪图（时序图）</li>
+<li>功能模型：使用 UML 中的<strong>用例图</strong>  P225</li>
+</ol>
+<p>功能模型直接地反映了用户对目标系统的需求</p>
+<p>描述系统静态结构的对象模型、描述系统控制结构的动态模型、以及描述系统计算<br>结构的功能模型。其中，对象模型是最基本、最核心、最重要的</p>
+<h4 id="用例图怎么画"><a href="#用例图怎么画" class="headerlink" title="用例图怎么画"></a>用例图怎么画</h4><p><img src="/MarkDown_images/软件工程/1546760577001.png" alt="1546760577001"></p>
+<blockquote>
+<p><strong>扩展关系</strong>：向一个用例中加入一些新的动作后构成了另一个用例，这两个用例之间的关系就是扩展关系，后者通过继承前者的一些行为得来，通常把后者称为扩展用例</p>
+<p><strong>使用关系</strong>：当一个用例使用另一个用例时，这两个用例之间就构成了使用关系</p>
+</blockquote>
+<h4 id="类图怎么画"><a href="#类图怎么画" class="headerlink" title="类图怎么画"></a>类图怎么画</h4><p>类图是静态模型，是构建状态图、协作图等基础</p>
+<p><strong>类图包括类的定义和类之间的关系</strong></p>
+<p>属性名和类型名必须有，其他操作部分根据需要可有可无</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类的名字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">属性</td>
+</tr>
+<tr>
+<td style="text-align:center">操作</td>
+</tr>
+</tbody>
+</table>
+<p>属性用+-#分布表示public、private、protected</p>
+<p><img src="/MarkDown_images/软件工程/1546761260457.png" alt="1546761260457"></p>
+<h4 id="状态图怎么画"><a href="#状态图怎么画" class="headerlink" title="状态图怎么画"></a>状态图怎么画</h4><p><img src="/MarkDown_images/软件工程/1546761428933.png" alt="1546761428933"></p>
+<h4 id="顺序图（时序图）怎么画"><a href="#顺序图（时序图）怎么画" class="headerlink" title="顺序图（时序图）怎么画"></a>顺序图（时序图）怎么画</h4><p>两个坐标轴，横坐标表示不同对象，纵坐标表示时间</p>
+<p><img src="/MarkDown_images/软件工程/1546763155022.png" alt="1546763155022"></p>
+<p>事件跟踪图是简化的顺序图，下面这个是顺序图</p>
+<p><img src="https://img-blog.csdn.net/20140309205852609?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHU5MzAxMjQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<hr>
+<h2 id="考题"><a href="#考题" class="headerlink" title="考题"></a>考题</h2><ul>
+<li>由代码画出程序盒图，并求出环形复杂度</li>
+<li>给出一段文字，分析，然后画用例模型</li>
+<li>使用UML，画出类图</li>
+<li>画数据流图，给出说明</li>
+<li>白盒测试，黑盒测试，给出最小测试用例组</li>
+</ul>
+<hr>
+<ul>
+<li>数据流图—建立功能模型</li>
+<li>实体联系图（E-R）—建立数据模型</li>
+<li>状态图—建立行为模型</li>
+<li>测试阶段有关的文档——————需求规格说明书</li>
+<li>维护阶段的文档——————软件问题报告、概要设计说明书</li>
+</ul>
+<p>（需求分析节点产生）需求规格说明书作用：</p>
+<ol>
+<li>软件验收依据</li>
+<li>软件设计依据</li>
+<li>用户与开发人员对软件要做什么的共同理解</li>
+</ol>
+<p>需求规格说明书主要组成部分：数据流图和数据字典【二者也共同构成了系统的逻辑模型】</p>
+<ul>
+<li><strong>软件的生存周期一般分成哪几个阶段？</strong><br>答：<strong>三个时期</strong>：软件定义，软件开发，运行并维护。<strong>八个阶段</strong>：问题定义，可行性研究，需求分析，概要（总体）设计，详细设计，编码和单元测试，综合测试，运行维护</li>
+<li>分别叙述<strong>“瀑布模型”和“快速原型模型”的优缺点</strong><ol>
+<li>瀑布模型：<strong>优点</strong>：可强迫开发人员采用规范的方法；严格的规定了每个阶段必须提交的文档；要求每个阶段交出的所有产品都必须经过质量保证小组的仔细验证。<br><strong>缺点</strong>：瀑布模型是文档驱动的。缺乏灵活性</li>
+<li>快速原型模型：<strong>优点</strong>：软件产品的开发基本上是按线性顺序进行的。<br><strong>缺点</strong>：所选用的开发技术和工具不一定符合主流的发展； 快速建立起来的系统结构加上连续的修改可能会导致产品质量低下；</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>喷泉模型，”喷泉“体现了迭代和无缝特点。</p>
+<p><strong>瀑布模型关键不足在无法适应需求的动态变更（不适应用户的需求变更）</strong>，因为是依赖文档的</p>
+<p><strong>快速动态模型</strong>可以有效地适应用户需求的动态变化</p>
+<p><strong>螺旋模型</strong>在瀑布模型和增量模型基础上增加了风险分析活动</p>
+</blockquote>
+<p>软件详细设计主要采用方法：结构化程序设计</p>
+<p>一般把数据流图中的数据划分为事务流和交换流</p>
+<p>需求分析过程中无需确定软件系统运行的平台</p>
+<p><strong>非功能性需求</strong>，是指软件产品为满足用户业务需求而必须具有且除功能需求以外的特性。软件产品的非功能性需求包括系统的<strong>性能、可靠性、可维护性、可扩充性和对技术和对业务的适应性等</strong></p>
+<p>需求分析阶段分为四个方面：对问题的识别、分析与综合、编写需求文档、需求分析评审</p>
+<p>程序的三种基本控制结构：顺序、条件、循环</p>
+<p><strong>软件工程三要素：方法、工具、过程</strong></p>
+<p><strong>软件组成：程序、文档、数据</strong></p>
+<p>详细设计阶段所使用到的设计工具：程序流程图、PAD图、N-S图、HIPO图、判定树、判定表</p>
+<p>软件生命周期中花费最多的阶段是：测试与维护阶段</p>
+<p><strong>度量可靠性</strong>的指标：成功运行的概率、平均故障时间</p>
+<p>软件的风险分析包括 <strong>风险识别</strong>、<strong>风险预测</strong>、<strong>风险管理</strong></p>
+<p>通过软件测试未发现错误，<strong>并不一定代表软件是正确的</strong></p>
+<p>在可行性研究中最难决断和最关键的问题是<strong>技术可行性</strong></p>
+<p><strong>类与对象的静态关系主要有 关联、聚集、泛化、依赖</strong></p>
+<ul>
+<li>关联：</li>
+<li>聚集</li>
+<li>泛化</li>
+<li>依赖</li>
+</ul>
+<p><strong>数据字典主要由数据流描述、加工描述、文件描述组成</strong>，它对数据流图上每一个成分：数据项、文件(数据结构)、数据流、数据存储、加工和外部项等给以定义和说明</p>
+<p><strong>结构化设计的主要思想</strong>：</p>
+<ul>
+<li>自顶向下、逐步求精的程序设计方法</li>
+<li>使用三种基本结构、单入单出口</li>
+</ul>
+<p>面向对象设计准则包括：模块化、信息隐藏、抽象和逐步求精、低耦合、高内聚</p>
+<p>软件可行性研究实质上是进行一次 <strong>简化、压缩的</strong>需求分析、设计过程</p>
+<p>软件结构图的<u>形态特征</u>能<strong>反映程序重用率</strong>的是 <strong>扇入</strong></p>
+<p>要显示描绘软件开发项目各作业的依赖关系，应选择( B )。</p>
+<p>A. Gantt图             B.工程网络   </p>
+<p>C. COCOMO模型          D.数据流图 </p>
+<blockquote>
+<p>COCOMO模型 是成本估算方法</p>
+</blockquote>
+<p>黑白盒测试都属于动态测试</p>
+<p>系统流程图使用了描述系统物理模型的</p>
+<hr>
+<p>有几个单词简写要了解DFD图（数据流图）、DD（数据字典）、PAD图、sc图（结构图）</p>
+<p>SA（结构化分析方法）、SD（结构化设计方法）、SP（结构化程序设计方法）</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话，不妨加个鸡腿，O(∩_∩)O哈哈~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weChatPay.jpg" alt="Joson lee 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliPay.jpg" alt="Joson lee 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件工程/" rel="tag"># 软件工程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019-01-03-一文告诉你如何快速系统地入门学习Hadoop.html/" rel="next" title="一文告诉你如何快速系统地入门学习Hadoop">
+                <i class="fa fa-chevron-left"></i> 一文告诉你如何快速系统地入门学习Hadoop
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.png"
+                alt="Joson lee" />
+            
+              <p class="site-author-name" itemprop="name">Joson lee</p>
+              <p class="site-description motion-element" itemprop="description">Python数据分析、机器学习、Django、java学习</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/josonle" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://blog.csdn.net/lzw2016" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:3092312003@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第二章：可行性研究"><span class="nav-number">1.</span> <span class="nav-text">第二章：可行性研究</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据流图和数据字典-P40-P47"><span class="nav-number">1.1.</span> <span class="nav-text">数据流图和数据字典  P40 P47</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三章：需求分析阶段"><span class="nav-number">2.</span> <span class="nav-text">第三章：需求分析阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#状态图（状态转换图）-P66"><span class="nav-number">2.1.</span> <span class="nav-text">状态图（状态转换图） P66</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P69-IPO图"><span class="nav-number">2.2.</span> <span class="nav-text">P69 IPO图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五章：总体设计（系统设计阶段、结构设计阶段）"><span class="nav-number">3.</span> <span class="nav-text">第五章：总体设计（系统设计阶段、结构设计阶段）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#层次图和-HIPO-图-H图，带标签的层次图-P103"><span class="nav-number">3.1.</span> <span class="nav-text">层次图和 HIPO 图(H图，带标签的层次图)  P103</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据流图转成软件结构图"><span class="nav-number">3.2.</span> <span class="nav-text">数据流图转成软件结构图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块独立性：耦合、内聚-P97"><span class="nav-number">3.3.</span> <span class="nav-text">模块独立性：耦合、内聚  P97</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第六章：详细设计"><span class="nav-number">4.</span> <span class="nav-text">第六章：详细设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#判定表和判定树-P127-、129"><span class="nav-number">4.1.</span> <span class="nav-text">判定表和判定树  P127 、129</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#程序流程图和盒图-P125"><span class="nav-number">4.2.</span> <span class="nav-text">程序流程图和盒图 P125</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#依据伪码（PDL）画出流图，并计算复杂度-P138（以及控制结构测试中求出流图的独立路径）-P166"><span class="nav-number">4.3.</span> <span class="nav-text">依据伪码（PDL）画出流图，并计算复杂度 P138（以及控制结构测试中求出流图的独立路径） P166</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第七章：软件实现与测试"><span class="nav-number">5.</span> <span class="nav-text">第七章：软件实现与测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#测试方法：黑、白盒测试"><span class="nav-number">5.1.</span> <span class="nav-text">测试方法：黑、白盒测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制结构测试-P166-【这也是一种白盒测试方法】"><span class="nav-number">5.2.</span> <span class="nav-text">控制结构测试  P166 【这也是一种白盒测试方法】</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第八章：软件维护（生命周期最后一个阶段）"><span class="nav-number">6.</span> <span class="nav-text">第八章：软件维护（生命周期最后一个阶段）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第九章：面向对象分析"><span class="nav-number">7.</span> <span class="nav-text">第九章：面向对象分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用例图怎么画"><span class="nav-number">7.1.</span> <span class="nav-text">用例图怎么画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类图怎么画"><span class="nav-number">7.2.</span> <span class="nav-text">类图怎么画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态图怎么画"><span class="nav-number">7.3.</span> <span class="nav-text">状态图怎么画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#顺序图（时序图）怎么画"><span class="nav-number">7.4.</span> <span class="nav-text">顺序图（时序图）怎么画</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#考题"><span class="nav-number"></span> <span class="nav-text">考题</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joson lee</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'a94818509a8f36c0a222',
+          clientSecret: '4d6bcd339e8df5f3e1f9e653afa2a5b9a1023f0f',
+          repo: 'josonle.github.io',
+          owner: 'josonle',
+          admin: ['josonle'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+    </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

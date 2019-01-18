@@ -282,6 +282,427 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019-01-18-《软件工程》复习总结.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2019-01-18-《软件工程》复习总结.html/" itemprop="url">《软件工程》复习总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-18T13:38:26+08:00">
+                2019-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程/" itemprop="url" rel="index">
+                    <span itemprop="name">软件工程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="第二章：可行性研究"><a href="#第二章：可行性研究" class="headerlink" title="第二章：可行性研究"></a>第二章：可行性研究</h3><h4 id="数据流图和数据字典-P40-P47"><a href="#数据流图和数据字典-P40-P47" class="headerlink" title="数据流图和数据字典  P40 P47"></a>数据流图和数据字典  P40 P47</h4><p>数据流图完成功能的需求，数据字典完成数据定义</p>
+<blockquote>
+<p>画数据流图要注意哪些事项？<br>答：1.设计数据流图时只需考虑系统必须完成的基本逻辑功能，不需要考虑怎样具体的实现<br>这些功能。<br>2.从顶层数据流开始。<br>3.并不是所有数据存储和数据流都能直接从问题描述中提取出来；<br>4.当进一步分解将涉及如何具体地实现一个功能时，就不应该在分解了；<br>5.数据流图中个成分的命名要仔细推敲，看是否恰当；</p>
+</blockquote>
+<p><img src="/MarkDown_images/软件工程/1546826407679.png" alt="1546826407679"></p>
+<hr>
+<p><img src="/MarkDown_images/软件工程/1546827212580.png" alt="1546827141760"></p>
+<p><img src="/MarkDown_images/软件工程/1546827141760.png" alt=""></p>
+<hr>
+<p>数据字典：名字、别名、描述、定义、位置</p>
+<p>定义中，=（是）、[ A|B ]（A或B）、1{A}5（A重复1到5次）、A+B（A和B）、(A)（A可选）</p>
+<p><img src="/MarkDown_images/软件工程/1546826346837.png" alt="1546826346837"></p>
+<h3 id="第三章：需求分析阶段"><a href="#第三章：需求分析阶段" class="headerlink" title="第三章：需求分析阶段"></a>第三章：需求分析阶段</h3><p>结构化分析方法：面向数据流自顶向下逐步求精进行需求分析的方法</p>
+<p>快速建立软件原型</p>
+<p>E-R模型</p>
+<h4 id="状态图（状态转换图）-P66"><a href="#状态图（状态转换图）-P66" class="headerlink" title="状态图（状态转换图） P66"></a>状态图（状态转换图） P66</h4><p><strong>注意：初态是实心圆，终态是同心圆(内部实心圆)</strong>，中间状态是圆形框</p>
+<p><img src="/MarkDown_images/软件工程/1546826778046.png" alt="1546826778046"></p>
+<h4 id="P69-IPO图"><a href="#P69-IPO图" class="headerlink" title="P69 IPO图"></a>P69 IPO图</h4><p><img src="/MarkDown_images/软件工程/1546826913687.png" alt="1546826913687"></p>
+<p>• 左边框中列出有关的输入<br>• 中间框中列出主要的处理<br>• 右边框中列出产生的输出<br>• <strong>处理的顺序暗示了执行的顺序</strong><br>• 箭头指出数据通信的情况</p>
+<h3 id="第五章：总体设计（系统设计阶段、结构设计阶段）"><a href="#第五章：总体设计（系统设计阶段、结构设计阶段）" class="headerlink" title="第五章：总体设计（系统设计阶段、结构设计阶段）"></a>第五章：总体设计（系统设计阶段、结构设计阶段）</h3><h4 id="层次图和-HIPO-图-H图，带标签的层次图-P103"><a href="#层次图和-HIPO-图-H图，带标签的层次图-P103" class="headerlink" title="层次图和 HIPO 图(H图，带标签的层次图)  P103"></a>层次图和 HIPO 图(H图，带标签的层次图)  P103</h4><p>通常用层次图作为描述软件结构的文档</p>
+<p><img src="/MarkDown_images/软件工程/1546827667395.png" alt="1546827667395"></p>
+<p>如图是HIPO图，去掉数字是层次图</p>
+<h4 id="数据流图转成软件结构图"><a href="#数据流图转成软件结构图" class="headerlink" title="数据流图转成软件结构图"></a>数据流图转成软件结构图</h4><p>软件结构图可在层次图基础上，在方框间加入箭头代表模块的调用关系</p>
+<p><strong>箭头尾部</strong>是<strong>空心圆</strong>表示传递的是数据，<strong>实心圆</strong>表示传递的是控制信息</p>
+<hr>
+<h4 id="模块独立性：耦合、内聚-P97"><a href="#模块独立性：耦合、内聚-P97" class="headerlink" title="模块独立性：耦合、内聚  P97"></a>模块独立性：耦合、内聚  P97</h4><p>低【数据耦合】、中【控制耦合、特征耦合、公共环境耦合】、高【内容耦合】</p>
+<blockquote>
+<p>尽量用数据耦合，少使用控制、特征耦合，限制公共环境耦合的范围，不用内容耦合</p>
+</blockquote>
+<p>低内聚【偶然内聚、逻辑内聚、时间内聚】、中内聚【过程内聚、通信内聚】、高内聚【顺序内聚、功能内聚】</p>
+<p><strong>耦合越低、内聚越高，独立性越好</strong></p>
+<h3 id="第六章：详细设计"><a href="#第六章：详细设计" class="headerlink" title="第六章：详细设计"></a>第六章：详细设计</h3><h4 id="判定表和判定树-P127-、129"><a href="#判定表和判定树-P127-、129" class="headerlink" title="判定表和判定树  P127 、129"></a>判定表和判定树  P127 、129</h4><p><img src="/MarkDown_images/软件工程/1546829101200.png" alt="1546829101200"></p>
+<p>这是判定树（判定表的变种）</p>
+<p><img src="/MarkDown_images/软件工程/1546829150554.png" alt="1546829150554"></p>
+<h4 id="程序流程图和盒图-P125"><a href="#程序流程图和盒图-P125" class="headerlink" title="程序流程图和盒图 P125"></a>程序流程图和盒图 P125</h4><p>程序流程图要区分 <strong>while-do</strong>和 <strong>do-until</strong>两种，还有case语句图</p>
+<p><img src="/MarkDown_images/软件工程/1546828721769.png" alt="1546828721769"></p>
+<p>下面是盒图：</p>
+<p><img src="/MarkDown_images/软件工程/1546828778955.png" alt="盒图"></p>
+<h4 id="依据伪码（PDL）画出流图，并计算复杂度-P138（以及控制结构测试中求出流图的独立路径）-P166"><a href="#依据伪码（PDL）画出流图，并计算复杂度-P138（以及控制结构测试中求出流图的独立路径）-P166" class="headerlink" title="依据伪码（PDL）画出流图，并计算复杂度 P138（以及控制结构测试中求出流图的独立路径） P166"></a>依据伪码（PDL）画出流图，并计算复杂度 P138（以及控制结构测试中求出流图的独立路径） P166</h4><p>流图有的地方也叫<strong>控制流图</strong>、程序图</p>
+<p>McCabe方法</p>
+<p>复杂度是E-N+2（边数-点数+2）</p>
+<p><img src="/MarkDown_images/软件工程/1546829371774.png" alt="1546829371774"></p>
+<p><img src="/MarkDown_images/软件工程/1546829617473.png" alt="1546829617473"></p>
+<p>上面这个是判定<code>a OR b</code></p>
+<h3 id="第七章：软件实现与测试"><a href="#第七章：软件实现与测试" class="headerlink" title="第七章：软件实现与测试"></a>第七章：软件实现与测试</h3><p>编码和测试统称为实现</p>
+<p>软件测试在软件生命周期中横跨两个阶段：开发中的开发者进行的<strong>单元测试</strong>（编码和单元测试属于软件生命周期的同一阶段），专门测试人员负责的<strong>综合测试</strong></p>
+<p>测试是发现错误，最终目的是<strong>调试</strong>（诊断并改正错误，发生在测试之后）</p>
+<p>调试方法：蛮干法、回溯法、原因排除法</p>
+<p>可靠性模型</p>
+<blockquote>
+<p>软件<strong>可靠性</strong>是程序在给定的 <strong>时间间隔内</strong> ，按照规格说明书的规定成功地运行的概率</p>
+<p>软件<strong>可用性</strong>是程序在给定的 <strong>时间点</strong> ，按照规格说明书的规定，成功地运行的概率</p>
+<p>应同时使用可靠性和可用性衡量</p>
+</blockquote>
+<h4 id="测试方法：黑、白盒测试"><a href="#测试方法：黑、白盒测试" class="headerlink" title="测试方法：黑、白盒测试"></a><strong>测试方法：黑、白盒测试</strong></h4><ul>
+<li>黑盒测试又称功能测试，在程序接口进行的测试。按照规格说明书的规定功能是否有效，能否适当接收数据产生正确信息<ul>
+<li>主要技术：等价划分、边界值分析、错误推测</li>
+</ul>
+</li>
+<li>白盒测试又称结构测试，检测程序内部逻辑结构是否正确<ul>
+<li>主要技术：<strong>逻辑覆盖、控制结构测试</strong></li>
+</ul>
+</li>
+</ul>
+<p>逻辑覆盖分为：语句覆盖、判定覆盖、条件覆盖、（判定条件覆盖、条件组合覆盖）、路径覆盖 【覆盖强度依次增强】</p>
+<ul>
+<li>语句覆盖是保证每个语句至少执行一次<ul>
+<li>如下图所示，<strong>语句K，J都执行一次</strong>，只能选择数据组1、2</li>
+</ul>
+</li>
+<li>路径覆盖是走过所有路径，测试用例可以覆盖程序中所有可能的执行路径</li>
+</ul>
+<p><strong>判定覆盖和条件覆盖的区别</strong>：</p>
+<ul>
+<li><strong>判定覆盖</strong>：不仅每个语句必须至少执行一次，而且每个判定的每种可能的结果都应该至少执行一次，也就是每个判定的每个分支都至少执行一次</li>
+<li><strong>条件覆盖</strong>：类似判定覆盖，<strong>但是保证每个判定中的每个条件语句都可取到各种结果</strong></li>
+</ul>
+<blockquote>
+<p> <img src="/MarkDown_images/软件工程/1546701860223.png" alt="1546701860223">针</p>
+<p>对这里的条件覆盖为什么不能选8，因为第2、4组只能使得x&lt;1取到一种结果</p>
+</blockquote>
+<ul>
+<li>判定-条件覆盖</li>
+</ul>
+<p><img src="/MarkDown_images/软件工程/1546849983561.png" alt="1546849983561"></p>
+<ul>
+<li>条件组合覆盖</li>
+</ul>
+<p><img src="/MarkDown_images/软件工程/1546849900736.png" alt="1546849900736"></p>
+<p>Pareto原理：80%的错误很可能由20%的模块造成</p>
+<p>测试应该从小规模开始，逐步进行大规模测试，<strong>不可能穷举测试</strong></p>
+<p>测试四步骤：</p>
+<ul>
+<li>单元测试：针对各个单独模块，采用白盒测试</li>
+<li>集成测试：各个模块集成一起形成完整软件包，同时测试。常用黑盒测试，也可使用部分白盒<ul>
+<li>集成模块时，又分渐增式和非渐增式测试</li>
+<li>自顶向下集成</li>
+<li>自底向上集成</li>
+<li>回归测试(  回归测试 是指重新执行已经做过的测试的某个子集，以保证上述这些变化没有带来非预期的副作用) </li>
+</ul>
+</li>
+<li>确认测试：<strong>仅使用黑盒测试</strong>，验证需求分析阶段确认的标准</li>
+<li>系统测试</li>
+</ul>
+<blockquote>
+<p>软件测试包括哪些步骤？同时说明这些步骤的测试目的是什么？ </p>
+<p>答：（1）单元测试，目的是代码达到模块说明书的要求</p>
+<p>（2）集成测试，目的是将经过单元测试的模块逐步组装成具有良好一致性的完整的程序</p>
+<p>（3）确认测试，目的是确认程序系统是否满足软件需求规格说明书的要求</p>
+<p>（4）系统测试，目的是检查能否与系统的其余部分协调运行，并且完成SRS对他的要求。</p>
+</blockquote>
+<h4 id="控制结构测试-P166-【这也是一种白盒测试方法】"><a href="#控制结构测试-P166-【这也是一种白盒测试方法】" class="headerlink" title="控制结构测试  P166 【这也是一种白盒测试方法】"></a>控制结构测试  P166 【这也是一种白盒测试方法】</h4><p>分为 <strong>基本路径测试</strong>、<strong>条件测试</strong>、<strong>循环测试</strong>（包含<strong>简单、嵌套、串接循环</strong>三种）</p>
+<ul>
+<li>基本路径测试流程：<ol>
+<li>一般是根据伪码画出流图</li>
+<li>求出流图复杂度</li>
+<li>确定线性独立路径的基本集合 【<strong>独立路径数同复杂度值</strong>】<ul>
+<li><strong>独立路径至少包含一条在定义该路径之前不曾用过的边</strong></li>
+</ul>
+</li>
+<li>设计每条路径的测试用例</li>
+</ol>
+</li>
+</ul>
+<h3 id="第八章：软件维护（生命周期最后一个阶段）"><a href="#第八章：软件维护（生命周期最后一个阶段）" class="headerlink" title="第八章：软件维护（生命周期最后一个阶段）"></a>第八章：软件维护（生命周期最后一个阶段）</h3><ul>
+<li>改正错误</li>
+<li>满足新的需求</li>
+</ul>
+<p><img src="/MarkDown_images/软件工程/1546745763355.png" alt="1546745763355"></p>
+<p>完善性维护占主要，其次是改正性、适应性维护                      </p>
+<p>决定可维护性的因素：</p>
+<ul>
+<li>软件的可理解性、可测试性、可修改性</li>
+<li>文档描述符合要求、用户文档简洁明确、系统文档完整标准</li>
+</ul>
+<h3 id="第九章：面向对象分析"><a href="#第九章：面向对象分析" class="headerlink" title="第九章：面向对象分析"></a>第九章：面向对象分析</h3><p>优点：</p>
+<ul>
+<li>与人的思维方法一致</li>
+<li>稳定性好</li>
+<li>可重用性好</li>
+<li>较易开发大型软件</li>
+<li>可维护性好</li>
+</ul>
+<p>对象的特点：以数据为中心，实现了数据的封装，对象是主动的，并行性，模块独立性好</p>
+<ol>
+<li>对象模型：<strong>类图</strong>  P218</li>
+<li>动态模型：每个类用一张<strong>状态图</strong>（状态转换图）描述，状态图见3.6节，P66；事件跟踪图（时序图）</li>
+<li>功能模型：使用 UML 中的<strong>用例图</strong>  P225</li>
+</ol>
+<p>功能模型直接地反映了用户对目标系统的需求</p>
+<p>描述系统静态结构的对象模型、描述系统控制结构的动态模型、以及描述系统计算<br>结构的功能模型。其中，对象模型是最基本、最核心、最重要的</p>
+<h4 id="用例图怎么画"><a href="#用例图怎么画" class="headerlink" title="用例图怎么画"></a>用例图怎么画</h4><p><img src="/MarkDown_images/软件工程/1546760577001.png" alt="1546760577001"></p>
+<blockquote>
+<p><strong>扩展关系</strong>：向一个用例中加入一些新的动作后构成了另一个用例，这两个用例之间的关系就是扩展关系，后者通过继承前者的一些行为得来，通常把后者称为扩展用例</p>
+<p><strong>使用关系</strong>：当一个用例使用另一个用例时，这两个用例之间就构成了使用关系</p>
+</blockquote>
+<h4 id="类图怎么画"><a href="#类图怎么画" class="headerlink" title="类图怎么画"></a>类图怎么画</h4><p>类图是静态模型，是构建状态图、协作图等基础</p>
+<p><strong>类图包括类的定义和类之间的关系</strong></p>
+<p>属性名和类型名必须有，其他操作部分根据需要可有可无</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类的名字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">属性</td>
+</tr>
+<tr>
+<td style="text-align:center">操作</td>
+</tr>
+</tbody>
+</table>
+<p>属性用+-#分布表示public、private、protected</p>
+<p><img src="/MarkDown_images/软件工程/1546761260457.png" alt="1546761260457"></p>
+<h4 id="状态图怎么画"><a href="#状态图怎么画" class="headerlink" title="状态图怎么画"></a>状态图怎么画</h4><p><img src="/MarkDown_images/软件工程/1546761428933.png" alt="1546761428933"></p>
+<h4 id="顺序图（时序图）怎么画"><a href="#顺序图（时序图）怎么画" class="headerlink" title="顺序图（时序图）怎么画"></a>顺序图（时序图）怎么画</h4><p>两个坐标轴，横坐标表示不同对象，纵坐标表示时间</p>
+<p><img src="/MarkDown_images/软件工程/1546763155022.png" alt="1546763155022"></p>
+<p>事件跟踪图是简化的顺序图，下面这个是顺序图</p>
+<p><img src="https://img-blog.csdn.net/20140309205852609?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHU5MzAxMjQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<hr>
+<h2 id="考题"><a href="#考题" class="headerlink" title="考题"></a>考题</h2><ul>
+<li>由代码画出程序盒图，并求出环形复杂度</li>
+<li>给出一段文字，分析，然后画用例模型</li>
+<li>使用UML，画出类图</li>
+<li>画数据流图，给出说明</li>
+<li>白盒测试，黑盒测试，给出最小测试用例组</li>
+</ul>
+<hr>
+<ul>
+<li>数据流图—建立功能模型</li>
+<li>实体联系图（E-R）—建立数据模型</li>
+<li>状态图—建立行为模型</li>
+<li>测试阶段有关的文档——————需求规格说明书</li>
+<li>维护阶段的文档——————软件问题报告、概要设计说明书</li>
+</ul>
+<p>（需求分析节点产生）需求规格说明书作用：</p>
+<ol>
+<li>软件验收依据</li>
+<li>软件设计依据</li>
+<li>用户与开发人员对软件要做什么的共同理解</li>
+</ol>
+<p>需求规格说明书主要组成部分：数据流图和数据字典【二者也共同构成了系统的逻辑模型】</p>
+<ul>
+<li><strong>软件的生存周期一般分成哪几个阶段？</strong><br>答：<strong>三个时期</strong>：软件定义，软件开发，运行并维护。<strong>八个阶段</strong>：问题定义，可行性研究，需求分析，概要（总体）设计，详细设计，编码和单元测试，综合测试，运行维护</li>
+<li>分别叙述<strong>“瀑布模型”和“快速原型模型”的优缺点</strong><ol>
+<li>瀑布模型：<strong>优点</strong>：可强迫开发人员采用规范的方法；严格的规定了每个阶段必须提交的文档；要求每个阶段交出的所有产品都必须经过质量保证小组的仔细验证。<br><strong>缺点</strong>：瀑布模型是文档驱动的。缺乏灵活性</li>
+<li>快速原型模型：<strong>优点</strong>：软件产品的开发基本上是按线性顺序进行的。<br><strong>缺点</strong>：所选用的开发技术和工具不一定符合主流的发展； 快速建立起来的系统结构加上连续的修改可能会导致产品质量低下；</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>喷泉模型，”喷泉“体现了迭代和无缝特点。</p>
+<p><strong>瀑布模型关键不足在无法适应需求的动态变更（不适应用户的需求变更）</strong>，因为是依赖文档的</p>
+<p><strong>快速动态模型</strong>可以有效地适应用户需求的动态变化</p>
+<p><strong>螺旋模型</strong>在瀑布模型和增量模型基础上增加了风险分析活动</p>
+</blockquote>
+<p>软件详细设计主要采用方法：结构化程序设计</p>
+<p>一般把数据流图中的数据划分为事务流和交换流</p>
+<p>需求分析过程中无需确定软件系统运行的平台</p>
+<p><strong>非功能性需求</strong>，是指软件产品为满足用户业务需求而必须具有且除功能需求以外的特性。软件产品的非功能性需求包括系统的<strong>性能、可靠性、可维护性、可扩充性和对技术和对业务的适应性等</strong></p>
+<p>需求分析阶段分为四个方面：对问题的识别、分析与综合、编写需求文档、需求分析评审</p>
+<p>程序的三种基本控制结构：顺序、条件、循环</p>
+<p><strong>软件工程三要素：方法、工具、过程</strong></p>
+<p><strong>软件组成：程序、文档、数据</strong></p>
+<p>详细设计阶段所使用到的设计工具：程序流程图、PAD图、N-S图、HIPO图、判定树、判定表</p>
+<p>软件生命周期中花费最多的阶段是：测试与维护阶段</p>
+<p><strong>度量可靠性</strong>的指标：成功运行的概率、平均故障时间</p>
+<p>软件的风险分析包括 <strong>风险识别</strong>、<strong>风险预测</strong>、<strong>风险管理</strong></p>
+<p>通过软件测试未发现错误，<strong>并不一定代表软件是正确的</strong></p>
+<p>在可行性研究中最难决断和最关键的问题是<strong>技术可行性</strong></p>
+<p><strong>类与对象的静态关系主要有 关联、聚集、泛化、依赖</strong></p>
+<ul>
+<li>关联：</li>
+<li>聚集</li>
+<li>泛化</li>
+<li>依赖</li>
+</ul>
+<p><strong>数据字典主要由数据流描述、加工描述、文件描述组成</strong>，它对数据流图上每一个成分：数据项、文件(数据结构)、数据流、数据存储、加工和外部项等给以定义和说明</p>
+<p><strong>结构化设计的主要思想</strong>：</p>
+<ul>
+<li>自顶向下、逐步求精的程序设计方法</li>
+<li>使用三种基本结构、单入单出口</li>
+</ul>
+<p>面向对象设计准则包括：模块化、信息隐藏、抽象和逐步求精、低耦合、高内聚</p>
+<p>软件可行性研究实质上是进行一次 <strong>简化、压缩的</strong>需求分析、设计过程</p>
+<p>软件结构图的<u>形态特征</u>能<strong>反映程序重用率</strong>的是 <strong>扇入</strong></p>
+<p>要显示描绘软件开发项目各作业的依赖关系，应选择( B )。</p>
+<p>A. Gantt图             B.工程网络   </p>
+<p>C. COCOMO模型          D.数据流图 </p>
+<blockquote>
+<p>COCOMO模型 是成本估算方法</p>
+</blockquote>
+<p>黑白盒测试都属于动态测试</p>
+<p>系统流程图使用了描述系统物理模型的</p>
+<hr>
+<p>有几个单词简写要了解DFD图（数据流图）、DD（数据字典）、PAD图、sc图（结构图）</p>
+<p>SA（结构化分析方法）、SD（结构化设计方法）、SP（结构化程序设计方法）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019-01-03-一文告诉你如何快速系统地入门学习Hadoop.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -627,6 +1048,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-12-12-LeetCode刷题心得.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joson lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Josonlee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018-12-12-LeetCode刷题心得.html/" itemprop="url">LeetCode刷题心得</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-12T12:34:35+08:00">
+                2018-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="LeetCode刷题心得"><a href="#LeetCode刷题心得" class="headerlink" title="LeetCode刷题心得"></a>LeetCode刷题心得</h1><ul>
+<li>181212 链表刷题
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018-12-12-LeetCode刷题心得.html/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-12-12-一些有趣的Python特性.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -833,174 +1422,6 @@
 </ul>
 
           
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-12-12-LeetCode刷题心得.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joson lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Josonlee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018-12-12-LeetCode刷题心得.html/" itemprop="url">LeetCode刷题心得</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-12T12:34:35+08:00">
-                2018-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构与算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-          
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="LeetCode刷题心得"><a href="#LeetCode刷题心得" class="headerlink" title="LeetCode刷题心得"></a>LeetCode刷题心得</h1><ul>
-<li>181212 链表刷题
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2018-12-12-LeetCode刷题心得.html/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1904,217 +2325,6 @@ Path file, FsPermission permission) throws IOException</code></li>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018-11-21-Spark先修课-Scala语言学习.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joson lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Josonlee's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018-11-21-Spark先修课-Scala语言学习.html/" itemprop="url">Spark先修课---Scala语言学习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T12:20:26+08:00">
-                2018-11-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/大数据/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-          
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="变量定义-输入输出"><a href="#变量定义-输入输出" class="headerlink" title="变量定义 输入输出"></a>变量定义 输入输出</h2><h2 id="条件、循环控制结构-异常处理"><a href="#条件、循环控制结构-异常处理" class="headerlink" title="条件、循环控制结构 异常处理"></a>条件、循环控制结构 异常处理</h2><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="容器-collection"><a href="#容器-collection" class="headerlink" title="容器 collection"></a>容器 collection</h3><p>collection容器，包含List、Vector、Set、Map</p>
-<p>在scala.collection.mutable 中是可变容器，scala.collection.immutable 不可变容器</p>
-<ul>
-<li>List列表</li>
-</ul>
-<p>不同于其他语言，scala中List是不可变的，而且是抽象的，不能通过new来创建;直接通过List(xxx)，默认会调用apply工厂方法创建列表。可指定类型，也可以不指定，同上文所说scala会自动推断类型<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> l = <span class="keyword">new</span> <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">&lt;console&gt;:<span class="number">11</span>: error: <span class="class"><span class="keyword">class</span> <span class="title">List</span> <span class="title">is</span> <span class="title">abstract</span></span>; cannot be instantiated</span><br><span class="line">       <span class="keyword">val</span> l = <span class="keyword">new</span> <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> l = <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">l: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>像List、Set、Map无需导入scala.collection.immutable.XXX，因为scala默认导入了Predef对象，该对象为许多数据类型提供了别名定义，包含了List、不可变Set、不可变Map</p>
-</blockquote>
-<ul>
-<li>Vector 不可变向量</li>
-</ul>
-<p>List、Vector对应的可变版本是ListBuffer、ArrayBuffer</p>
-<ul>
-<li>Range 不可变数字等差数列</li>
-</ul>
-<p>创建如下，必须指定第三个步长参数。<code>Range(1,5,1)</code>等同于<code>1 until 5</code>，都不包含5；<code>1 to 5</code>包含5。同样是通过索引访问，如r(1)<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> r =<span class="keyword">new</span> <span class="type">Range</span>(<span class="number">1</span>,<span class="number">5</span>,<span class="number">2</span>)</span><br><span class="line">r: scala.collection.immutable.<span class="type">Range</span> = <span class="type">Range</span> <span class="number">1</span> until <span class="number">5</span> by <span class="number">2</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="number">1</span> to <span class="number">5</span></span><br><span class="line">res24: scala.collection.immutable.<span class="type">Range</span>.<span class="type">Inclusive</span> = <span class="type">Range</span> <span class="number">1</span> to <span class="number">5</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="number">1</span> until <span class="number">5</span> <span class="comment">//by 可以指定步长</span></span><br><span class="line">res25: scala.collection.immutable.<span class="type">Range</span> = <span class="type">Range</span> <span class="number">1</span> until <span class="number">5</span></span><br><span class="line"></span><br><span class="line">scala&gt; r(<span class="number">1</span>)</span><br><span class="line">res28: <span class="type">Int</span> = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">scala&gt; ('a' to 'e' by <span class="number">2</span>)(<span class="number">1</span>)</span><br><span class="line">res33: <span class="type">Char</span> = c</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>Set 不重复元素集合</li>
-</ul>
-<p>可变和不可变集合。默认不导入scala.collection.mutable.Set时，是不可变的。<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">var</span> s = <span class="type">Set</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)   <span class="comment">// var定义set指向的对象可变</span></span><br><span class="line">s: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; s += <span class="number">4</span>   <span class="comment">//s指向了新的Set对象</span></span><br><span class="line">scala&gt; s</span><br><span class="line">res37: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> set = <span class="type">Set</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) <span class="comment">// val定义set指向的对象不变</span></span><br><span class="line">set: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; set + <span class="number">4</span> <span class="comment">// 这是新生成了个set</span></span><br><span class="line">res19: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; set <span class="comment">// set并未改变</span></span><br><span class="line">res20: scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>] = <span class="type">Set</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; set += <span class="number">4</span> <span class="comment">//报错，immutable.Set不可改变</span></span><br><span class="line">&lt;console&gt;:<span class="number">15</span>: error: value += is not a member of scala.collection.immutable.<span class="type">Set</span>[<span class="type">Int</span>]</span><br><span class="line">  <span class="type">Expression</span> does not convert to assignment because receiver is not assignable.</span><br><span class="line">       set += <span class="number">4</span></span><br></pre></td></tr></table></figure></p>
-<p>这里有一个是，Set和Map不能通过new来初始化，同上面List。但是可以如<code>new HashSet[T](xxx)</code>来创建，创建的依旧是Set、Map<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scala.collection.mutable.<span class="type">Set</span></span><br><span class="line"><span class="keyword">val</span> set =  <span class="type">Set</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">println(set)</span><br><span class="line">set += <span class="number">4</span></span><br><span class="line">println(set)</span><br><span class="line">set.add(<span class="number">5</span>) <span class="comment">// set += 5</span></span><br><span class="line">println(set)</span><br><span class="line">set ++= <span class="type">Set</span>(<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">println(<span class="string">"Set元素不重复"</span>,set)</span><br><span class="line">set.remove(<span class="number">3</span>) <span class="comment">//set -= 3</span></span><br><span class="line">println(set)</span><br></pre></td></tr></table></figure></p>
-<p>或许你会觉得val set，set不是指向的对象不可变吗？但set的内容为什么改变了？很简单，set是变量名，指针指向一个固定的Set对象，但是这个Set对象本身可以变。就算Set本身变了，但指针还是指向该Set对象的，没有毛病</p>
-<p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Set(1, 2, 3)</span><br><span class="line">Set(1, 2, 3, 4)</span><br><span class="line">Set(1, 5, 2, 3, 4)</span><br><span class="line">(Set元素不重复,Set(1, 5, 2, 3, 4))</span><br><span class="line">Set(1, 5, 2, 4)</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>Map 键值对容器</li>
-</ul>
-<p>键唯一，值不唯一。也分为可变和不可变两类，同Set<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scala.collection.mutable.<span class="type">Map</span></span><br><span class="line"><span class="keyword">val</span> map = <span class="type">Map</span>(<span class="string">"H"</span>-&gt;<span class="string">"Hadoop"</span>,<span class="string">"S"</span>-&gt;(<span class="string">"Spark"</span>,<span class="string">"scala"</span>))</span><br><span class="line">println(map)</span><br><span class="line">map += (<span class="string">"D"</span>-&gt;<span class="string">"DUT"</span>) <span class="comment">//添加key-value</span></span><br><span class="line">println(map)</span><br><span class="line">map.put(<span class="string">"key"</span>,<span class="string">"value"</span>) <span class="comment">//添加key-value</span></span><br><span class="line">map.remove(<span class="string">"D"</span>) <span class="comment">// map -= "D"，移除key-value</span></span><br><span class="line">println(map)</span><br><span class="line">println(<span class="string">"包含某个键，map.contains(\"Key\")"</span>,map.contains(<span class="string">"key"</span>)) <span class="comment">//包含某个键</span></span><br><span class="line">println(<span class="string">"获取键A对应的值，map.get(\"key\")="</span>+map.get(<span class="string">"key"</span>))</span><br><span class="line">println(<span class="string">"所有键，map.keys"</span>,map.keys)</span><br><span class="line">println(<span class="string">"所有值，map.values"</span>,map.values)</span><br><span class="line">println(<span class="string">"合并map，map++Map(\"D\"-&gt;\"DUT\")"</span>,map++<span class="type">Map</span>(<span class="string">"D"</span>-&gt;<span class="string">"DUT"</span>))</span><br></pre></td></tr></table></figure></p>
-<p>结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Map(S -&gt; (Spark,scala), H -&gt; Hadoop)</span><br><span class="line">Map(S -&gt; (Spark,scala), D -&gt; DUT, H -&gt; Hadoop)</span><br><span class="line">Map(S -&gt; (Spark,scala), key -&gt; value, H -&gt; Hadoop)</span><br><span class="line">(包含某个键，map.contains(&quot;Key&quot;),true)</span><br><span class="line">获取键A对应的值，map.get(&quot;key&quot;)=Some(value)</span><br><span class="line">(所有键，map.keys,Set(S, key, H))</span><br><span class="line">(所有值，map.values,HashMap((Spark,scala), value, Hadoop))</span><br><span class="line">(合并map，map++Map(&quot;D&quot;-&gt;&quot;DUT&quot;),Map(S -&gt; (Spark,scala), D -&gt; DUT, key -&gt; value, H -&gt; Hadoop))</span><br></pre></td></tr></table></figure></p>
-<h2 id="scala方法定义及参数使用"><a href="#scala方法定义及参数使用" class="headerlink" title="scala方法定义及参数使用"></a>scala方法定义及参数使用</h2><p>方法定义：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func_name</span></span>(参数名:类型,...): 返回值类型 = &#123;</span><br><span class="line">    <span class="comment">//方法体</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 最后一行是返回值，不写return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>方法体中只有一行代码时，可不写括号，直接跟在等号后面即可<br>更多内容见下方代码</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Test_4_Function</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line"><span class="comment">//    函数定义</span></span><br><span class="line">    println(add(<span class="number">1</span>,<span class="number">2</span>))</span><br><span class="line">    print_name()</span><br><span class="line">    print_name  <span class="comment">//无需参数时，函数调用可以不带括号（注：参数都有默认值时仍要带括号）</span></span><br><span class="line">    print_name()</span><br><span class="line"><span class="comment">//    默认参数</span></span><br><span class="line">    print_name1(<span class="string">"Spark"</span>)</span><br><span class="line">    print_name1()</span><br><span class="line"></span><br><span class="line"><span class="comment">//    命名参数</span></span><br><span class="line">    println(max(<span class="number">1</span>,<span class="number">2</span>))</span><br><span class="line">    println(max(y = <span class="number">2</span>,x = <span class="number">1</span>))  <span class="comment">//这就是命名参数，通过参数名指定哪个是哪个，可以不按照顺序传入，但保证参数名没错</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    可变参数</span></span><br><span class="line">    println(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(x:<span class="type">Int</span>,y:<span class="type">Int</span>):<span class="type">Int</span> =&#123;  <span class="comment">//等同于 def add(x:Int,y:Int):Int = x+y</span></span><br><span class="line">    x+y</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">print_name</span></span>(name: <span class="type">String</span>=<span class="string">"Hadoop"</span>): <span class="type">Unit</span> =&#123;  <span class="comment">//重载，但是未输入参数时，解释器仍按照无默认参数的函数执行；和定义函数的顺序无关</span></span><br><span class="line">    println(<span class="string">"my name is"</span>+name)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">print_name</span></span>(): <span class="type">Unit</span> =&#123;</span><br><span class="line">    println(<span class="string">"My name is Scala"</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">print_name1</span></span>(name: <span class="type">String</span>=<span class="string">"Hadoop"</span>): <span class="type">Unit</span> =&#123; <span class="comment">//方法无返回值时，以Unit代替（从main函数可以看出来）</span></span><br><span class="line">    println(<span class="string">"my name is"</span>+name)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">max</span></span>(x:<span class="type">Int</span>,y:<span class="type">Int</span>):<span class="type">Int</span> =&#123;</span><br><span class="line">    <span class="keyword">if</span> (x&gt;=y)</span><br><span class="line">      x</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      y</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(nums:<span class="type">Int</span>*)=&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(num&lt;-nums)&#123;</span><br><span class="line">      i += num</span><br><span class="line">    &#125;</span><br><span class="line">    i</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">My name is Scala</span><br><span class="line">My name is Scala</span><br><span class="line">My name is Scala</span><br><span class="line">my name isSpark</span><br><span class="line">my name isHadoop</span><br><span class="line">2</span><br><span class="line">2</span><br><span class="line">15</span><br></pre></td></tr></table></figure></p>
-<h2 id="匿名函数、高阶函数"><a href="#匿名函数、高阶函数" class="headerlink" title="匿名函数、高阶函数"></a>匿名函数、高阶函数</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> add=(a:<span class="type">Int</span>,b:<span class="type">Int</span>)=&gt;a+b</span><br><span class="line"><span class="comment">//等同于下面的</span></span><br><span class="line"><span class="keyword">val</span> add = (_:<span class="type">Int</span>)+(_:<span class="type">Int</span>) <span class="comment">//参数在函数字面量内仅出现一次可省略=&gt;，用下划线占位（第一个_代表第一个参数）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> sum=(f:(<span class="type">Int</span>,<span class="type">Int</span>)=&gt;<span class="type">Int</span>,a:<span class="type">Int</span>,b:<span class="type">Int</span>)=&gt;f(a,b)</span><br></pre></td></tr></table></figure>
-<h2 id="Error汇集"><a href="#Error汇集" class="headerlink" title="Error汇集"></a>Error汇集</h2><ul>
-<li><code>Value += is not member of Int</code></li>
-</ul>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i: <span class="type">Int</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i &lt;- <span class="number">0</span> to <span class="number">10</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (i == <span class="number">2</span>) &#123; </span><br><span class="line">     i += <span class="number">1</span>     </span><br><span class="line">  &#125;</span><br><span class="line">  println(i)</span><br><span class="line">&#125;</span><br><span class="line">&gt;&lt;console&gt;:<span class="number">15</span>: error: value += is not a member of <span class="type">Int</span></span><br><span class="line">  <span class="type">Expression</span> does not convert to assignment because receiver is not assignable.</span><br><span class="line">            i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>遇到这个问题时，头都大了，想不通这居然有错误。中文搜了一波没结果，然后我在shell窗口下输入<code>val a = 0;var b = 1;a += b;</code>，天，也是报这个错误，严重摧毁我学习的热情，我仔细再看了下，发现a申明成了不可变val变量，然后我猜测上面那个函数定义i的时候有两次定义，是不是内层循环中i也是val变量，之后我google英文搜了一下（google就是强），确实是这个问题。</p>
-<blockquote>
-<p>You’re declaring i twice, one at the outer scope and one in the inner. Your for comprehension looks at the inner i, which is a val, not a var, thus shadowing the external declaration.</p>
-</blockquote>
-<p>问题就是for循环中申明的变量是一个val，换个名字就好了</p>
-<h1 id="1205查看Demo代码时记录"><a href="#1205查看Demo代码时记录" class="headerlink" title="1205查看Demo代码时记录"></a>1205查看Demo代码时记录</h1><ul>
-<li>java工具类Map、HashMap</li>
-<li>SimpleDateFormat类，貌似是用来方便格式化日期字符串的</li>
-<li>Date.getHours replaced by Calendar.get</li>
-<li>StringBuilder、StringUtils</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2169,7 +2379,7 @@ Path file, FsPermission permission) throws IOException</code></li>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2180,7 +2390,7 @@ Path file, FsPermission permission) throws IOException</code></li>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2191,7 +2401,7 @@ Path file, FsPermission permission) throws IOException</code></li>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

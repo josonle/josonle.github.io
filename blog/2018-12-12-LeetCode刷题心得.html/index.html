@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="数据机构," />
+  <meta name="keywords" content="数据结构与算法," />
 
 
 
@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="LeetCode刷题心得 181212 链表刷题">
-<meta name="keywords" content="数据机构">
+<meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode刷题心得">
 <meta property="og:url" content="http://yoursite.com/blog/2018-12-12-LeetCode刷题心得.html/index.html">
@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/MarkDown_images/leetcode/Cycle.png">
 <meta property="og:image" content="http://yoursite.com/MarkDown_images/leetcode/reverseList.png">
 <meta property="og:image" content="http://yoursite.com/MarkDown_images/leetcode/奇偶链表.png">
-<meta property="og:updated_time" content="2018-12-27T02:20:05.005Z">
+<meta property="og:updated_time" content="2019-01-18T06:03:35.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode刷题心得">
 <meta name="twitter:description" content="LeetCode刷题心得 181212 链表刷题">
@@ -446,7 +446,7 @@
 <h4 id="删除链表倒数第N个节点"><a href="#删除链表倒数第N个节点" class="headerlink" title="删除链表倒数第N个节点"></a>删除链表倒数第N个节点</h4><p>让一个指针先走N步，然后两个指针一起走即可</p>
 <p>注意边界点：最后一个节点和<strong>第一个节点</strong>删除问题</p>
 <blockquote>
-<p>public ListNode removeNthFromEnd(ListNode head, int n) {// 返回头结点<br>        ListNode p1 = head;<br>        ListNode p2 = head;<br>        while(n&gt;0){<br>            n–;<br>            p2 = p2.next;<br>        }<br>        if(p2==null){// 删除第一个节点的情况<br>            head = head.next;<br>            return head;<br>        }<br>        while(p2.next!=null){<br>            p1 = p1.next;<br>            p2 = p2.next;<br>        }<br>        p1.next = p1.next.next;<br>        return head;<br>    }</p>
+<p>public ListNode removeNthFromEnd(ListNode head, int n) {// 返回头结点<br>​        ListNode p1 = head;<br>​        ListNode p2 = head;<br>​        while(n&gt;0){<br>​            n–;<br>​            p2 = p2.next;<br>​        }<br>​        if(p2==null){// 删除第一个节点的情况<br>​            head = head.next;<br>​            return head;<br>​        }<br>​        while(p2.next!=null){<br>​            p1 = p1.next;<br>​            p2 = p2.next;<br>​        }<br>​        p1.next = p1.next.next;<br>​        return head;<br>​    }</p>
 </blockquote>
 <h4 id="判断链表中点位置"><a href="#判断链表中点位置" class="headerlink" title="判断链表中点位置"></a>判断链表中点位置</h4><blockquote>
 <p>同样是两个指针，一个步长为一，一个为二。步长为二的指针走到终点时，另一个指针走到中点。</p>
@@ -526,7 +526,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据机构/" rel="tag"># 数据机构</a>
+            <a href="/tags/数据结构与算法/" rel="tag"># 数据结构与算法</a>
           
         </div>
       
@@ -539,8 +539,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018-12-10-Spark理论、进阶、实践.html/" rel="next" title="Spark理论、进阶、实践">
-                <i class="fa fa-chevron-left"></i> Spark理论、进阶、实践
+              <a href="/blog/2018-12-12-一些有趣的Python特性.html/" rel="next" title="一些有趣的Python特性----阅读《wtfPython》记录">
+                <i class="fa fa-chevron-left"></i> 一些有趣的Python特性----阅读《wtfPython》记录
               </a>
             
           </div>
@@ -549,8 +549,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2018-12-12-一些有趣的Python特性.html/" rel="prev" title="一些有趣的Python特性----阅读《wtfPython》记录">
-                一些有趣的Python特性----阅读《wtfPython》记录 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2018-12-20-MapReduce算法中如何使用setup-和cleanup-进行优化.html/" rel="prev" title="MapReduce算法中如何使用setup()和cleanup()进行优化">
+                MapReduce算法中如何使用setup()和cleanup()进行优化 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -634,7 +634,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -645,7 +645,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -656,7 +656,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
