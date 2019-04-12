@@ -5,3 +5,4 @@
 - Python数据挖掘与机器学习
 - 爬虫
 - java开发
+- 大数据开发，MR、hdfs、Hive、HBase、Spark、blink等
